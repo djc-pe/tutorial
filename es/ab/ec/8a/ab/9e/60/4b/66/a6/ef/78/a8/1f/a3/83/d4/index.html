@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Qué es Software Development?</title>
+
+  <link rel="canonical" href="https://tutorial.djc.pe/es/ab/ec/8a/ab/9e/60/4b/66/a6/ef/78/a8/1f/a3/83/d4/">
+  <meta name="description" content="Aprende qué es el desarrollo de software (Software Development): definición, etapas, ciclo de vida, metodologías y el rol del equipo de desarrollo.">
+  <link rel="icon" type="image/png" href="/static/www/img/icon.png">
+  <link rel="stylesheet" href="/static/www/css/style.css">
+  <link rel="stylesheet" href="/static/www/css/bottom-nav.css">
+  <link rel="stylesheet" href="/static/www/css/content.css">
+  <link rel="stylesheet" href="/static/www/css/pygments.css">
+  <link rel="stylesheet" href="/static/www/css/codehilite.css">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="/static/www/js/sections-1-v2.js"></script>
+  <script src="/static/www/js/sections-2.js"></script>
+
+  <style>
+  :root {
+        /* Tipografía */
+    --font-base: 'Inter', sans-serif;
+    --font-heading: 'Poppins', sans-serif;
+
+    /* Superficies */
+    --color-bg: #000000;
+    --color-surface: #141414;
+
+    /* Texto */
+    --color-text: #FFFFFF;
+    --color-text-muted: #9CA3AF;
+    --color-text-inverse: #FFFFFF;
+
+    /* Marca */
+    --color-primary: #000000;
+    --color-accent: #e5f774;
+
+    /* Variantes */
+    --color-accent-hover: #e5f774;
+    --color-accent-dark: #e5f774;
+
+    /* UI */
+    --color-border: #e5f774;
+  }
+  </style>
+</head>
+<body>
+  <header>
+
+<link rel="stylesheet" href="/static/www/components/top_nav_v2/style.css">
+<script src="/static/www/components/top_nav_v2/script.js"></script>
+<script src="/static/www/components/top_nav_v2/search.js" defer></script>
+<nav class="navbar">
+  <div class="navbar__a">
+    <a href="#" class="navbar__link">
+      <img src="/static/www/img/menu-white.svg" alt="Menu" class="navbar__icon navbar__icon--desktop">
+      <img src="/static/www/img/menu-white.svg" alt="Menu" class="navbar__icon navbar__icon--mobile">
+    </a>
+
+    <a href="https://www.djc.pe/" class="navbar__link">
+      <img src="/static/www/img/logo.png" alt="Home" class="navbar__logo navbar__icon--desktop">
+      <img src="/static/www/img/logo-mobile.png" alt="Home" class="navbar__icon navbar__icon--mobile">
+    </a>
+  </div>
+  <div class="navbar__b">
+    <div class="navbar__b--search">
+      <input type="text" placeholder="">
+      <button>
+          <img src="/static/www/img/search.svg" alt="Search" class="navbar__icon2">
+      </button>
+    </div>
+  </div>
+  <div class="navbar__c">
+    <a href="#" class="navbar__link">
+      <img src="/static/www/img/user-white.svg" alt="User" class="navbar__icon navbar__icon--desktop">
+      <img src="/static/www/img/user-white.svg" alt="User" class="navbar__icon navbar__icon--mobile">
+    </a>
+  </div>
+</nav>
+
+<link rel="stylesheet" href="/static/www/components/top_nav_v2_menu/style.css">
+<script src="/static/www/components/top_nav_v2_menu/script.js"></script>
+<div class="drawer-overlay" id="drawerOverlay">
+  <aside class="drawer" data-side="left" id="mainMenu">
+    <div class="drawer-header">
+      <span>DJC</span>
+      <button class="drawer-close">✕</button>
+    </div>
+    <nav class="drawer-menu">
+      <a href="https://www.djc.pe/">Inicio</a>
+      <a href="https://tutorial.djc.pe/">Tutorial</a>
+      <hr>
+    </nav>
+  </aside>
+
+  <aside class="drawer" data-side="right" id="userMenu">
+    <div class="drawer-header">
+      <span>Mi cuenta</span>
+      <button class="drawer-close">✕</button>
+    </div>
+    <nav class="drawer-menu">
+      <a href="#">Iniciar sesión</a>
+      <a href="#">Registrarse</a>
+      <hr>
+    </nav>
+  </aside>
+</div>
+  </header>
+
+  <main class="content">
+    <h1>¿Qué es Software Development?</h1>
+    <p>El <strong>desarrollo de software</strong> (<em>Software Development</em>) es el proceso de concebir, especificar, diseñar, programar, documentar, probar y mantener aplicaciones, frameworks y otros componentes de software.</p>
+
+    <div class="section">
+      <h2>Definición</h2>
+      <p>El desarrollo de software es el conjunto de actividades que transforman una necesidad o idea en un producto de software funcional. No se limita a escribir código: incluye análisis de requisitos, diseño de arquitectura, implementación, pruebas, despliegue y mantenimiento continuo.</p>
+      <p>Se puede aplicar a distintos ámbitos: aplicaciones web, aplicaciones móviles, software de escritorio, sistemas embebidos, inteligencia artificial, videojuegos y más.</p>
+    </div>
+
+    <div class="section">
+      <h2>El ciclo de vida del software (SDLC)</h2>
+      <p>El ciclo de vida del desarrollo de software (SDLC, por sus siglas en inglés) organiza el trabajo en fases:</p>
+      <ol>
+        <li><strong>Planificación:</strong> se definen objetivos, alcance, tiempos y recursos.</li>
+        <li><strong>Análisis de requisitos:</strong> se recopilan y documentan las necesidades del cliente o usuario.</li>
+        <li><strong>Diseño:</strong> se define la arquitectura, las interfaces y el modelo de datos.</li>
+        <li><strong>Implementación:</strong> se escribe el código siguiendo las especificaciones.</li>
+        <li><strong>Pruebas:</strong> se verifica que el software funcione correctamente y cumpla los requisitos.</li>
+        <li><strong>Despliegue:</strong> el software se pone en producción para los usuarios.</li>
+        <li><strong>Mantenimiento:</strong> se corrigen errores y se agregan mejoras con el tiempo.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h2>Tipos de software</h2>
+      <p>Existen dos grandes categorías:</p>
+      <ul>
+        <li><strong>Software de sistema:</strong> sistema operativo, controladores, utilidades. Administra el hardware y provee servicios base.</li>
+        <li><strong>Software de aplicación:</strong> programas orientados al usuario final, como navegadores, editores, redes sociales o aplicaciones de negocio.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Metodologías de desarrollo</h2>
+      <p>Las metodologías definen <em>cómo</em> se organiza el trabajo de desarrollo:</p>
+      <ul>
+        <li><strong>Modelo en cascada:</strong> fases secuenciales; cada una comienza cuando termina la anterior.</li>
+        <li><strong>Ágil (Agile):</strong> entrega en iteraciones cortas con retroalimentación continua del cliente (Scrum, Kanban).</li>
+        <li><strong>DevOps:</strong> integra desarrollo y operaciones para entregar software de forma rápida y confiable.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Roles en un equipo de desarrollo</h2>
+      <p>Un proyecto de software suele involucrar varios perfiles:</p>
+      <ul>
+        <li><strong>Desarrollador (backend, frontend, full-stack):</strong> escribe y mantiene el código.</li>
+        <li><strong>Diseñador UX/UI:</strong> define la experiencia y la interfaz visual.</li>
+        <li><strong>QA / Tester:</strong> diseña y ejecuta pruebas de calidad.</li>
+        <li><strong>Product Manager / Analista:</strong> traduce necesidades del negocio en requisitos.</li>
+        <li><strong>DevOps:</strong> automatiza despliegues e infraestructura.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Conclusión</h2>
+      <p>El desarrollo de software es mucho más que programar: es un proceso disciplinado que combina tecnología, procesos y personas para resolver problemas con software de calidad. Cada vez más sectores dependen de él, y dominar sus fundamentos es el primer paso para convertirse en desarrollador.</p>
+    </div>
+  </main>
+
+  <!-- <nav class="bottom-nav">
+  <a href="#">
+    <span></span>
+    <small>www</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>HTML</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>+</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>JS</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>CSS</small>
+  </a>
+</nav> -->
+
+</body>
+</html>
