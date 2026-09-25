@@ -114,50 +114,50 @@
     <h1>¿Cómo deshacer el último commit?</h1>
     <p data-author style="color:var(--color-text-muted); font-size:14px;">Por <a href="https://www.djc.pe/@danny/" style="color:var(--color-accent); text-decoration:none;">@danny</a> · Tutorial</p>
 
-    <p>Te pasó a todos: hiciste un commit y medio segundo después te diste cuenta de algo. Un mensaje que no era, un archivo que faltaba, o directamente un cambio que no querías. Tranquilo, git pensó en esto. Deshacer el último commit es de las operaciones más usadas y, con tres comandos bien entendidos, se resuelve en segundos.</p>
+    <p>Commiteaste, cerraste la pestaña y treinta segundos después te diste cuenta: faltó un archivo, el mensaje quedó mal o metiste un cambio que no iba. Si te suena familiar, tranquilo, es el pan de cada día, y la buena noticia es que deshacer el último commit es de las operaciones más fáciles de git; con tres o cuatro comandos bien entendidos lo resolvés en segundos.</p>
 
     <div class="section">
       <h2>Primero: dónde viven los cambios</h2>
-      <p>Antes de tocar nada, recordá que en git un cambio pasa por tres lugares: el <strong>área de trabajo</strong> (tus archivos tal cual), el <strong>staging</strong> (lo que marcaste con <code>git add</code>) y el <strong>commit</strong> (la foto guardada en el historial). Deshacer un commit es, en el fondo, mover cosas entre esas tres zonas.</p>
-      <p>Una regla de oro antes de seguir: si el commit ya lo subiste a GitHub (<code>git push</code>) y trabajás con más gente, no reescribas el historial. Saltá directo a la sección de <code>git revert</code> al final.</p>
+      <p>Antes de meternos en los comandos conviene tener claro que en git un cambio recorre tres lugares: el <strong>área de trabajo</strong> (tus archivos tal cual), el <strong>staging</strong> (lo que marcaste con <code>git add</code>) y el <strong>commit</strong> (la foto guardada en el historial). Deshacer un commit no es más que mover cambios entre esas tres zonas según lo que necesites.</p>
+      <p>Una única regla de oro: si el commit ya lo publicaste con <code>git push</code> y trabajás con más gente, no reescribas el historial y saltá directo a la sección sobre <code>git revert</code> al final.</p>
     </div>
 
     <div class="section">
       <h2>El comodín: git reset</h2>
-      <p><code>git reset</code> mueve el puntero <code>HEAD</code> hacia atrás y te deja elegir qué hacer con los cambios según el modo. Con <code>HEAD~1</code> le decís "volvé un commit". Los tres modos:</p>
+      <p>La herramienta principal para esto es <code>git reset</code>: mueve el puntero <code>HEAD</code> hacia atrás (con <code>HEAD~1</code> volvés un commit) y te deja decidir qué hacer con los cambios según el modo. Tenés tres modos disponibles:</p>
       <ul>
-        <li><strong><code>--soft</code></strong>: los cambios quedan en el staging, listos para volver a commitear. No perdés nada.</li>
-        <li><strong><code>--mixed</code></strong> (el modo por defecto): los cambios salen del staging y quedan como archivos modificados sin agregar. Tampoco perdés nada.</li>
-        <li><strong><code>--hard</code></strong>: borra todo. Los cambios del commit se descartan para siempre. Poderoso y peligroso.</li>
+        <li><strong><code>--soft</code></strong>: vuelve el commit y deja los cambios esperando en el staging, listos para commitear de nuevo, no perdés nada.</li>
+        <li><strong><code>--mixed</code></strong> (el modo por defecto): los cambios salen del staging y quedan como simples modificaciones en tu área de trabajo, tampoco perdés nada.</li>
+        <li><strong><code>--hard</code></strong>: descarta el commit y sus cambios por completo, poderoso pero sin vuelta atrás.</li>
       </ul>
     </div>
 
     <div class="section">
       <h2>Me equivoqué en el mensaje o me faltó un archivo</h2>
-      <p>El caso más común. Fue tu último commit, no lo publicaste, y querés corregirlo sin ensuciar el historial. La forma más corta es <code>git commit --amend</code>, que reescribe el último commit:</p>
+      <p>Es el caso más habitual: el commit es el último, todavía no se publicó y querés corregirlo sin ensuciar el historial. La forma más corta es <code>git commit --amend</code>, que reescribe el último commit, ya sea solo para arreglar el mensaje o después de agregar el archivo que faltaba:</p>
 <pre><code>git commit --amend -m "Mensaje corregido"
 git add archivo-faltante.js
 git commit --amend</code></pre>
-      <p>¿Y si preferís rehacer el commit desde cero? Ahí entra <code>git reset</code>. Elegí un modo según dónde querés que queden los cambios:</p>
+      <p>Y si lo que querés es rehacer el commit desde cero para cambiar lo que incluía, entra <code>git reset</code> con el modo que más te sirva: usá <code>--soft</code> si querés que todo quede listo para commitear de nuevo:</p>
 <pre><code>git reset --soft HEAD~1</code></pre>
-      <p>Con <code>--soft</code> los archivos vuelven al staging, listos para volver a commitear. Con <code>--mixed</code> (o sin bandera) quedan en tu área de trabajo como ediciones sin agregar:</p>
+      <p>o <code>--mixed</code> si preferís que los cambios vuelvan a tu área de trabajo como ediciones pendientes:</p>
 <pre><code>git reset HEAD~1</code></pre>
-      <p>En ambos casos el commit desaparece del historial pero tus cambios están a salvo.</p>
+      <p>En cualquiera de los dos casos el commit desaparece del historial, pero tus cambios quedan a salvo.</p>
     </div>
 
     <div class="section">
       <h2>Quiero eliminar el commit y sus cambios</h2>
-      <p>Acá ya no hay vuelta atrás: <code>--hard</code> descarta el commit y además los cambios que viniera. Se usa así:</p>
+      <p>Para el caso extremo existe <code>git reset --hard</code>, que descarta el commit y también los cambios que traía consigo:</p>
 <pre><code>git reset --hard HEAD~1</code></pre>
-      <p>Verificalo dos veces antes de ejecutarlo. Si el cambio no estaba commiteado en ningún lado (ni siquiera otra rama), se pierde. Cuando dudes, usá <code>--soft</code> o <code>--mixed</code>, que no destruyen nada.</p>
+      <p>Fijate dos veces antes de ejecutarlo, porque si ese cambio no está commiteado en ningún otro lado (ni siquiera en otra rama) se pierde para siempre; cuando te quede la duda, preferí <code>--soft</code> o <code>--mixed</code>, que no destruyen nada.</p>
     </div>
 
     <div class="section">
       <h2>Si el commit ya se publicó</h2>
-      <p>El escenario de equipo: commiteaste, hiciste push, y ahora hay que deshacerlo. Ahí no se usa <code>reset</code> porque reescribir el historial rompe el repo de los demás. La herramienta correcta es <code>git revert</code>, que no borra nada: crea un commit nuevo que invierte los cambios del anterior.</p>
+      <p>Esto aplica sobre todo al trabajo en equipo: ya hiciste el push y ahora te toca deshacerlo. En ese caso no usamos <code>reset</code>, porque reescribir el historial les rompe el repo a los demás; la herramienta correcta es <code>git revert</code>, que en lugar de borrar nada crea un commit nuevo que invierte los cambios del anterior:</p>
 <pre><code>git revert HEAD
 git revert &lt;hash-del-commit&gt;</code></pre>
-      <p>El historial queda limpio y transparente, y cualquiera puede ver que hubo un commit y su corrección. Es la opción segura para trabajar en equipo.</p>
+      <p>El historial queda limpio y transparente: cualquiera puede ver que hubo un commit y después su corrección, y por eso es la opción segura cuando el cambio ya fue compartido.</p>
     </div>
 
     </div>
