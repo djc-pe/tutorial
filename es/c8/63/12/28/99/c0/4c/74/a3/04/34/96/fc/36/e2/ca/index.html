@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Cómo deshacer el último commit?</title>
+
+  <link rel="canonical" href="https://tutorial.djc.pe/es/c8/63/12/28/99/c0/4c/74/a3/04/34/96/fc/36/e2/ca/">
+  <meta name="description" content="Aprende a deshacer tu último commit en git: reset suave, mixto y duro, amend para corregir, y revert cuando el commit ya fue publicado.">
+  <link rel="icon" type="image/png" href="/static/www/img/icon.png">
+  <link rel="stylesheet" href="/static/www/css/style.css">
+  <link rel="stylesheet" href="/static/www/css/bottom-nav.css">
+  <link rel="stylesheet" href="/static/www/css/content.css">
+  <link rel="stylesheet" href="/static/www/css/pygments.css">
+  <link rel="stylesheet" href="/static/www/css/codehilite.css">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="/static/www/js/sections-1-v2.js"></script>
+  <script src="/static/www/js/sections-2.js"></script>
+  <script src="/static/www/js/listen.js"></script>
+
+  <style>
+  :root {
+        /* Tipografía */
+    --font-base: 'Inter', sans-serif;
+    --font-heading: 'Poppins', sans-serif;
+
+    /* Superficies */
+    --color-bg: #000000;
+    --color-surface: #141414;
+
+    /* Texto */
+    --color-text: #FFFFFF;
+    --color-text-muted: #9CA3AF;
+    --color-text-inverse: #FFFFFF;
+
+    /* Marca */
+    --color-primary: #000000;
+    --color-accent: #e5f774;
+
+    /* Variantes */
+    --color-accent-hover: #e5f774;
+    --color-accent-dark: #e5f774;
+
+    /* UI */
+    --color-border: #e5f774;
+  }
+  </style>
+</head>
+<body>
+  <header>
+
+<link rel="stylesheet" href="/static/www/components/top_nav_v2/style.css">
+<script src="/static/www/components/top_nav_v2/script.js"></script>
+<script src="/static/www/components/top_nav_v2/search.js" defer></script>
+<nav class="navbar">
+  <div class="navbar__a">
+    <a href="#" class="navbar__link">
+      <img src="/static/www/img/menu-white.svg" alt="Menu" class="navbar__icon navbar__icon--desktop">
+      <img src="/static/www/img/menu-white.svg" alt="Menu" class="navbar__icon navbar__icon--mobile">
+    </a>
+
+    <a href="https://www.djc.pe/" class="navbar__link">
+      <img src="/static/www/img/logo.png" alt="Home" class="navbar__logo navbar__icon--desktop">
+      <img src="/static/www/img/logo-mobile.png" alt="Home" class="navbar__icon navbar__icon--mobile">
+    </a>
+  </div>
+  <div class="navbar__b">
+    <div class="navbar__b--search">
+      <input type="text" placeholder="">
+      <button>
+          <img src="/static/www/img/search.svg" alt="Search" class="navbar__icon2">
+      </button>
+    </div>
+  </div>
+  <div class="navbar__c">
+    <a href="#" class="navbar__link">
+      <img src="/static/www/img/user-white.svg" alt="User" class="navbar__icon navbar__icon--desktop">
+      <img src="/static/www/img/user-white.svg" alt="User" class="navbar__icon navbar__icon--mobile">
+    </a>
+  </div>
+</nav>
+
+<link rel="stylesheet" href="/static/www/components/top_nav_v2_menu/style.css">
+<script src="/static/www/components/top_nav_v2_menu/script.js"></script>
+<div class="drawer-overlay" id="drawerOverlay">
+  <aside class="drawer" data-side="left" id="mainMenu">
+    <div class="drawer-header">
+      <span>DJC</span>
+      <button class="drawer-close">✕</button>
+    </div>
+    <nav class="drawer-menu">
+      <a href="https://www.djc.pe/">Inicio</a>
+      <a href="https://tutorial.djc.pe/">Tutorial</a>
+      <hr>
+    </nav>
+  </aside>
+
+  <aside class="drawer" data-side="right" id="userMenu">
+    <div class="drawer-header">
+      <span>Mi cuenta</span>
+      <button class="drawer-close">✕</button>
+    </div>
+    <nav class="drawer-menu">
+      <a href="#">Iniciar sesión</a>
+      <a href="#">Registrarse</a>
+      <hr>
+    </nav>
+  </aside>
+</div>
+  </header>
+
+  <main class="content">
+    <h1>¿Cómo deshacer el último commit?</h1>
+    <p data-author style="color:var(--color-text-muted); font-size:14px;">Por <a href="https://www.djc.pe/@danny/" style="color:var(--color-accent); text-decoration:none;">@danny</a> · Tutorial</p>
+
+    <p>Te pasó a todos: hiciste un commit y medio segundo después te diste cuenta de algo. Un mensaje que no era, un archivo que faltaba, o directamente un cambio que no querías. Tranquilo, git pensó en esto. Deshacer el último commit es de las operaciones más usadas y, con tres comandos bien entendidos, se resuelve en segundos.</p>
+
+    <div class="section">
+      <h2>Primero: dónde viven los cambios</h2>
+      <p>Antes de tocar nada, recordá que en git un cambio pasa por tres lugares: el <strong>área de trabajo</strong> (tus archivos tal cual), el <strong>staging</strong> (lo que marcaste con <code>git add</code>) y el <strong>commit</strong> (la foto guardada en el historial). Deshacer un commit es, en el fondo, mover cosas entre esas tres zonas.</p>
+      <p>Una regla de oro antes de seguir: si el commit ya lo subiste a GitHub (<code>git push</code>) y trabajás con más gente, no reescribas el historial. Saltá directo a la sección de <code>git revert</code> al final.</p>
+    </div>
+
+    <div class="section">
+      <h2>El comodín: git reset</h2>
+      <p><code>git reset</code> mueve el puntero <code>HEAD</code> hacia atrás y te deja elegir qué hacer con los cambios según el modo. Con <code>HEAD~1</code> le decís "volvé un commit". Los tres modos:</p>
+      <ul>
+        <li><strong><code>--soft</code></strong>: los cambios quedan en el staging, listos para volver a commitear. No perdés nada.</li>
+        <li><strong><code>--mixed</code></strong> (el modo por defecto): los cambios salen del staging y quedan como archivos modificados sin agregar. Tampoco perdés nada.</li>
+        <li><strong><code>--hard</code></strong>: borra todo. Los cambios del commit se descartan para siempre. Poderoso y peligroso.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Me equivoqué en el mensaje o me faltó un archivo</h2>
+      <p>El caso más común. Fue tu último commit, no lo publicaste, y querés corregirlo sin ensuciar el historial. La forma más corta es <code>git commit --amend</code>, que reescribe el último commit:</p>
+<pre><code>git commit --amend -m "Mensaje corregido"
+git add archivo-faltante.js
+git commit --amend</code></pre>
+      <p>¿Y si preferís rehacer el commit desde cero? Ahí entra <code>git reset</code>. Elegí un modo según dónde querés que queden los cambios:</p>
+<pre><code>git reset --soft HEAD~1</code></pre>
+      <p>Con <code>--soft</code> los archivos vuelven al staging, listos para volver a commitear. Con <code>--mixed</code> (o sin bandera) quedan en tu área de trabajo como ediciones sin agregar:</p>
+<pre><code>git reset HEAD~1</code></pre>
+      <p>En ambos casos el commit desaparece del historial pero tus cambios están a salvo.</p>
+    </div>
+
+    <div class="section">
+      <h2>Quiero eliminar el commit y sus cambios</h2>
+      <p>Acá ya no hay vuelta atrás: <code>--hard</code> descarta el commit y además los cambios que viniera. Se usa así:</p>
+<pre><code>git reset --hard HEAD~1</code></pre>
+      <p>Verificalo dos veces antes de ejecutarlo. Si el cambio no estaba commiteado en ningún lado (ni siquiera otra rama), se pierde. Cuando dudes, usá <code>--soft</code> o <code>--mixed</code>, que no destruyen nada.</p>
+    </div>
+
+    <div class="section">
+      <h2>Si el commit ya se publicó</h2>
+      <p>El escenario de equipo: commiteaste, hiciste push, y ahora hay que deshacerlo. Ahí no se usa <code>reset</code> porque reescribir el historial rompe el repo de los demás. La herramienta correcta es <code>git revert</code>, que no borra nada: crea un commit nuevo que invierte los cambios del anterior.</p>
+<pre><code>git revert HEAD
+git revert &lt;hash-del-commit&gt;</code></pre>
+      <p>El historial queda limpio y transparente, y cualquiera puede ver que hubo un commit y su corrección. Es la opción segura para trabajar en equipo.</p>
+    </div>
+
+    <div class="section">
+      <h2>En resumen</h2>
+      <p><code>--soft</code> deshace el commit pero deja todo en el staging, <code>--mixed</code> lo deshace dejando los cambios como ediciones pendientes, <code>--hard</code> lo borra todo, y <code>revert</code> sirve cuando ya compartiste el commit. Con eso ya sabés salir del apuro. Ahora sí, andá a romper algo tranquilo.</p>
+    </div>
+  </main>
+
+  <!-- <nav class="bottom-nav">
+  <a href="#">
+    <span></span>
+    <small>www</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>HTML</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>+</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>JS</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>CSS</small>
+  </a>
+</nav> -->
+
+</body>
+</html>
