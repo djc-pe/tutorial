@@ -112,9 +112,9 @@
 
   <main class="content">
     <h1>Problemas de Codeforces</h1>
-    <p data-author style="color:var(--color-text-muted); font-size:14px;">Por <a href="https://www.djc.pe/@danny/" style="color:var(--color-accent); text-decoration:none;">@danny</a> y <a href="https://www.djc.pe/@null_djc/" style="color:var(--color-accent); text-decoration:none;">@null_djc</a> · Serie</p>
+    <p data-author style="color:var(--color-text-muted); font-size:14px;">Por <a href="https://www.djc.pe/@null_djc/" style="color:var(--color-accent); text-decoration:none;">@null_djc</a> · Serie</p>
 
-    <p>Si alguna vez te llamó la atención eso de resolver problemas con código, seguro escuchaste nombrar Codeforces: una plataforma de programación competitiva donde miles de personas se pasan horas pensando en cómo resolver ejercicios, más por el gusto del reto que por otra cosa. En esta serie, @null_djc y yo vamos a ir resolviendo problemas de a poco, mostrando cómo pensamos cada solución, en qué nos trabamos y cómo se llega a la respuesta final, todo en español y sin dar nada por sabido.</p>
+    <p>Si alguna vez te llamó la atención eso de resolver problemas con código, seguro escuchaste nombrar Codeforces: una plataforma de programación competitiva donde miles de personas se pasan horas pensando en cómo resolver ejercicios, más por el gusto del reto que por otra cosa. En esta serie vamos a ir resolviendo problemas de a poco, mostrando cómo pensamos cada solución, en qué nos trabamos y cómo se llega a la respuesta final, todo en español y sin dar nada por sabido.</p>
 
     <div class="section">
       <h2>¿Qué es Codeforces?</h2>
@@ -154,8 +154,31 @@
     </div>
 
     <div class="section">
-      <h2>Problemas resueltos</h2>
-      <p style="color:var(--color-text-muted); font-size:14px;">Próximamente, el primero de la serie.</p>
+      <h2>Problema 1: SauSaGe Bank</h2>
+      <p><a href="https://codeforces.com/problemset/problem/2269/A" style="color:var(--color-accent); text-decoration:none;">Codeforces 2269A</a> · Div. 2 · <em>greedy</em>, <em>math</em></p>
+
+      <h3>El enunciado en criollo</h3>
+      <p>Un banco duplica tu saldo cada mañana y a la noche podés retirar todo: lo que retirás se suma a tu tarjeta y tu cuenta vuelve a $1 para empezar de nuevo. El banco dura exactamente <code>n</code> días y tenés que retirar exactamente <code>k</code> días. La pregunta es simple: ¿cuánto es lo máximo que podés juntar en la tarjeta?</p>
+
+      <h3>La trampa</h3>
+      <p>Lo primero que pensamos fue "si retiro el día <code>d</code>, cobro <code>2^d</code>". Y es un error, porque después de cada retiro el saldo se reinicia a $1. Fijate qué pasa si retirás el día 3 y otra vez el día 4: el día 4 recién hubo <em>un</em> duplicado, así que cobrás solo $2. Lo que cobrás en un retiro es <code>2</code> elevado a la cantidad de días desde el último retiro, no desde el día inicial.</p>
+
+      <h3>La idea</h3>
+      <p>Como tenés que retirar <code>k</code> veces, terminás partiendo los <code>n</code> días en <code>k</code> bloques, y cada bloque termina el día en que retirás. Si un bloque tiene <code>g</code> días, ese retiro te da <code>2^g</code>. Como <code>2^x</code> crece rapidísimo, conviene concentrar casi todo en un solo bloque largo y que los demás sean lo más corto posible (un día, que da $2 cada uno).</p>
+
+      <h3>La fórmula</h3>
+<pre><code>respuesta = 2^(n - k + 1) + 2 * (k - 1)</code></pre>
+      <p>El bloque largo te deja <code>n - k + 1</code> días (y con eso ganás la parte gorda), y los <code>k - 1</code> retiros restantes aportan $2 cada uno. Como <code>n ≤ 30</code>, <code>2^30</code> entra cómodo en un <code>long long</code>.</p>
+
+      <h3>La solución</h3>
+      <p>En los casos de prueba del problema, la regla no falla: <code>(1,1) → 2</code>, <code>(2,1) → 4</code>, <code>(4,3) → 8</code>, <code>(5,5) → 10</code>, <code>(10,2) → 514</code>. En convertimos el enunciado a código, con un <code>bucle</code> o directamente con un corrimiento de bits:</p>
+<pre><code>t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    print((1 &lt;&lt; (n - k + 1)) + 2 * (k - 1))</code></pre>
+
+      <h3>Qué nos enseñó</h3>
+      <p>A leer con cuidado el efecto de cada evento y en qué orden pasan: el "reseteo" del saldo era todo el problema. Y a jugar con los ejemplos a mano antes de abrir el editor, porque ahí apareció el patrón que después se volvió fórmula.</p>
     </div>
   </main>
 
