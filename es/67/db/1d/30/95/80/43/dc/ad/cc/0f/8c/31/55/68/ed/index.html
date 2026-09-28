@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problemas de Codeforces</title>
+
+  <link rel="canonical" href="https://tutorial.djc.pe/es/67/db/1d/30/95/80/43/dc/ad/cc/0f/8c/31/55/68/ed/">
+  <meta name="description" content="Serie donde resolvemos problemas de Codeforces paso a paso: cómo leer un enunciado, pensar la solución, implementarla y aprender de los errores.">
+  <link rel="icon" type="image/png" href="/static/www/img/icon.png">
+  <link rel="stylesheet" href="/static/www/css/style.css">
+  <link rel="stylesheet" href="/static/www/css/bottom-nav.css">
+  <link rel="stylesheet" href="/static/www/css/content.css">
+  <link rel="stylesheet" href="/static/www/css/pygments.css">
+  <link rel="stylesheet" href="/static/www/css/codehilite.css">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="/static/www/js/sections-1-v2.js"></script>
+  <script src="/static/www/js/sections-2.js"></script>
+  <script src="/static/www/js/listen.js"></script>
+
+  <style>
+  :root {
+        /* Tipografía */
+    --font-base: 'Inter', sans-serif;
+    --font-heading: 'Poppins', sans-serif;
+
+    /* Superficies */
+    --color-bg: #000000;
+    --color-surface: #141414;
+
+    /* Texto */
+    --color-text: #FFFFFF;
+    --color-text-muted: #9CA3AF;
+    --color-text-inverse: #FFFFFF;
+
+    /* Marca */
+    --color-primary: #000000;
+    --color-accent: #e5f774;
+
+    /* Variantes */
+    --color-accent-hover: #e5f774;
+    --color-accent-dark: #e5f774;
+
+    /* UI */
+    --color-border: #e5f774;
+  }
+  </style>
+</head>
+<body>
+  <header>
+
+<link rel="stylesheet" href="/static/www/components/top_nav_v2/style.css">
+<script src="/static/www/components/top_nav_v2/script.js"></script>
+<script src="/static/www/components/top_nav_v2/search.js" defer></script>
+<nav class="navbar">
+  <div class="navbar__a">
+    <a href="#" class="navbar__link">
+      <img src="/static/www/img/menu-white.svg" alt="Menu" class="navbar__icon navbar__icon--desktop">
+      <img src="/static/www/img/menu-white.svg" alt="Menu" class="navbar__icon navbar__icon--mobile">
+    </a>
+
+    <a href="https://www.djc.pe/" class="navbar__link">
+      <img src="/static/www/img/logo.png" alt="Home" class="navbar__logo navbar__icon--desktop">
+      <img src="/static/www/img/logo-mobile.png" alt="Home" class="navbar__icon navbar__icon--mobile">
+    </a>
+  </div>
+  <div class="navbar__b">
+    <div class="navbar__b--search">
+      <input type="text" placeholder="">
+      <button>
+          <img src="/static/www/img/search.svg" alt="Search" class="navbar__icon2">
+      </button>
+    </div>
+  </div>
+  <div class="navbar__c">
+    <a href="#" class="navbar__link">
+      <img src="/static/www/img/user-white.svg" alt="User" class="navbar__icon navbar__icon--desktop">
+      <img src="/static/www/img/user-white.svg" alt="User" class="navbar__icon navbar__icon--mobile">
+    </a>
+  </div>
+</nav>
+
+<link rel="stylesheet" href="/static/www/components/top_nav_v2_menu/style.css">
+<script src="/static/www/components/top_nav_v2_menu/script.js"></script>
+<div class="drawer-overlay" id="drawerOverlay">
+  <aside class="drawer" data-side="left" id="mainMenu">
+    <div class="drawer-header">
+      <span>DJC</span>
+      <button class="drawer-close">✕</button>
+    </div>
+    <nav class="drawer-menu">
+      <a href="https://www.djc.pe/">Inicio</a>
+      <a href="https://tutorial.djc.pe/">Tutorial</a>
+      <hr>
+    </nav>
+  </aside>
+
+  <aside class="drawer" data-side="right" id="userMenu">
+    <div class="drawer-header">
+      <span>Mi cuenta</span>
+      <button class="drawer-close">✕</button>
+    </div>
+    <nav class="drawer-menu">
+      <a href="#">Iniciar sesión</a>
+      <a href="#">Registrarse</a>
+      <hr>
+    </nav>
+  </aside>
+</div>
+  </header>
+
+  <main class="content">
+    <h1>Problemas de Codeforces</h1>
+    <p data-author style="color:var(--color-text-muted); font-size:14px;">Por <a href="https://www.djc.pe/@danny/" style="color:var(--color-accent); text-decoration:none;">@danny</a> y <a href="https://www.djc.pe/@null_djc/" style="color:var(--color-accent); text-decoration:none;">@null_djc</a> · Serie</p>
+
+    <p>Si alguna vez te llamó la atención eso de resolver problemas con código, seguro escuchaste nombrar Codeforces: una plataforma de programación competitiva donde miles de personas se pasan horas pensando en cómo resolver ejercicios, más por el gusto del reto que por otra cosa. En esta serie, @null_djc y yo vamos a ir resolviendo problemas de a poco, mostrando cómo pensamos cada solución, en qué nos trabamos y cómo se llega a la respuesta final, todo en español y sin dar nada por sabido.</p>
+
+    <div class="section">
+      <h2>¿Qué es Codeforces?</h2>
+      <p>Codeforces es una de las plataformas de programación competitiva más grandes que existen. Organiza concursos (los "contests") donde los participantes reciben varios problemas y compiten para resolverlos lo más rápido posible. Lo típico de cada concurso: leer un problema, pensar un algoritmo que lo resuelva, escribirlo en un lenguaje como C++ o Python, y enviarlo para que un jurado lo evalúe contra casos de prueba que no ves.</p>
+      <p>Además de los concursos tiene un catálogo enorme de problemas (el "problemset") con niveles de dificultad. Ahí es donde realmente se entrena: podés agarrar un problema fácil una tarde y usar el tiempo que haga falta para que te salga. No hay apuro, y a diferencia de un concurso, nadie te está mirando.</p>
+    </div>
+
+    <div class="section">
+      <h2>Por qué molesta tanto resolver problemas</h2>
+      <p>Fijate que dije "molesta" a propósito: resolver estos problemas es un hábito que te hace mejor programador, pero cuesta. Te obliga a leer con atención, a romper un problema grande en partes chicas, a estimar cuánto puede tardar tu solución y a encontrar esa idea que convierte algo imposible en algo trivial. Y lo más importante: te acostumbra a equivocarte y a aprender del error, que es exactamente como se progresa en programación.</p>
+      <p>Ni hablar de que casi todas las entrevistas técnicas del mundo piden exactamente esto: un problema de algoritmos, un papel o un editor, y quince minutos para resolverlo.</p>
+    </div>
+
+    <div class="section">
+      <h2>Cómo se lee un problema</h2>
+      <p>Al principio cuesta, pero un enunciado de Codeforces siempre tiene la misma estructura. El <strong>enunciado</strong> cuenta la historia con datos concretos. Después viene la <strong>entrada</strong> (input), que define qué te va a llegar: la primera línea suele tener números chicos, y las siguientes el resto de los datos. Luego la <strong>salida</strong> (output), que es exactamente lo que tu programa tiene que imprimir. Al final están las <strong>restricciones</strong> (constraints), que te dicen qué tan grandes pueden ser los números: "n puede ser hasta 10^9" no es un detalle decorativo, es una pista clave de qué algoritmo necesitás.</p>
+      <p>Y junto a todo eso, un límite de tiempo y otro de memoria: tu programa tiene que terminar antes de que el jurado se aburra, así que la solución no tiene que ser solo correcta, tiene que ser lo bastante rápida.</p>
+    </div>
+
+    <div class="section">
+      <h2>Nuestro flujo para resolver</h2>
+      <p>Cuando tomamos un problema nuevo seguimos, más o menos, estos pasos, y van a verse reflejados en cada entrada de la serie:</p>
+      <ol>
+        <li><strong>Leer todo antes de escribir nada:</strong> el enunciado, los ejemplos y sobre todo las restricciones.</li>
+        <li><strong>Resolver el ejemplo a mano:</strong> si no podés explicar cómo funciona el caso de prueba, todavía no entendiste el problema.</li>
+        <li><strong>Pensar la solución más obvia</strong> (la fuerza bruta) y después ver cómo mejorarla.</li>
+        <li><strong>Estimarla:</strong> con las restricciones, ¿alcanza? ¿se pasa de tiempo?</li>
+        <li><strong>Implementar y probar</strong> con casos propios además de los ejemplos.</li>
+        <li><strong>Enviar</strong> y enfrentar el veredicto: Accepted, Wrong answer o Time limit. Sean los que sean, siempre hay algo que aprender.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h2>Qué necesitás para seguirnos</h2>
+      <p>Solo tres cosas: una cuenta gratis en codeforces.com, un lenguaje en el que te sientas cómodo (C++ y Python son los clásicos, pero da igual cuál uses) y ganas de equivocarte en público, porque nosotros también lo hacemos.</p>
+      <p>Los problemas que vayamos resolviendo van a ir apareciendo acá, uno por uno, con la explicación de cómo lo encaramos, qué prueban los casos y qué nos enseñó el veredicto.</p>
+    </div>
+
+    <div class="section">
+      <h2>Problemas resueltos</h2>
+      <p style="color:var(--color-text-muted); font-size:14px;">Próximamente, el primero de la serie.</p>
+    </div>
+  </main>
+
+  <!-- <nav class="bottom-nav">
+  <a href="#">
+    <span></span>
+    <small>www</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>HTML</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>+</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>JS</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>CSS</small>
+  </a>
+</nav> -->
+
+</body>
+</html>
