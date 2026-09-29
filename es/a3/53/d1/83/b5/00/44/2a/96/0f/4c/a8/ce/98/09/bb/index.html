@@ -154,10 +154,55 @@ conviene concentrar casi todo en un solo bloque largo y que los demás sean lo m
     <div class="section">
       <h2>La solución</h2>
       <p>En los casos de prueba del problema, la regla no falla: <code>(1,1) → 2</code>, <code>(2,1) → 4</code>, <code>(4,3) → 8</code>, <code>(5,5) → 10</code>, <code>(10,2) → 514</code>. Convertimos el enunciado a código, con un corrimiento de bits:</p>
+
+
+<h3>C++</h3>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int t;
+    cin &gt;&gt; t;
+
+    while (t--) {
+        int n, k;
+        cin &gt;&gt; n &gt;&gt; k;
+
+        cout &lt;&lt; (1LL &lt;&lt; (n - k + 1)) + 2LL * (k - 1) &lt;&lt; '\n';
+    }
+
+    return 0;
+}</code></pre>
+
+<h3>Python</h3>
 <pre><code>t = int(input())
+
 for _ in range(t):
     n, k = map(int, input().split())
     print((1 &lt;&lt; (n - k + 1)) + 2 * (k - 1))</code></pre>
+
+<h3>Rust</h3>
+<pre><code>use std::io::{self, Read};
+
+fn main() {
+    let mut input = String::new();
+    io::stdin().read_to_string(&amp;mut input).unwrap();
+
+    let mut it = input.split_whitespace();
+
+    let t: usize = it.next().unwrap().parse().unwrap();
+
+    for _ in 0..t {
+        let n: u32 = it.next().unwrap().parse().unwrap();
+        let k: i64 = it.next().unwrap().parse().unwrap();
+
+        let answer = (1_i64 &lt;&lt; (n - k as u32 + 1))
+            + 2 * (k - 1);
+
+        println!("{}", answer);
+    }
+}</code></pre>
+
     </div>
 
     <div class="section">
