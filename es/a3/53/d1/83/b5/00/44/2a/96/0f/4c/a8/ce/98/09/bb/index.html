@@ -118,8 +118,13 @@
     <p><a href="https://codeforces.com/problemset/problem/2269/A" style="color:var(--color-accent); text-decoration:none;">Codeforces 2269A</a> · Div. 2 · <em>greedy</em>, <em>math</em></p>
 
     <div class="section">
-      <h2>El enunciado en criollo</h2>
-      <p>Un banco duplica tu saldo cada mañana y a la noche podés retirar todo: lo que retirás se suma a tu tarjeta y tu cuenta vuelve a $1 para empezar de nuevo. El banco dura exactamente <code>n</code> días y tenés que retirar exactamente <code>k</code> días. La pregunta es simple: ¿cuánto es lo máximo que podés juntar en la tarjeta?</p>
+      <h2>El enunciado simplificado</h2>
+      <p>
+Un banco duplica tu saldo cada mañana y a la noche puedes retirar todo:
+lo que retirás se suma a tu tarjeta y tu cuenta vuelve a $1 para empezar de nuevo.
+El banco dura exactamente <code>n</code> días y tienes que retirar exactamente <code>k</code> días.
+La pregunta es simple: ¿cuánto es lo máximo que puedes juntar en la tarjeta?
+      </p>
     </div>
 
     <div class="section">
@@ -129,7 +134,15 @@
 
     <div class="section">
       <h2>La idea</h2>
-      <p>Como tenés que retirar <code>k</code> veces, terminás partiendo los <code>n</code> días en <code>k</code> bloques, y cada bloque termina el día en que retirás. Si un bloque tiene <code>g</code> días, ese retiro te da <code>2^g</code>. Como <code>2^x</code> crece rapidísimo, conviene concentrar casi todo en un solo bloque largo y que los demás sean lo más corto posible (un día, que da $2 cada uno).</p>
+      <p>
+Como tienes que retirar <code>k</code> veces,
+terminás partiendo los <code>n</code> días en <code>k</code> bloques,
+y cada bloque termina el día en que retirás.
+Si un bloque tiene <code>g</code> días,
+ese retiro te da <code>2^g</code>.
+Como <code>2^x</code> crece rapidísimo,
+conviene concentrar casi todo en un solo bloque largo y que los demás sean lo más corto posible (un día, que da $2 cada uno).
+      </p>
     </div>
 
     <div class="section">
@@ -141,10 +154,55 @@
     <div class="section">
       <h2>La solución</h2>
       <p>En los casos de prueba del problema, la regla no falla: <code>(1,1) → 2</code>, <code>(2,1) → 4</code>, <code>(4,3) → 8</code>, <code>(5,5) → 10</code>, <code>(10,2) → 514</code>. Convertimos el enunciado a código, con un corrimiento de bits:</p>
+
+
+<h3>C++</h3>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int t;
+    cin &gt;&gt; t;
+
+    while (t--) {
+        int n, k;
+        cin &gt;&gt; n &gt;&gt; k;
+
+        cout &lt;&lt; (1LL &lt;&lt; (n - k + 1)) + 2LL * (k - 1) &lt;&lt; '\n';
+    }
+
+    return 0;
+}</code></pre>
+
+<h3>Python</h3>
 <pre><code>t = int(input())
+
 for _ in range(t):
     n, k = map(int, input().split())
     print((1 &lt;&lt; (n - k + 1)) + 2 * (k - 1))</code></pre>
+
+<h3>Rust</h3>
+<pre><code>use std::io::{self, Read};
+
+fn main() {
+    let mut input = String::new();
+    io::stdin().read_to_string(&amp;mut input).unwrap();
+
+    let mut it = input.split_whitespace();
+
+    let t: usize = it.next().unwrap().parse().unwrap();
+
+    for _ in 0..t {
+        let n: u32 = it.next().unwrap().parse().unwrap();
+        let k: i64 = it.next().unwrap().parse().unwrap();
+
+        let answer = (1_i64 &lt;&lt; (n - k as u32 + 1))
+            + 2 * (k - 1);
+
+        println!("{}", answer);
+    }
+}</code></pre>
+
     </div>
 
     <div class="section">
@@ -152,29 +210,6 @@ for _ in range(t):
       <p>A leer con cuidado el efecto de cada evento y en qué orden pasan: el "reseteo" del saldo era todo el problema. Y a jugar con los ejemplos a mano antes de abrir el editor, porque ahí apareció el patrón que después se volvió fórmula.</p>
     </div>
   </main>
-
-  <!-- <nav class="bottom-nav">
-  <a href="#">
-    <span></span>
-    <small>www</small>
-  </a>
-  <a href="#">
-    <span></span>
-    <small>HTML</small>
-  </a>
-  <a href="#">
-    <span></span>
-    <small>+</small>
-  </a>
-  <a href="#">
-    <span></span>
-    <small>JS</small>
-  </a>
-  <a href="#">
-    <span></span>
-    <small>CSS</small>
-  </a>
-</nav> -->
 
 </body>
 </html>
