@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Qué es Kaggle?</title>
+
+  <link rel="canonical" href="https://tutorial.djc.pe/es/b8/53/4d/ab/8a/be/43/70/99/d8/0b/c4/7d/98/78/8e/">
+  <meta name="description" content="Aprende qué es Kaggle: competencias de machine learning, datasets públicos, notebooks y comunidad. Qué se hace ahí, cómo funcionan las|leaderboards y por qué sirve para aprender y para tu portafolio.">
+  <link rel="icon" type="image/png" href="/static/www/img/icon.png">
+  <link rel="stylesheet" href="/static/www/css/style.css">
+  <link rel="stylesheet" href="/static/www/css/bottom-nav.css">
+  <link rel="stylesheet" href="/static/www/css/content.css">
+  <link rel="stylesheet" href="/static/www/css/pygments.css">
+  <link rel="stylesheet" href="/static/www/css/codehilite.css">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="/static/www/js/sections-1-v2.js"></script>
+  <script src="/static/www/js/sections-2.js"></script>
+  <script src="/static/www/js/listen.js"></script>
+
+  <style>
+  :root {
+        /* Tipografía */
+    --font-base: 'Inter', sans-serif;
+    --font-heading: 'Poppins', sans-serif;
+
+    /* Superficies */
+    --color-bg: #000000;
+    --color-surface: #141414;
+
+    /* Texto */
+    --color-text: #FFFFFF;
+    --color-text-muted: #9CA3AF;
+    --color-text-inverse: #FFFFFF;
+
+    /* Marca */
+    --color-primary: #000000;
+    --color-accent: #e5f774;
+
+    /* Variantes */
+    --color-accent-hover: #e5f774;
+    --color-accent-dark: #e5f774;
+
+    /* UI */
+    --color-border: #e5f774;
+  }
+  </style>
+</head>
+<body>
+  <header>
+
+<link rel="stylesheet" href="/static/www/components/top_nav_v2/style.css">
+<script src="/static/www/components/top_nav_v2/script.js"></script>
+<script src="/static/www/components/top_nav_v2/search.js" defer></script>
+<nav class="navbar">
+  <div class="navbar__a">
+    <a href="#" class="navbar__link">
+      <img src="/static/www/img/menu-white.svg" alt="Menu" class="navbar__icon navbar__icon--desktop">
+      <img src="/static/www/img/menu-white.svg" alt="Menu" class="navbar__icon navbar__icon--mobile">
+    </a>
+
+    <a href="https://www.djc.pe/" class="navbar__link">
+      <img src="/static/www/img/logo.png" alt="Home" class="navbar__logo navbar__icon--desktop">
+      <img src="/static/www/img/logo-mobile.png" alt="Home" class="navbar__icon navbar__icon--mobile">
+    </a>
+  </div>
+  <div class="navbar__b">
+    <div class="navbar__b--search">
+      <input type="text" placeholder="">
+      <button>
+          <img src="/static/www/img/search.svg" alt="Search" class="navbar__icon2">
+      </button>
+    </div>
+  </div>
+  <div class="navbar__c">
+    <a href="#" class="navbar__link">
+      <img src="/static/www/img/user-white.svg" alt="User" class="navbar__icon navbar__icon--desktop">
+      <img src="/static/www/img/user-white.svg" alt="User" class="navbar__icon navbar__icon--mobile">
+    </a>
+  </div>
+</nav>
+
+<link rel="stylesheet" href="/static/www/components/top_nav_v2_menu/style.css">
+<script src="/static/www/components/top_nav_v2_menu/script.js"></script>
+<div class="drawer-overlay" id="drawerOverlay">
+  <aside class="drawer" data-side="left" id="mainMenu">
+    <div class="drawer-header">
+      <span>DJC</span>
+      <button class="drawer-close">✕</button>
+    </div>
+    <nav class="drawer-menu">
+      <a href="https://www.djc.pe/">Inicio</a>
+      <a href="https://story.djc.pe/">Story</a>
+      <a href="https://tutorial.djc.pe/">Tutorial</a>
+      <hr>
+    </nav>
+  </aside>
+
+  <aside class="drawer" data-side="right" id="userMenu">
+    <div class="drawer-header">
+      <span>Mi cuenta</span>
+      <button class="drawer-close">✕</button>
+    </div>
+    <nav class="drawer-menu">
+      <a href="#">Iniciar sesión</a>
+      <a href="#">Registrarse</a>
+      <hr>
+    </nav>
+  </aside>
+</div>
+  </header>
+
+  <main class="content">
+    <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:4px;"><a href="https://tutorial.djc.pe/" style="color:var(--color-accent); text-decoration:none;">Inicio</a> / <a href="/es/c/ia/" style="color:var(--color-accent); text-decoration:none;">Inteligencia Artificial</a></p>
+    <h1>¿Qué es Kaggle?</h1>
+    <p data-author style="color:var(--color-text-muted); font-size:14px;">Por <a href="https://www.djc.pe/u/@null_djc/" style="color:var(--color-accent); text-decoration:none;">@null_djc</a> · Tutorial</p>
+
+    <p>Si alguna vez entrenaste un modelo de machine learning, seguro terminaste googoleando "dónde consigo datos" y te topaste con un montón de archivos CSV sueltos en un Drive cualquiera. Kaggle es, versión organizada, el lugar donde esa búsqueda tiene respuesta. Y no solo eso: también es donde compiten personas de todo el mundo por resolver el mismo problema, con los mismos datos y la misma métrica.</p>
+
+    <div class="section">
+      <h2>La idea en un ejemplo</h2>
+      <p>Una empresa tiene datos de sus ventas y quiere adivinar cuáles clientes se van a dar de baja el mes que viene. A ti te pasan el histórico: qué se compró, cuántas veces, cuánto costó, y además un <code>churn</code> que dice si esa persona se fue o no. Con eso entrenás un modelo, le predecís el <code>churn</code> a los clientes de este mes, y entregás un archivo con las respuestas.</p>
+      <p>En Kaggle ese mismo problema ya existe como <em>competencia</em>: hay una empresa real detrás, hay un premio, hay un tablero público con el puntaje de todos los participantes, y hay miles de personas intentando el mismo ejercicio. Vos descargás los datos, entrenás, hacés un <code>submission</code> (un archivo con tus predicciones) y lo subís para que te digan cómo te fue.</p>
+      <p>Ese es el juego en general: pasás de "tengo un problema de datos" a "tengo datos para resolverlo, una forma de medir si acerté, y gente que me puede decir si voy bien".</p>
+    </div>
+
+    <div class="section">
+      <h2>Kaggle en una frase</h2>
+      <p>Kaggle es una plataforma de Google (Google la compró en 2017) donde la gente sube y descarga <strong>datasets</strong>, entrena modelos en la nube y compite por rankings en tareas de <em>machine learning</em>. Cuando alguien te dice "dejé mi modelo en Kaggle", casi siempre está hablando de una competencia.</p>
+      <p>Lo que la hace útil es que junta en un solo lugar las cuatro cosas que normalmente están separadas: los datos, la potencia de cómputo, la validación de tus resultados y la gente con la que hablar de lo que hiciste.</p>
+    </div>
+
+    <div class="section">
+      <h2>Qué hay adentro</h2>
+      <p>La página principal se divide en cuatro cosas (aunque la interfaz haya cambiado varias veces, los conceptos siguen siendo estos):</p>
+      <ul>
+        <li><strong>Competitions:</strong> el corazón del sitio. Un problema definido, datos, una forma de medir y un tablero de posiciones.</li>
+        <li><strong>Datasets:</strong> archivos subidos por cualquiera, con licencia, descripción y calificaciones. Desde datos de fútbol hasta imágenes de gatos.</li>
+        <li><strong>Notebooks:</strong> un entorno de Python (o R) en el navegador, gratis, para explorar datos y entrenar modelos sin instalar nada. Antes se llamaban <em>Kernels</em>.</li>
+        <li><strong>Discussions:</strong> foros por competencia, donde se filtran los mejores trucos, se avisa de que un dataset está mal cargado y se avisa de filtraciones.</li>
+      </ul>
+      <p>Si sos nuevo, el recorrido típico es: entrar a una competencia marcada como <em>Getting Started</em> o <em>30 Days</em>, abrir un notebook, cargar el CSV con <code>pandas</code>, entrenar algo, subir el submission y ver tu nombre en el tablero.</p>
+    </div>
+
+    <div class="section">
+      <h2>Cómo funciona una competencia</h2>
+      <p>Todas tienen la misma estructura, aunque cambien los detalles. La idea es que el mismo modelo se pueda medir sin depender de quién lo armó:</p>
+      <ol>
+        <li><strong>train.csv:</strong> datos con la respuesta correcta, para entrenar.</li>
+        <li><strong>test.csv:</strong> datos sin respuesta, para los que tenés que predecir.</li>
+        <li><strong>submission.csv:</strong> el archivo con tus predicciones, con un formato exacto que hay que respetar.</li>
+        <li><strong>Métrica:</strong> cómo se mide el acierto. Puede ser <code>accuracy</code> para clasificación, <code>F1</code> si las clases están desbalanceadas, <code>RMSE</code> para regresión, <code>MAP@K</code> para sistemas de recomendación. Cada competencia elige una y te dice cuál usar.</li>
+        <li><strong>Leaderboard:</strong> el tablero. Te muestra tu posición según la métrica. Y acá está el detalle clave: los datos de prueba se parten en dos, <em>public</em> y <em>private</em>.</li>
+      </ol>
+      <p>Ese corte es la defensa de todo el sistema. La parte pública se usa para ver el progreso mientras trabajás, y la privada se reserva hasta el final. El score que cuenta es el privado: por eso no sirve subir mil versiones para exprimir la tabla pública, porque eso no se traduce en nada real. Lo que funciona es un modelo que de verdad generalice.</p>
+    </div>
+
+    <div class="section">
+      <h2>El ejemplo clásico: Titanic</h2>
+      <p>Si hay un "hola mundo" de Kaggle, es la competencia <em>Titanic - Machine Learning from Disaster</em>. El problema parece simple y de película: predecir si un pasajero sobrevivió al hundimiento, con datos como la clase del boleto, el sexo, la edad, cuántos familiares tenía a bordo o el puerto de embarque.</p>
+      <p>Es un buen primer contacto porque el dataset es chico (unas 891 filas de entrenamiento), la métrica es <code>accuracy</code> y el desempate es casi 50/50. No necesitás GPU ni ser experto: con un modelo de <em>regresión logística</em> ya llegás a un accuracy de finales de 70, y subiendo un poco llegás a pasar la mitad. Todo el resto es ir entendiendo por qué un árbol de decisión hace mejor que una regresión, o por qué la "edad" falta en muchas filas.</p>
+      <p>Y funciona como campo de pruebas para lo importante: entender el <a href="https://tutorial.djc.pe/es/c/ia/" style="color:var(--color-accent); text-decoration:none;">pipeline</a> completo de un problema de datos, no solo la línea de código del modelo.</p>
+    </div>
+
+    <div class="section">
+      <h2>Cómputo gratis (o casi)</h2>
+      <p>El motivo real por el que mucha gente se queda en Kaggle es la infraestructura. Abrís un notebook en el navegador y tenés Python con <code>pandas</code>, <code>numpy</code>, <code>sklearn</code> y las librerías de <em>deep learning</em> ya instaladas, sin configuración. Y la cuenta gratuita incluye alrededor de 30 horas semanales de GPU y 20 de TPU, que no es poco si las usás con cuidado.</p>
+      <p>Obvio, hay límites y hay algo que conviene tener claro: la competencia siempre corre sobre la infraestructura de ellos. Tu modelo se sube, ellos lo ejecutan. Eso significa que el tiempo de inferencia cuenta, que no podés depender de una base de datos gigante en tu máquina, y que conviene empezar con modelos chicos que después se pueden escalar. Es una restricción útil, porque te obliga a pensar en eficiencia antes de tener millones de usuarios.</p>
+    </div>
+
+    <div class="section">
+      <h2>Lo que hay que mirar con cuidado</h2>
+      <p>Kaggle es genial, pero hay tres cosas que conviene tener en la cabeza:</p>
+      <ul>
+        <li><strong>Filtraciones (<em>leakage</em>):</strong> es fácil, y a veces tentador, "encontrar" la respuesta en un dataset externo o en un archivo que se subió por error. Sube tu score, no tu modelo. En algunos casos el dataset completo se filtra y la competencia deja de tener sentido. Es el problema más famoso de la plataforma y hay que saber esquivarlo.</li>
+        <li><strong>Datos sucios y datos privados:</strong> como cualquiera sube datasets, hay archivos con datos personales, con sesgos o con licencias que no permiten usarlos. Si tu proyecto real va a usar esos datos, el problema no termina en el tablero.</li>
+        <li><strong>Sobreajustar el tablero:</strong> pasás 200 submissions probando semillas al azar y subís tu mejor score público. Funciona, pero el modelo que llevás a producción es peor de lo que creés. El corte public/private está para agarrar a los que hacen eso, y funciona.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Por qué sirve más allá de las competencias</h2>
+      <p>Las competencias están bien, pero lo más útil de Kaggle suele estar en otras partes:</p>
+      <ul>
+        <li><strong>Notebooks públicos:</strong> para cada competencia hay cientos de notebooks de gente que ya resolvió el problema. Leés cómo lo hicieron, qué features fueron importantes y qué funcionó bien. Es de las mejores formas de aprender <em>feature engineering</em> viendo ejemplos buenos y malos.</li>
+        <li><strong>Portafolio:</strong> un perfil con medallas, kernels y posts es evidencia de que sabés hacer las cosas. Es cuantificable y verificable, cosa que un curso de Udemy no es.</li>
+        <li><strong>Aprendizaje barato:</strong> sin GPU en tu PC, sin conseguir acceso a datos confidenciales, podés practicar con problemas reales. El costo de entrada es de tiempo, no de dinero.</li>
+      </ul>
+      <p>Y algo que conviene mirar: la mitad de las empresas que reclutan data scientists revisa perfiles de Kaggle antes de la entrevista. Es una de las pocas formas de demostrar lo que sabés con evidencia pública.</p>
+    </div>
+
+    <div class="section">
+      <h2>Para empezar, en concreto</h2>
+      <p>Si querés dar el primer paso sin perderte: creá tu cuenta, andá a la sección de competencias y filtrá por <em>Getting Started</em> o <em>30 Days</em>. Empezá con Titanic, o con <em>Spaceship Titanic</em> si querés algo un poco más moderno. Abrí un notebook, leé el CSV con <code>pandas</code>, entrená un modelo, subí el archivo y mirá tu nombre aparecer en el tablero.</p>
+      <p>El primer submission no va a ser bueno, y está perfecto que no lo sea. Lo importante es entender el ciclo completo una vez: entender los datos, entrenar, medir e iterar. Después de tres o cuatro repeticiones vas a entender mejor <em>machine learning</em> que después de meses de leer teoría, y vas a tener un perfil con evidencia real de que aprendiste.</p>
+    </div>
+
+    <div class="section">
+      <h2>Para cerrar</h2>
+      <p>Kaggle es, en el fondo, una fábrica de ejercicios con feedback. Te da un problema concreto, los datos para resolverlo, la infraestructura para probarlo y un montón de gente resolviendo lo mismo para comparar. Eso último es lo que lo hace único: no estás aprendiendo en el vacío, estás corriendo junto a cientos de miles de personas y podés ver de primera mano cómo se resuelven ideas distintas.</p>
+      <p>Tomalo como un gimnasio para <em>machine learning</em>. No todos los datasets te importan, no todas las|leaderboards valen lo mismo, y aprendés más de los notebooks de la mitad de la tabla que del primer lugar. Pero para pasar de "vi un curso de <em>deep learning</em>" a "abrí un dataset, entrené un modelo y mandé un resultado", no hay atajo más corto.</p>
+    </div>
+  </main>
+
+</body>
+</html>
