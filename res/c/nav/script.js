@@ -26,6 +26,15 @@
   var DATA_URL = BASE + 'data.json';
   var STYLE_URL = BASE + 'nav.css';
 
+  // STYLE_URL puede quedar relativo (si no hay currentScript, o si el script se
+  // inyecto inline). Lo resolvemos a absoluta para poder compararlo contra
+  // link.href, que el navegador siempre devuelve absoluta.
+  function absolutize(url) {
+    var a = document.createElement('a');
+    a.href = url;
+    return a.href;
+  }
+
   function esc(value) {
     return String(value == null ? '' : value)
       .replace(/&/g, '&amp;')
@@ -120,7 +129,15 @@
   }
 
   function injectStyle() {
-    if (document.querySelector('link[href="' + STYLE_URL + '"]')) return;
+    // comparar con link.href (que el navegador ya resuelve a absoluta) y no con
+    // el atributo: si la pagina trae <link href="/res/c/nav/nav.css"> en el head,
+    // el atributo queda relativo y no matchea contra STYLE_URL, y terminaba
+    // pidiendo el css dos veces.
+    var want = absolutize(STYLE_URL);
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+    for (var i = 0; i < links.length; i++) {
+      if (links[i].href === want) return;
+    }
     var link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = STYLE_URL;
@@ -228,9 +245,23 @@
     });
   }
 
+  // La pagina puede esconderse con la clase djc-nav-pending para que no se vea
+  // sin nav (ver el snippet inline en index.html). Se quita apenas el nav esta
+  // en el DOM, en el mismo task, asi la primera pintura ya sale con nav.
+  function revealPage() {
+    var el = document.documentElement;
+    if (!el) return;
+    el.className = el.className
+      .replace(/(^|\s)djc-nav-pending(\s|$)/g, ' ')
+      .replace(/^\s+|\s+$/g, '');
+  }
+
   function render(d) {
     injectStyle();
     var header = injectMarkup(d);
+    // revelamos igual aunque injectMarkup devuelva null: si el nav ya venia
+    // escrito a mano, la pagina tampoco tiene por que quedarse escondida.
+    revealPage();
     // si el componente ya se renderizo, no cableamos dos veces
     if (!header || header.getAttribute('data-nav-ready')) return;
     header.setAttribute('data-nav-ready', '');
@@ -246,7 +277,7 @@
     started = true;
 
     // la pagina ya trae el nav escrito a mano: no pedimos el json
-    if (document.getElementById('drawerOverlay')) return;
+    if (document.getElementById('drawerOverlay')) { revealPage(); return; }
 
     fetch(DATA_URL)
       .then(function (res) {
@@ -256,6 +287,7 @@
       .then(render)
       .catch(function (err) {
         // sin datos no hay nav, pero la pagina se sigue viendo normal
+        revealPage();
         if (window.console && console.warn) console.warn('[djc-nav]', err);
       });
   }
