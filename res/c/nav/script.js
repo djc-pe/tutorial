@@ -1,13 +1,15 @@
-/* addnav.js
+/* Nav de DJC
  *
  * Inyecta la barra de navegacion y los drawers en la pagina.
  * Sin este script la pagina se ve normal: lo unico que falta es el nav.
  *
- *   <script src="/test/addnav.js" defer></script>
+ *   <script src="/res/c/nav/script.js" defer></script>
  *
  * El contenido (urls, iconos, textos, links) vive en data.json, al lado de
  * este archivo. Aqui solo esta el comportamiento. Para cambiar un link no se
  * toca este js.
+ *
+ * Las clases que genera arrancan todas con djc-, igual que las de nav.css.
  *
  * Es idempotente: si la pagina ya trae el nav a mano (data-nav o
  * #drawerOverlay), no inyecta nada ni pide el json.
@@ -20,7 +22,7 @@
   // data.json y nav.css se resuelven relativos a este archivo, asi el
   // componente se puede mover a otra carpeta sin cambiar nada.
   var SELF = document.currentScript && document.currentScript.src;
-  var BASE = (SELF || '/test/addnav.js').replace(/\/[^\/]*$/, '/');
+  var BASE = (SELF || '/res/c/nav/script.js').replace(/\/[^\/]*$/, '/');
   var DATA_URL = BASE + 'data.json';
   var STYLE_URL = BASE + 'nav.css';
 
@@ -49,30 +51,30 @@
     var logo = token(d.root, d);
 
     return [
-      '<nav class="navbar">',
-      '  <div class="navbar__a">',
-      '    <a href="#" class="navbar__link">',
-      '      ' + img(icons.menu, labels.menu, 'navbar__icon navbar__icon--desktop'),
-      '      ' + img(icons.menu, labels.menu, 'navbar__icon navbar__icon--mobile'),
+      '<nav class="djc-nav">',
+      '  <div class="djc-nav__a">',
+      '    <a href="#" class="djc-nav__link">',
+      '      ' + img(icons.menu, labels.menu, 'djc-nav__icon djc-nav__icon--desktop'),
+      '      ' + img(icons.menu, labels.menu, 'djc-nav__icon djc-nav__icon--mobile'),
       '    </a>',
       '',
-      '    <a href="' + esc(logo) + '" class="navbar__link">',
-      '      ' + img(icons.logo, labels.logo, 'navbar__logo navbar__icon--desktop'),
-      '      ' + img(icons.logoMobile, labels.logo, 'navbar__icon navbar__icon--mobile'),
+      '    <a href="' + esc(logo) + '" class="djc-nav__link">',
+      '      ' + img(icons.logo, labels.logo, 'djc-nav__logo djc-nav__icon--desktop'),
+      '      ' + img(icons.logoMobile, labels.logo, 'djc-nav__icon djc-nav__icon--mobile'),
       '    </a>',
       '  </div>',
-      '  <div class="navbar__b">',
-      '    <div class="navbar__b--search">',
+      '  <div class="djc-nav__b">',
+      '    <div class="djc-nav__b--search">',
       '      <input type="text" placeholder="" aria-label="' + esc(labels.search) + '">',
       '      <button>',
-      '        ' + img(icons.search, labels.searchIcon, 'navbar__icon2'),
+      '        ' + img(icons.search, labels.searchIcon, 'djc-nav__icon2'),
       '      </button>',
       '    </div>',
       '  </div>',
-      '  <div class="navbar__c">',
-      '    <a href="#" class="navbar__link">',
-      '      ' + img(icons.user, labels.user, 'navbar__icon navbar__icon--desktop'),
-      '      ' + img(icons.user, labels.user, 'navbar__icon navbar__icon--mobile'),
+      '  <div class="djc-nav__c">',
+      '    <a href="#" class="djc-nav__link">',
+      '      ' + img(icons.user, labels.user, 'djc-nav__icon djc-nav__icon--desktop'),
+      '      ' + img(icons.user, labels.user, 'djc-nav__icon djc-nav__icon--mobile'),
       '    </a>',
       '  </div>',
       '</nav>'
@@ -90,12 +92,12 @@
     });
 
     var out = [
-      '  <aside class="drawer" data-side="' + esc(cfg.side) + '" id="' + esc(cfg.id) + '">',
-      '    <div class="drawer-header">',
+      '  <aside class="djc-drawer" data-side="' + esc(cfg.side) + '" id="' + esc(cfg.id) + '">',
+      '    <div class="djc-drawer-header">',
       '      <span>' + esc(cfg.title) + '</span>',
-      '      <button class="drawer-close" aria-label="' + esc(labels.close) + '">&#10005;</button>',
+      '      <button class="djc-drawer-close" aria-label="' + esc(labels.close) + '">&#10005;</button>',
       '    </div>',
-      '    <nav class="drawer-menu">'
+      '    <nav class="djc-drawer-menu">'
     ];
 
     out = out.concat(links);
@@ -109,7 +111,7 @@
     var drawers = d.drawers || {};
     return [
       buildNavbar(d),
-      '<div class="drawer-overlay" id="drawerOverlay">',
+      '<div class="djc-drawer-overlay" id="drawerOverlay">',
       buildDrawer(drawers.main, d),
       '',
       buildDrawer(drawers.user, d),
@@ -136,30 +138,30 @@
   }
 
   function wireDrawer(header) {
-    var overlay = header.querySelector('.drawer-overlay');
+    var overlay = header.querySelector('.djc-drawer-overlay');
     if (!overlay) return;
 
-    var drawers = overlay.querySelectorAll('.drawer');
+    var drawers = overlay.querySelectorAll('.djc-drawer');
 
     function side(drawer) {
       return drawer.dataset.side === 'left' ? 'translateX(-100%)' : 'translateX(100%)';
     }
 
     function openDrawer(id) {
-      overlay.classList.add('active');
+      overlay.classList.add('djc-drawer-overlay--active');
       Array.prototype.forEach.call(drawers, function (drawer) {
         drawer.style.transform = drawer.id === id ? 'translateX(0)' : side(drawer);
       });
     }
 
     function closeDrawers() {
-      overlay.classList.remove('active');
+      overlay.classList.remove('djc-drawer-overlay--active');
       Array.prototype.forEach.call(drawers, function (drawer) {
         drawer.style.transform = side(drawer);
       });
     }
 
-    var menuBtn = header.querySelector('.navbar__a a');
+    var menuBtn = header.querySelector('.djc-nav__a a');
     if (menuBtn) {
       menuBtn.addEventListener('click', function (e) {
         e.preventDefault();
@@ -167,7 +169,7 @@
       });
     }
 
-    var userBtn = header.querySelector('.navbar__c a:last-child');
+    var userBtn = header.querySelector('.djc-nav__c a:last-child');
     if (userBtn) {
       userBtn.addEventListener('click', function (e) {
         e.preventDefault();
@@ -179,7 +181,7 @@
       if (e.target === overlay) closeDrawers();
     });
 
-    Array.prototype.forEach.call(header.querySelectorAll('.drawer-close'), function (btn) {
+    Array.prototype.forEach.call(header.querySelectorAll('.djc-drawer-close'), function (btn) {
       btn.addEventListener('click', closeDrawers);
     });
 
@@ -192,7 +194,7 @@
   }
 
   function wireSearch(header, d) {
-    var box = header.querySelector('.navbar__b--search');
+    var box = header.querySelector('.djc-nav__b--search');
     if (!box) return;
 
     var input = box.querySelector('input');
@@ -229,7 +231,7 @@
   function render(d) {
     injectStyle();
     var header = injectMarkup(d);
-    // si otro addnav.js ya renderizo, no cableamos dos veces
+    // si el componente ya se renderizo, no cableamos dos veces
     if (!header || header.getAttribute('data-nav-ready')) return;
     header.setAttribute('data-nav-ready', '');
     wireDrawer(header);
@@ -254,7 +256,7 @@
       .then(render)
       .catch(function (err) {
         // sin datos no hay nav, pero la pagina se sigue viendo normal
-        if (window.console && console.warn) console.warn('[addnav]', err);
+        if (window.console && console.warn) console.warn('[djc-nav]', err);
       });
   }
 

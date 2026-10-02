@@ -1,32 +1,40 @@
-/* CSS del nav para la pagina de prueba.
- * Copia de static/www/components/top_nav_v2/style.css
+/* Nav de DJC.
+ *
+ * Todas las clases arrancan con djc- para no chocar con las de la pagina
+ * que lo incluye. Los colores salen de los tokens del sitio (--color-*) y,
+ * si la pagina no los define, de los defaults de abajo.
+ *
+ * Derivado de static/www/components/top_nav_v2/style.css
  * y static/www/components/top_nav_v2_menu/style.css
- * para que /test/ sea autocontenido.
  */
 
-/* ======== navbar ======== */
-.header {
-  position: sticky; /* controlamos todo el header */
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: var(--color-bg);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-  z-index: 1000;
+/* ======== tokens ========
+ * Cada token toma el valor del sitio si esta definido, y si no usa el
+ * default. Asi el nav se ve igual solo, sin depender de que la pagina
+ * declare las variables de marca.
+ */
+.djc-nav,
+.djc-drawer-overlay {
+  --djc-bg: var(--color-bg, #000000);
+  --djc-surface: var(--color-surface, #141414);
+  --djc-text: var(--color-text, #ffffff);
+  --djc-text-inverse: var(--color-text-inverse, #ffffff);
+  --djc-primary: var(--color-primary, #000000);
+  --djc-accent: var(--color-accent, #e5f774);
+  --djc-border: var(--color-border, #e5f774);
 }
 
-/* Nav dentro del header */
-.navbar {
+/* ======== navbar ======== */
+.djc-nav {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
 
-  background: var(--color-primary);
-  color: var(--color-text-inverse);
+  background: var(--djc-primary);
+  color: var(--djc-text-inverse);
   display: grid;
-  grid-template-columns:  1fr 2fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   padding: 1rem 2rem;
   border-bottom: 1px solid rgba(229, 247, 116, 0.25);
 
@@ -36,27 +44,27 @@
 }
 
 /* Grid interno */
-.navbar__a { 
-  justify-self: start;  
+.djc-nav__a {
+  justify-self: start;
 }
 
-.navbar__b { 
-  justify-self: center; 
+.djc-nav__b {
+  justify-self: center;
 }
 
-.navbar__b--search {
+.djc-nav__b--search {
   display: flex;
   width: 100%;
   max-width: 100%;
-  background: var(--color-surface);
+  background: var(--djc-surface);
   border: 1px solid #ffffff;
   border-radius: 20px;
-  overflow: hidden; /* para que input y botÃ³n se vean pegados */
+  overflow: hidden; /* para que input y boton se vean pegados */
 }
 
-.navbar__b--search input {
+.djc-nav__b--search input {
   background: transparent;
-  color: var(--color-text);
+  color: var(--djc-text);
   flex: 1; /* ocupa todo el espacio */
   border: none;
   padding: 0.5rem 1rem;
@@ -64,9 +72,9 @@
   outline: none;
 }
 
-.navbar__b--search button {
-  background: var(--color-surface);
-  color: var(--color-primary);
+.djc-nav__b--search button {
+  background: var(--djc-surface);
+  color: var(--djc-primary);
   border: none;
   padding: 0 1rem;
   cursor: pointer;
@@ -77,41 +85,39 @@
   justify-content: center;
 }
 
-.navbar__c { 
-  justify-self: end; 
+.djc-nav__c {
+  justify-self: end;
 }
 
-.navbar__a,
-.navbar__c {
+.djc-nav__a,
+.djc-nav__c {
   display: flex;
   align-items: center;
   gap: 2rem;
-  /* border: 2px solid red; */
 }
 
-.navbar__link {
+.djc-nav__link {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: var(--color-text-inverse);
+  color: var(--djc-text-inverse);
   white-space: nowrap;
   border-style: solid;
-  border-color: var(--color-primary);
-  /* border: 2px solid yellow; */
+  border-color: var(--djc-primary);
 }
 
-.navbar__link:hover {
-  border-color: var(--color-accent);
+.djc-nav__link:hover {
+  border-color: var(--djc-accent);
 }
 
 /* Iconos */
-.navbar__icon {
+.djc-nav__icon {
   width: 30px;
   height: 30px;
   object-fit: contain;
-  /* color: red; */
 }
-.navbar__logo {
+
+.djc-nav__logo {
   width: 150px;
   height: 30px;
   object-fit: contain;
@@ -119,53 +125,53 @@
 }
 
 /* por defecto */
-.navbar__icon--mobile {
+.djc-nav__icon--mobile {
   display: none;
 }
 
 
-/* ======== MEDIA QUERY: MÃ“VIL ======== */
+/* ======== MEDIA QUERY: MÓVIL ======== */
 @media (max-width: 768px) {
-  .navbar {
+  .djc-nav {
     grid-template-columns: 2fr 4fr 2fr;
     padding: 1rem 0.5rem;
   }
-  .navbar__a,
-  .navbar__c {
+  .djc-nav__a,
+  .djc-nav__c {
     gap: 0.5rem;
   }
 
-  .navbar__b {
+  .djc-nav__b {
     width: 190px;
     max-width: 190px; /* ocupa todo el espacio posible */
   }
-  .navbar__b--search input {
+  .djc-nav__b--search input {
     width: 80%;
     max-width: 80%; /* ocupa todo el espacio posible */
   }
-  .navbar__b--search button {
+  .djc-nav__b--search button {
     width: 20%;
     max-width: 20%; /* ocupa todo el espacio posible */
   }
 
-  .navbar__logo {
+  .djc-nav__logo {
     width: 120px;
   }
 }
 
 @media (max-width: 480px) {
-  .navbar__b--search input {
+  .djc-nav__b--search input {
     padding: 0.5rem 0.5rem;
   }
-  .navbar__b {
+  .djc-nav__b {
     width: 110px;
     max-width: 110px; /* ocupa todo el espacio posible */
   }
-  .navbar__a,
-  .navbar__c {
+  .djc-nav__a,
+  .djc-nav__c {
     gap: 0.1rem;
   }
-  .navbar__logo {
+  .djc-nav__logo {
     width: 110px;
   }
 }
@@ -173,8 +179,8 @@
 
 /* ======== drawer ======== */
 
-  /* Overlay */
-.drawer-overlay {
+/* Overlay */
+.djc-drawer-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.45);
@@ -185,20 +191,20 @@
   display: flex;
 }
 
-.drawer-overlay.active {
+.djc-drawer-overlay--active {
   opacity: 1;
   visibility: visible;
 }
 
-/* Drawer genÃ©rico */
-.drawer {
+/* Drawer generico */
+.djc-drawer {
   position: absolute;
   top: 0;
   width: 90%;
   max-width: 320px;
   height: 100vh;
-  background: var(--color-surface);
-  color: var(--color-text);
+  background: var(--djc-surface);
+  color: var(--djc-text);
   box-shadow: 4px 0 24px rgba(0,0,0,0.25);
   display: flex;
   flex-direction: column;
@@ -206,42 +212,42 @@
   flex-shrink: 0;
 }
 
-/* PosiciÃ³n inicial segÃºn side */
-.drawer[data-side="left"] {
+/* Posicion inicial segun side */
+.djc-drawer[data-side="left"] {
   left: 0;
   transform: translateX(-100%);
 }
 
-.drawer[data-side="right"] {
+.djc-drawer[data-side="right"] {
   right: 0;
   transform: translateX(100%);
 }
 
-/* AnimaciÃ³n cuando overlay activo */
-.drawer-overlay.active .drawer {
+/* Animacion cuando overlay activo */
+.djc-drawer-overlay--active .djc-drawer {
   transform: translateX(0);
 }
 
 /* Header */
-.drawer-header {
+.djc-drawer-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 18px;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--djc-border);
 }
 
-.drawer-header img {
+.djc-drawer-header img {
   height: 28px;
 }
 
-.drawer-header span {
+.djc-drawer-header span {
   flex: 1;
   font-weight: 600;
 }
 
-/* BotÃ³n cerrar */
-.drawer-close {
+/* Boton cerrar */
+.djc-drawer-close {
   border: none;
   background: transparent;
   font-size: 18px;
@@ -249,7 +255,7 @@
 }
 
 /* Menu */
-.drawer-menu {
+.djc-drawer-menu {
   flex: 1;                /* scroll interno */
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -258,22 +264,20 @@
   padding: 10px 0;
 }
 
-.drawer-menu a {
+.djc-drawer-menu a {
   padding: 16px 22px;
   text-decoration: none;
-  color: var(--color-text);
+  color: var(--djc-text);
   font-weight: 500;
   transition: background 0.2s ease;
 }
 
-.drawer-menu a:hover {
-  background: var(--color-bg);
+.djc-drawer-menu a:hover {
+  background: var(--djc-bg);
 }
 
-.drawer-menu hr {
+.djc-drawer-menu hr {
   border: none;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--djc-border);
   margin: 10px 0;
 }
-
-
