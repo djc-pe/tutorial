@@ -2,6 +2,7 @@
   "root": "https://www.djc.pe/",
   "story": "https://story.djc.pe/",
   "site": "https://tutorial.djc.pe/",
+  "page": "https://page.djc.pe/",
 
   "icons": {
     "menu": "/static/www/img/menu-white.svg",
@@ -31,7 +32,7 @@
       "side": "left",
       "title": "DJC",
       "links": [
-        { "text": "Inicio", "url": "{{root}}" },
+        { "text": "Page", "url": "{{page}}" },
         { "text": "Story", "url": "{{story}}" },
         { "text": "Tutorial", "url": "{{site}}" },
         { "hr": true }
