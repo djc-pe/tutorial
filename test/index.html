@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagina de prueba del nav | DJC</title>
+
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Pagina de prueba para el nav inyectado por script.">
+  <link rel="icon" type="image/png" href="/static/www/img/icon.png">
+  <link rel="stylesheet" href="/static/www/css/style.css">
+  <link rel="stylesheet" href="/static/www/css/bottom-nav.css">
+  <link rel="stylesheet" href="/static/www/css/content.css">
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <script src="/test/addnav.js" defer></script>
+
+  <style>
+  :root {
+        /* Tipografía */
+    --font-base: 'Inter', sans-serif;
+    --font-heading: 'Poppins', sans-serif;
+
+    /* Superficies */
+    --color-bg: #000000;
+    --color-surface: #141414;
+
+    /* Texto */
+    --color-text: #FFFFFF;
+    --color-text-muted: #9CA3AF;
+    --color-text-inverse: #FFFFFF;
+
+    /* Marca */
+    --color-primary: #000000;
+    --color-accent: #e5f774;
+
+    /* Variantes */
+    --color-accent-hover: #e5f774;
+    --color-accent-dark: #e5f774;
+
+    /* UI */
+    --color-border: #e5f774;
+  }
+  </style>
+</head>
+<body>
+  <!-- No hay nav escrito a mano: lo mete /test/addnav.js -->
+
+  <main class="content">
+    <h1>Nav como script</h1>
+    <p>Esta pagina no tiene el nav en el HTML. Lo agrega <code>addnav.js</code> al cargarse, asi que el nav queda en una sola parte del proyecto en vez de repetido en cada pagina.</p>
+
+    <div class="section">
+      <h2>Como se usa</h2>
+      <p>Una sola linea, en el <code>&lt;head&gt;</code>:</p>
+      <pre><code>&lt;script src="/test/addnav.js" defer&gt;&lt;/script&gt;</code></pre>
+      <p>Eso es todo. El script pide <code>data.json</code>, inyecta el markup, mete <code>nav.css</code> y cablea el comportamiento: los drawers lateral y derecho, la busqueda por hash y el cierre con Escape.</p>
+    </div>
+
+    <div class="section">
+      <h2>Los datos van aparte</h2>
+      <p>En <code>addnav.js</code> no hay ni una sola url. Todo el contenido esta en <code>data.json</code>: las urls del sitio, los iconos, los textos y los links de los dos menus.</p>
+      <p>Para cambiar un link se edita <code>data.json</code> y listo. El <code>js</code> solo sabe como armar el html y como hacerlo funcionar.</p>
+      <pre><code>{
+  "root": "https://www.djc.pe/",
+  "story": "https://story.djc.pe/",
+  "site": "https://tutorial.djc.pe/",
+  "icons": { "menu": "...", "logo": "...", "user": "..." },
+  "labels": { "menu": "Menu", "search": "Buscar" },
+  "drawers": {
+    "main": {
+      "title": "DJC",
+      "links": [
+        { "text": "Inicio", "url": "{{root}}" }
+      ]
+    }
+  }
+}</code></pre>
+      <p>Los <code>{{root}}</code>, <code>{{story}}</code> y <code>{{site}}</code> son reemplazos: si cambia la url de <code>root</code> en un solo lado, se actualiza en todos los links que la usen.</p>
+    </div>
+
+    <div class="section">
+      <h2>Agregar, quitar y agrupar links</h2>
+      <p>Los links de cada menu son una lista. Para agregar o sacar uno, se edita la lista y nada mas.</p>
+      <p>Un item con <code>{ "hr": true }</code> dibuja un separador, que sirve para dejar los grupos claros. Va en la posicion que le pongas, asi que se puede usar en el medio, al principio o al final.</p>
+      <pre><code>"links": [
+  { "text": "Inicio", "url": "{{root}}" },
+  { "text": "Story", "url": "{{story}}" },
+
+  { "hr": true },
+
+  { "text": "Tutorial", "url": "{{site}}" },
+  { "text": "Blog", "url": "{{root}}blog" }
+]</code></pre>
+      <p>Eso deja el menu en dos grupos: navegacion general arriba, y contenido del sitio abajo.</p>
+      <p>Una lista sin ningun <code>hr</code> se dibuja igual, como una lista corrida. Y si queda vacia, el menu aparece sin separadores colgando.</p>
+    </div>
+
+    <div class="section">
+      <h2>Costo de mover los datos</h2>
+      <p>El <code>json</code> se pide por red, asi que el nav aparece un instante despues que antes. Si la peticion falla, la pagina se sigue viendo igual, solo que sin nav, y queda un aviso en la consola.</p>
+      <p>En un sitio chico con hosting estatico esa espera es de unos milisegundos, pero es el precio de tener los datos separados.</p>
+    </div>
+
+    <div class="section">
+      <h2>Alcance de la prueba</h2>
+      <p>Todo lo de este prototipo vive en <code>/test/</code>: la pagina, <code>addnav.js</code>, <code>data.json</code> y <code>nav.css</code>. No se toco ningun archivo del resto del sitio.</p>
+      <p><code>nav.css</code> es una copia de los estilos que ya estan en <code>static/www/components/top_nav_v2/</code>, justamente para no depender de ellos y poder medir la pagina por separado. Cuando esto se aplique al sitio real, el CSS deberia quedar en el componente compartido y no duplicado.</p>
+      <p>Un detalle de cacheo: <code>data.json</code> se guarda 10 minutos en el navegador. Si cambias un link, a quien ya lo tiene descargado le puede tardar esos 10 minutos en ver el cambio.</p>
+    </div>
+
+    <div class="section">
+      <h2>Sin el script</h2>
+      <p>Si sacas esa linea, la pagina se ve igual de bien: el contenido conserva su margen, los estilos del body siguen aplicando y no queda ningun hueco raro. Lo unico que no aparece es el nav, que es justo lo esperado.</p>
+      <p>Para verlo, comentá la linea del <code>&lt;script&gt;</code> y recargá.</p>
+    </div>
+
+    <div class="section">
+      <h2>Migracion gradual</h2>
+      <p>El script es idempotente. Si una pagina ya trae el nav escrito a mano, <code>addnav.js</code> detecta el <code>#drawerOverlay</code> y no inyecta nada, asi que se puede migrar de a una sin romper las que todavia no se tocaron.</p>
+      <p>Por eso el <code>&lt;script&gt;</code> se puede dejar puesto en todo el sitio de una vez y despues ir borrando el nav duplicado pagina por pagina.</p>
+    </div>
+
+    <div class="section">
+      <h2>Que trae el componente</h2>
+      <ul>
+        <li>Barra superior con menu, logo, buscador y cuenta.</li>
+        <li>Drawer izquierdo con los links del sitio.</li>
+        <li>Drawer derecho con iniciar sesion y registrarse.</li>
+        <li>Busqueda: hashea la consulta con SHA-256 y lleva a <code>/search/q/&lt;hash&gt;/</code>.</li>
+      </ul>
+    </div>
+  </main>
+
+</body>
+</html>
