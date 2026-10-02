@@ -33,9 +33,9 @@
       "links": [
         { "text": "Inicio", "url": "{{root}}" },
         { "text": "Story", "url": "{{story}}" },
-        { "text": "Tutorial", "url": "{{site}}" }
-      ],
-      "divider": true
+        { "text": "Tutorial", "url": "{{site}}" },
+        { "hr": true }
+      ]
     },
     "user": {
       "id": "userMenu",
@@ -43,9 +43,9 @@
       "title": "Mi cuenta",
       "links": [
         { "text": "Iniciar sesión", "url": "#" },
-        { "text": "Registrarse", "url": "#" }
-      ],
-      "divider": true
+        { "text": "Registrarse", "url": "#" },
+        { "hr": true }
+      ]
     }
   }
 }

@@ -83,8 +83,10 @@
     cfg = cfg || {};
     var labels = d.labels || {};
 
-    var links = (cfg.links || []).map(function (link) {
-      return '      <a href="' + esc(token(link.url, d)) + '">' + esc(link.text) + '</a>';
+    var links = (cfg.links || []).map(function (item) {
+      // { "hr": true } dibuja un separador, para agrupar los links
+      if (item && item.hr) return '      <hr>';
+      return '      <a href="' + esc(token(item.url, d)) + '">' + esc(item.text) + '</a>';
     });
 
     var out = [
@@ -97,7 +99,6 @@
     ];
 
     out = out.concat(links);
-    if (cfg.divider) out.push('      <hr>');
     out.push('    </nav>');
     out.push('  </aside>');
 

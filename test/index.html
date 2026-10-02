@@ -89,6 +89,23 @@
     </div>
 
     <div class="section">
+      <h2>Agregar, quitar y agrupar links</h2>
+      <p>Los links de cada menu son una lista. Para agregar o sacar uno, se edita la lista y nada mas.</p>
+      <p>Un item con <code>{ "hr": true }</code> dibuja un separador, que sirve para dejar los grupos claros. Va en la posicion que le pongas, asi que se puede usar en el medio, al principio o al final.</p>
+      <pre><code>"links": [
+  { "text": "Inicio", "url": "{{root}}" },
+  { "text": "Story", "url": "{{story}}" },
+
+  { "hr": true },
+
+  { "text": "Tutorial", "url": "{{site}}" },
+  { "text": "Blog", "url": "{{root}}blog" }
+]</code></pre>
+      <p>Eso deja el menu en dos grupos: navegacion general arriba, y contenido del sitio abajo.</p>
+      <p>Una lista sin ningun <code>hr</code> se dibuja igual, como una lista corrida. Y si queda vacia, el menu aparece sin separadores colgando.</p>
+    </div>
+
+    <div class="section">
       <h2>Costo de mover los datos</h2>
       <p>El <code>json</code> se pide por red, asi que el nav aparece un instante despues que antes. Si la peticion falla, la pagina se sigue viendo igual, solo que sin nav, y queda un aviso en la consola.</p>
       <p>En un sitio chico con hosting estatico esa espera es de unos milisegundos, pero es el precio de tener los datos separados.</p>
@@ -98,6 +115,7 @@
       <h2>Alcance de la prueba</h2>
       <p>Todo lo de este prototipo vive en <code>/test/</code>: la pagina, <code>addnav.js</code>, <code>data.json</code> y <code>nav.css</code>. No se toco ningun archivo del resto del sitio.</p>
       <p><code>nav.css</code> es una copia de los estilos que ya estan en <code>static/www/components/top_nav_v2/</code>, justamente para no depender de ellos y poder medir la pagina por separado. Cuando esto se aplique al sitio real, el CSS deberia quedar en el componente compartido y no duplicado.</p>
+      <p>Un detalle de cacheo: <code>data.json</code> se guarda 10 minutos en el navegador. Si cambias un link, a quien ya lo tiene descargado le puede tardar esos 10 minutos en ver el cambio.</p>
     </div>
 
     <div class="section">
