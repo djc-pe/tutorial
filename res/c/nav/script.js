@@ -128,6 +128,22 @@
     ].join('\n');
   }
 
+  // El <link> del css es async: si montamos el markup antes de que aplique, el
+  // nav se pinta sin estilo un instante, que es justo el flash que queremos
+  // evitar. Y medir su alto antes de que aplique daria un numero falso. Asi que
+  // montamos cuando ya tenemos las dos cosas: css aplicado y datos cargados.
+  // El css se pide igual desde el arranque, para que vaya en paralelo al json.
+  var cssReady = false;
+  var dataReady = false;
+  var mount = null;
+
+  function join() {
+    if (!cssReady || !dataReady || !mount) return;
+    var fn = mount;
+    mount = null;
+    fn();
+  }
+
   function injectStyle() {
     // comparar con link.href (que el navegador ya resuelve a absoluta) y no con
     // el atributo: si la pagina trae <link href="/res/c/nav/nav.css"> en el head,
@@ -136,12 +152,71 @@
     var want = absolutize(STYLE_URL);
     var links = document.querySelectorAll('link[rel="stylesheet"]');
     for (var i = 0; i < links.length; i++) {
-      if (links[i].href === want) return;
+      if (links[i].href === want) { cssReady = true; return; }
     }
     var link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = STYLE_URL;
+    // onerror tambien: si el css no se puede cargar, mejor nav sin estilo que
+    // pagina en blanco para siempre.
+    link.onload = link.onerror = function () {
+      cssReady = true;
+      join();
+    };
     document.head.appendChild(link);
+  }
+
+  // ===== gate de pintado =====
+  // El nav no se puede pintar hasta que llegan los datos, y hasta entonces la
+  // pagina se veria sin nav y luego el nav apareceria encima. Como el componente
+  // tiene que funcionar solo con <script src=".../script.js" defer></script>,
+  // el gate va aqui adentro: se mete una clase en <html> mas una regla que
+  // esconde el body, y se quita en cuanto el nav esta en el DOM.
+  // El timeout es la red de seguridad: si el json no llega, la pagina aparece
+  // igual (pero sin nav) en vez de quedarse en blanco.
+  var GATE_CLASS = 'djc-nav-pending';
+  var GATE_TIMEOUT = 3000;
+  var gated = false;
+  var gateTimer = null;
+
+  function gatePage() {
+    if (gated) return;
+    var el = document.documentElement;
+    if (!el) return;
+    gated = true;
+
+    // si la pagina ya trae el gate puesta a mano, no la duplicamos
+    if (el.classList.contains(GATE_CLASS)) return;
+    var s = document.createElement('style');
+    s.setAttribute('data-djc-nav', '');
+    s.textContent = '.' + GATE_CLASS + ' body{visibility:hidden}';
+    el.appendChild(s);
+    el.classList.add(GATE_CLASS);
+
+    gateTimer = setTimeout(revealPage, GATE_TIMEOUT);
+  }
+
+  function revealPage() {
+    if (gateTimer) { clearTimeout(gateTimer); gateTimer = null; }
+    var el = document.documentElement;
+    if (el) el.classList.remove(GATE_CLASS);
+  }
+
+  // El nav es position:fixed, asi que alguien tiene que reservar su alto o el
+  // contenido se queda debajo. Como la pagina no tiene que saber nada, lo
+  // medimos y lo aplicamos nosotros, sin numero mágico: si el nav cambia de
+  // alto, el padding se ajusta solo. Solo sube, nunca baja lo que la pagina ya
+  // tenga puesto.
+  function reserveHeight(nav) {
+    if (!nav) return;
+    function apply() {
+      var h = nav.getBoundingClientRect().height;
+      if (!h || !document.body) return;
+      var current = parseFloat(window.getComputedStyle(document.body).paddingTop) || 0;
+      if (h > current) document.body.style.paddingTop = h + 'px';
+    }
+    apply();
+    window.addEventListener('resize', apply);
   }
 
   function injectMarkup(d) {
@@ -257,8 +332,10 @@
   }
 
   function render(d) {
-    injectStyle();
     var header = injectMarkup(d);
+    // el alto se reserva antes de destapar, para que la primera pintura con la
+    // pagina visible ya salga con el nav y sin contenido debajo
+    if (header) reserveHeight(header.querySelector('.djc-nav'));
     // revelamos igual aunque injectMarkup devuelva null: si el nav ya venia
     // escrito a mano, la pagina tampoco tiene por que quedarse escondida.
     revealPage();
@@ -276,15 +353,29 @@
     if (started) return;
     started = true;
 
-    // la pagina ya trae el nav escrito a mano: no pedimos el json
-    if (document.getElementById('drawerOverlay')) { revealPage(); return; }
+    gatePage();
+    // pedimos el css ya, para que vaya en paralelo al json
+    injectStyle();
+
+    // la pagina ya trae el nav escrito a mano: no hay datos que esperar, pero
+    // igual esperamos al css antes de destapar
+    if (document.getElementById('drawerOverlay')) {
+      mount = function () { revealPage(); };
+      dataReady = true;
+      join();
+      return;
+    }
 
     fetch(DATA_URL)
       .then(function (res) {
         if (!res.ok) throw new Error(DATA_URL + ' respondio ' + res.status);
         return res.json();
       })
-      .then(render)
+      .then(function (d) {
+        mount = function () { render(d); };
+        dataReady = true;
+        join();
+      })
       .catch(function (err) {
         // sin datos no hay nav, pero la pagina se sigue viendo normal
         revealPage();

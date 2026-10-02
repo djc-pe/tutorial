@@ -15,34 +15,6 @@
   <link rel="stylesheet" href="/static/www/css/pygments.css">
   <link rel="stylesheet" href="/static/www/css/codehilite.css">
 
-  <!-- nav: el css va aqui, en el head, para que el scanner de preload lo pida
-       durante el parseo. Si lo inyecta el js despues, el nav aparece sin estilo
-       durante una vuelta extra. injectStyle() ve que ya existe y no lo repite. -->
-  <link rel="stylesheet" href="/res/c/nav/nav.css">
-  <!-- el fetch de data.json lo dispara el js en DOMContentLoaded; con esto
-       arranca en paralelo con el parseo en vez de despues. crossorigin es
-       obligatorio para que fetch() pueda reusar esta precarga. -->
-  <link rel="preload" href="/res/c/nav/data.json" as="fetch" crossorigin>
-
-  <!-- hasta que el nav este listo la pagina queda invisible, para no pintar
-       texto sin nav y luego taparlo. Tiene que ser un snippet inline y sin
-       defer: un archivo aparte llegaria tarde, con la primera pintura ya hecha.
-       Sin js la pagina se ve normal, porque la regla y la clase las mete este
-       mismo script. El timeout es la red de seguridad: si data.json falla o el
-       componente se rompe, la pagina aparece igual a los 3s. -->
-  <script>
-  (function () {
-    var d = document.documentElement;
-    d.className += ' djc-nav-pending';
-    var s = document.createElement('style');
-    s.textContent = '.djc-nav-pending body{visibility:hidden}';
-    d.appendChild(s);
-    setTimeout(function () {
-      d.className = d.className.replace(/(^|\s)djc-nav-pending(\s|$)/g, ' ').replace(/^\s+|\s+$/g, '');
-    }, 3000);
-  })();
-  </script>
-
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
 <script>
@@ -83,17 +55,6 @@
     /* UI */
     --color-border: #e5f774;
 
-    /* Alto real del nav, medido en el navegador: 69px. No es 30+32+1 porque lo mas
-       alto del nav es el buscador, no el icono. El nav es position:fixed, asi que
-       el body tiene que reservar su alto o el contenido queda tapado.
-       style.css deja 60px (el alto del nav viejo); esta pagina usa el nav nuevo.
-       Si cambias el padding o el input del nav, actualiza este numero. */
-    --nav-height: 69px;
-
-  }
-
-  body {
-    padding-top: var(--nav-height);
   }
   </style>
 
