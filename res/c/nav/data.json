@@ -1,0 +1,51 @@
+{
+  "root": "https://www.djc.pe/",
+  "story": "https://story.djc.pe/",
+  "site": "https://tutorial.djc.pe/",
+
+  "icons": {
+    "menu": "/static/www/img/menu-white.svg",
+    "logo": "/static/www/img/logo.png",
+    "logoMobile": "/static/www/img/logo-mobile.png",
+    "search": "/static/www/img/search.svg",
+    "user": "/static/www/img/user-white.svg"
+  },
+
+  "labels": {
+    "menu": "Menu",
+    "logo": "Home",
+    "search": "Buscar",
+    "searchIcon": "Search",
+    "user": "User",
+    "close": "Cerrar"
+  },
+
+  "search": {
+    "urlTemplate": "/search/q/{hash}/?text={query}",
+    "algo": "SHA-256"
+  },
+
+  "drawers": {
+    "main": {
+      "id": "mainMenu",
+      "side": "left",
+      "title": "DJC",
+      "links": [
+        { "text": "Inicio", "url": "{{root}}" },
+        { "text": "Story", "url": "{{story}}" },
+        { "text": "Tutorial", "url": "{{site}}" },
+        { "hr": true }
+      ]
+    },
+    "user": {
+      "id": "userMenu",
+      "side": "right",
+      "title": "Mi cuenta",
+      "links": [
+        { "text": "Iniciar sesión", "url": "#" },
+        { "text": "Registrarse", "url": "#" },
+        { "hr": true }
+      ]
+    }
+  }
+}
