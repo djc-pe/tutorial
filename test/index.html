@@ -63,12 +63,40 @@
       <h2>Como se usa</h2>
       <p>Una sola linea, en el <code>&lt;head&gt;</code>:</p>
       <pre><code>&lt;script src="/test/addnav.js" defer&gt;&lt;/script&gt;</code></pre>
-      <p>Eso es todo. El script inyecta el markup, mete <code>/test/nav.css</code> y cablea el comportamiento: los drawers lateral y derecho, la busqueda por hash y el cierre con Escape.</p>
+      <p>Eso es todo. El script pide <code>data.json</code>, inyecta el markup, mete <code>nav.css</code> y cablea el comportamiento: los drawers lateral y derecho, la busqueda por hash y el cierre con Escape.</p>
+    </div>
+
+    <div class="section">
+      <h2>Los datos van aparte</h2>
+      <p>En <code>addnav.js</code> no hay ni una sola url. Todo el contenido esta en <code>data.json</code>: las urls del sitio, los iconos, los textos y los links de los dos menus.</p>
+      <p>Para cambiar un link se edita <code>data.json</code> y listo. El <code>js</code> solo sabe como armar el html y como hacerlo funcionar.</p>
+      <pre><code>{
+  "root": "https://www.djc.pe/",
+  "story": "https://story.djc.pe/",
+  "site": "https://tutorial.djc.pe/",
+  "icons": { "menu": "...", "logo": "...", "user": "..." },
+  "labels": { "menu": "Menu", "search": "Buscar" },
+  "drawers": {
+    "main": {
+      "title": "DJC",
+      "links": [
+        { "text": "Inicio", "url": "{{root}}" }
+      ]
+    }
+  }
+}</code></pre>
+      <p>Los <code>{{root}}</code>, <code>{{story}}</code> y <code>{{site}}</code> son reemplazos: si cambia la url de <code>root</code> en un solo lado, se actualiza en todos los links que la usen.</p>
+    </div>
+
+    <div class="section">
+      <h2>Costo de mover los datos</h2>
+      <p>El <code>json</code> se pide por red, asi que el nav aparece un instante despues que antes. Si la peticion falla, la pagina se sigue viendo igual, solo que sin nav, y queda un aviso en la consola.</p>
+      <p>En un sitio chico con hosting estatico esa espera es de unos milisegundos, pero es el precio de tener los datos separados.</p>
     </div>
 
     <div class="section">
       <h2>Alcance de la prueba</h2>
-      <p>Todo lo de este prototipo vive en <code>/test/</code>: la pagina, <code>addnav.js</code> y <code>nav.css</code>. No se toco ningun archivo del resto del sitio.</p>
+      <p>Todo lo de este prototipo vive en <code>/test/</code>: la pagina, <code>addnav.js</code>, <code>data.json</code> y <code>nav.css</code>. No se toco ningun archivo del resto del sitio.</p>
       <p><code>nav.css</code> es una copia de los estilos que ya estan en <code>static/www/components/top_nav_v2/</code>, justamente para no depender de ellos y poder medir la pagina por separado. Cuando esto se aplique al sitio real, el CSS deberia quedar en el componente compartido y no duplicado.</p>
     </div>
 

@@ -5,90 +5,131 @@
  *
  *   <script src="/test/addnav.js" defer></script>
  *
- * Todo lo que necesita vive en /test/ (este archivo y nav.css), asi que
- * este prototipo no toca ningun archivo del resto del sitio.
+ * El contenido (urls, iconos, textos, links) vive en data.json, al lado de
+ * este archivo. Aqui solo esta el comportamiento. Para cambiar un link no se
+ * toca este js.
  *
  * Es idempotente: si la pagina ya trae el nav a mano (data-nav o
- * #drawerOverlay), no inyecta nada.
+ * #drawerOverlay), no inyecta nada ni pide el json.
  */
 (function () {
-  var SITE = 'https://tutorial.djc.pe/';
-  var STORY = 'https://story.djc.pe/';
-  var ROOT = 'https://www.djc.pe/';
+  // si el script aparece dos veces en la pagina, la segunda no hace nada
+  if (window.__djcNav) return;
+  window.__djcNav = true;
 
-  var STYLE = '/test/nav.css';
+  // data.json y nav.css se resuelven relativos a este archivo, asi el
+  // componente se puede mover a otra carpeta sin cambiar nada.
+  var SELF = document.currentScript && document.currentScript.src;
+  var BASE = (SELF || '/test/addnav.js').replace(/\/[^\/]*$/, '/');
+  var DATA_URL = BASE + 'data.json';
+  var STYLE_URL = BASE + 'nav.css';
 
-  var MARKUP = [
-'<nav class="navbar">',
-'  <div class="navbar__a">',
-'    <a href="#" class="navbar__link">',
-'      <img src="/static/www/img/menu-white.svg" alt="Menu" class="navbar__icon navbar__icon--desktop">',
-'      <img src="/static/www/img/menu-white.svg" alt="Menu" class="navbar__icon navbar__icon--mobile">',
-'    </a>',
-'',
-'    <a href="' + ROOT + '" class="navbar__link">',
-'      <img src="/static/www/img/logo.png" alt="Home" class="navbar__logo navbar__icon--desktop">',
-'      <img src="/static/www/img/logo-mobile.png" alt="Home" class="navbar__icon navbar__icon--mobile">',
-'    </a>',
-'  </div>',
-'  <div class="navbar__b">',
-'    <div class="navbar__b--search">',
-'      <input type="text" placeholder="" aria-label="Buscar">',
-'      <button>',
-'        <img src="/static/www/img/search.svg" alt="Search" class="navbar__icon2">',
-'      </button>',
-'    </div>',
-'  </div>',
-'  <div class="navbar__c">',
-'    <a href="#" class="navbar__link">',
-'      <img src="/static/www/img/user-white.svg" alt="User" class="navbar__icon navbar__icon--desktop">',
-'      <img src="/static/www/img/user-white.svg" alt="User" class="navbar__icon navbar__icon--mobile">',
-'    </a>',
-'  </div>',
-'</nav>',
-'<div class="drawer-overlay" id="drawerOverlay">',
-'  <aside class="drawer" data-side="left" id="mainMenu">',
-'    <div class="drawer-header">',
-'      <span>DJC</span>',
-'      <button class="drawer-close" aria-label="Cerrar">&#10005;</button>',
-'    </div>',
-'    <nav class="drawer-menu">',
-'      <a href="' + ROOT + '">Inicio</a>',
-'      <a href="' + STORY + '">Story</a>',
-'      <a href="' + SITE + '">Tutorial</a>',
-'      <hr>',
-'    </nav>',
-'  </aside>',
-'',
-'  <aside class="drawer" data-side="right" id="userMenu">',
-'    <div class="drawer-header">',
-'      <span>Mi cuenta</span>',
-'      <button class="drawer-close" aria-label="Cerrar">&#10005;</button>',
-'    </div>',
-'    <nav class="drawer-menu">',
-'      <a href="#">Iniciar sesión</a>',
-'      <a href="#">Registrarse</a>',
-'      <hr>',
-'    </nav>',
-'  </aside>',
-'</div>'
-  ].join('\n');
+  function esc(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // {{root}} -> https://www.djc.pe/
+  function token(str, data) {
+    return String(str == null ? '' : str).replace(/\{\{(\w+)\}\}/g, function (_, key) {
+      return key in data ? data[key] : '';
+    });
+  }
+
+  function img(src, alt, cls) {
+    return '<img src="' + esc(src) + '" alt="' + esc(alt) + '" class="' + esc(cls) + '">';
+  }
+
+  function buildNavbar(d) {
+    var icons = d.icons || {};
+    var labels = d.labels || {};
+    var logo = token(d.root, d);
+
+    return [
+      '<nav class="navbar">',
+      '  <div class="navbar__a">',
+      '    <a href="#" class="navbar__link">',
+      '      ' + img(icons.menu, labels.menu, 'navbar__icon navbar__icon--desktop'),
+      '      ' + img(icons.menu, labels.menu, 'navbar__icon navbar__icon--mobile'),
+      '    </a>',
+      '',
+      '    <a href="' + esc(logo) + '" class="navbar__link">',
+      '      ' + img(icons.logo, labels.logo, 'navbar__logo navbar__icon--desktop'),
+      '      ' + img(icons.logoMobile, labels.logo, 'navbar__icon navbar__icon--mobile'),
+      '    </a>',
+      '  </div>',
+      '  <div class="navbar__b">',
+      '    <div class="navbar__b--search">',
+      '      <input type="text" placeholder="" aria-label="' + esc(labels.search) + '">',
+      '      <button>',
+      '        ' + img(icons.search, labels.searchIcon, 'navbar__icon2'),
+      '      </button>',
+      '    </div>',
+      '  </div>',
+      '  <div class="navbar__c">',
+      '    <a href="#" class="navbar__link">',
+      '      ' + img(icons.user, labels.user, 'navbar__icon navbar__icon--desktop'),
+      '      ' + img(icons.user, labels.user, 'navbar__icon navbar__icon--mobile'),
+      '    </a>',
+      '  </div>',
+      '</nav>'
+    ].join('\n');
+  }
+
+  function buildDrawer(cfg, d) {
+    cfg = cfg || {};
+    var labels = d.labels || {};
+
+    var links = (cfg.links || []).map(function (link) {
+      return '      <a href="' + esc(token(link.url, d)) + '">' + esc(link.text) + '</a>';
+    });
+
+    var out = [
+      '  <aside class="drawer" data-side="' + esc(cfg.side) + '" id="' + esc(cfg.id) + '">',
+      '    <div class="drawer-header">',
+      '      <span>' + esc(cfg.title) + '</span>',
+      '      <button class="drawer-close" aria-label="' + esc(labels.close) + '">&#10005;</button>',
+      '    </div>',
+      '    <nav class="drawer-menu">'
+    ];
+
+    out = out.concat(links);
+    if (cfg.divider) out.push('      <hr>');
+    out.push('    </nav>');
+    out.push('  </aside>');
+
+    return out.join('\n');
+  }
+
+  function buildMarkup(d) {
+    var drawers = d.drawers || {};
+    return [
+      buildNavbar(d),
+      '<div class="drawer-overlay" id="drawerOverlay">',
+      buildDrawer(drawers.main, d),
+      '',
+      buildDrawer(drawers.user, d),
+      '</div>'
+    ].join('\n');
+  }
 
   function injectStyle() {
-    if (document.querySelector('link[href="' + STYLE + '"]')) return;
+    if (document.querySelector('link[href="' + STYLE_URL + '"]')) return;
     var link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = STYLE;
+    link.href = STYLE_URL;
     document.head.appendChild(link);
   }
 
-  function injectMarkup() {
-    // si ya hay un drawer en el DOM la pagina trae el nav a mano
+  function injectMarkup(d) {
     if (document.getElementById('drawerOverlay')) return null;
 
     var header = document.createElement('header');
     header.setAttribute('data-nav', '');
-    header.innerHTML = MARKUP;
+    header.innerHTML = buildMarkup(d);
     document.body.insertBefore(header, document.body.firstChild);
     return header;
   }
@@ -99,21 +140,21 @@
 
     var drawers = overlay.querySelectorAll('.drawer');
 
-    function side(d) {
-      return d.dataset.side === 'left' ? 'translateX(-100%)' : 'translateX(100%)';
+    function side(drawer) {
+      return drawer.dataset.side === 'left' ? 'translateX(-100%)' : 'translateX(100%)';
     }
 
     function openDrawer(id) {
       overlay.classList.add('active');
-      Array.prototype.forEach.call(drawers, function (d) {
-        d.style.transform = d.id === id ? 'translateX(0)' : side(d);
+      Array.prototype.forEach.call(drawers, function (drawer) {
+        drawer.style.transform = drawer.id === id ? 'translateX(0)' : side(drawer);
       });
     }
 
     function closeDrawers() {
       overlay.classList.remove('active');
-      Array.prototype.forEach.call(drawers, function (d) {
-        d.style.transform = side(d);
+      Array.prototype.forEach.call(drawers, function (drawer) {
+        drawer.style.transform = side(drawer);
       });
     }
 
@@ -149,13 +190,15 @@
     window.closeDrawers = closeDrawers;
   }
 
-  function wireSearch(header) {
+  function wireSearch(header, d) {
     var box = header.querySelector('.navbar__b--search');
     if (!box) return;
 
     var input = box.querySelector('input');
     var button = box.querySelector('button');
     if (!input || !button) return;
+
+    var template = (d.search && d.search.urlTemplate) || '/search/q/{hash}/?text={query}';
 
     function go() {
       var query = input.value.trim();
@@ -169,8 +212,9 @@
           var hash = Array.from(new Uint8Array(buf))
             .map(function (b) { return b.toString(16).padStart(2, '0'); })
             .join('');
-          window.location.href = '/search/q/' + hash.match(/.{2}/g).join('/') +
-            '/?text=' + encodeURIComponent(query);
+          window.location.href = template
+            .replace('{hash}', hash.match(/.{2}/g).join('/'))
+            .replace('{query}', encodeURIComponent(query));
         })
         .catch(function () { /* sin hash no hay busqueda */ });
     }
@@ -181,12 +225,36 @@
     });
   }
 
-  function init() {
+  function render(d) {
     injectStyle();
-    var header = injectMarkup() || document.querySelector('header[data-nav]');
-    if (!header) return;
+    var header = injectMarkup(d);
+    // si otro addnav.js ya renderizo, no cableamos dos veces
+    if (!header || header.getAttribute('data-nav-ready')) return;
+    header.setAttribute('data-nav-ready', '');
     wireDrawer(header);
-    wireSearch(header);
+    wireSearch(header, d);
+  }
+
+  var started = false;
+
+  function init() {
+    // una sola vez, aunque el script corra al parsear y otra vez en DOMContentLoaded
+    if (started) return;
+    started = true;
+
+    // la pagina ya trae el nav escrito a mano: no pedimos el json
+    if (document.getElementById('drawerOverlay')) return;
+
+    fetch(DATA_URL)
+      .then(function (res) {
+        if (!res.ok) throw new Error(DATA_URL + ' respondio ' + res.status);
+        return res.json();
+      })
+      .then(render)
+      .catch(function (err) {
+        // sin datos no hay nav, pero la pagina se sigue viendo normal
+        if (window.console && console.warn) console.warn('[addnav]', err);
+      });
   }
 
   if (document.readyState === 'loading') {
