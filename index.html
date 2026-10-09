@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
+  <!-- 87.34.2.92 -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DJC Tutorial</title>
-  
-  <link rel="canonical" href="https://tutorial.djc.pe/">
-  <meta name="description" content="Tutoriales simples de programación, web, software, bases de datos, DevOps e inteligencia artificial, explicados en español y sin dar nada por sabido.">
-  <link rel="icon" type="image/png" href="/static/www/img/icon.png">
-  <link rel="stylesheet" href="/static/www/css/style.css">
-  <!-- <link rel="stylesheet" href="/static/www/css/top-nav.css"> -->
-  <link rel="stylesheet" href="/static/www/css/bottom-nav.css">
-  <link rel="stylesheet" href="/static/www/css/content.css">
-  <link rel="stylesheet" href="/static/www/css/pygments.css">
-  <link rel="stylesheet" href="/static/www/css/codehilite.css">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/res/base/icon.png">
 
-  <!-- Google tag (gtag.js) -->
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/index.css">
+  <script src="https://story.djc.pe/res/base/index.js" defer></script>
+  <script src="https://story.djc.pe/res/nav/script.js" defer></script>
+
+
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -25,121 +23,231 @@
   gtag('config', 'G-S0JX351KT2');
 </script>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
-  <script src="/static/www/js/sections-1-v2.js"></script>
-  <script src="/static/www/js/sections-2.js"></script>
+  <title>DJC</title>
+  <meta name="description" content="DJC">
 
-  <style>
-  :root {
-        /* Tipografía */
-    --font-base: 'Inter', sans-serif;
-    --font-heading: 'Poppins', sans-serif;
-
-    /* Superficies */
-    --color-bg: #000000;
-    --color-surface: #141414;
-
-    /* Texto */
-    --color-text: #FFFFFF;
-    --color-text-muted: #9CA3AF;
-    --color-text-inverse: #FFFFFF;
-
-    /* Marca */
-    --color-primary: #000000;
-    --color-accent: #e5f774;
-
-    /* Variantes */
-    --color-accent-hover: #e5f774;
-    --color-accent-dark: #e5f774;
-
-    /* UI */
-    --color-border: #e5f774;
-
-  }
-  </style>
-
-  <script src="/res/c/nav/script.js" defer></script>
-
+  <link rel="canonical" href="https://tutorial.djc.pe/">
 </head>
 <body>
+<main class="content">
 
-  <main class="content">
-    
-<h1 style="font-size:26px; margin-bottom:4px;">DJC Tutorial</h1>
-<p style="color:var(--color-text-muted); font-size:15px; margin-top:0;">Aprende con tutoriales simples, en español.</p>
+<div class="djc-tutorial-tabs">
+  <div class="djc-tabs-nav" role="tablist" aria-label="Language selection">
+    <a class="djc-tab" id="tab-1" href="#panel-1"
+      role="tab" aria-selected="true" aria-controls="panel-1">
+      English
+    </a>
 
-<h2 style="font-size:20px;">Categorías</h2>
-<div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:12px; margin-bottom:24px;">
+    <a class="djc-tab" id="tab-2" href="#panel-2"
+      role="tab" aria-selected="false" aria-controls="panel-2">
+      Español
+    </a>
 
-  <a href="/es/c/software/" style="display:block; text-decoration:none; padding:14px; border:1px solid var(--color-border); border-radius:10px; background:var(--color-surface); color:var(--color-text);">
-    <h3 style="margin:0; font-size:16px; color:var(--color-accent);">Software</h3>
-    <p style="margin:4px 0 0; color:var(--color-text-muted); font-size:13px;">Desarrollo de software, metodologías y ciclos de vida</p>
-  </a>
+    <a class="djc-tab" id="tab-3" href="#panel-3"
+      role="tab" aria-selected="false" aria-controls="panel-3">
+      简体中文
+    </a>
+  </div>
 
-  <a href="/es/c/programacion/" style="display:block; text-decoration:none; padding:14px; border:1px solid var(--color-border); border-radius:10px; background:var(--color-surface); color:var(--color-text);">
-    <h3 style="margin:0; font-size:16px; color:var(--color-accent);">Programación</h3>
-    <p style="margin:4px 0 0; color:var(--color-text-muted); font-size:13px;">Lenguajes, fundamentos, algoritmos y estructuras</p>
-  </a>
+  <!-- English -->
+  <div class="djc-tab-panel is-active" id="panel-1"
+    role="tabpanel" aria-labelledby="tab-1" lang="en">
 
-  <a href="/es/c/web/" style="display:block; text-decoration:none; padding:14px; border:1px solid var(--color-border); border-radius:10px; background:var(--color-surface); color:var(--color-text);">
-    <h3 style="margin:0; font-size:16px; color:var(--color-accent);">Web</h3>
-    <p style="margin:4px 0 0; color:var(--color-text-muted); font-size:13px;">HTML, CSS, JavaScript y frameworks</p>
-  </a>
+    <h2>Categories</h2>
+    <div class="djc-tutorial-categories">
+      <a href="/en/c/software/">
+        <h3>Software</h3>
+        <p>Software development, methodologies, and life cycles</p>
+      </a>
 
-  <a href="/es/c/bases-de-datos/" style="display:block; text-decoration:none; padding:14px; border:1px solid var(--color-border); border-radius:10px; background:var(--color-surface); color:var(--color-text);">
-    <h3 style="margin:0; font-size:16px; color:var(--color-accent);">Bases de Datos</h3>
-    <p style="margin:4px 0 0; color:var(--color-text-muted); font-size:13px;">SQL, NoSQL, modelado y consultas</p>
-  </a>
+      <a href="/en/c/programming/">
+        <h3>Programming</h3>
+        <p>Programming languages, fundamentals, algorithms, and data structures</p>
+      </a>
 
-  <a href="/es/c/devops/" style="display:block; text-decoration:none; padding:14px; border:1px solid var(--color-border); border-radius:10px; background:var(--color-surface); color:var(--color-text);">
-    <h3 style="margin:0; font-size:16px; color:var(--color-accent);">DevOps</h3>
-    <p style="margin:4px 0 0; color:var(--color-text-muted); font-size:13px;">CI/CD, contenedores, nube e infraestructura</p>
-  </a>
+      <a href="/en/c/web/">
+        <h3>Web Development</h3>
+        <p>HTML, CSS, JavaScript, and frameworks</p>
+      </a>
 
-  <a href="/es/c/ia/" style="display:block; text-decoration:none; padding:14px; border:1px solid var(--color-border); border-radius:10px; background:var(--color-surface); color:var(--color-text);">
-    <h3 style="margin:0; font-size:16px; color:var(--color-accent);">Inteligencia Artificial</h3>
-    <p style="margin:4px 0 0; color:var(--color-text-muted); font-size:13px;">Machine learning, modelos y aplicaciones</p>
-  </a>
+      <a href="/en/c/databases/">
+        <h3>Databases</h3>
+        <p>SQL, NoSQL, data modeling, and queries</p>
+      </a>
 
+      <a href="/en/c/devops/">
+        <h3>DevOps</h3>
+        <p>CI/CD, containers, cloud computing, and infrastructure</p>
+      </a>
+
+      <a href="/en/c/ai/">
+        <h3>Artificial Intelligence</h3>
+        <p>Machine learning, models, and applications</p>
+      </a>
+    </div>
+
+    <h2>Latest Tutorials</h2>
+    <div class="djc-tutorial-others">
+      <a href="/en/b8/53/4d/ab/8a/be/43/70/99/d8/0b/c4/7d/98/78/8e/">
+        <h2>What Is Kaggle?</h2>
+        <p>Google's platform for learning machine learning, featuring competitions, datasets, free notebooks, and a community.</p>
+      </a>
+
+      <a href="/en/67/db/1d/30/95/80/43/dc/ad/cc/0f/8c/31/55/68/ed/">
+        <h2>What Is Codeforces?</h2>
+        <p>A platform for practicing competitive programming by solving problems ranked by difficulty.</p>
+      </a>
+
+      <a href="/en/9c/ad/d3/86/64/13/42/e3/a4/38/aa/b9/eb/32/19/64/">
+        <h2>What Is a Landing Page?</h2>
+        <p>Learn what a landing page is used for, its main components, and how it differs from a regular website.</p>
+      </a>
+
+      <a href="/en/c8/63/12/28/99/c0/4c/74/a3/04/34/96/fc/36/e2/ca/">
+        <h2>How to Undo the Last Commit</h2>
+        <p>Git: use soft, mixed, and hard reset to undo a commit, or revert when the commit has already been published.</p>
+      </a>
+
+      <a href="/en/ab/ec/8a/ab/9e/60/4b/66/a6/ef/78/a8/1f/a3/83/d4/">
+        <h2>What Is Software Development?</h2>
+        <p>Learn about software development, including its definition, life cycle, types, methodologies, and team roles.</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- Español -->
+  <div class="djc-tab-panel" id="panel-2"
+    role="tabpanel" aria-labelledby="tab-2" lang="es">
+
+    <h2>Categorías</h2>
+    <div class="djc-tutorial-categories">
+      <a href="/es/c/software/">
+        <h3>Software</h3>
+        <p>Desarrollo de software, metodologías y ciclos de vida</p>
+      </a>
+
+      <a href="/es/c/programacion/">
+        <h3>Programación</h3>
+        <p>Lenguajes, fundamentos, algoritmos y estructuras de datos</p>
+      </a>
+
+      <a href="/es/c/web/">
+        <h3>Desarrollo web</h3>
+        <p>HTML, CSS, JavaScript y frameworks</p>
+      </a>
+
+      <a href="/es/c/bases-de-datos/">
+        <h3>Bases de datos</h3>
+        <p>SQL, NoSQL, modelado de datos y consultas</p>
+      </a>
+
+      <a href="/es/c/devops/">
+        <h3>DevOps</h3>
+        <p>CI/CD, contenedores, nube e infraestructura</p>
+      </a>
+
+      <a href="/es/c/ia/">
+        <h3>Inteligencia artificial</h3>
+        <p>Aprendizaje automático, modelos y aplicaciones</p>
+      </a>
+    </div>
+
+    <h2>Últimos tutoriales</h2>
+    <div class="djc-tutorial-others">
+      <a href="/es/b8/53/4d/ab/8a/be/43/70/99/d8/0b/c4/7d/98/78/8e/">
+        <h2>¿Qué es Kaggle?</h2>
+        <p>La plataforma de Google para aprender machine learning: competencias, conjuntos de datos, notebooks gratuitos y comunidad.</p>
+      </a>
+
+      <a href="/es/67/db/1d/30/95/80/43/dc/ad/cc/0f/8c/31/55/68/ed/">
+        <h2>¿Qué es Codeforces?</h2>
+        <p>Plataforma para practicar programación competitiva resolviendo problemas clasificados por dificultad.</p>
+      </a>
+
+      <a href="/es/9c/ad/d3/86/64/13/42/e3/a4/38/aa/b9/eb/32/19/64/">
+        <h2>¿Qué es una landing page?</h2>
+        <p>Para qué sirve una landing page, cuáles son sus partes y cómo se diferencia de una web convencional.</p>
+      </a>
+
+      <a href="/es/c8/63/12/28/99/c0/4c/74/a3/04/34/96/fc/36/e2/ca/">
+        <h2>¿Cómo deshacer el último commit?</h2>
+        <p>Git: usa reset suave, mixto o duro para deshacer un commit, o revert cuando ya lo publicaste.</p>
+      </a>
+
+      <a href="/es/ab/ec/8a/ab/9e/60/4b/66/a6/ef/78/a8/1f/a3/83/d4/">
+        <h2>¿Qué es el desarrollo de software?</h2>
+        <p>Conoce su definición, ciclo de vida, tipos, metodologías y roles del equipo.</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- 简体中文 -->
+  <div class="djc-tab-panel" id="panel-3"
+    role="tabpanel" aria-labelledby="tab-3" lang="zh-CN">
+
+    <h2>分类</h2>
+    <div class="djc-tutorial-categories">
+      <a href="/zh-cn/c/software/">
+        <h3>软件</h3>
+        <p>软件开发、开发方法和软件生命周期</p>
+      </a>
+
+      <a href="/zh-cn/c/programming/">
+        <h3>编程</h3>
+        <p>编程语言、基础知识、算法和数据结构</p>
+      </a>
+
+      <a href="/zh-cn/c/web/">
+        <h3>网页开发</h3>
+        <p>HTML、CSS、JavaScript 和开发框架</p>
+      </a>
+
+      <a href="/zh-cn/c/databases/">
+        <h3>数据库</h3>
+        <p>SQL、NoSQL、数据建模和查询</p>
+      </a>
+
+      <a href="/zh-cn/c/devops/">
+        <h3>DevOps</h3>
+        <p>持续集成与持续交付、容器、云计算和基础设施</p>
+      </a>
+
+      <a href="/zh-cn/c/ai/">
+        <h3>人工智能</h3>
+        <p>机器学习、模型和应用</p>
+      </a>
+    </div>
+
+    <h2>最新教程</h2>
+    <div class="djc-tutorial-others">
+      <a href="/zh-cn/b8/53/4d/ab/8a/be/43/70/99/d8/0b/c4/7d/98/78/8e/">
+        <h2>什么是 Kaggle？</h2>
+        <p>Google 推出的机器学习学习平台，提供竞赛、数据集、免费 Notebook 和学习社区。</p>
+      </a>
+
+      <a href="/zh-cn/67/db/1d/30/95/80/43/dc/ad/cc/0f/8c/31/55/68/ed/">
+        <h2>什么是 Codeforces？</h2>
+        <p>一个通过解决不同难度的题目来练习竞赛编程的平台。</p>
+      </a>
+
+      <a href="/zh-cn/9c/ad/d3/86/64/13/42/e3/a4/38/aa/b9/eb/32/19/64/">
+        <h2>什么是落地页（Landing Page）？</h2>
+        <p>了解落地页的用途、主要组成部分，以及它与普通网站的区别。</p>
+      </a>
+
+      <a href="/zh-cn/c8/63/12/28/99/c0/4c/74/a3/04/34/96/fc/36/e2/ca/">
+        <h2>如何撤销最后一次 Git 提交？</h2>
+        <p>学习使用 Git 的 soft、mixed 和 hard reset 撤销提交，以及在提交已发布时使用 revert。</p>
+      </a>
+
+      <a href="/zh-cn/ab/ec/8a/ab/9e/60/4b/66/a6/ef/78/a8/1f/a3/83/d4/">
+        <h2>什么是软件开发？</h2>
+        <p>了解软件开发的定义、生命周期、类型、开发方法和团队角色。</p>
+      </a>
+    </div>
+  </div>
 </div>
 
-<h2 style="font-size:20px;">Últimos tutoriales</h2>
-<div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(250px, 1fr)); gap:16px;">
-
-  <a href="/es/b8/53/4d/ab/8a/be/43/70/99/d8/0b/c4/7d/98/78/8e/"
-     style="display:block; text-decoration:none; padding:16px; border:1px solid var(--color-border); border-radius:10px; background:var(--color-surface); color:var(--color-text);">
-    <h2 style="margin:0 0 8px; font-size:18px; color:var(--color-accent);">¿Qué es Kaggle?</h2>
-    <p style="margin:0; color:var(--color-text-muted); font-size:14px;">La plataforma de Google para aprender machine learning: competencias, datasets, notebooks gratis y comunidad.</p>
-  </a>
-
-  <a href="/es/67/db/1d/30/95/80/43/dc/ad/cc/0f/8c/31/55/68/ed/"
-     style="display:block; text-decoration:none; padding:16px; border:1px solid var(--color-border); border-radius:10px; background:var(--color-surface); color:var(--color-text);">
-    <h2 style="margin:0 0 8px; font-size:18px; color:var(--color-accent);">¿Qué es Codeforces?</h2>
-    <p style="margin:0; color:var(--color-text-muted); font-size:14px;">Plataforma para practicar programación competitiva resolviendo problemas ranked por dificultad.</p>
-  </a>
-
-  <a href="/es/9c/ad/d3/86/64/13/42/e3/a4/38/aa/b9/eb/32/19/64/"
-     style="display:block; text-decoration:none; padding:16px; border:1px solid var(--color-border); border-radius:10px; background:var(--color-surface); color:var(--color-text);">
-    <h2 style="margin:0 0 8px; font-size:18px; color:var(--color-accent);">¿Qué es una Landing Page?</h2>
-    <p style="margin:0; color:var(--color-text-muted); font-size:14px;">Para qué sirve una landing page, qué partes tiene y cómo se diferencia de una web normal.</p>
-  </a>
-
-  <a href="/es/c8/63/12/28/99/c0/4c/74/a3/04/34/96/fc/36/e2/ca/"
-     style="display:block; text-decoration:none; padding:16px; border:1px solid var(--color-border); border-radius:10px; background:var(--color-surface); color:var(--color-text);">
-    <h2 style="margin:0 0 8px; font-size:18px; color:var(--color-accent);">¿Cómo deshacer el último commit?</h2>
-    <p style="margin:0; color:var(--color-text-muted); font-size:14px;">Git: reset suave, mixto y duro para deshacer un commit y revert para cuando ya lo publicaste.</p>
-  </a>
-
-  <a href="/es/ab/ec/8a/ab/9e/60/4b/66/a6/ef/78/a8/1f/a3/83/d4/"
-     style="display:block; text-decoration:none; padding:16px; border:1px solid var(--color-border); border-radius:10px; background:var(--color-surface); color:var(--color-text);">
-    <h2 style="margin:0 0 8px; font-size:18px; color:var(--color-accent);">¿Qué es Software Development?</h2>
-    <p style="margin:0; color:var(--color-text-muted); font-size:14px;">Conoce qué es el desarrollo de software: definición, ciclo de vida, tipos, metodologías y roles del equipo.</p>
-  </a>
-
-</div>
-
-
-  </main>
-
+</main>
 </body>
 </html>
