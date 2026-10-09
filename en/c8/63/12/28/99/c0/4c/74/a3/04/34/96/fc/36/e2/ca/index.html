@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- 87.34.2.92 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/res/base/icon.png">
+
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/index.css">
+  <script src="https://story.djc.pe/res/base/index.js" defer></script>
+  <script src="https://story.djc.pe/res/nav/script.js" defer></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="https://story.djc.pe/res/ads/header.js"></script>
+  <script src="https://story.djc.pe/res/ads/content.js"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <title>How to Undo the Last Commit | DJC Tutorial</title>
+  <meta name="description" content="Learn how to undo your last commit in git: soft, mixed and hard reset, amend to fix it, and revert when the commit has already been published.">
+
+  <link rel="canonical" href="https://tutorial.djc.pe/en/c8/63/12/28/99/c0/4c/74/a3/04/34/96/fc/36/e2/ca/">
+  <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/c8/63/12/28/99/c0/4c/74/a3/04/34/96/fc/36/e2/ca/">
+  <link rel="alternate" hreflang="es" href="https://tutorial.djc.pe/es/c8/63/12/28/99/c0/4c/74/a3/04/34/96/fc/36/e2/ca/">
+  <link rel="alternate" hreflang="zh-cn" href="https://tutorial.djc.pe/zh-cn/c8/63/12/28/99/c0/4c/74/a3/04/34/96/fc/36/e2/ca/">
+
+</head>
+<body>
+
+  <main class="content">
+    <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:4px;"><a href="https://tutorial.djc.pe/" style="color:var(--color-accent); text-decoration:none;">Home</a> / <a href="/en/c/programming/" style="color:var(--color-accent); text-decoration:none;">Programming</a></p>
+    <h1>How to Undo the Last Commit</h1>
+    <p data-author style="color:var(--color-text-muted); font-size:14px;">By <a href="https://www.djc.pe/u/@danny/" style="color:var(--color-accent); text-decoration:none;">@danny</a> · Tutorial</p>
+
+    <p>You committed, closed the tab and thirty seconds later you realized: a file was missing, the message came out wrong or you slipped in a change that didn't belong. If that sounds familiar, relax, it's everyday stuff, and the good news is that undoing the last commit is one of git's easiest operations; with three or four well-understood commands you'll fix it in seconds.</p>
+
+    <div class="section">
+      <h2>First: where the changes live</h2>
+      <p>Before getting into the commands, it's worth being clear that in git a change travels through three places: the <strong>working area</strong> (your files as they are), the <strong>staging</strong> (what you marked with <code>git add</code>) and the <strong>commit</strong> (the snapshot saved in the history). Undoing a commit is nothing more than moving changes between those three zones depending on what you need.</p>
+      <p>A single golden rule: if you already published the commit with <code>git push</code> and you work with other people, don't rewrite the history and jump straight to the section on <code>git revert</code> at the end.</p>
+    </div>
+
+    <div class="section">
+      <h2>The wildcard: git reset</h2>
+      <p>The main tool for this is <code>git reset</code>: it moves the <code>HEAD</code> pointer backward (with <code>HEAD~1</code> you go back one commit) and lets you decide what to do with the changes depending on the mode. You have three modes available:</p>
+      <ul>
+        <li><strong><code>--soft</code></strong>: reverts the commit and leaves the changes waiting in the staging area, ready to commit again, you lose nothing.</li>
+        <li><strong><code>--mixed</code></strong> (the default mode): the changes leave the staging area and remain as plain modifications in your working area, you don't lose anything either.</li>
+        <li><strong><code>--hard</code></strong>: discards the commit and its changes completely, powerful but with no way back.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>I got the message wrong or a file was missing</h2>
+      <p>It's the most common case: the commit is the last one, it hasn't been published yet and you want to fix it without dirtying the history. The shortest way is <code>git commit --amend</code>, which rewrites the last commit, whether just to fix the message or after adding the file that was missing:</p>
+<pre><code>git commit --amend -m "Corrected message"
+git add missing-file.js
+git commit --amend</code></pre>
+      <p>And if what you want is to redo the commit from scratch to change what it included, <code>git reset</code> comes in with the mode that suits you best: use <code>--soft</code> if you want everything ready to commit again:</p>
+<pre><code>git reset --soft HEAD~1</code></pre>
+      <p>or <code>--mixed</code> if you prefer the changes to go back to your working area as pending edits:</p>
+<pre><code>git reset HEAD~1</code></pre>
+      <p>In either case the commit disappears from the history, but your changes stay safe.</p>
+    </div>
+
+    <div class="section">
+      <h2>I want to remove the commit and its changes</h2>
+      <p>For the extreme case there's <code>git reset --hard</code>, which discards the commit and also the changes it carried:</p>
+<pre><code>git reset --hard HEAD~1</code></pre>
+      <p>Check twice before running it, because if that change isn't committed anywhere else (not even on another branch) it's lost forever; when in doubt, prefer <code>--soft</code> or <code>--mixed</code>, which destroy nothing.</p>
+    </div>
+
+    <div class="section">
+      <h2>If the commit has already been published</h2>
+      <p>This applies especially to teamwork: you already pushed and now you have to undo it. In that case we don't use <code>reset</code>, because rewriting the history breaks the repo for everyone else; the correct tool is <code>git revert</code>, which instead of deleting anything creates a new commit that reverses the changes of the previous one:</p>
+<pre><code>git revert HEAD
+git revert &lt;commit-hash&gt;</code></pre>
+      <p>The history stays clean and transparent: anyone can see that there was a commit and then its correction, and that's why it's the safe option when the change has already been shared.</p>
+    </div>
+  </main>
+
+  <!-- <nav class="bottom-nav">
+  <a href="#">
+    <span></span>
+    <small>www</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>HTML</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>+</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>JS</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>CSS</small>
+  </a>
+</nav> -->
+
+</body>
+</html>

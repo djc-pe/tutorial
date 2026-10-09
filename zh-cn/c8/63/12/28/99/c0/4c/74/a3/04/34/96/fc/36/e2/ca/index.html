@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- 87.34.2.92 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/res/base/icon.png">
+
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/index.css">
+  <script src="https://story.djc.pe/res/base/index.js" defer></script>
+  <script src="https://story.djc.pe/res/nav/script.js" defer></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="https://story.djc.pe/res/ads/header.js"></script>
+  <script src="https://story.djc.pe/res/ads/content.js"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <title>如何撤销最后一次提交？| DJC 教程</title>
+  <meta name="description" content="学习在 git 中撤销最后一次提交：soft、mixed 和 hard reset，用 amend 修正，以及在提交已发布时使用 revert。">
+
+  <link rel="canonical" href="https://tutorial.djc.pe/zh-cn/c8/63/12/28/99/c0/4c/74/a3/04/34/96/fc/36/e2/ca/">
+  <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/c8/63/12/28/99/c0/4c/74/a3/04/34/96/fc/36/e2/ca/">
+  <link rel="alternate" hreflang="es" href="https://tutorial.djc.pe/es/c8/63/12/28/99/c0/4c/74/a3/04/34/96/fc/36/e2/ca/">
+  <link rel="alternate" hreflang="zh-cn" href="https://tutorial.djc.pe/zh-cn/c8/63/12/28/99/c0/4c/74/a3/04/34/96/fc/36/e2/ca/">
+
+</head>
+<body>
+
+  <main class="content">
+    <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:4px;"><a href="https://tutorial.djc.pe/" style="color:var(--color-accent); text-decoration:none;">首页</a> / <a href="/zh-cn/c/programming/" style="color:var(--color-accent); text-decoration:none;">编程</a></p>
+    <h1>如何撤销最后一次提交？</h1>
+    <p data-author style="color:var(--color-text-muted); font-size:14px;">作者 <a href="https://www.djc.pe/u/@danny/" style="color:var(--color-accent); text-decoration:none;">@danny</a> · 教程</p>
+
+    <p>你提交了、关掉了标签页，三十秒后才发现：漏了一个文件、提交信息写错了，或者混进了一个不该有的改动。如果觉得眼熟，别急，这再正常不过，而且好消息是：撤销最后一次提交是 git 里最简单的操作之一；用三四条真正理解了的命令，几秒钟就能搞定。</p>
+
+    <div class="section">
+      <h2>首先：改动存在于哪里</h2>
+      <p>在进入命令之前，最好先弄清楚：在 git 里，一个改动会经历三个地方：<strong>工作区</strong>（你现在的文件）、<strong>暂存区</strong>（你用 <code>git add</code> 标记的内容）和<strong>提交</strong>（保存在历史里的快照）。撤销提交，无非是按你的需要在三个区域之间移动改动。</p>
+      <p>一条黄金法则：如果这个提交你已经用 <code>git push</code> 发布过了，而且你在和别人协作，就不要改写历史，直接跳到最后关于 <code>git revert</code> 的那一节。</p>
+    </div>
+
+    <div class="section">
+      <h2>万能工具：git reset</h2>
+      <p>做这件事的主要工具是 <code>git reset</code>：它把 <code>HEAD</code> 指针往回移（用 <code>HEAD~1</code> 就回退一个提交），并让你根据模式决定如何处理改动。你有三种模式：</p>
+      <ul>
+        <li><strong><code>--soft</code></strong>：回退提交，把改动留在暂存区里等你重新提交，什么都不会丢。</li>
+        <li><strong><code>--mixed</code></strong>（默认模式）：改动离开暂存区，变成工作区里的普通修改，同样什么都不会丢。</li>
+        <li><strong><code>--hard</code></strong>：彻底丢弃提交及其改动，很强但无法回头。</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>提交信息写错了，或者漏了一个文件</h2>
+      <p>这是最常见的情况：提交就是最后一个、还没发布，你想在不弄脏历史的情况下修正它。最短的办法是 <code>git commit --amend</code>，它会重写最后一个提交，既可以只是修改提交信息，也可以在补上遗漏的文件之后使用：</p>
+<pre><code>git commit --amend -m "修正后的信息"
+git add 遗漏的文件.js
+git commit --amend</code></pre>
+      <p>如果你想从零重做这个提交、改变它所包含的内容，那就用 <code>git reset</code>，选最适合你的模式：如果你希望一切就绪、可以直接重新提交，就用 <code>--soft</code>：</p>
+<pre><code>git reset --soft HEAD~1</code></pre>
+      <p>或者用 <code>--mixed</code>，如果你更希望改动回到工作区作为待处理的编辑：</p>
+<pre><code>git reset HEAD~1</code></pre>
+      <p>无论哪种情况，提交都会从历史里消失，但你的改动都安然无恙。</p>
+    </div>
+
+    <div class="section">
+      <h2>我想删除这个提交及其改动</h2>
+      <p>极端情况下有 <code>git reset --hard</code>，它会丢弃提交以及它带来的改动：</p>
+<pre><code>git reset --hard HEAD~1</code></pre>
+      <p>执行前请再三确认，因为这个改动如果在别处都没被提交过（甚至不在其他分支上），就会永远丢失；拿不准时，优先用 <code>--soft</code> 或 <code>--mixed</code>，它们不会破坏任何东西。</p>
+    </div>
+
+    <div class="section">
+      <h2>如果提交已经发布</h2>
+      <p>这尤其适用于团队协作：你已经 push 了，现在要撤销它。这种情况下我们不用 <code>reset</code>，因为改写历史会弄坏其他人的仓库；正确的工具是 <code>git revert</code>，它不删除任何东西，而是创建一个新提交来反转上一个提交的改动：</p>
+<pre><code>git revert HEAD
+git revert &lt;commit-hash&gt;</code></pre>
+      <p>历史保持干净透明：任何人都能看到曾经有一个提交，然后是它的修正，所以当改动已经共享出去时，它是安全的选择。</p>
+    </div>
+  </main>
+
+  <!-- <nav class="bottom-nav">
+  <a href="#">
+    <span></span>
+    <small>www</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>HTML</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>+</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>JS</small>
+  </a>
+  <a href="#">
+    <span></span>
+    <small>CSS</small>
+  </a>
+</nav> -->
+
+</body>
+</html>

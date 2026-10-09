@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- 87.34.2.92 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/res/base/icon.png">
+
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/index.css">
+  <script src="https://story.djc.pe/res/base/index.js" defer></script>
+  <script src="https://story.djc.pe/res/nav/script.js" defer></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="https://story.djc.pe/res/ads/header.js"></script>
+  <script src="https://story.djc.pe/res/ads/content.js"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <title>Codeforces Problem #1: SauSaGe Bank | DJC Tutorial</title>
+  <meta name="description" content="Analysis and solution of Codeforces problem 2269A SauSaGe Bank: the balance-reset trap, the greedy idea and the final formula.">
+
+  <link rel="canonical" href="https://tutorial.djc.pe/en/a3/53/d1/83/b5/00/44/2a/96/0f/4c/a8/ce/98/09/bb/">
+  <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/a3/53/d1/83/b5/00/44/2a/96/0f/4c/a8/ce/98/09/bb/">
+  <link rel="alternate" hreflang="es" href="https://tutorial.djc.pe/es/a3/53/d1/83/b5/00/44/2a/96/0f/4c/a8/ce/98/09/bb/">
+  <link rel="alternate" hreflang="zh-cn" href="https://tutorial.djc.pe/zh-cn/a3/53/d1/83/b5/00/44/2a/96/0f/4c/a8/ce/98/09/bb/">
+
+</head>
+<body>
+
+  <main class="content">
+    <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:4px;"><a href="https://tutorial.djc.pe/" style="color:var(--color-accent); text-decoration:none;">Home</a> / <a href="/en/67/db/1d/30/95/80/43/dc/ad/cc/0f/8c/31/55/68/ed/" style="color:var(--color-accent); text-decoration:none;">What Is Codeforces?</a> / #1</p>
+    <h1>Problem #1: SauSaGe Bank</h1>
+    <p data-author style="color:var(--color-text-muted); font-size:14px;">By <a href="https://www.djc.pe/u/@null_djc/" style="color:var(--color-accent); text-decoration:none;">@null_djc</a> · Series</p>
+
+    <p><a href="https://codeforces.com/problemset/problem/2269/A" style="color:var(--color-accent); text-decoration:none;">Codeforces 2269A</a> · Div. 2 · <em>greedy</em>, <em>math</em></p>
+
+    <div class="section">
+      <h2>The simplified statement</h2>
+      <p>
+A bank doubles your balance every morning, and at night you can withdraw everything:
+what you withdraw is added to your card and your account goes back to $1 to start over.
+The bank lasts exactly <code>n</code> days and you have to withdraw on exactly <code>k</code> days.
+The question is simple: what's the most you can collect on your card?
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>The trap</h2>
+      <p>The first thing we thought was "if I withdraw on day <code>d</code>, I get <code>2^d</code>". And that's a mistake, because after each withdrawal the balance resets to $1. Notice what happens if you withdraw on day 3 and again on day 4: on day 4 there was only <em>one</em> doubling, so you only get $2. What you get on a withdrawal is <code>2</code> raised to the number of days since the last withdrawal, not since the starting day.</p>
+    </div>
+
+    <div class="section">
+      <h2>The idea</h2>
+      <p>
+Since you have to withdraw <code>k</code> times,
+you end up splitting the <code>n</code> days into <code>k</code> blocks,
+and each block ends on the day you withdraw.
+If a block has <code>g</code> days,
+that withdrawal gives you <code>2^g</code>.
+Since <code>2^x</code> grows extremely fast,
+it's best to concentrate almost everything in a single long block and make the others as short as possible (one day, which gives $2 each).
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>The formula</h2>
+<pre><code>answer = 2^(n - k + 1) + 2 * (k - 1)</code></pre>
+      <p>The long block leaves you <code>n - k + 1</code> days (and with that you earn the big part), and the remaining <code>k - 1</code> withdrawals contribute $2 each. Since <code>n ≤ 30</code>, <code>2^30</code> fits comfortably in a <code>long long</code>.</p>
+    </div>
+
+    <div class="section">
+      <h2>The solution</h2>
+      <p>In the problem's test cases, the rule doesn't fail: <code>(1,1) → 2</code>, <code>(2,1) → 4</code>, <code>(4,3) → 8</code>, <code>(5,5) → 10</code>, <code>(10,2) → 514</code>. We turn the statement into code, with a bit shift:</p>
+
+
+<h3>C++</h3>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int t;
+    cin &gt;&gt; t;
+
+    while (t--) {
+        int n, k;
+        cin &gt;&gt; n &gt;&gt; k;
+
+        cout &lt;&lt; (1LL &lt;&lt; (n - k + 1)) + 2LL * (k - 1) &lt;&lt; '\n';
+    }
+
+    return 0;
+}</code></pre>
+
+<h3>Python</h3>
+<pre><code>t = int(input())
+
+for _ in range(t):
+    n, k = map(int, input().split())
+    print((1 &lt;&lt; (n - k + 1)) + 2 * (k - 1))</code></pre>
+
+<h3>Rust</h3>
+<pre><code>use std::io::{self, Read};
+
+fn main() {
+    let mut input = String::new();
+    io::stdin().read_to_string(&amp;mut input).unwrap();
+
+    let mut it = input.split_whitespace();
+
+    let t: usize = it.next().unwrap().parse().unwrap();
+
+    for _ in 0..t {
+        let n: u32 = it.next().unwrap().parse().unwrap();
+        let k: i64 = it.next().unwrap().parse().unwrap();
+
+        let answer = (1_i64 &lt;&lt; (n - k as u32 + 1))
+            + 2 * (k - 1);
+
+        println!("{}", answer);
+    }
+}</code></pre>
+
+    </div>
+
+    <div class="section">
+      <h2>What it taught us</h2>
+      <p>To read carefully the effect of each event and the order in which they happen: the "reset" of the balance was the whole problem. And to play with the examples by hand before opening the editor, because that's where the pattern appeared that later became a formula.</p>
+    </div>
+  </main>
+
+</body>
+</html>

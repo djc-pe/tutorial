@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- 87.34.2.92 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/res/base/icon.png">
+
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/index.css">
+  <script src="https://story.djc.pe/res/base/index.js" defer></script>
+  <script src="https://story.djc.pe/res/nav/script.js" defer></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="https://story.djc.pe/res/ads/header.js"></script>
+  <script src="https://story.djc.pe/res/ads/content.js"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <title>什么是 Kaggle？| DJC 教程</title>
+  <meta name="description" content="了解什么是 Kaggle：机器学习竞赛、公开数据集、Notebook 和社区。你可以在上面做什么、排行榜如何运作，以及它为什么有助于学习和构建作品集。">
+
+  <link rel="canonical" href="https://tutorial.djc.pe/zh-cn/b8/53/4d/ab/8a/be/43/70/99/d8/0b/c4/7d/98/78/8e/">
+  <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/b8/53/4d/ab/8a/be/43/70/99/d8/0b/c4/7d/98/78/8e/">
+  <link rel="alternate" hreflang="es" href="https://tutorial.djc.pe/es/b8/53/4d/ab/8a/be/43/70/99/d8/0b/c4/7d/98/78/8e/">
+  <link rel="alternate" hreflang="zh-cn" href="https://tutorial.djc.pe/zh-cn/b8/53/4d/ab/8a/be/43/70/99/d8/0b/c4/7d/98/78/8e/">
+
+</head>
+<body>
+
+  <main class="content">
+    <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:4px;"><a href="https://tutorial.djc.pe/zh-cn/" style="color:var(--color-accent); text-decoration:none;">首页</a> / <a href="/zh-cn/c/ai/" style="color:var(--color-accent); text-decoration:none;">人工智能</a></p>
+    <h1>什么是 Kaggle？</h1>
+    <p data-author style="color:var(--color-text-muted); font-size:14px;">作者 <a href="https://www.djc.pe/u/@null_djc/" style="color:var(--color-accent); text-decoration:none;">@null_djc</a> · 教程</p>
+
+    <p>如果你曾经训练过机器学习模型，多半最后都会去谷歌搜索“去哪里找数据”，然后在一堆莫名其妙放在某个网盘里的零散 CSV 文件面前发愁。Kaggle 可以说是把这件事整理好的地方：在那里，这个问题有答案。而且不只是这样——它还是一个让世界各地的人用相同的数据、相同的指标去解决同一个问题的竞技场。</p>
+
+    <div class="section">
+      <h2>用一个例子来说明</h2>
+      <p>一家公司有销售数据，想预测下个月哪些客户会流失。他们会把历史数据交给你：买了什么、买了多少次、花了多少钱，还有一个 <code>churn</code> 标记，表示这个人是否已经流失。你用它训练一个模型，预测这个月客户的 <code>churn</code>，然后提交一个包含答案的文件。</p>
+      <p>在 Kaggle 上，同样的问题已经作为一场<em>竞赛</em>存在：背后是一家真实公司，有奖金，有一个展示所有参赛者得分的公开榜单，还有成千上万的人在尝试同一道题。你下载数据、训练模型、生成一个 <code>submission</code>（包含你预测结果的文件），然后上传，看看自己的表现如何。</p>
+      <p>总体而言，游戏规则就是这样：你从“我有一个数据问题”变成“我有解决它的数据、有衡量我是否答对的方法，还有能告诉我做得对不对的人”。</p>
+    </div>
+
+    <div class="section">
+      <h2>用一句话说清 Kaggle</h2>
+      <p>Kaggle 是 Google 的一个平台（Google 于 2017 年收购了它），人们在这里上传和下载<strong>数据集</strong>、在云端训练模型，并在<em>机器学习</em>任务中争夺排名。当有人说“我把模型放在 Kaggle 上了”，几乎总是指在参加一场竞赛。</p>
+      <p>它之所以有用，是因为它把通常彼此分离的四样东西聚到了一起：数据、算力、对结果的验证，以及可以一起讨论你成果的人。</p>
+    </div>
+
+    <div class="section">
+      <h2>里面有什么</h2>
+      <p>首页分为四个部分（尽管界面改过很多次，但这些概念一直没变）：</p>
+      <ul>
+        <li><strong>竞赛（Competitions）：</strong>网站的核心。一个明确定义的问题、数据、衡量方式以及排行榜。</li>
+        <li><strong>数据集（Datasets）：</strong>任何人都可以上传的文件，带有许可证、说明和评分。从足球数据到猫咪图片，应有尽有。</li>
+        <li><strong>Notebook：</strong>浏览器里的免费 Python（或 R）环境，无需安装任何东西就能探索数据和训练模型。以前叫 <em>Kernels</em>。</li>
+        <li><strong>讨论区（Discussions）：</strong>每场竞赛的论坛，最好的技巧在这里流传，也会有人提醒数据集加载有问题或存在数据泄露。</li>
+      </ul>
+      <p>如果你是新手，典型的路线是：进入一场标有 <em>Getting Started</em> 或 <em>30 Days</em> 的竞赛，打开一个 Notebook，用 <code>pandas</code> 加载 CSV，训练一个模型，提交 submission，然后看到自己的名字出现在排行榜上。</p>
+    </div>
+
+    <div class="section">
+      <h2>一场竞赛是如何运作的</h2>
+      <p>虽然细节各异，但它们的结构都一样。其核心思想是：同一个模型无论由谁搭建，都能以相同方式衡量：</p>
+      <ol>
+        <li><strong>train.csv：</strong>带有正确答案的数据，用于训练。</li>
+        <li><strong>test.csv：</strong>没有答案的数据，也就是你需要预测的对象。</li>
+        <li><strong>submission.csv：</strong>包含你预测结果的文件，必须严格遵循规定的格式。</li>
+        <li><strong>指标（Metric）：</strong>衡量正确率的方式。分类问题可以用 <code>accuracy</code>，类别不平衡时用 <code>F1</code>，回归用 <code>RMSE</code>，推荐系统用 <code>MAP@K</code>。每场竞赛都会选定一个，并告诉你用哪个。</li>
+        <li><strong>排行榜（Leaderboard）：</strong>榜单。它按指标显示你的排名。关键细节来了：测试数据被分成两部分，<em>public</em> 和 <em>private</em>。</li>
+      </ol>
+      <p>这种切分是整个系统的防线。公开部分用来在你工作时查看进度，私有部分则保留到最后。真正算数的是私有分数：所以上传上千个版本来榨取公开榜单毫无意义，因为它换不来任何真实的东西。真正管用的是能够真正泛化的模型。</p>
+    </div>
+
+    <div class="section">
+      <h2>经典例子：Titanic</h2>
+      <p>如果说 Kaggle 有“Hello World”，那就是 <em>Titanic - Machine Learning from Disaster</em> 竞赛。问题看起来简单得像电影情节：根据船票等级、性别、年龄、随行亲属人数或登船港口等数据，预测一名乘客是否在海难中幸存。</p>
+      <p>它是很好的入门选择，因为数据集很小（大约 891 行训练数据），指标是 <code>accuracy</code>，而打破平局几乎是 50/50。你不需要 GPU，也不需要是专家：用一个<em>逻辑回归</em>模型就能达到 70 分以上的准确率，再稍微努把力就能超过一半。其余的，就是慢慢理解为什么决策树比回归表现更好，或者为什么很多行的“年龄”是缺失的。</p>
+      <p>它还可以作为检验重要能力的试验场：理解一个数据问题的完整 <a href="https://tutorial.djc.pe/zh-cn/c/ai/" style="color:var(--color-accent); text-decoration:none;">pipeline</a>，而不只是模型那一行代码。</p>
+    </div>
+
+    <div class="section">
+      <h2>免费（或近乎免费）的算力</h2>
+      <p>很多人留在 Kaggle 的真正原因是它的基础设施。你在浏览器里打开一个 Notebook，就已经装好了 Python 以及 <code>pandas</code>、<code>numpy</code>、<code>sklearn</code> 和各种<em>深度学习</em>库，无需任何配置。免费账户还包含每周大约 30 小时的 GPU 和 20 小时的 TPU，只要用得谨慎，这并不算少。</p>
+      <p>当然，也有种种限制，而且有件事需要想清楚：竞赛始终在他们的基础设施上运行。你的模型会被上传，由他们来执行。这意味着推理时间也算数，你不能依赖自己机器上的一个超大数据库，最好从小模型开始，之后再逐步扩展。这是一种有用的约束，因为它强迫你在拥有数百万用户之前就考虑效率。</p>
+    </div>
+
+    <div class="section">
+      <h2>需要小心的地方</h2>
+      <p>Kaggle 很棒，但有三件事需要牢记：</p>
+      <ul>
+        <li><strong>数据泄露（<em>leakage</em>）：</strong>你很容易、有时甚至很有诱惑力地从外部数据集或误传的文件中“找到”答案。它提高的是你的分数，而不是你的模型。在某些情况下，整个数据集被泄露，竞赛就变得毫无意义。这是该平台最著名的问题，必须学会避开。</li>
+        <li><strong>脏数据和隐私数据：</strong>由于任何人都能上传数据集，有些文件包含个人数据、存在偏差，或者许可证不允许使用。如果你的实际项目要使用这些数据，问题不会止于排行榜。</li>
+        <li><strong>对排行榜过拟合：</strong>你提交 200 次，尝试各种随机种子，然后上传你最好的公开分数。这确实有效，但你带到生产环境的模型比你想象的更差。public/private 的切分就是为了抓住这样做的人，而且确实有效。</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>为什么它在竞赛之外也有用</h2>
+      <p>竞赛固然不错，但 Kaggle 最有用的地方往往在别处：</p>
+      <ul>
+        <li><strong>公开 Notebook：</strong>每场竞赛都有成百上千个已经解决该问题的人写的 Notebook。你可以读到他们是怎么做的、哪些特征重要、什么方法有效。这是通过好例子和坏例子来学习<em>特征工程</em>的最佳方式之一。</li>
+        <li><strong>作品集：</strong>一个带有奖牌、kernel 和帖子的个人主页，是你有能力做成事情的证据。它可量化、可验证，而 Udemy 课程并非如此。</li>
+        <li><strong>低成本学习：</strong>电脑上没有 GPU、也不需要获取机密数据，你就能用真实问题练手。入门的成本是时间，而不是金钱。</li>
+      </ul>
+      <p>还有一点值得注意：在招聘数据科学家的公司中，有一半会在面试前查看 Kaggle 个人主页。这是用公开证据证明你能力的少数方式之一。</p>
+    </div>
+
+    <div class="section">
+      <h2>具体怎么开始</h2>
+      <p>如果你想迈出第一步又不至于迷路：注册账号，进入竞赛板块，按 <em>Getting Started</em> 或 <em>30 Days</em> 筛选。从 Titanic 开始，如果想要更新一点的，可以试试 <em>Spaceship Titanic</em>。打开一个 Notebook，用 <code>pandas</code> 读取 CSV，训练一个模型，上传文件，然后看着自己的名字出现在排行榜上。</p>
+      <p>你的第一次提交不会很好，这完全没关系。重要的是完整地走通一次循环：理解数据、训练、衡量、迭代。重复三四次之后，你对<em>机器学习</em>的理解会比读几个月理论还要好，而且你会拥有一个带有真实学习证据的个人主页。</p>
+    </div>
+
+    <div class="section">
+      <p>从本质上说，Kaggle 是一座带反馈的练习工厂。它给你一个具体的问题、解决它的数据、用来测试的基础设施，还有一大群解决同一问题的人供你比较。最后这一点正是它的独特之处：你不是在真空中学习，而是和数十万人一起奔跑，并能亲眼看到不同的思路是如何被解决的。</p>
+      <p>把它当作<em>机器学习</em>的健身房。并非每个数据集都与你相关，并非每个排行榜都同样有价值，而且你从榜单中游的 Notebook 里学到的东西，往往比从第一名那里学到的还多。但要从“我看过一门深度学习课程”变成“我打开了一个数据集、训练了模型并提交了结果”，没有比这更短的捷径了。</p>
+    </div>
+  </main>
+
+</body>
+</html>
