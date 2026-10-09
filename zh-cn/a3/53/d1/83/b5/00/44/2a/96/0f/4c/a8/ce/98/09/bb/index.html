@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- 87.34.2.92 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/res/base/icon.png">
+
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/res/base/index.css">
+  <script src="https://story.djc.pe/res/base/index.js" defer></script>
+  <script src="https://story.djc.pe/res/nav/script.js" defer></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="https://story.djc.pe/res/ads/header.js"></script>
+  <script src="https://story.djc.pe/res/ads/content.js"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <title>Codeforces 题目 #1：SauSaGe Bank | DJC 教程</title>
+  <meta name="description" content="Codeforces 2269A SauSaGe Bank 题目的分析与解答：余额重置的陷阱、贪心思路以及最终公式。">
+
+  <link rel="canonical" href="https://tutorial.djc.pe/zh-cn/a3/53/d1/83/b5/00/44/2a/96/0f/4c/a8/ce/98/09/bb/">
+  <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/a3/53/d1/83/b5/00/44/2a/96/0f/4c/a8/ce/98/09/bb/">
+  <link rel="alternate" hreflang="es" href="https://tutorial.djc.pe/es/a3/53/d1/83/b5/00/44/2a/96/0f/4c/a8/ce/98/09/bb/">
+  <link rel="alternate" hreflang="zh-cn" href="https://tutorial.djc.pe/zh-cn/a3/53/d1/83/b5/00/44/2a/96/0f/4c/a8/ce/98/09/bb/">
+
+</head>
+<body>
+
+  <main class="content">
+    <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:4px;"><a href="https://tutorial.djc.pe/" style="color:var(--color-accent); text-decoration:none;">首页</a> / <a href="/zh-cn/67/db/1d/30/95/80/43/dc/ad/cc/0f/8c/31/55/68/ed/" style="color:var(--color-accent); text-decoration:none;">什么是 Codeforces？</a> / #1</p>
+    <h1>题目 #1：SauSaGe Bank</h1>
+    <p data-author style="color:var(--color-text-muted); font-size:14px;">作者 <a href="https://www.djc.pe/u/@null_djc/" style="color:var(--color-accent); text-decoration:none;">@null_djc</a> · 系列</p>
+
+    <p><a href="https://codeforces.com/problemset/problem/2269/A" style="color:var(--color-accent); text-decoration:none;">Codeforces 2269A</a> · Div. 2 · <em>贪心</em>、<em>数学</em></p>
+
+    <div class="section">
+      <h2>简化后的题意</h2>
+      <p>
+银行每天早上把你的余额翻倍，到了晚上你可以把全部取走：
+取走的钱会加到你的卡上，账户重新变回 $1 从头开始。
+银行恰好持续 <code>n</code> 天，而你必须恰好取款 <code>k</code> 天。
+问题很简单：你最多能在卡上攒多少钱？
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>陷阱</h2>
+      <p>我们首先想到的是“如果我在第 <code>d</code> 天取款，就能拿到 <code>2^d</code>”。这是个错误，因为每次取款后余额都会重置为 $1。注意如果你在第 3 天取款、第 4 天又取款会发生什么：第 4 天只翻倍了<em>一次</em>，所以你只拿到 $2。一次取款拿到的钱是 <code>2</code> 的“距上次取款的天数”次方，而不是从最开始算起。</p>
+    </div>
+
+    <div class="section">
+      <h2>思路</h2>
+      <p>
+因为你必须取款 <code>k</code> 次，
+最终你会把 <code>n</code> 天分成 <code>k</code> 个区块，
+每个区块在你取款的那天结束。
+如果一个区块有 <code>g</code> 天，
+那次取款就给你 <code>2^g</code>。
+由于 <code>2^x</code> 增长极快，
+最好把几乎所有天数集中到一个长区块里，让其余区块尽可能短（一天，各给 $2）。
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>公式</h2>
+<pre><code>答案 = 2^(n - k + 1) + 2 * (k - 1)</code></pre>
+      <p>长区块给你留下 <code>n - k + 1</code> 天（靠它拿到大头），剩下的 <code>k - 1</code> 次取款各贡献 $2。由于 <code>n ≤ 30</code>，<code>2^30</code> 可以轻松放进 <code>long long</code> 里。</p>
+    </div>
+
+    <div class="section">
+      <h2>解答</h2>
+      <p>在题目的测试用例里，这条规则没有出错：<code>(1,1) → 2</code>，<code>(2,1) → 4</code>，<code>(4,3) → 8</code>，<code>(5,5) → 10</code>，<code>(10,2) → 514</code>。我们把题意写成代码，用位移来实现：</p>
+
+
+<h3>C++</h3>
+<pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int t;
+    cin &gt;&gt; t;
+
+    while (t--) {
+        int n, k;
+        cin &gt;&gt; n &gt;&gt; k;
+
+        cout &lt;&lt; (1LL &lt;&lt; (n - k + 1)) + 2LL * (k - 1) &lt;&lt; '\n';
+    }
+
+    return 0;
+}</code></pre>
+
+<h3>Python</h3>
+<pre><code>t = int(input())
+
+for _ in range(t):
+    n, k = map(int, input().split())
+    print((1 &lt;&lt; (n - k + 1)) + 2 * (k - 1))</code></pre>
+
+<h3>Rust</h3>
+<pre><code>use std::io::{self, Read};
+
+fn main() {
+    let mut input = String::new();
+    io::stdin().read_to_string(&amp;mut input).unwrap();
+
+    let mut it = input.split_whitespace();
+
+    let t: usize = it.next().unwrap().parse().unwrap();
+
+    for _ in 0..t {
+        let n: u32 = it.next().unwrap().parse().unwrap();
+        let k: i64 = it.next().unwrap().parse().unwrap();
+
+        let answer = (1_i64 &lt;&lt; (n - k as u32 + 1))
+            + 2 * (k - 1);
+
+        println!("{}", answer);
+    }
+}</code></pre>
+
+    </div>
+
+    <div class="section">
+      <h2>它教会了我们什么</h2>
+      <p>仔细阅读每个事件的效果及其发生顺序：那个余额“重置”就是整道题的关键。还有在打开编辑器之前先手动推演例子，因为正是在那里出现了后来变成公式的规律。</p>
+    </div>
+  </main>
+
+</body>
+</html>
