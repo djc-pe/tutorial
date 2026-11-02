@@ -9,7 +9,7 @@
   </url>
   <url>
     <loc>https://tutorial.djc.pe/es/</loc>
-    <lastmod>2026-10-08T13:06:56-05:00</lastmod>
+    <lastmod>2026-11-02T12:00:00-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -67,7 +67,7 @@
   </url>
   <url>
     <loc>https://tutorial.djc.pe/es/c/programacion/</loc>
-    <lastmod>2026-09-29T12:14:16-05:00</lastmod>
+    <lastmod>2026-11-02T12:00:00-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -194,6 +194,12 @@
   <url>
     <loc>https://tutorial.djc.pe/es/ab/ec/8a/ab/9e/60/4b/66/a6/ef/78/a8/1f/a3/83/d4/</loc>
     <lastmod>2026-09-28T12:35:20-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tutorial.djc.pe/es/d5/fd/3f/a8/11/5b/4b/d1/a2/d8/91/10/82/63/55/9b/</loc>
+    <lastmod>2026-11-02T12:00:00-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
