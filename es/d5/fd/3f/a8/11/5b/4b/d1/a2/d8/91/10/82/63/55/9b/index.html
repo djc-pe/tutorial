@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- 87.34.2.92 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/assets/djc/base/1/icon.png">
+
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/index.css">
+  <script src="https://story.djc.pe/assets/djc/base/1/index.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/nav/1/script.js" defer></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="https://story.djc.pe/assets/djc/ads/1/header.js"></script>
+  <script src="https://story.djc.pe/assets/djc/ads/1/content.js"></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <title>Búsqueda en profundidad (DFS) | DJC Tutorial</title>
+  <meta name="description" content="Aprende el algoritmo DFS (búsqueda en profundidad): la idea, un ejemplo paso a paso, el código recursivo e iterativo en Python y C++, su complejidad y para qué se usa.">
+
+  <link rel="canonical" href="https://tutorial.djc.pe/es/d5/fd/3f/a8/11/5b/4b/d1/a2/d8/91/10/82/63/55/9b/">
+  <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/d5/fd/3f/a8/11/5b/4b/d1/a2/d8/91/10/82/63/55/9b/">
+  <link rel="alternate" hreflang="es" href="https://tutorial.djc.pe/es/d5/fd/3f/a8/11/5b/4b/d1/a2/d8/91/10/82/63/55/9b/">
+  <link rel="alternate" hreflang="zh-cn" href="https://tutorial.djc.pe/zh-cn/d5/fd/3f/a8/11/5b/4b/d1/a2/d8/91/10/82/63/55/9b/">
+
+</head>
+<body>
+
+  <main class="content">
+    <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:4px;"><a href="https://tutorial.djc.pe/" style="color:var(--color-accent); text-decoration:none;">Inicio</a> / <a href="/es/c/programacion/" style="color:var(--color-accent); text-decoration:none;">Programación</a></p>
+    <h1>Búsqueda en profundidad (DFS)</h1>
+    <p data-author style="color:var(--color-text-muted); font-size:14px;">Por <a href="https://www.djc.pe/u/@danny/" style="color:var(--color-accent); text-decoration:none;">@danny</a> · Tutorial</p>
+
+    <p>DFS (<em>Depth-First Search</em>, búsqueda en profundidad) es una de las formas más simples de recorrer un grafo: empiezas en un nodo y avanzas todo lo que puedes por un camino antes de volver atrás a probar otro. Es la base de un montón de algoritmos y aparece seguido en entrevistas y en problemas de programación competitiva.</p>
+
+    <div class="section">
+      <h2>La idea</h2>
+      <p>Imagina que estás en un laberinto. Eliges un pasillo y lo sigues hasta el fondo. Si llegas a un callejón sin salida, regresas a la última bifurcación y pruebas otro pasillo que no hayas recorrido. Y así hasta haber visto todo.</p>
+      <p>Eso es DFS. En términos de grafos:</p>
+      <ol>
+        <li>Marca el nodo actual como <strong>visitado</strong>.</li>
+        <li>Para cada vecino que todavía no visitaste, haz DFS desde ese vecino.</li>
+        <li>Cuando no quedan vecinos sin visitar, vuelve al nodo anterior (esto se llama <em>backtracking</em>).</li>
+      </ol>
+      <p>La marca de visitado es clave: sin ella, en un grafo con ciclos darías vueltas para siempre.</p>
+    </div>
+
+    <div class="section">
+      <h2>Un ejemplo paso a paso</h2>
+      <p>Tomemos este grafo no dirigido con 6 nodos y estas aristas: <code>1-2</code>, <code>1-3</code>, <code>2-4</code>, <code>2-5</code>, <code>3-6</code> y <code>5-6</code>. Lo guardamos como una <strong>lista de adyacencia</strong>, es decir, para cada nodo, la lista de sus vecinos:</p>
+<pre><code>1: 2, 3
+2: 1, 4, 5
+3: 1, 6
+4: 2
+5: 2, 6
+6: 3, 5</code></pre>
+      <p>Hagamos DFS empezando en el nodo <code>1</code>, revisando los vecinos en el orden de la lista:</p>
+      <ol>
+        <li>Visitamos <code>1</code>. Su primer vecino sin visitar es <code>2</code>.</li>
+        <li>Visitamos <code>2</code>. El <code>1</code> ya está visitado, así que bajamos a <code>4</code>.</li>
+        <li>Visitamos <code>4</code>. Su único vecino es <code>2</code>, ya visitado: callejón sin salida, volvemos a <code>2</code>.</li>
+        <li>Desde <code>2</code> queda <code>5</code>. Lo visitamos.</li>
+        <li>Desde <code>5</code>, el <code>2</code> ya está visitado; seguimos a <code>6</code>.</li>
+        <li>Desde <code>6</code> llegamos a <code>3</code>. Sus vecinos (<code>1</code> y <code>6</code>) ya están visitados, así que volvemos hasta el inicio.</li>
+      </ol>
+      <p>El orden de visita es <code>1, 2, 4, 5, 6, 3</code>. Fíjate en un detalle: aunque <code>3</code> es vecino directo de <code>1</code>, lo visitamos al final, porque DFS primero se fue a fondo por el camino de <code>2</code> y llegó a <code>3</code> desde <code>6</code>. Esa es justamente la "profundidad".</p>
+    </div>
+
+    <div class="section">
+      <h2>El código recursivo</h2>
+      <p>La forma más natural de escribir DFS es con recursión: la propia pila de llamadas se encarga de "recordar" a qué nodo volver.</p>
+      <p><strong>Python</strong></p>
+<pre><code>grafo = {
+    1: [2, 3],
+    2: [1, 4, 5],
+    3: [1, 6],
+    4: [2],
+    5: [2, 6],
+    6: [3, 5],
+}
+
+visitado = set()
+orden = []
+
+def dfs(nodo):
+    visitado.add(nodo)
+    orden.append(nodo)
+    for vecino in grafo[nodo]:
+        if vecino not in visitado:
+            dfs(vecino)
+
+dfs(1)
+print(orden)  # [1, 2, 4, 5, 6, 3]</code></pre>
+      <p><strong>C++</strong></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+vector&lt;vector&lt;int&gt;&gt; grafo;
+vector&lt;bool&gt; visitado;
+
+void dfs(int nodo) {
+    visitado[nodo] = true;
+    cout &lt;&lt; nodo &lt;&lt; ' ';
+    for (int vecino : grafo[nodo]) {
+        if (!visitado[vecino]) dfs(vecino);
+    }
+}
+
+int main() {
+    int n = 6;
+    grafo.assign(n + 1, {});
+    visitado.assign(n + 1, false);
+    int aristas[][2] = {{1, 2}, {1, 3}, {2, 4}, {2, 5}, {3, 6}, {5, 6}};
+    for (auto&amp; a : aristas) {
+        grafo[a[0]].push_back(a[1]);
+        grafo[a[1]].push_back(a[0]);
+    }
+    dfs(1);  // 1 2 4 5 6 3
+}</code></pre>
+    </div>
+
+    <div class="section">
+      <h2>El código iterativo (con una pila)</h2>
+      <p>Si el grafo es muy grande, la recursión puede reventar la pila de llamadas. En Python pasa rápido: el límite por defecto ronda las 1000 llamadas anidadas. La solución es manejar la pila nosotros mismos:</p>
+<pre><code>def dfs_iterativo(inicio):
+    visitado = set()
+    orden = []
+    pila = [inicio]
+    while pila:
+        nodo = pila.pop()
+        if nodo in visitado:
+            continue
+        visitado.add(nodo)
+        orden.append(nodo)
+        for vecino in reversed(grafo[nodo]):
+            if vecino not in visitado:
+                pila.append(vecino)
+    return orden
+
+print(dfs_iterativo(1))  # [1, 2, 4, 5, 6, 3]</code></pre>
+      <p>Dos detalles: metemos los vecinos al revés (<code>reversed</code>) para que salgan de la pila en el mismo orden que en la versión recursiva, y marcamos el nodo como visitado al <em>sacarlo</em> de la pila, no al meterlo. Un nodo puede entrar más de una vez a la pila, pero solo se procesa la primera vez.</p>
+    </div>
+
+    <div class="section">
+      <h2>¿Qué tan rápido es?</h2>
+      <p>DFS visita cada nodo una sola vez y revisa cada arista una vez por cada extremo. Con <code>V</code> nodos y <code>E</code> aristas, la complejidad es <code>O(V + E)</code> en tiempo y <code>O(V)</code> en memoria extra (el conjunto de visitados y la pila). Dicho de otra forma: es lineal en el tamaño del grafo, así que puedes usarlo sin miedo incluso con cientos de miles de nodos.</p>
+    </div>
+
+    <div class="section">
+      <h2>Para qué se usa</h2>
+      <ul>
+        <li><strong>Saber si dos nodos están conectados:</strong> haces DFS desde uno y miras si llegaste al otro.</li>
+        <li><strong>Contar componentes conexas:</strong> recorres todos los nodos y, cada vez que encuentras uno sin visitar, lanzas un DFS y sumas uno al contador.</li>
+        <li><strong>Detectar ciclos:</strong> si durante el recorrido llegas a un nodo que todavía está "en curso" en la pila, hay un ciclo.</li>
+        <li><strong>Orden topológico:</strong> ordenar tareas que dependen unas de otras (por ejemplo, qué cursos llevar antes que otros).</li>
+        <li><strong>Mapas y cuadrículas:</strong> contar islas en una matriz, rellenar un área con color (<em>flood fill</em>) o resolver laberintos.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Errores comunes</h2>
+      <ul>
+        <li><strong>Olvidar marcar visitados:</strong> en un grafo con ciclos el programa nunca termina.</li>
+        <li><strong>Marcar tarde en la versión recursiva:</strong> marca el nodo apenas entras a <code>dfs</code>, antes de recorrer sus vecinos.</li>
+        <li><strong>Desbordar la pila:</strong> en Python, con grafos grandes, usa la versión iterativa o sube el límite con <code>sys.setrecursionlimit</code>.</li>
+        <li><strong>Usar DFS para el camino más corto:</strong> DFS encuentra <em>un</em> camino, no necesariamente el más corto. Para eso, en grafos sin pesos, se usa BFS (búsqueda en anchura).</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Para cerrar</h2>
+      <p>DFS es poco código y mucha utilidad: avanzar hasta el fondo, marcar lo que ya viste y volver atrás cuando no hay más camino. Escríbelo un par de veces de memoria, primero recursivo y luego con pila, y después búscalo en problemas reales. Si quieres practicar, en <a href="/es/67/db/1d/30/95/80/43/dc/ad/cc/0f/8c/31/55/68/ed/" style="color:var(--color-accent); text-decoration:none;">Codeforces</a> puedes filtrar problemas con la etiqueta <em>dfs and similar</em>.</p>
+    </div>
+  </main>
+
+</body>
+</html>
