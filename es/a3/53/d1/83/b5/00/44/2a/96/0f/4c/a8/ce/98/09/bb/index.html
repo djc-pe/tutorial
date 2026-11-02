@@ -48,7 +48,7 @@
       <h2>El enunciado simplificado</h2>
       <p>
 Un banco duplica tu saldo cada mañana y a la noche puedes retirar todo:
-lo que retirás se suma a tu tarjeta y tu cuenta vuelve a $1 para empezar de nuevo.
+lo que retiras se suma a tu tarjeta y tu cuenta vuelve a $1 para empezar de nuevo.
 El banco dura exactamente <code>n</code> días y tienes que retirar exactamente <code>k</code> días.
 La pregunta es simple: ¿cuánto es lo máximo que puedes juntar en la tarjeta?
       </p>
@@ -56,15 +56,15 @@ La pregunta es simple: ¿cuánto es lo máximo que puedes juntar en la tarjeta?
 
     <div class="section">
       <h2>La trampa</h2>
-      <p>Lo primero que pensamos fue "si retiro el día <code>d</code>, cobro <code>2^d</code>". Y es un error, porque después de cada retiro el saldo se reinicia a $1. Fijate qué pasa si retirás el día 3 y otra vez el día 4: el día 4 recién hubo <em>un</em> duplicado, así que cobrás solo $2. Lo que cobrás en un retiro es <code>2</code> elevado a la cantidad de días desde el último retiro, no desde el día inicial.</p>
+      <p>Lo primero que pensamos fue "si retiro el día <code>d</code>, cobro <code>2^d</code>". Y es un error, porque después de cada retiro el saldo se reinicia a $1. Fíjate qué pasa si retiras el día 3 y otra vez el día 4: el día 4 recién hubo <em>un</em> duplicado, así que cobras solo $2. Lo que cobras en un retiro es <code>2</code> elevado a la cantidad de días desde el último retiro, no desde el día inicial.</p>
     </div>
 
     <div class="section">
       <h2>La idea</h2>
       <p>
 Como tienes que retirar <code>k</code> veces,
-terminás partiendo los <code>n</code> días en <code>k</code> bloques,
-y cada bloque termina el día en que retirás.
+terminas partiendo los <code>n</code> días en <code>k</code> bloques,
+y cada bloque termina el día en que retiras.
 Si un bloque tiene <code>g</code> días,
 ese retiro te da <code>2^g</code>.
 Como <code>2^x</code> crece rapidísimo,
@@ -75,7 +75,7 @@ conviene concentrar casi todo en un solo bloque largo y que los demás sean lo m
     <div class="section">
       <h2>La fórmula</h2>
 <pre><code>respuesta = 2^(n - k + 1) + 2 * (k - 1)</code></pre>
-      <p>El bloque largo te deja <code>n - k + 1</code> días (y con eso ganás la parte gorda), y los <code>k - 1</code> retiros restantes aportan $2 cada uno. Como <code>n ≤ 30</code>, <code>2^30</code> entra cómodo en un <code>long long</code>.</p>
+      <p>El bloque largo te deja <code>n - k + 1</code> días (y con eso ganas la parte gorda), y los <code>k - 1</code> retiros restantes aportan $2 cada uno. Como <code>n ≤ 30</code>, <code>2^30</code> entra cómodo en un <code>long long</code>.</p>
     </div>
 
     <div class="section">

@@ -46,9 +46,9 @@
 
     <div class="section">
       <h2>La idea en un ejemplo</h2>
-      <p>Una empresa tiene datos de sus ventas y quiere adivinar cuáles clientes se van a dar de baja el mes que viene. A ti te pasan el histórico: qué se compró, cuántas veces, cuánto costó, y además un <code>churn</code> que dice si esa persona se fue o no. Con eso entrenás un modelo, le predecís el <code>churn</code> a los clientes de este mes, y entregás un archivo con las respuestas.</p>
-      <p>En Kaggle ese mismo problema ya existe como <em>competencia</em>: hay una empresa real detrás, hay un premio, hay un tablero público con el puntaje de todos los participantes, y hay miles de personas intentando el mismo ejercicio. Vos descargás los datos, entrenás, hacés un <code>submission</code> (un archivo con tus predicciones) y lo subís para que te digan cómo te fue.</p>
-      <p>Ese es el juego en general: pasás de "tengo un problema de datos" a "tengo datos para resolverlo, una forma de medir si acerté, y gente que me puede decir si voy bien".</p>
+      <p>Una empresa tiene datos de sus ventas y quiere adivinar cuáles clientes se van a dar de baja el mes que viene. A ti te pasan el histórico: qué se compró, cuántas veces, cuánto costó, y además un <code>churn</code> que dice si esa persona se fue o no. Con eso entrenas un modelo, le predices el <code>churn</code> a los clientes de este mes, y entregas un archivo con las respuestas.</p>
+      <p>En Kaggle ese mismo problema ya existe como <em>competencia</em>: hay una empresa real detrás, hay un premio, hay un tablero público con el puntaje de todos los participantes, y hay miles de personas intentando el mismo ejercicio. Tú descargas los datos, entrenas, haces un <code>submission</code> (un archivo con tus predicciones) y lo subes para que te digan cómo te fue.</p>
+      <p>Ese es el juego en general: pasas de "tengo un problema de datos" a "tengo datos para resolverlo, una forma de medir si acerté, y gente que me puede decir si voy bien".</p>
     </div>
 
     <div class="section">
@@ -66,7 +66,7 @@
         <li><strong>Notebooks:</strong> un entorno de Python (o R) en el navegador, gratis, para explorar datos y entrenar modelos sin instalar nada. Antes se llamaban <em>Kernels</em>.</li>
         <li><strong>Discussions:</strong> foros por competencia, donde se filtran los mejores trucos, se avisa de que un dataset está mal cargado y se avisa de filtraciones.</li>
       </ul>
-      <p>Si sos nuevo, el recorrido típico es: entrar a una competencia marcada como <em>Getting Started</em> o <em>30 Days</em>, abrir un notebook, cargar el CSV con <code>pandas</code>, entrenar algo, subir el submission y ver tu nombre en el tablero.</p>
+      <p>Si eres nuevo, el recorrido típico es: entrar a una competencia marcada como <em>Getting Started</em> o <em>30 Days</em>, abrir un notebook, cargar el CSV con <code>pandas</code>, entrenar algo, subir el submission y ver tu nombre en el tablero.</p>
     </div>
 
     <div class="section">
@@ -74,25 +74,25 @@
       <p>Todas tienen la misma estructura, aunque cambien los detalles. La idea es que el mismo modelo se pueda medir sin depender de quién lo armó:</p>
       <ol>
         <li><strong>train.csv:</strong> datos con la respuesta correcta, para entrenar.</li>
-        <li><strong>test.csv:</strong> datos sin respuesta, para los que tenés que predecir.</li>
+        <li><strong>test.csv:</strong> datos sin respuesta, para los que tienes que predecir.</li>
         <li><strong>submission.csv:</strong> el archivo con tus predicciones, con un formato exacto que hay que respetar.</li>
         <li><strong>Métrica:</strong> cómo se mide el acierto. Puede ser <code>accuracy</code> para clasificación, <code>F1</code> si las clases están desbalanceadas, <code>RMSE</code> para regresión, <code>MAP@K</code> para sistemas de recomendación. Cada competencia elige una y te dice cuál usar.</li>
         <li><strong>Leaderboard:</strong> el tablero. Te muestra tu posición según la métrica. Y acá está el detalle clave: los datos de prueba se parten en dos, <em>public</em> y <em>private</em>.</li>
       </ol>
-      <p>Ese corte es la defensa de todo el sistema. La parte pública se usa para ver el progreso mientras trabajás, y la privada se reserva hasta el final. El score que cuenta es el privado: por eso no sirve subir mil versiones para exprimir la tabla pública, porque eso no se traduce en nada real. Lo que funciona es un modelo que de verdad generalice.</p>
+      <p>Ese corte es la defensa de todo el sistema. La parte pública se usa para ver el progreso mientras trabajas, y la privada se reserva hasta el final. El score que cuenta es el privado: por eso no sirve subir mil versiones para exprimir la tabla pública, porque eso no se traduce en nada real. Lo que funciona es un modelo que de verdad generalice.</p>
     </div>
 
     <div class="section">
       <h2>El ejemplo clásico: Titanic</h2>
       <p>Si hay un "hola mundo" de Kaggle, es la competencia <em>Titanic - Machine Learning from Disaster</em>. El problema parece simple y de película: predecir si un pasajero sobrevivió al hundimiento, con datos como la clase del boleto, el sexo, la edad, cuántos familiares tenía a bordo o el puerto de embarque.</p>
-      <p>Es un buen primer contacto porque el dataset es chico (unas 891 filas de entrenamiento), la métrica es <code>accuracy</code> y el desempate es casi 50/50. No necesitás GPU ni ser experto: con un modelo de <em>regresión logística</em> ya llegás a un accuracy de finales de 70, y subiendo un poco llegás a pasar la mitad. Todo el resto es ir entendiendo por qué un árbol de decisión hace mejor que una regresión, o por qué la "edad" falta en muchas filas.</p>
+      <p>Es un buen primer contacto porque el dataset es chico (unas 891 filas de entrenamiento), la métrica es <code>accuracy</code> y el desempate es casi 50/50. No necesitas GPU ni ser experto: con un modelo de <em>regresión logística</em> ya llegas a un accuracy de finales de 70, y subiendo un poco llegas a pasar la mitad. Todo el resto es ir entendiendo por qué un árbol de decisión hace mejor que una regresión, o por qué la "edad" falta en muchas filas.</p>
       <p>Y funciona como campo de pruebas para lo importante: entender el <a href="https://tutorial.djc.pe/es/c/ia/" style="color:var(--color-accent); text-decoration:none;">pipeline</a> completo de un problema de datos, no solo la línea de código del modelo.</p>
     </div>
 
     <div class="section">
       <h2>Cómputo gratis (o casi)</h2>
-      <p>El motivo real por el que mucha gente se queda en Kaggle es la infraestructura. Abrís un notebook en el navegador y tenés Python con <code>pandas</code>, <code>numpy</code>, <code>sklearn</code> y las librerías de <em>deep learning</em> ya instaladas, sin configuración. Y la cuenta gratuita incluye alrededor de 30 horas semanales de GPU y 20 de TPU, que no es poco si las usás con cuidado.</p>
-      <p>Obvio, hay límites y hay algo que conviene tener claro: la competencia siempre corre sobre la infraestructura de ellos. Tu modelo se sube, ellos lo ejecutan. Eso significa que el tiempo de inferencia cuenta, que no podés depender de una base de datos gigante en tu máquina, y que conviene empezar con modelos chicos que después se pueden escalar. Es una restricción útil, porque te obliga a pensar en eficiencia antes de tener millones de usuarios.</p>
+      <p>El motivo real por el que mucha gente se queda en Kaggle es la infraestructura. Abres un notebook en el navegador y tienes Python con <code>pandas</code>, <code>numpy</code>, <code>sklearn</code> y las librerías de <em>deep learning</em> ya instaladas, sin configuración. Y la cuenta gratuita incluye alrededor de 30 horas semanales de GPU y 20 de TPU, que no es poco si las usas con cuidado.</p>
+      <p>Obvio, hay límites y hay algo que conviene tener claro: la competencia siempre corre sobre la infraestructura de ellos. Tu modelo se sube, ellos lo ejecutan. Eso significa que el tiempo de inferencia cuenta, que no puedes depender de una base de datos gigante en tu máquina, y que conviene empezar con modelos chicos que después se pueden escalar. Es una restricción útil, porque te obliga a pensar en eficiencia antes de tener millones de usuarios.</p>
     </div>
 
     <div class="section">
@@ -101,7 +101,7 @@
       <ul>
         <li><strong>Filtraciones (<em>leakage</em>):</strong> es fácil, y a veces tentador, "encontrar" la respuesta en un dataset externo o en un archivo que se subió por error. Sube tu score, no tu modelo. En algunos casos el dataset completo se filtra y la competencia deja de tener sentido. Es el problema más famoso de la plataforma y hay que saber esquivarlo.</li>
         <li><strong>Datos sucios y datos privados:</strong> como cualquiera sube datasets, hay archivos con datos personales, con sesgos o con licencias que no permiten usarlos. Si tu proyecto real va a usar esos datos, el problema no termina en el tablero.</li>
-        <li><strong>Sobreajustar el tablero:</strong> pasás 200 submissions probando semillas al azar y subís tu mejor score público. Funciona, pero el modelo que llevás a producción es peor de lo que creés. El corte public/private está para agarrar a los que hacen eso, y funciona.</li>
+        <li><strong>Sobreajustar el tablero:</strong> pasas 200 submissions probando semillas al azar y subes tu mejor score público. Funciona, pero el modelo que llevas a producción es peor de lo que crees. El corte public/private está para agarrar a los que hacen eso, y funciona.</li>
       </ul>
     </div>
 
@@ -109,22 +109,22 @@
       <h2>Por qué sirve más allá de las competencias</h2>
       <p>Las competencias están bien, pero lo más útil de Kaggle suele estar en otras partes:</p>
       <ul>
-        <li><strong>Notebooks públicos:</strong> para cada competencia hay cientos de notebooks de gente que ya resolvió el problema. Leés cómo lo hicieron, qué features fueron importantes y qué funcionó bien. Es de las mejores formas de aprender <em>feature engineering</em> viendo ejemplos buenos y malos.</li>
-        <li><strong>Portafolio:</strong> un perfil con medallas, kernels y posts es evidencia de que sabés hacer las cosas. Es cuantificable y verificable, cosa que un curso de Udemy no es.</li>
-        <li><strong>Aprendizaje barato:</strong> sin GPU en tu PC, sin conseguir acceso a datos confidenciales, podés practicar con problemas reales. El costo de entrada es de tiempo, no de dinero.</li>
+        <li><strong>Notebooks públicos:</strong> para cada competencia hay cientos de notebooks de gente que ya resolvió el problema. Lees cómo lo hicieron, qué features fueron importantes y qué funcionó bien. Es de las mejores formas de aprender <em>feature engineering</em> viendo ejemplos buenos y malos.</li>
+        <li><strong>Portafolio:</strong> un perfil con medallas, kernels y posts es evidencia de que sabes hacer las cosas. Es cuantificable y verificable, cosa que un curso de Udemy no es.</li>
+        <li><strong>Aprendizaje barato:</strong> sin GPU en tu PC, sin conseguir acceso a datos confidenciales, puedes practicar con problemas reales. El costo de entrada es de tiempo, no de dinero.</li>
       </ul>
-      <p>Y algo que conviene mirar: la mitad de las empresas que reclutan data scientists revisa perfiles de Kaggle antes de la entrevista. Es una de las pocas formas de demostrar lo que sabés con evidencia pública.</p>
+      <p>Y algo que conviene mirar: la mitad de las empresas que reclutan data scientists revisa perfiles de Kaggle antes de la entrevista. Es una de las pocas formas de demostrar lo que sabes con evidencia pública.</p>
     </div>
 
     <div class="section">
       <h2>Para empezar, en concreto</h2>
-      <p>Si querés dar el primer paso sin perderte: creá tu cuenta, andá a la sección de competencias y filtrá por <em>Getting Started</em> o <em>30 Days</em>. Empezá con Titanic, o con <em>Spaceship Titanic</em> si querés algo un poco más moderno. Abrí un notebook, leé el CSV con <code>pandas</code>, entrená un modelo, subí el archivo y mirá tu nombre aparecer en el tablero.</p>
+      <p>Si quieres dar el primer paso sin perderte: crea tu cuenta, ve a la sección de competencias y filtra por <em>Getting Started</em> o <em>30 Days</em>. Empieza con Titanic, o con <em>Spaceship Titanic</em> si quieres algo un poco más moderno. Abre un notebook, lee el CSV con <code>pandas</code>, entrena un modelo, sube el archivo y mira tu nombre aparecer en el tablero.</p>
       <p>El primer submission no va a ser bueno, y está perfecto que no lo sea. Lo importante es entender el ciclo completo una vez: entender los datos, entrenar, medir e iterar. Después de tres o cuatro repeticiones vas a entender mejor <em>machine learning</em> que después de meses de leer teoría, y vas a tener un perfil con evidencia real de que aprendiste.</p>
     </div>
 
     <div class="section">
-      <p>Kaggle es, en el fondo, una fábrica de ejercicios con feedback. Te da un problema concreto, los datos para resolverlo, la infraestructura para probarlo y un montón de gente resolviendo lo mismo para comparar. Eso último es lo que lo hace único: no estás aprendiendo en el vacío, estás corriendo junto a cientos de miles de personas y podés ver de primera mano cómo se resuelven ideas distintas.</p>
-      <p>Tomalo como un gimnasio para <em>machine learning</em>. No todos los datasets te importan, no todas las|leaderboards valen lo mismo, y aprendés más de los notebooks de la mitad de la tabla que del primer lugar. Pero para pasar de "vi un curso de <em>deep learning</em>" a "abrí un dataset, entrené un modelo y mandé un resultado", no hay atajo más corto.</p>
+      <p>Kaggle es, en el fondo, una fábrica de ejercicios con feedback. Te da un problema concreto, los datos para resolverlo, la infraestructura para probarlo y un montón de gente resolviendo lo mismo para comparar. Eso último es lo que lo hace único: no estás aprendiendo en el vacío, estás corriendo junto a cientos de miles de personas y puedes ver de primera mano cómo se resuelven ideas distintas.</p>
+      <p>Tómalo como un gimnasio para <em>machine learning</em>. No todos los datasets te importan, no todas las|leaderboards valen lo mismo, y aprendes más de los notebooks de la mitad de la tabla que del primer lugar. Pero para pasar de "vi un curso de <em>deep learning</em>" a "abrí un dataset, entrené un modelo y mandé un resultado", no hay atajo más corto.</p>
     </div>
   </main>
 

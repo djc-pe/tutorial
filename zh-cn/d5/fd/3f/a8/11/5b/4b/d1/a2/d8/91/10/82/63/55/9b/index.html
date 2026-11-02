@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh-CN">
 <head>
   <!-- 87.34.2.92 -->
   <meta charset="UTF-8">
@@ -27,7 +27,7 @@
 </script>
 
   <title>深度优先搜索（DFS）| DJC 教程</title>
-  <meta name="description" content="学习 DFS（深度优先搜索）算法：基本思路、逐步示例、Python 和 C++ 的递归与迭代代码、复杂度以及用途。">
+  <meta name="description" content="学习 DFS（深度优先搜索）算法：基本思路、逐步示例、C++、Python 和 Rust 的递归与迭代代码、复杂度以及用途。">
 
   <link rel="canonical" href="https://tutorial.djc.pe/zh-cn/d5/fd/3f/a8/11/5b/4b/d1/a2/d8/91/10/82/63/55/9b/">
   <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/d5/fd/3f/a8/11/5b/4b/d1/a2/d8/91/10/82/63/55/9b/">
@@ -40,48 +40,140 @@
   <main class="content">
     <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:4px;"><a href="https://tutorial.djc.pe/" style="color:var(--color-accent); text-decoration:none;">首页</a> / <a href="/zh-cn/c/programming/" style="color:var(--color-accent); text-decoration:none;">编程</a></p>
     <h1>深度优先搜索（DFS）</h1>
-    <p data-author style="color:var(--color-text-muted); font-size:14px;">作者 <a href="https://www.djc.pe/u/@danny/" style="color:var(--color-accent); text-decoration:none;">@danny</a> · 教程</p>
+    <p data-author style="color:var(--color-text-muted); font-size:14px;">作者 <a href="https://www.djc.pe/u/@null_djc/" style="color:var(--color-accent); text-decoration:none;">@null_djc</a> · 教程</p>
 
-    <p>DFS (<em>Depth-First Search</em>, búsqueda en profundidad) es una de las formas más simples de recorrer un grafo: empiezas en un nodo y avanzas todo lo que puedes por un camino antes de volver atrás a probar otro. Es la base de un montón de algoritmos y aparece seguido en entrevistas y en problemas de programación competitiva.</p>
+    <p>如果你解过和图、迷宫或网格地图有关的题，一定见过这三个字母：DFS。它是 <em>Depth-First Search</em>（深度优先搜索）的缩写，是那种到处都会出现的工具：面试里、Codeforces 上，以及一半需要“把某个东西走一遍”的题目里。</p>
+    <p>它的思路一句话就能说完：沿着一条路尽量往前走，走到无路可走时，就退回去换另一条路。</p>
 
     <div class="section">
-      <h2>La idea</h2>
-      <p>Imagina que estás en un laberinto. Eliges un pasillo y lo sigues hasta el fondo. Si llegas a un callejón sin salida, regresas a la última bifurcación y pruebas otro pasillo que no hayas recorrido. Y así hasta haber visto todo.</p>
-      <p>Eso es DFS. En términos de grafos:</p>
+      <h2>用一个例子理解</h2>
+      <p>想象一个迷宫。你选一条走廊，一直走到尽头。如果碰到死路，就回到上一个岔口，试一条还没走过的走廊。就这样，直到把所有地方都看过。</p>
+      <p>为了不绕圈子，你在每个经过的地方做个记号。有了这一点，整个算法就齐了：</p>
       <ol>
-        <li>Marca el nodo actual como <strong>visitado</strong>.</li>
-        <li>Para cada vecino que todavía no visitaste, haz DFS desde ese vecino.</li>
-        <li>Cuando no quedan vecinos sin visitar, vuelve al nodo anterior (esto se llama <em>backtracking</em>).</li>
+        <li>把当前节点标记为<strong>已访问</strong>。</li>
+        <li>对每个还没访问过的邻居，从那个邻居开始做 DFS。</li>
+        <li>当没有未访问的邻居时，回到上一个节点。这叫做<em>回溯</em>（backtracking）。</li>
       </ol>
-      <p>La marca de visitado es clave: sin ella, en un grafo con ciclos darías vueltas para siempre.</p>
     </div>
 
     <div class="section">
-      <h2>Un ejemplo paso a paso</h2>
-      <p>Tomemos este grafo no dirigido con 6 nodos y estas aristas: <code>1-2</code>, <code>1-3</code>, <code>2-4</code>, <code>2-5</code>, <code>3-6</code> y <code>5-6</code>. Lo guardamos como una <strong>lista de adyacencia</strong>, es decir, para cada nodo, la lista de sus vecinos:</p>
+      <h2>我们要用的图</h2>
+      <p>我们取一个有 6 个节点的无向图，边是：<code>1-2</code>、<code>1-3</code>、<code>2-4</code>、<code>2-5</code>、<code>3-6</code> 和 <code>5-6</code>。我们把它存成<strong>邻接表</strong>：每个节点对应它的邻居列表。</p>
 <pre><code>1: 2, 3
 2: 1, 4, 5
 3: 1, 6
 4: 2
 5: 2, 6
 6: 3, 5</code></pre>
-      <p>Hagamos DFS empezando en el nodo <code>1</code>, revisando los vecinos en el orden de la lista:</p>
-      <ol>
-        <li>Visitamos <code>1</code>. Su primer vecino sin visitar es <code>2</code>.</li>
-        <li>Visitamos <code>2</code>. El <code>1</code> ya está visitado, así que bajamos a <code>4</code>.</li>
-        <li>Visitamos <code>4</code>. Su único vecino es <code>2</code>, ya visitado: callejón sin salida, volvemos a <code>2</code>.</li>
-        <li>Desde <code>2</code> queda <code>5</code>. Lo visitamos.</li>
-        <li>Desde <code>5</code>, el <code>2</code> ya está visitado; seguimos a <code>6</code>.</li>
-        <li>Desde <code>6</code> llegamos a <code>3</code>. Sus vecinos (<code>1</code> y <code>6</code>) ya están visitados, así que volvemos hasta el inicio.</li>
-      </ol>
-      <p>El orden de visita es <code>1, 2, 4, 5, 6, 3</code>. Fíjate en un detalle: aunque <code>3</code> es vecino directo de <code>1</code>, lo visitamos al final, porque DFS primero se fue a fondo por el camino de <code>2</code> y llegó a <code>3</code> desde <code>6</code>. Esa es justamente la "profundidad".</p>
+      <figure style="margin:16px 0; text-align:center;">
+      <svg viewBox="0 0 320 250" style="width:100%; max-width:420px; height:auto;" role="img" aria-label="示例图：6 个节点，边为 1-2、1-3、2-4、2-5、3-6 和 5-6">
+        <line x1="165.5" y1="53.7" x2="104.5" y2="111.3" style="stroke:var(--color-text-muted); stroke-width:2"/>
+        <line x1="194.5" y1="53.7" x2="255.5" y2="111.3" style="stroke:var(--color-text-muted); stroke-width:2"/>
+        <line x1="80.3" y1="142.5" x2="49.7" y2="197.5" style="stroke:var(--color-text-muted); stroke-width:2"/>
+        <line x1="101.1" y1="141.6" x2="138.9" y2="198.4" style="stroke:var(--color-text-muted); stroke-width:2"/>
+        <line x1="270.0" y1="145.0" x2="270.0" y2="195.0" style="stroke:var(--color-text-muted); stroke-width:2"/>
+        <line x1="170.0" y1="215.0" x2="250.0" y2="215.0" style="stroke:var(--color-text-muted); stroke-width:2"/>
+        <circle cx="180" cy="40" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="180" y="46" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">1</text>
+        <circle cx="90" cy="125" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="90" y="131" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">2</text>
+        <circle cx="270" cy="125" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="270" y="131" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">3</text>
+        <circle cx="40" cy="215" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="40" y="221" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">4</text>
+        <circle cx="150" cy="215" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="150" y="221" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">5</text>
+        <circle cx="270" cy="215" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="270" y="221" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">6</text>
+      </svg>
+      <figcaption style="color:var(--color-text-muted); font-size:13px; margin-top:6px;">示例图：6 个节点、6 条边。</figcaption>
+      </figure>
+      <p>我们从节点 <code>1</code> 出发，按列表顺序查看邻居。</p>
     </div>
 
     <div class="section">
-      <h2>El código recursivo</h2>
-      <p>La forma más natural de escribir DFS es con recursión: la propia pila de llamadas se encarga de "recordar" a qué nodo volver.</p>
-      <p><strong>Python</strong></p>
-<pre><code>grafo = {
+      <h2>陷阱</h2>
+      <p>我们最先想到的是：“从 <code>1</code> 开始，接着访问它的邻居 <code>2</code> 和 <code>3</code>，然后再访问它们的邻居”。不对，那是另一个算法（BFS，广度优先搜索）。DFS 不会先把 <code>1</code> 的邻居都处理完：一旦发现新的邻居，就马上沿着它一路走到底。</p>
+      <p>看看真正的走法：</p>
+      <ol>
+        <li>访问 <code>1</code>。它的第一个未访问邻居是 <code>2</code>：走进去。</li>
+        <li>访问 <code>2</code>。<code>1</code> 已经标记过，所以往下走到 <code>4</code>。</li>
+        <li>访问 <code>4</code>。它唯一的邻居 <code>2</code> 已经标记过：死路，退回 <code>2</code>。</li>
+        <li>从 <code>2</code> 出发还剩 <code>5</code>。访问它。</li>
+        <li>从 <code>5</code> 出发，<code>2</code> 已经标记过；继续走到 <code>6</code>。</li>
+        <li>从 <code>6</code> 到达 <code>3</code>。它的邻居（<code>1</code> 和 <code>6</code>）都已标记，于是一路退回起点。</li>
+      </ol>
+      <figure style="margin:16px 0; text-align:center;">
+      <svg viewBox="0 0 320 250" style="width:100%; max-width:420px; height:auto;" role="img" aria-label="从节点 1 开始的 DFS 遍历：1、2、4、5、6、3。边 1-3 没有被使用。">
+        <defs><marker id="dfs-flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--color-accent)"/></marker></defs>
+        <line x1="194.5" y1="53.7" x2="255.5" y2="111.3" style="stroke:var(--color-text-muted); stroke-width:2; stroke-dasharray:5 5"/>
+        <line x1="165.5" y1="53.7" x2="106.7" y2="109.2" marker-end="url(#dfs-flecha)" style="stroke:var(--color-accent); stroke-width:2.5"/>
+        <line x1="80.3" y1="142.5" x2="51.2" y2="194.9" marker-end="url(#dfs-flecha)" style="stroke:var(--color-accent); stroke-width:2.5"/>
+        <line x1="101.1" y1="141.6" x2="137.2" y2="195.9" marker-end="url(#dfs-flecha)" style="stroke:var(--color-accent); stroke-width:2.5"/>
+        <line x1="170.0" y1="215.0" x2="247.0" y2="215.0" marker-end="url(#dfs-flecha)" style="stroke:var(--color-accent); stroke-width:2.5"/>
+        <line x1="270.0" y1="195.0" x2="270.0" y2="148.0" marker-end="url(#dfs-flecha)" style="stroke:var(--color-accent); stroke-width:2.5"/>
+        <circle cx="180" cy="40" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="180" y="46" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">1</text>
+        <circle cx="198" cy="22" r="10" style="fill:var(--color-accent)"/>
+        <text x="198" y="26" text-anchor="middle" style="fill:var(--color-bg); font:700 12px var(--font-base)">1</text>
+        <circle cx="90" cy="125" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="90" y="131" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">2</text>
+        <circle cx="72" cy="107" r="10" style="fill:var(--color-accent)"/>
+        <text x="72" y="111" text-anchor="middle" style="fill:var(--color-bg); font:700 12px var(--font-base)">2</text>
+        <circle cx="270" cy="125" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="270" y="131" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">3</text>
+        <circle cx="288" cy="107" r="10" style="fill:var(--color-accent)"/>
+        <text x="288" y="111" text-anchor="middle" style="fill:var(--color-bg); font:700 12px var(--font-base)">6</text>
+        <circle cx="40" cy="215" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="40" y="221" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">4</text>
+        <circle cx="22" cy="197" r="10" style="fill:var(--color-accent)"/>
+        <text x="22" y="201" text-anchor="middle" style="fill:var(--color-bg); font:700 12px var(--font-base)">3</text>
+        <circle cx="150" cy="215" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="150" y="221" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">5</text>
+        <circle cx="168" cy="197" r="10" style="fill:var(--color-accent)"/>
+        <text x="168" y="201" text-anchor="middle" style="fill:var(--color-bg); font:700 12px var(--font-base)">4</text>
+        <circle cx="270" cy="215" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="270" y="221" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">6</text>
+        <circle cx="288" cy="233" r="10" style="fill:var(--color-accent)"/>
+        <text x="288" y="237" text-anchor="middle" style="fill:var(--color-bg); font:700 12px var(--font-base)">5</text>
+      </svg>
+      <figcaption style="color:var(--color-text-muted); font-size:13px; margin-top:6px;">从 <code>1</code> 出发的遍历。箭头表示 DFS 的路径，黄色数字表示访问顺序。边 <code>1-3</code>（虚线）从未被使用：<code>3</code> 是从 <code>6</code> 到达的。</figcaption>
+      </figure>
+      <p>顺序是 <code>1, 2, 4, 5, 6, 3</code>。<code>3</code> 是 <code>1</code> 的直接邻居，却排在最后，因为我们是在长路径的末尾从 <code>6</code> 走到它的。这就是“深度”。</p>
+    </div>
+
+    <div class="section">
+      <h2>递归解法</h2>
+      <p>最自然的写法是递归：调用栈会自动记住要回到哪个节点。三个版本输出的顺序都和我们手算的一样。</p>
+      <h3>C++</h3>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+vector&lt;vector&lt;int&gt;&gt; graph;
+vector&lt;bool&gt; visited;
+
+void dfs(int node) {
+    visited[node] = true;
+    cout &lt;&lt; node &lt;&lt; ' ';
+    for (int neighbor : graph[node]) {
+        if (!visited[neighbor]) dfs(neighbor);
+    }
+}
+
+int main() {
+    int n = 6;
+    graph.assign(n + 1, {});
+    visited.assign(n + 1, false);
+    int edges[][2] = {{1, 2}, {1, 3}, {2, 4}, {2, 5}, {3, 6}, {5, 6}};
+    for (auto&amp; a : edges) {
+        graph[a[0]].push_back(a[1]);
+        graph[a[1]].push_back(a[0]);
+    }
+    dfs(1);  // 1 2 4 5 6 3
+}</code></pre>
+      <h3>Python</h3>
+<pre><code>graph = {
     1: [2, 3],
     2: [1, 4, 5],
     3: [1, 6],
@@ -90,98 +182,98 @@
     6: [3, 5],
 }
 
-visitado = set()
-orden = []
+visited = set()
+order = []
 
-def dfs(nodo):
-    visitado.add(nodo)
-    orden.append(nodo)
-    for vecino in grafo[nodo]:
-        if vecino not in visitado:
-            dfs(vecino)
+def dfs(node):
+    visited.add(node)
+    order.append(node)
+    for neighbor in graph[node]:
+        if neighbor not in visited:
+            dfs(neighbor)
 
 dfs(1)
-print(orden)  # [1, 2, 4, 5, 6, 3]</code></pre>
-      <p><strong>C++</strong></p>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;vector&gt;
-using namespace std;
-
-vector&lt;vector&lt;int&gt;&gt; grafo;
-vector&lt;bool&gt; visitado;
-
-void dfs(int nodo) {
-    visitado[nodo] = true;
-    cout &lt;&lt; nodo &lt;&lt; ' ';
-    for (int vecino : grafo[nodo]) {
-        if (!visitado[vecino]) dfs(vecino);
+print(order)  # [1, 2, 4, 5, 6, 3]</code></pre>
+      <h3>Rust</h3>
+<pre><code>fn dfs(node: usize, graph: &amp;Vec&lt;Vec&lt;usize&gt;&gt;, visited: &amp;mut Vec&lt;bool&gt;, order: &amp;mut Vec&lt;usize&gt;) {
+    visited[node] = true;
+    order.push(node);
+    for &amp;neighbor in &amp;graph[node] {
+        if !visited[neighbor] {
+            dfs(neighbor, graph, visited, order);
+        }
     }
 }
 
-int main() {
-    int n = 6;
-    grafo.assign(n + 1, {});
-    visitado.assign(n + 1, false);
-    int aristas[][2] = {{1, 2}, {1, 3}, {2, 4}, {2, 5}, {3, 6}, {5, 6}};
-    for (auto&amp; a : aristas) {
-        grafo[a[0]].push_back(a[1]);
-        grafo[a[1]].push_back(a[0]);
+fn main() {
+    let n = 6;
+    let edges = [(1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (5, 6)];
+
+    let mut graph = vec![Vec::new(); n + 1];
+    for &amp;(a, b) in &amp;edges {
+        graph[a].push(b);
+        graph[b].push(a);
     }
-    dfs(1);  // 1 2 4 5 6 3
+
+    let mut visited = vec![false; n + 1];
+    let mut order = Vec::new();
+    dfs(1, &amp;graph, &amp;mut visited, &amp;mut order);
+
+    println!("{:?}", order); // [1, 2, 4, 5, 6, 3]
 }</code></pre>
     </div>
 
     <div class="section">
-      <h2>El código iterativo (con una pila)</h2>
-      <p>Si el grafo es muy grande, la recursión puede reventar la pila de llamadas. En Python pasa rápido: el límite por defecto ronda las 1000 llamadas anidadas. La solución es manejar la pila nosotros mismos:</p>
-<pre><code>def dfs_iterativo(inicio):
-    visitado = set()
-    orden = []
-    pila = [inicio]
-    while pila:
-        nodo = pila.pop()
-        if nodo in visitado:
+      <h2>不用递归：用一个栈</h2>
+      <p>图很大时，递归可能会把调用栈撑爆。在 Python 里这很快就会发生，因为默认的递归深度上限大约是 1000 层。解决办法是自己管理这个栈：</p>
+<pre><code>def dfs_iterative(start):
+    visited = set()
+    order = []
+    stack = [start]
+    while stack:
+        node = stack.pop()
+        if node in visited:
             continue
-        visitado.add(nodo)
-        orden.append(nodo)
-        for vecino in reversed(grafo[nodo]):
-            if vecino not in visitado:
-                pila.append(vecino)
-    return orden
+        visited.add(node)
+        order.append(node)
+        for neighbor in reversed(graph[node]):
+            if neighbor not in visited:
+                stack.append(neighbor)
+    return order
 
-print(dfs_iterativo(1))  # [1, 2, 4, 5, 6, 3]</code></pre>
-      <p>Dos detalles: metemos los vecinos al revés (<code>reversed</code>) para que salgan de la pila en el mismo orden que en la versión recursiva, y marcamos el nodo como visitado al <em>sacarlo</em> de la pila, no al meterlo. Un nodo puede entrar más de una vez a la pila, pero solo se procesa la primera vez.</p>
+print(dfs_iterative(1))  # [1, 2, 4, 5, 6, 3]</code></pre>
+      <p>有两个细节让我们踩过坑：邻居要倒序压栈（<code>reversed</code>），这样出栈的顺序才和递归版本一致；节点要在<em>出栈</em>时标记，而不是入栈时。一个节点可能多次进栈，但只在第一次出栈时处理。</p>
     </div>
 
     <div class="section">
-      <h2>¿Qué tan rápido es?</h2>
-      <p>DFS visita cada nodo una sola vez y revisa cada arista una vez por cada extremo. Con <code>V</code> nodos y <code>E</code> aristas, la complejidad es <code>O(V + E)</code> en tiempo y <code>O(V)</code> en memoria extra (el conjunto de visitados y la pila). Dicho de otra forma: es lineal en el tamaño del grafo, así que puedes usarlo sin miedo incluso con cientos de miles de nodos.</p>
+      <h2>它有多快？</h2>
+      <p>每个节点只访问一次，每条边从两端各检查一次。设有 <code>V</code> 个节点、<code>E</code> 条边，时间复杂度是 <code>O(V + E)</code>，额外空间是 <code>O(V)</code>。也就是线性的：即使有几十万个节点，也能轻松满足任何评测系统的时间限制。</p>
     </div>
 
     <div class="section">
-      <h2>Para qué se usa</h2>
+      <h2>它能用来做什么</h2>
       <ul>
-        <li><strong>Saber si dos nodos están conectados:</strong> haces DFS desde uno y miras si llegaste al otro.</li>
-        <li><strong>Contar componentes conexas:</strong> recorres todos los nodos y, cada vez que encuentras uno sin visitar, lanzas un DFS y sumas uno al contador.</li>
-        <li><strong>Detectar ciclos:</strong> si durante el recorrido llegas a un nodo que todavía está "en curso" en la pila, hay un ciclo.</li>
-        <li><strong>Orden topológico:</strong> ordenar tareas que dependen unas de otras (por ejemplo, qué cursos llevar antes que otros).</li>
-        <li><strong>Mapas y cuadrículas:</strong> contar islas en una matriz, rellenar un área con color (<em>flood fill</em>) o resolver laberintos.</li>
+        <li><strong>判断两个节点是否连通：</strong>从其中一个做 DFS，看看能不能走到另一个。</li>
+        <li><strong>统计连通分量：</strong>遍历所有节点，每遇到一个未标记的节点，就启动一次 DFS，并把计数加一。</li>
+        <li><strong>检测环：</strong>如果遍历中走到了一个还在“进行中”的节点，就说明有环。</li>
+        <li><strong>拓扑排序：</strong>给相互依赖的任务排序，比如哪些课程要先修。</li>
+        <li><strong>网格问题：</strong>统计矩阵中的岛屿、填充一片区域（<em>flood fill</em>）或者走迷宫。</li>
       </ul>
     </div>
 
     <div class="section">
-      <h2>Errores comunes</h2>
+      <h2>需要注意的地方</h2>
       <ul>
-        <li><strong>Olvidar marcar visitados:</strong> en un grafo con ciclos el programa nunca termina.</li>
-        <li><strong>Marcar tarde en la versión recursiva:</strong> marca el nodo apenas entras a <code>dfs</code>, antes de recorrer sus vecinos.</li>
-        <li><strong>Desbordar la pila:</strong> en Python, con grafos grandes, usa la versión iterativa o sube el límite con <code>sys.setrecursionlimit</code>.</li>
-        <li><strong>Usar DFS para el camino más corto:</strong> DFS encuentra <em>un</em> camino, no necesariamente el más corto. Para eso, en grafos sin pesos, se usa BFS (búsqueda en anchura).</li>
+        <li><strong>忘记标记：</strong>如果图里有环，程序永远不会结束。</li>
+        <li><strong>递归版本里标记太晚：</strong>一进入 <code>dfs</code> 就标记节点，再去看邻居。</li>
+        <li><strong>Python 的栈：</strong>图很大时，用迭代版本，或者用 <code>sys.setrecursionlimit</code> 提高上限。</li>
+        <li><strong>用它求最短路径：</strong>DFS 找到的是<em>一条</em>路径，不一定是最短的。在无权图里求最短路径要用 BFS。</li>
       </ul>
     </div>
 
     <div class="section">
-      <h2>Para cerrar</h2>
-      <p>DFS es poco código y mucha utilidad: avanzar hasta el fondo, marcar lo que ya viste y volver atrás cuando no hay más camino. Escríbelo un par de veces de memoria, primero recursivo y luego con pila, y después búscalo en problemas reales. Si quieres practicar, en <a href="/es/67/db/1d/30/95/80/43/dc/ad/cc/0f/8c/31/55/68/ed/" style="color:var(--color-accent); text-decoration:none;">Codeforces</a> puedes filtrar problemas con la etiqueta <em>dfs and similar</em>.</p>
+      <h2>我们学到了什么</h2>
+      <p>DFS 代码不多，用处很大：一路走到底，标记看过的地方，无路可走时就回头。理解它最好的办法，是先像上面那样手动走一遍，再打开编辑器。然后凭记忆把它写出来，先写递归版，再写栈的版本，最后到真实的题目里去找它：在 <a href="/zh-cn/67/db/1d/30/95/80/43/dc/ad/cc/0f/8c/31/55/68/ed/" style="color:var(--color-accent); text-decoration:none;">Codeforces</a> 上可以按 <em>dfs and similar</em> 标签筛选题目。</p>
     </div>
   </main>
 

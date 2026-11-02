@@ -27,7 +27,7 @@
 </script>
 
   <title>Búsqueda en profundidad (DFS) | DJC Tutorial</title>
-  <meta name="description" content="Aprende el algoritmo DFS (búsqueda en profundidad): la idea, un ejemplo paso a paso, el código recursivo e iterativo en Python y C++, su complejidad y para qué se usa.">
+  <meta name="description" content="Aprende el algoritmo DFS (búsqueda en profundidad): la idea, un ejemplo paso a paso, el código recursivo e iterativo en C++, Python y Rust, su complejidad y para qué se usa.">
 
   <link rel="canonical" href="https://tutorial.djc.pe/es/d5/fd/3f/a8/11/5b/4b/d1/a2/d8/91/10/82/63/55/9b/">
   <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/d5/fd/3f/a8/11/5b/4b/d1/a2/d8/91/10/82/63/55/9b/">
@@ -40,69 +40,112 @@
   <main class="content">
     <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:4px;"><a href="https://tutorial.djc.pe/" style="color:var(--color-accent); text-decoration:none;">Inicio</a> / <a href="/es/c/programacion/" style="color:var(--color-accent); text-decoration:none;">Programación</a></p>
     <h1>Búsqueda en profundidad (DFS)</h1>
-    <p data-author style="color:var(--color-text-muted); font-size:14px;">Por <a href="https://www.djc.pe/u/@danny/" style="color:var(--color-accent); text-decoration:none;">@danny</a> · Tutorial</p>
+    <p data-author style="color:var(--color-text-muted); font-size:14px;">Por <a href="https://www.djc.pe/u/@null_djc/" style="color:var(--color-accent); text-decoration:none;">@null_djc</a> · Tutorial</p>
 
-    <p>DFS (<em>Depth-First Search</em>, búsqueda en profundidad) es una de las formas más simples de recorrer un grafo: empiezas en un nodo y avanzas todo lo que puedes por un camino antes de volver atrás a probar otro. Es la base de un montón de algoritmos y aparece seguido en entrevistas y en problemas de programación competitiva.</p>
+    <p>Si alguna vez resolviste un problema con grafos, laberintos o mapas en una cuadrícula, seguro te cruzaste con tres letras: DFS. Es <em>Depth-First Search</em>, búsqueda en profundidad, y es de esas herramientas que aparecen en todos lados: en entrevistas, en Codeforces y en la mitad de los problemas donde hay que "recorrer algo".</p>
+    <p>La idea entra en una frase: avanzas todo lo que puedes por un camino y, cuando ya no hay por dónde seguir, vuelves atrás a probar otro.</p>
 
     <div class="section">
-      <h2>La idea</h2>
-      <p>Imagina que estás en un laberinto. Eliges un pasillo y lo sigues hasta el fondo. Si llegas a un callejón sin salida, regresas a la última bifurcación y pruebas otro pasillo que no hayas recorrido. Y así hasta haber visto todo.</p>
-      <p>Eso es DFS. En términos de grafos:</p>
+      <h2>La idea en un ejemplo</h2>
+      <p>Piensa en un laberinto. Eliges un pasillo y lo sigues hasta el fondo. Si llegas a un callejón sin salida, vuelves a la última bifurcación y pruebas un pasillo que todavía no recorriste. Y así hasta haber visto todo.</p>
+      <p>Para no dar vueltas en círculo, vas dejando una marca en cada lugar por el que pasas. Con eso ya tienes el algoritmo completo:</p>
       <ol>
-        <li>Marca el nodo actual como <strong>visitado</strong>.</li>
-        <li>Para cada vecino que todavía no visitaste, haz DFS desde ese vecino.</li>
-        <li>Cuando no quedan vecinos sin visitar, vuelve al nodo anterior (esto se llama <em>backtracking</em>).</li>
+        <li>Marcas el nodo actual como <strong>visitado</strong>.</li>
+        <li>Para cada vecino que todavía no visitaste, haces DFS desde ese vecino.</li>
+        <li>Cuando no quedan vecinos sin visitar, vuelves al nodo anterior. A esto se le llama <em>backtracking</em>.</li>
       </ol>
-      <p>La marca de visitado es clave: sin ella, en un grafo con ciclos darías vueltas para siempre.</p>
     </div>
 
     <div class="section">
-      <h2>Un ejemplo paso a paso</h2>
-      <p>Tomemos este grafo no dirigido con 6 nodos y estas aristas: <code>1-2</code>, <code>1-3</code>, <code>2-4</code>, <code>2-5</code>, <code>3-6</code> y <code>5-6</code>. Lo guardamos como una <strong>lista de adyacencia</strong>, es decir, para cada nodo, la lista de sus vecinos:</p>
+      <h2>El grafo que vamos a usar</h2>
+      <p>Tomamos un grafo no dirigido con 6 nodos y estas aristas: <code>1-2</code>, <code>1-3</code>, <code>2-4</code>, <code>2-5</code>, <code>3-6</code> y <code>5-6</code>. Lo guardamos como una <strong>lista de adyacencia</strong>: para cada nodo, la lista de sus vecinos.</p>
 <pre><code>1: 2, 3
 2: 1, 4, 5
 3: 1, 6
 4: 2
 5: 2, 6
 6: 3, 5</code></pre>
-      <p>Hagamos DFS empezando en el nodo <code>1</code>, revisando los vecinos en el orden de la lista:</p>
-      <ol>
-        <li>Visitamos <code>1</code>. Su primer vecino sin visitar es <code>2</code>.</li>
-        <li>Visitamos <code>2</code>. El <code>1</code> ya está visitado, así que bajamos a <code>4</code>.</li>
-        <li>Visitamos <code>4</code>. Su único vecino es <code>2</code>, ya visitado: callejón sin salida, volvemos a <code>2</code>.</li>
-        <li>Desde <code>2</code> queda <code>5</code>. Lo visitamos.</li>
-        <li>Desde <code>5</code>, el <code>2</code> ya está visitado; seguimos a <code>6</code>.</li>
-        <li>Desde <code>6</code> llegamos a <code>3</code>. Sus vecinos (<code>1</code> y <code>6</code>) ya están visitados, así que volvemos hasta el inicio.</li>
-      </ol>
-      <p>El orden de visita es <code>1, 2, 4, 5, 6, 3</code>. Fíjate en un detalle: aunque <code>3</code> es vecino directo de <code>1</code>, lo visitamos al final, porque DFS primero se fue a fondo por el camino de <code>2</code> y llegó a <code>3</code> desde <code>6</code>. Esa es justamente la "profundidad".</p>
+      <figure style="margin:16px 0; text-align:center;">
+      <svg viewBox="0 0 320 250" style="width:100%; max-width:420px; height:auto;" role="img" aria-label="Grafo de ejemplo con 6 nodos y las aristas 1-2, 1-3, 2-4, 2-5, 3-6 y 5-6">
+        <line x1="165.5" y1="53.7" x2="104.5" y2="111.3" style="stroke:var(--color-text-muted); stroke-width:2"/>
+        <line x1="194.5" y1="53.7" x2="255.5" y2="111.3" style="stroke:var(--color-text-muted); stroke-width:2"/>
+        <line x1="80.3" y1="142.5" x2="49.7" y2="197.5" style="stroke:var(--color-text-muted); stroke-width:2"/>
+        <line x1="101.1" y1="141.6" x2="138.9" y2="198.4" style="stroke:var(--color-text-muted); stroke-width:2"/>
+        <line x1="270.0" y1="145.0" x2="270.0" y2="195.0" style="stroke:var(--color-text-muted); stroke-width:2"/>
+        <line x1="170.0" y1="215.0" x2="250.0" y2="215.0" style="stroke:var(--color-text-muted); stroke-width:2"/>
+        <circle cx="180" cy="40" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="180" y="46" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">1</text>
+        <circle cx="90" cy="125" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="90" y="131" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">2</text>
+        <circle cx="270" cy="125" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="270" y="131" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">3</text>
+        <circle cx="40" cy="215" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="40" y="221" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">4</text>
+        <circle cx="150" cy="215" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="150" y="221" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">5</text>
+        <circle cx="270" cy="215" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="270" y="221" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">6</text>
+      </svg>
+      <figcaption style="color:var(--color-text-muted); font-size:13px; margin-top:6px;">El grafo de ejemplo: 6 nodos y 6 aristas.</figcaption>
+      </figure>
+      <p>Arrancamos en el nodo <code>1</code> y revisamos los vecinos en el orden de la lista.</p>
     </div>
 
     <div class="section">
-      <h2>El código recursivo</h2>
-      <p>La forma más natural de escribir DFS es con recursión: la propia pila de llamadas se encarga de "recordar" a qué nodo volver.</p>
-      <p><strong>Python</strong></p>
-<pre><code>grafo = {
-    1: [2, 3],
-    2: [1, 4, 5],
-    3: [1, 6],
-    4: [2],
-    5: [2, 6],
-    6: [3, 5],
-}
+      <h2>La trampa</h2>
+      <p>Lo primero que pensamos fue: "empiezo en <code>1</code>, después visito sus vecinos <code>2</code> y <code>3</code>, y después los vecinos de ellos". Y no, eso es otro algoritmo (BFS, búsqueda en anchura). DFS no termina con los vecinos de <code>1</code> antes de seguir: apenas encuentra un vecino nuevo, se mete por ahí hasta el fondo.</p>
+      <p>Fíjate en el recorrido real:</p>
+      <ol>
+        <li>Visitamos <code>1</code>. Su primer vecino sin visitar es <code>2</code>: nos metemos.</li>
+        <li>Visitamos <code>2</code>. El <code>1</code> ya está marcado, así que bajamos a <code>4</code>.</li>
+        <li>Visitamos <code>4</code>. Su único vecino es <code>2</code>, ya marcado: callejón sin salida, volvemos a <code>2</code>.</li>
+        <li>Desde <code>2</code> queda <code>5</code>. Lo visitamos.</li>
+        <li>Desde <code>5</code>, el <code>2</code> ya está marcado; seguimos a <code>6</code>.</li>
+        <li>Desde <code>6</code> llegamos a <code>3</code>. Sus vecinos (<code>1</code> y <code>6</code>) ya están marcados, así que volvemos hasta el inicio.</li>
+      </ol>
+      <figure style="margin:16px 0; text-align:center;">
+      <svg viewBox="0 0 320 250" style="width:100%; max-width:420px; height:auto;" role="img" aria-label="Recorrido DFS desde el nodo 1: 1, 2, 4, 5, 6 y 3. La arista 1-3 no se usa.">
+        <defs><marker id="dfs-flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--color-accent)"/></marker></defs>
+        <line x1="194.5" y1="53.7" x2="255.5" y2="111.3" style="stroke:var(--color-text-muted); stroke-width:2; stroke-dasharray:5 5"/>
+        <line x1="165.5" y1="53.7" x2="106.7" y2="109.2" marker-end="url(#dfs-flecha)" style="stroke:var(--color-accent); stroke-width:2.5"/>
+        <line x1="80.3" y1="142.5" x2="51.2" y2="194.9" marker-end="url(#dfs-flecha)" style="stroke:var(--color-accent); stroke-width:2.5"/>
+        <line x1="101.1" y1="141.6" x2="137.2" y2="195.9" marker-end="url(#dfs-flecha)" style="stroke:var(--color-accent); stroke-width:2.5"/>
+        <line x1="170.0" y1="215.0" x2="247.0" y2="215.0" marker-end="url(#dfs-flecha)" style="stroke:var(--color-accent); stroke-width:2.5"/>
+        <line x1="270.0" y1="195.0" x2="270.0" y2="148.0" marker-end="url(#dfs-flecha)" style="stroke:var(--color-accent); stroke-width:2.5"/>
+        <circle cx="180" cy="40" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="180" y="46" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">1</text>
+        <circle cx="198" cy="22" r="10" style="fill:var(--color-accent)"/>
+        <text x="198" y="26" text-anchor="middle" style="fill:var(--color-bg); font:700 12px var(--font-base)">1</text>
+        <circle cx="90" cy="125" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="90" y="131" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">2</text>
+        <circle cx="72" cy="107" r="10" style="fill:var(--color-accent)"/>
+        <text x="72" y="111" text-anchor="middle" style="fill:var(--color-bg); font:700 12px var(--font-base)">2</text>
+        <circle cx="270" cy="125" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="270" y="131" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">3</text>
+        <circle cx="288" cy="107" r="10" style="fill:var(--color-accent)"/>
+        <text x="288" y="111" text-anchor="middle" style="fill:var(--color-bg); font:700 12px var(--font-base)">6</text>
+        <circle cx="40" cy="215" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="40" y="221" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">4</text>
+        <circle cx="22" cy="197" r="10" style="fill:var(--color-accent)"/>
+        <text x="22" y="201" text-anchor="middle" style="fill:var(--color-bg); font:700 12px var(--font-base)">3</text>
+        <circle cx="150" cy="215" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="150" y="221" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">5</text>
+        <circle cx="168" cy="197" r="10" style="fill:var(--color-accent)"/>
+        <text x="168" y="201" text-anchor="middle" style="fill:var(--color-bg); font:700 12px var(--font-base)">4</text>
+        <circle cx="270" cy="215" r="20" style="fill:var(--color-bg); stroke:var(--color-text); stroke-width:2"/>
+        <text x="270" y="221" text-anchor="middle" style="fill:var(--color-text); font:600 17px var(--font-base)">6</text>
+        <circle cx="288" cy="233" r="10" style="fill:var(--color-accent)"/>
+        <text x="288" y="237" text-anchor="middle" style="fill:var(--color-bg); font:700 12px var(--font-base)">5</text>
+      </svg>
+      <figcaption style="color:var(--color-text-muted); font-size:13px; margin-top:6px;">El recorrido desde <code>1</code>. Las flechas marcan el camino de DFS y el número amarillo, el orden de visita. La arista <code>1-3</code> (punteada) nunca se usa: el <code>3</code> se alcanza desde el <code>6</code>.</figcaption>
+      </figure>
+      <p>El orden queda <code>1, 2, 4, 5, 6, 3</code>. El <code>3</code> es vecino directo de <code>1</code> y aun así sale último, porque lo alcanzamos desde <code>6</code> al final del camino largo. Esa es la "profundidad".</p>
+    </div>
 
-visitado = set()
-orden = []
-
-def dfs(nodo):
-    visitado.add(nodo)
-    orden.append(nodo)
-    for vecino in grafo[nodo]:
-        if vecino not in visitado:
-            dfs(vecino)
-
-dfs(1)
-print(orden)  # [1, 2, 4, 5, 6, 3]</code></pre>
-      <p><strong>C++</strong></p>
+    <div class="section">
+      <h2>La solución recursiva</h2>
+      <p>La forma más natural de escribirlo es con recursión: la pila de llamadas se encarga sola de recordar a qué nodo volver. Las tres versiones imprimen el mismo orden que sacamos a mano.</p>
+      <h3>C++</h3>
 <pre><code>#include &lt;iostream&gt;
 #include &lt;vector&gt;
 using namespace std;
@@ -129,11 +172,60 @@ int main() {
     }
     dfs(1);  // 1 2 4 5 6 3
 }</code></pre>
+      <h3>Python</h3>
+<pre><code>grafo = {
+    1: [2, 3],
+    2: [1, 4, 5],
+    3: [1, 6],
+    4: [2],
+    5: [2, 6],
+    6: [3, 5],
+}
+
+visitado = set()
+orden = []
+
+def dfs(nodo):
+    visitado.add(nodo)
+    orden.append(nodo)
+    for vecino in grafo[nodo]:
+        if vecino not in visitado:
+            dfs(vecino)
+
+dfs(1)
+print(orden)  # [1, 2, 4, 5, 6, 3]</code></pre>
+      <h3>Rust</h3>
+<pre><code>fn dfs(nodo: usize, grafo: &amp;Vec&lt;Vec&lt;usize&gt;&gt;, visitado: &amp;mut Vec&lt;bool&gt;, orden: &amp;mut Vec&lt;usize&gt;) {
+    visitado[nodo] = true;
+    orden.push(nodo);
+    for &amp;vecino in &amp;grafo[nodo] {
+        if !visitado[vecino] {
+            dfs(vecino, grafo, visitado, orden);
+        }
+    }
+}
+
+fn main() {
+    let n = 6;
+    let aristas = [(1, 2), (1, 3), (2, 4), (2, 5), (3, 6), (5, 6)];
+
+    let mut grafo = vec![Vec::new(); n + 1];
+    for &amp;(a, b) in &amp;aristas {
+        grafo[a].push(b);
+        grafo[b].push(a);
+    }
+
+    let mut visitado = vec![false; n + 1];
+    let mut orden = Vec::new();
+    dfs(1, &amp;grafo, &amp;mut visitado, &amp;mut orden);
+
+    println!("{:?}", orden); // [1, 2, 4, 5, 6, 3]
+}</code></pre>
     </div>
 
     <div class="section">
-      <h2>El código iterativo (con una pila)</h2>
-      <p>Si el grafo es muy grande, la recursión puede reventar la pila de llamadas. En Python pasa rápido: el límite por defecto ronda las 1000 llamadas anidadas. La solución es manejar la pila nosotros mismos:</p>
+      <h2>Sin recursión: con una pila</h2>
+      <p>Con grafos grandes, la recursión puede reventar la pila de llamadas. En Python pasa enseguida, porque el límite por defecto ronda las 1000 llamadas anidadas. La salida es manejar la pila nosotros:</p>
 <pre><code>def dfs_iterativo(inicio):
     visitado = set()
     orden = []
@@ -150,38 +242,38 @@ int main() {
     return orden
 
 print(dfs_iterativo(1))  # [1, 2, 4, 5, 6, 3]</code></pre>
-      <p>Dos detalles: metemos los vecinos al revés (<code>reversed</code>) para que salgan de la pila en el mismo orden que en la versión recursiva, y marcamos el nodo como visitado al <em>sacarlo</em> de la pila, no al meterlo. Un nodo puede entrar más de una vez a la pila, pero solo se procesa la primera vez.</p>
+      <p>Dos detalles que nos costaron: los vecinos se meten al revés (<code>reversed</code>) para que salgan de la pila en el mismo orden que en la versión recursiva, y el nodo se marca al <em>sacarlo</em> de la pila, no al meterlo. Un nodo puede entrar más de una vez, pero solo se procesa la primera.</p>
     </div>
 
     <div class="section">
       <h2>¿Qué tan rápido es?</h2>
-      <p>DFS visita cada nodo una sola vez y revisa cada arista una vez por cada extremo. Con <code>V</code> nodos y <code>E</code> aristas, la complejidad es <code>O(V + E)</code> en tiempo y <code>O(V)</code> en memoria extra (el conjunto de visitados y la pila). Dicho de otra forma: es lineal en el tamaño del grafo, así que puedes usarlo sin miedo incluso con cientos de miles de nodos.</p>
+      <p>Cada nodo se visita una sola vez y cada arista se revisa una vez desde cada punta. Con <code>V</code> nodos y <code>E</code> aristas, el tiempo es <code>O(V + E)</code> y la memoria extra <code>O(V)</code>. O sea, lineal: con cientos de miles de nodos entra cómodo en el límite de tiempo de cualquier juez.</p>
     </div>
 
     <div class="section">
-      <h2>Para qué se usa</h2>
+      <h2>Para qué sirve</h2>
       <ul>
         <li><strong>Saber si dos nodos están conectados:</strong> haces DFS desde uno y miras si llegaste al otro.</li>
-        <li><strong>Contar componentes conexas:</strong> recorres todos los nodos y, cada vez que encuentras uno sin visitar, lanzas un DFS y sumas uno al contador.</li>
-        <li><strong>Detectar ciclos:</strong> si durante el recorrido llegas a un nodo que todavía está "en curso" en la pila, hay un ciclo.</li>
-        <li><strong>Orden topológico:</strong> ordenar tareas que dependen unas de otras (por ejemplo, qué cursos llevar antes que otros).</li>
-        <li><strong>Mapas y cuadrículas:</strong> contar islas en una matriz, rellenar un área con color (<em>flood fill</em>) o resolver laberintos.</li>
+        <li><strong>Contar componentes conexas:</strong> recorres todos los nodos y, cada vez que encuentras uno sin marcar, lanzas un DFS y sumas uno al contador.</li>
+        <li><strong>Detectar ciclos:</strong> si en el recorrido llegas a un nodo que todavía está "en curso", hay un ciclo.</li>
+        <li><strong>Orden topológico:</strong> ordenar tareas que dependen unas de otras, como qué cursos llevar antes que otros.</li>
+        <li><strong>Cuadrículas:</strong> contar islas en una matriz, rellenar un área (<em>flood fill</em>) o resolver laberintos.</li>
       </ul>
     </div>
 
     <div class="section">
-      <h2>Errores comunes</h2>
+      <h2>Lo que hay que mirar con cuidado</h2>
       <ul>
-        <li><strong>Olvidar marcar visitados:</strong> en un grafo con ciclos el programa nunca termina.</li>
-        <li><strong>Marcar tarde en la versión recursiva:</strong> marca el nodo apenas entras a <code>dfs</code>, antes de recorrer sus vecinos.</li>
-        <li><strong>Desbordar la pila:</strong> en Python, con grafos grandes, usa la versión iterativa o sube el límite con <code>sys.setrecursionlimit</code>.</li>
-        <li><strong>Usar DFS para el camino más corto:</strong> DFS encuentra <em>un</em> camino, no necesariamente el más corto. Para eso, en grafos sin pesos, se usa BFS (búsqueda en anchura).</li>
+        <li><strong>Olvidarte de marcar:</strong> con un ciclo en el grafo, el programa no termina nunca.</li>
+        <li><strong>Marcar tarde en la versión recursiva:</strong> marca el nodo apenas entras a <code>dfs</code>, antes de mirar los vecinos.</li>
+        <li><strong>La pila en Python:</strong> con grafos grandes, usa la versión iterativa o sube el límite con <code>sys.setrecursionlimit</code>.</li>
+        <li><strong>Pedirle el camino más corto:</strong> DFS encuentra <em>un</em> camino, no necesariamente el más corto. Para eso, en grafos sin pesos, está BFS.</li>
       </ul>
     </div>
 
     <div class="section">
-      <h2>Para cerrar</h2>
-      <p>DFS es poco código y mucha utilidad: avanzar hasta el fondo, marcar lo que ya viste y volver atrás cuando no hay más camino. Escríbelo un par de veces de memoria, primero recursivo y luego con pila, y después búscalo en problemas reales. Si quieres practicar, en <a href="/es/67/db/1d/30/95/80/43/dc/ad/cc/0f/8c/31/55/68/ed/" style="color:var(--color-accent); text-decoration:none;">Codeforces</a> puedes filtrar problemas con la etiqueta <em>dfs and similar</em>.</p>
+      <h2>Qué nos enseñó</h2>
+      <p>Que DFS es poco código y mucha utilidad: avanzar hasta el fondo, marcar lo que ya viste y volver cuando no hay más camino. Y que la mejor forma de entenderlo es hacer el recorrido a mano una vez, como arriba, antes de abrir el editor. Después escríbelo de memoria, primero recursivo y después con pila, y búscalo en problemas reales: en <a href="/es/67/db/1d/30/95/80/43/dc/ad/cc/0f/8c/31/55/68/ed/" style="color:var(--color-accent); text-decoration:none;">Codeforces</a> puedes filtrar por la etiqueta <em>dfs and similar</em>.</p>
     </div>
   </main>
 
