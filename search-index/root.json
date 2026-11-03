@@ -1,0 +1,74 @@
+{
+  "format": 2,
+  "site": "tutorial",
+  "host": "https://tutorial.djc.pe",
+  "updated": "2026-11-03",
+  "model": {
+    "id": "all-MiniLM-L6-v2",
+    "file": "onnx/model_quantized.onnx",
+    "sha256": "afdb6f1a0e45b715d0bb9b11772f032c399babd23bfc31fed1c170afc848bdb1",
+    "dims": 384,
+    "max_tokens": 256,
+    "pooling": "mean",
+    "normalize": true
+  },
+  "docs": 48,
+  "chunks": 194,
+  "vectors": {
+    "type": "int8",
+    "scale": "per-vector"
+  },
+  "nodes": [
+    {
+      "file": "nodes/0.json",
+      "version": "7a3c1f4a53a6",
+      "docs": 14,
+      "chunks": 32,
+      "centroid": {
+        "scale": 0.001206936,
+        "data": "vNu5xP/BGSvjGt0TF88S3dADL8gY4vAM9hscHwS7IT0yFfkqBLLkCKP66fUZuqrXDdmWp+XzEwsaBxLkG/DXNgnF/zY/5J3w5kAE5wQD/bbuLdIl0/MdOjwSOh8F5tYeKKYfHRD8RdnZ7S8PSvaMFa+2zPQX/vL/AhcW0iW+wgAa4gcpMuILA8U8FyTcSlzzsfkB4xTZIy1dRfgcNSsE7sb2FxQO2iD93NEd3/8CFvI3Ab28JQnxHfbXyTXh3unV48sUGH8b0v0jFcb16ubwKMYOBOUe+R0Jwhm5LQYOIAD3DLU/B/YQGv3YvdHrHtoJq6HwRuouzcgPv/Uz1ik9wN0f6Acg0wUsXxn2u+rr4y74wTHsFM4HDSEUDTP9BPsN+e7oXb7L8hDY9sDjnBr84yjx2QcDQN0i5fCrOh1rqgABAC3yRTAUH/YyGvXHUS9A7kbqxDMZyfgs9gJt9wATGwjvVxgZ3g4M8CT39dcdzukG/PzF5wZPOQECGicKVgAi"
+      }
+    },
+    {
+      "file": "nodes/1.json",
+      "version": "24babe450e92",
+      "docs": 6,
+      "chunks": 35,
+      "centroid": {
+        "scale": 0.001302756,
+        "data": "4+IMye7uYwwSETnjA/oz6fAa+vk1B9Qu4gMDKACl9z5MDP0YE7XaGbjV7vwYw+gVOu6z59UR9gP3ICcC19/eJvnIGivdTL/wAV3bJxvu9NT1BOTN+vYNKTHy8h3Q/AEnBssDL1VIOgLG8fz/Rfm+5cvh3e8m1yPi9yXo8AvIEgAyEBE5+BjaGMIl6x3vEEcsyuv0HPvtFfkVMQbVEiLv9wPw9dZVAePR9PYK/ujpJfwRCtq/C+AME9Am2PAIER8C2ub4Hn8Ot/bmHwkAA/cGPPv2BhU4FUjq8ifZQifoDwAbKeot4O40OAqNpLAw5OQJwuPnGOcc6/fxvRImhf875gUPzB4dzwk0IEPRx+bl/MDY9C/IwMQR4wTMzvgGAsXQKOnmVfHoIvyX5eTZxuUD3fbu1eYTSttD9A/hOBBAvADw9gEMIBrqIx36FtnDHyFeK1be5UIn2woMBfI27Nnj9/DVDwQN3Qz/PO7TALEH8OLX9PzTIQlTCAkTEhUue/Hs"
+      }
+    },
+    {
+      "file": "nodes/2.json",
+      "version": "e6f31bf6ea2e",
+      "docs": 7,
+      "chunks": 36,
+      "centroid": {
+        "scale": 0.001199611,
+        "data": "lubWytLT7xzbKwjo/83t+8oUCLwSp8sfBjPxDw25ICcxFRQ83sPMFJ/lCQw7AKopILKh2+LeGsUz3xzWQAPqCTfB/1IkHcQUxyc2KA74Jcn97fAT9eMAQG36Ku0+5/gSEeb/UQ0sQ8cBFiQ4QLrdEvQJAhwJCPo6IRvi89cV2gAC3BkMINbTFaV08PkBYSGw9tr18zXVEus9KeDXMijHubEAEhZDxvjptvEH5P0JHAfhL9kCDffnBRXf5Eg1Df4DzQb/EWtFqi74APfQOuDUydb9H+3wAyy+wuOl9Fn+QgDuDf8AB/Mj4yrzsAwqET70pdYBPeNY5P7qG+Tw+hAnqe787Psp/fU6WSbiBNQl3R0C4QPy8AnjMBc05UrO1gIeNL2xMci1+1TE8t7tgQMNAAf2HiIEFFE2+ODbIEw/4wD93/sWMPvwEcMISDGlJ/Y31vbF+iwPy/Hf5R1gQfUlA/7iAiTb8xER7wvs7d4G1+Tw5L713DN3A9EEGxg4MvoC"
+      }
+    },
+    {
+      "file": "nodes/3.json",
+      "version": "522377633153",
+      "docs": 6,
+      "chunks": 26,
+      "centroid": {
+        "scale": 0.001227392,
+        "data": "5vDnzPS9F/kYQh3m9c7pz8w2FPkJBOMaGwEOLNOpAE0RITlaBcDwDOH849/m3Kyy/cXtvO0RKfI4GCLlOiXXBRPTIy4NBMvN2dgCH94a4KQLNtYNlioPT2IGCBIS1u/zFtAtEzohFrXPB/XrH/6mEM3d0xwF/u/PL9Xp4+LaCQAs1+M0Vuf44LAqEhXHNPTI7QX4Ff4G3AVsG/wYKB7oGioIEBAI5+3qAP3X40bxIeJfDgP0Icb0/QbZui4A/eL9Bcz6P3IBpQbgBr7o4BDXBaQRwgdQEyoxrQbiHyP0HwAL9rUx5roH+CjDutIL9Ovvq7XhaCEMKPDp2vQ6zeVF5Nsg48oPAOcgIiHU68nxCgPr5yPgCewtHyYYuSklGAofBAPgIabyGCed2PSsgfgJLNkdwCbwG+kbAgO6EEJJrQDfCLrnPtX3OPQTFe3VKBsfGTbZwgEb7vQMIx1M/xVN6gLrHBEmFUsGFR3mGbDe0w/iyfDs1TdVJxJIHS4MSx3u"
+      }
+    },
+    {
+      "file": "nodes/4.json",
+      "version": "bea5f8cc9e40",
+      "docs": 15,
+      "chunks": 65,
+      "centroid": {
+        "scale": 0.001641242,
+        "data": "3wL44+r1Iv0Z/X/kIN3+Dsgt7Bvw2QgcCxrlIxvy810EFzJBANIJFNXbCvMTDs3/0svC9eT7CfP38fj81icGD9/z7g4IDMbv+/jl2wz55rDoFRQAxx7X9DjjFgUJCxTjHf8GFg306uzd1gbyN/fn4dTA5PwR5gTlAPbPzr7hHAD2Ff7oCuPz5tcsCgHHNdTo4OgF6xcQFQEdAvcU/Bca2Ong3wss5vPx3u4U9RUX1uoZzdL9+AES2NgN0xgH6/33FvX37zHYyQwFF/PV2w8K47sB0ADaEjIL5O2VBSLrCADxJsQA5dojGRUX0uDR8wYS5yn4OvoOpxn0FgPs9xkIz+RV2s/12swEIPcQAvUN5uvvzB7q/O39GQft3d4TCPAbAfv7BCCrAxkA7OAI1CUADgfx/Tfj+w4p/OcEGxIp9gDwwPLY9+Xp7wX1BRe3DdUIui0K2dwUDtniI8QW7gk0/A3hJwgb7CEPArjxFEvqFf0S+gnqBt8A/NgaIgQVPhUY"
+      }
+    }
+  ],
+  "version": "794d60fed1e2"
+}
