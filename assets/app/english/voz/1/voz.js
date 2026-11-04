@@ -28,6 +28,15 @@
   var Reconocedor = window.SpeechRecognition || window.webkitSpeechRecognition || null;
   var ACENTOS = { us: 'en-us', uk: 'en-gb' };
 
+  /* Textos de los botones según el idioma de la página (<html lang>). */
+  var TEXTOS = {
+    es: { escuchar: 'Escuchar', lento: 'Escuchar más lento', lentoBtn: '🐢 lento', en: 'Escuchar en {a}: {t}', us: 'inglés de Estados Unidos', uk: 'inglés del Reino Unido' },
+    en: { escuchar: 'Listen', lento: 'Listen more slowly', lentoBtn: '🐢 slow', en: 'Listen in {a}: {t}', us: 'American English', uk: 'British English' },
+    'zh-cn': { escuchar: '收听', lento: '放慢收听', lentoBtn: '🐢 慢速', en: '收听{a}：{t}', us: '美式英语', uk: '英式英语' }
+  };
+  var L = (document.documentElement.lang || 'es').toLowerCase();
+  var T = TEXTOS[L.indexOf('zh') === 0 ? 'zh-cn' : L.indexOf('en') === 0 ? 'en' : 'es'];
+
   /* Busca una voz del acento pedido; si no hay, cualquier voz en inglés. */
   function voz(acento) {
     if (!sintesis) return null;
@@ -79,14 +88,14 @@
 
   function boton(texto, opciones) {
     var o = opciones || {};
-    return crearBoton(P + '-btn' + (o.clase ? ' ' + o.clase : ''), o.etiqueta || 'Escuchar', '🔊', function (e) {
+    return crearBoton(P + '-btn' + (o.clase ? ' ' + o.clase : ''), o.etiqueta || T.escuchar, '🔊', function (e) {
       decir(texto, { acento: o.acento, boton: e.currentTarget });
     });
   }
 
   function botonLento(texto, opciones) {
     var o = opciones || {};
-    return crearBoton(P + '-btn ' + P + '-btn-lento', 'Escuchar más lento', '🐢 lento', function (e) {
+    return crearBoton(P + '-btn ' + P + '-btn-lento', T.lento, T.lentoBtn, function (e) {
       decir(texto, { lento: true, acento: o.acento, boton: e.currentTarget });
     });
   }
@@ -154,13 +163,13 @@
       if (!texto) return;
       var lineas = td.querySelectorAll('.' + P + '-ipa[data-' + P + '-acento]');
       if (!lineas.length) {
-        td.appendChild(boton(texto, { etiqueta: 'Escuchar: ' + texto }));
+        td.appendChild(boton(texto, { etiqueta: T.escuchar + ': ' + texto }));
         return;
       }
       lineas.forEach(function (linea) {
         var acento = linea.getAttribute('data-' + P + '-acento');
-        var nombre = acento === 'uk' ? 'inglés del Reino Unido' : 'inglés de Estados Unidos';
-        linea.insertBefore(boton(texto, { acento: acento, etiqueta: 'Escuchar en ' + nombre + ': ' + texto }), linea.firstChild);
+        var nombre = acento === 'uk' ? T.uk : T.us;
+        linea.insertBefore(boton(texto, { acento: acento, etiqueta: T.en.replace('{a}', nombre).replace('{t}', texto) }), linea.firstChild);
       });
     });
   }

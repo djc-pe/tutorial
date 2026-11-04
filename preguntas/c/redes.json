@@ -1,0 +1,42 @@
+{
+  "categoria": "redes",
+  "version": "99fef240",
+  "titulo": {
+    "en": "Networking",
+    "es": "Redes",
+    "zh-cn": "网络"
+  },
+  "tutoriales": [
+    {
+      "tutorial": "fc085d9da19c4d9e92019f7dd178afef",
+      "archivo": "preguntas/t/fc085d9da19c4d9e92019f7dd178afef.json",
+      "titulo": {
+        "es": "Cómo entrar a la PC de tu casa desde cualquier lugar con SSH",
+        "en": "How to Access Your Home PC from Anywhere with SSH",
+        "zh-cn": "如何用 SSH 从任何地方连接家里的电脑"
+      },
+      "url": {
+        "es": "es/fc/08/5d/9d/a1/9c/4d/9e/92/01/9f/7d/d1/78/af/ef/",
+        "en": "en/fc/08/5d/9d/a1/9c/4d/9e/92/01/9f/7d/d1/78/af/ef/",
+        "zh-cn": "zh-cn/fc/08/5d/9d/a1/9c/4d/9e/92/01/9f/7d/d1/78/af/ef/"
+      },
+      "secciones": {
+        "es": {
+          "basico": 8,
+          "intermedio": 7,
+          "avanzado": 8
+        },
+        "en": {
+          "basico": 8,
+          "intermedio": 7,
+          "avanzado": 8
+        },
+        "zh-cn": {
+          "basico": 8,
+          "intermedio": 7,
+          "avanzado": 8
+        }
+      }
+    }
+  ]
+}

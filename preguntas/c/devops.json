@@ -1,6 +1,6 @@
 {
   "categoria": "devops",
-  "version": "ecaceb1a",
+  "version": "7a9a745e",
   "titulo": {
     "en": "DevOps",
     "es": "DevOps",
@@ -27,6 +27,11 @@
           "avanzado": 8
         },
         "en": {
+          "basico": 8,
+          "intermedio": 7,
+          "avanzado": 8
+        },
+        "zh-cn": {
           "basico": 8,
           "intermedio": 7,
           "avanzado": 8
