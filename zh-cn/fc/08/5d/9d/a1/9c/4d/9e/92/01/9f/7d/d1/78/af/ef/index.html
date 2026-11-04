@@ -9,12 +9,14 @@
   <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/variable.css">
   <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/style.css">
   <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/index.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/ui/1/ui.css">
   <script src="https://story.djc.pe/assets/djc/base/1/index.js" defer></script>
   <script src="https://story.djc.pe/assets/djc/nav/1/script.js" defer></script>
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
-  <script src="https://story.djc.pe/assets/djc/ads/1/header.js"></script>
-  <script src="https://story.djc.pe/assets/djc/ads/1/content.js"></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-movil.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-pc.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/ads.js" defer></script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
@@ -37,15 +39,17 @@
 </head>
 <body>
 
-  <main class="content">
-    <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:4px;"><a href="https://tutorial.djc.pe/" style="color:var(--color-accent); text-decoration:none;">首页</a> / <a href="/zh-cn/c/devops/" style="color:var(--color-accent); text-decoration:none;">DevOps</a></p>
+  <main class="content djc-core-page">
+    <p class="djc-core-breadcrumb"><a href="https://tutorial.djc.pe/">首页</a> / <a href="../../../../../../../../../../../../../../../../c/devops/">DevOps</a></p>
     <h1>如何用 SSH 从任何地方连接家里的电脑</h1>
-    <p data-author style="color:var(--color-text-muted); font-size:14px;">作者：<a href="https://www.djc.pe/u/@null_djc/" style="color:var(--color-accent); text-decoration:none;">@null_djc</a>（教程）</p>
+    <p class="djc-core-author" data-author>作者：<a href="https://www.djc.pe/u/@null_djc/">@null_djc</a>（教程）</p>
 
-    <p>如果你曾经想在公司或者在外面连回家里的电脑，大概也碰到过和我们一样的问题：家里没有固定的公网 IP，路由器也不让任何人进来。解决办法是用一台在互联网上的服务器作<strong>跳板</strong>（也叫 <em>jump host</em> 或堡垒机），并且让家里的电脑主动连到它。</p>
-    <p>只要两条命令：在家里用 <code>ssh -R</code> 向跳板打开一条隧道，在外面用 <code>ssh -J</code> 从这条隧道进来。下面我们来看它为什么可行、怎么让它自己一直运行，以及我们一开始错在哪里。</p>
+    <div class="djc-core-card">
+      <p>如果你曾经想在公司或者在外面连回家里的电脑，大概也碰到过和我们一样的问题：家里没有固定的公网 IP，路由器也不让任何人进来。解决办法是用一台在互联网上的服务器作<strong>跳板</strong>（也叫 <em>jump host</em> 或堡垒机），并且让家里的电脑主动连到它。</p>
+      <p>只要两条命令：在家里用 <code>ssh -R</code> 向跳板打开一条隧道，在外面用 <code>ssh -J</code> 从这条隧道进来。下面我们来看它为什么可行、怎么让它自己一直运行，以及我们一开始错在哪里。</p>
+    </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>用一个例子说明</h2>
       <p>我们有三台机器：</p>
       <ul>
@@ -53,8 +57,8 @@
         <li><strong>跳板</strong>，<code>jump.example.com</code>：一台在互联网上的服务器（随便一台 VPS），有公网 IP 和 SSH。</li>
         <li><strong>公司的电脑</strong>，或者你在外面的笔记本：你想从这里连回家。</li>
       </ul>
-      <figure style="margin:16px 0; text-align:center;">
-      <svg viewBox="0 0 360 200" style="width:100%; max-width:460px; height:auto;" role="img" aria-label="家里的电脑向跳板打开一条隧道；公司的电脑连到跳板，通过隧道到达家里；公司和家之间没有直接的路。">
+      <figure class="djc-core-figure">
+      <svg viewBox="0 0 360 200" role="img" aria-label="家里的电脑向跳板打开一条隧道；公司的电脑连到跳板，通过隧道到达家里；公司和家之间没有直接的路。">
         <defs><marker id="ssh-flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--color-accent)"/></marker></defs>
         <rect x="244" y="58" width="110" height="122" rx="12" style="fill:none; stroke:var(--color-text-muted); stroke-width:1.5; stroke-dasharray:6 5"/>
         <text x="299" y="172" text-anchor="middle" style="fill:var(--color-text-muted); font:500 11px var(--font-base)">你家（路由器）</text>
@@ -75,12 +79,12 @@
         <text x="113" y="111" text-anchor="middle" style="fill:var(--color-accent); font:600 10px var(--font-base)">-J</text>
         <text x="242" y="111" text-anchor="middle" style="fill:var(--color-accent); font:600 10px var(--font-base)">-R</text>
       </svg>
-      <figcaption style="color:var(--color-text-muted); font-size:13px; margin-top:6px;">家里用 <code>-R</code> 向跳板打开一条隧道。在公司用 <code>-J</code> 连到跳板，再通过这条隧道到达家里。</figcaption>
+      <figcaption>家里用 <code>-R</code> 向跳板打开一条隧道。在公司用 <code>-J</code> 连到跳板，再通过这条隧道到达家里。</figcaption>
       </figure>
       <p>我们想要的是：在公司输入 <code>ssh home</code>，就直接进入家里的电脑，就像它就在旁边一样。</p>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>陷阱</h2>
       <p>我们最先想到的是最直接的办法：在路由器上开放 22 端口（<em>端口转发</em>），然后直接连家里的 IP。这样做有三个问题：</p>
       <ol>
@@ -90,12 +94,12 @@
       </ol>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>思路</h2>
       <p>路由器不让外面<strong>进来</strong>，但允许里面<strong>出去</strong>。所以我们反过来做：让家里的电脑连到跳板，并告诉它"打开你的 2222 端口，到那里的东西都转给我"。这就是<strong>反向隧道</strong>（<code>-R</code>）。</p>
       <p>在公司，你连到跳板，请它把你接到它的 2222 端口，另一头就是你家。这条路上跑的是一条<strong>在公司和家之间端到端加密</strong>的 SSH 连接：跳板只负责转发它读不懂的字节。</p>
       <p>这里有两条连接，每条连接的密钥分法都一样：<strong>私钥</strong>留在发起连接的机器上，<strong>公钥</strong>放在被连接的机器的 <code>~/.ssh/authorized_keys</code> 里。</p>
-      <div style="overflow-x:auto">
+      <div class="djc-core-table">
       <table>
         <thead><tr><th>连接</th><th>谁发起（私钥）</th><th>连到哪里（公钥）</th></tr></thead>
         <tbody>
@@ -108,7 +112,7 @@
       <p>没有任何私钥会经过跳板。</p>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>解决方法</h2>
       <h3>1. 准备家里的电脑</h3>
       <p>家里的电脑需要一个 SSH 服务器，别人才能连进来；还需要一把密钥，用来连接跳板。在 Ubuntu 或 Debian 上：</p>
@@ -206,7 +210,7 @@ rsync -av project/ home:/home/ana/project/</code></pre>
       <p>只要这条命令开着，在浏览器里打开 <code>http://localhost:8080</code> 就能访问家里的服务。</p>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>验证一下</h2>
       <p>在相信一件事之前，我们喜欢先确认它真的走了我们以为的路。在家里的电脑上，检查隧道是否还活着：</p>
 <pre><code>systemctl status jump-tunnel</code></pre>
@@ -231,7 +235,7 @@ debug1: kex: algorithm: mlkem768x25519-sha256</code></pre>
       <p>你的 <code>ed25519</code> 密钥不用换：这取决于 OpenSSH 的版本，而不是密钥。</p>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>如果你的 SSH 比较旧</h2>
       <p><code>-J</code> 和 <code>ProxyJump</code> 从 OpenSSH 7.3 开始才有，<code>permitlisten</code> 从 7.8 开始（可以用 <code>ssh -V</code> 查看）。如果公司的 SSH 更旧，<code>home</code> 这一段就用传统写法，效果一样：</p>
 <pre><code>Host home
@@ -242,7 +246,7 @@ debug1: kex: algorithm: mlkem768x25519-sha256</code></pre>
       <p>Windows 10 和 11 已经自带 OpenSSH 客户端，也支持 <code>-J</code>。配置文件在 <code>C:\Users\你的用户名\.ssh\config</code>。</p>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>需要注意的地方</h2>
       <ul>
         <li><strong>不要把任何私钥复制到跳板上。</strong>用 <code>-J</code> 就不需要：跳板只看得到公钥。</li>
@@ -255,7 +259,7 @@ debug1: kex: algorithm: mlkem768x25519-sha256</code></pre>
       </ul>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>我们学到了什么</h2>
       <p>最直接的办法（在路由器上开端口）很多时候行不通，就算行得通，也会让你家暴露在所有人眼前。把它反过来：家里用 <code>-R</code> 主动连跳板，你用 <code>-J</code> 从这条隧道进来，跳板就只是一根什么都读不懂的管子。有了 systemd 服务和受限的 <code>tunnel</code> 用户，剩下的只是在任何地方输入 <code>ssh home</code>。先用 <code>ssh -v home</code> 试一下，找到那行 <code>via proxy</code>：看到它，你就知道自己是用正确的方式连进来的。</p>
     </div>

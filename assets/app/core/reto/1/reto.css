@@ -1,0 +1,522 @@
+/* djc-core-reto (v1): retos y tests del banco de preguntas (ver docs/preguntas.md) */
+
+/*
+ * Solo colores de marca (variable.css) y sus tonalidades: el acento con
+ * distintas opacidades, los fondos y los grises del texto. Nada de verdes ni
+ * rojos: el acierto es el acento y el error es el gris del texto.
+ */
+.djc-core-reto {
+  --djc-core-reto-acento-08: rgba(229, 247, 116, 0.08);
+  --djc-core-reto-acento-16: rgba(229, 247, 116, 0.16);
+  --djc-core-reto-acento-24: rgba(229, 247, 116, 0.24);
+  --djc-core-reto-acento-50: rgba(229, 247, 116, 0.5);
+  --djc-core-reto-ok: var(--color-accent);
+  --djc-core-reto-mal: var(--color-text-muted);
+  --djc-core-reto-borde: rgba(229, 247, 116, 0.25); /* bordes de adentro: tono suave del acento */
+  margin: 16px 0;
+  padding: 18px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);            /* el cuadro: color de marca, como djc-core-card */
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.djc-core-reto [hidden] { display: none !important; }
+
+/* Los botones de djc-english-voz traen su propio estilo */
+.djc-core-reto :where(button:not(.djc-english-voz-btn)) {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.djc-core-reto button:disabled { cursor: default; }
+
+.djc-core-reto button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Fichas de estado: XP, nivel, racha, estrellas */
+.djc-core-reto-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 16px;
+}
+
+.djc-core-reto-chip {
+  padding: 4px 12px;
+  border: 1px solid var(--djc-core-reto-borde);
+  border-radius: 999px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.djc-core-reto-chip strong { color: var(--color-text); }
+
+.djc-core-reto-titulo {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 20px;
+}
+
+.djc-core-reto-sub {
+  margin: 4px 0 0;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+/* Botones principales */
+/* Botón principal: tono suave del acento, borde y texto en acento */
+.djc-core-reto button.djc-core-reto-btn {
+  display: inline-block;
+  padding: 12px 22px;
+  border: 1px solid var(--djc-core-reto-acento-50);
+  border-radius: 10px;
+  background: var(--djc-core-reto-acento-16);
+  color: var(--color-accent);
+  font-weight: 600;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.djc-core-reto button.djc-core-reto-btn:hover:not(:disabled) {
+  background: var(--djc-core-reto-acento-24);
+  border-color: var(--color-accent);
+}
+
+.djc-core-reto button.djc-core-reto-btn:disabled {
+  border-color: var(--djc-core-reto-borde);
+  background: transparent;
+  color: var(--color-text-muted);
+}
+
+.djc-core-reto-btn-sec {
+  display: inline-block;
+  padding: 11px 18px;
+  border: 1px solid var(--djc-core-reto-borde);
+  border-radius: 10px;
+  background: transparent;
+}
+
+.djc-core-reto-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 18px;
+}
+
+/* Barra de progreso */
+.djc-core-reto-barra {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.djc-core-reto-barra-fondo {
+  flex: 1;
+  height: 10px;
+  background: var(--color-surface);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.djc-core-reto-barra-relleno {
+  height: 100%;
+  width: 0;
+  background: var(--color-accent);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.djc-core-reto .djc-core-reto-cerrar {
+  padding: 2px 8px;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* Enunciado */
+.djc-core-reto-tipo {
+  margin: 0 0 6px;
+  color: var(--color-accent);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.djc-core-reto-pregunta {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.djc-core-reto-frase {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.djc-core-reto-frase .djc-english-voz-btn { font-weight: 400; }
+
+/* Opciones */
+.djc-core-reto-opciones {
+  display: grid;
+  gap: 10px;
+}
+
+.djc-core-reto-opcion {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid var(--djc-core-reto-borde);
+  border-radius: 10px;
+  background: var(--color-surface);
+  text-align: left;
+}
+
+.djc-core-reto-opcion.djc-core-reto-elegida {
+  border-color: var(--color-accent);
+  background: var(--djc-core-reto-acento-08);
+}
+
+/* Al comprobar: la correcta en acento con ✓, la elegida por error en gris con ✕ */
+.djc-core-reto-opcion.djc-core-reto-ok {
+  border-color: var(--djc-core-reto-ok);
+  background: var(--djc-core-reto-acento-16);
+}
+
+.djc-core-reto-opcion.djc-core-reto-mal {
+  border-color: var(--djc-core-reto-mal);
+  border-style: dashed;
+  color: var(--color-text-muted);
+}
+
+.djc-core-reto-opcion.djc-core-reto-ok::after,
+.djc-core-reto-opcion.djc-core-reto-mal::after {
+  float: right;
+  margin-left: 8px;
+  font-weight: 700;
+}
+
+.djc-core-reto-opcion.djc-core-reto-ok::after { content: "✓"; color: var(--color-accent); }
+.djc-core-reto-opcion.djc-core-reto-mal::after { content: "✕"; }
+
+.djc-core-reto-opcion:disabled { cursor: default; }
+
+/* Ordenar palabras */
+.djc-core-reto-linea {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 50px;
+  padding: 8px 0;
+  margin-bottom: 14px;
+  border-bottom: 2px solid var(--djc-core-reto-borde);
+}
+
+.djc-core-reto-linea.djc-core-reto-ok { border-bottom-color: var(--djc-core-reto-ok); }
+.djc-core-reto-linea.djc-core-reto-mal { border-bottom-color: var(--djc-core-reto-mal); }
+
+.djc-core-reto-banco {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.djc-core-reto-ficha {
+  padding: 8px 14px;
+  border: 2px solid var(--djc-core-reto-borde);
+  border-radius: 10px;
+  background: var(--color-surface);
+}
+
+.djc-core-reto-ficha.djc-core-reto-usada { visibility: hidden; }
+
+/* Hablar */
+.djc-core-reto-mic {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: 2px solid var(--color-accent);
+  border-radius: 999px;
+  background: transparent;
+}
+
+.djc-core-reto .djc-core-reto-mic.djc-core-reto-escuchando {
+  background: var(--djc-core-reto-acento-24);
+  color: var(--color-accent);
+}
+
+.djc-core-reto-oido {
+  margin: 12px 0 0;
+  color: var(--color-text-muted);
+  font-size: 15px;
+}
+
+.djc-core-reto .djc-core-reto-saltar {
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+/* Respuesta */
+.djc-core-reto-respuesta {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border-left: 4px solid var(--djc-core-reto-ok);
+  background: var(--color-surface);
+}
+
+.djc-core-reto-respuesta.djc-core-reto-respuesta-mal { border-left-color: var(--djc-core-reto-mal); }
+
+.djc-core-reto-respuesta p { margin: 0; }
+.djc-core-reto-respuesta p + p { margin-top: 6px; }
+
+.djc-core-reto-respuesta-titulo {
+  font-weight: 700;
+  color: var(--djc-core-reto-ok);
+}
+
+.djc-core-reto-respuesta-mal .djc-core-reto-respuesta-titulo { color: var(--color-text); }
+
+/* Final */
+.djc-core-reto-final { text-align: center; }
+
+.djc-core-reto-estrellas {
+  margin: 8px 0;
+  font-size: 44px;
+  letter-spacing: 6px;
+}
+
+.djc-core-reto-estrella-apagada { opacity: 0.2; filter: grayscale(1); }
+
+.djc-core-reto-final .djc-core-reto-chips,
+.djc-core-reto-final .djc-core-reto-acciones { justify-content: center; }
+
+.djc-core-reto-aviso {
+  margin-top: 10px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .djc-core-reto-barra-relleno { transition: none; }
+}
+
+/* Varias correctas: casilla delante del texto */
+.djc-core-reto-opcion {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.djc-core-reto-opcion-texto { flex: 1; }
+
+.djc-core-reto-casilla {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  border: 2px solid var(--djc-core-reto-borde);
+  border-radius: 5px;
+}
+
+.djc-core-reto-elegida .djc-core-reto-casilla {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  box-shadow: inset 0 0 0 3px var(--color-surface);
+}
+
+/* Al revisar, la marca va al final: ✓ acertaste, ⚠ te faltó, ✕ no era */
+.djc-core-reto-opcion.djc-core-reto-ok::after,
+.djc-core-reto-opcion.djc-core-reto-mal::after,
+.djc-core-reto-opcion.djc-core-reto-falto::after {
+  float: none;
+  flex: none;
+}
+
+.djc-core-reto-opcion.djc-core-reto-falto {
+  border-color: var(--djc-core-reto-acento-50);
+  border-style: dashed;
+}
+
+.djc-core-reto-opcion.djc-core-reto-falto::after {
+  content: "⚠";
+  margin-left: 8px;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* Notas por opción en la respuesta */
+.djc-core-reto-nota { font-size: 15px; }
+
+.djc-core-reto-nota-marca {
+  display: inline-block;
+  min-width: 1.2em;
+  font-weight: 700;
+}
+
+.djc-core-reto-nota-ok,
+.djc-core-reto-nota-falto { color: var(--color-accent); }
+
+.djc-core-reto-nota-mal { color: var(--color-text-muted); }
+
+/* Un comando o un log en la pregunta */
+.djc-core-reto pre.djc-core-reto-codigo {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  overflow-x: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--djc-core-reto-borde);
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Enlace para repasar la sección del tutorial */
+.djc-core-reto .djc-core-reto-repasa {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.djc-core-reto .djc-core-reto-repasa:hover { text-decoration: underline; }
+
+/* Modos del test de categoría */
+.djc-core-reto-modos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.djc-core-reto .djc-core-reto-modo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 1px solid var(--djc-core-reto-acento-50);
+  border-radius: 10px;
+  background: var(--djc-core-reto-acento-08);
+  text-align: left;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.djc-core-reto .djc-core-reto-modo:hover:not(:disabled) {
+  background: var(--djc-core-reto-acento-16);
+  border-color: var(--color-accent);
+}
+
+.djc-core-reto .djc-core-reto-modo:disabled {
+  border-color: var(--djc-core-reto-borde);
+  background: transparent;
+  opacity: 0.5;
+}
+
+.djc-core-reto-modo-nombre {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.djc-core-reto-modo:disabled .djc-core-reto-modo-nombre { color: var(--color-text-muted); }
+
+.djc-core-reto-modo-sub {
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+/* De qué tutorial viene la pregunta (test de categoría y repaso) */
+.djc-core-reto-origen {
+  margin: 0 0 8px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+/* ---------- Pantalla completa ---------- */
+
+html.djc-core-reto-abierto,
+html.djc-core-reto-abierto body { overflow: hidden; }
+
+.djc-core-reto.djc-core-reto-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-base);
+}
+
+.djc-core-reto-marco {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 680px;
+  height: 100%;
+}
+
+.djc-core-reto-cabeza {
+  flex: none;
+  padding: 12px 16px 8px;
+  padding-top: max(12px, env(safe-area-inset-top));
+}
+
+.djc-core-reto-cabeza .djc-core-reto-barra { margin-bottom: 0; }
+
+.djc-core-reto-contenido {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 12px 16px 24px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.djc-core-reto-pie {
+  flex: none;
+  padding: 12px 16px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--djc-core-reto-borde);
+  background: var(--color-bg);
+}
+
+.djc-core-reto-pie:empty { display: none; }
+
+.djc-core-reto-pie .djc-core-reto-acciones {
+  margin-top: 0;
+  justify-content: flex-end;
+}
+
+/* En el celular, el botón principal ocupa el ancho, a mano del pulgar */
+@media (max-width: 600px) {
+  .djc-core-reto-pie .djc-core-reto-acciones { flex-direction: column-reverse; align-items: stretch; }
+  .djc-core-reto-pie .djc-core-reto-acciones > button { width: 100%; text-align: center; }
+}
+
+.djc-core-reto-confirmar p {
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+.djc-core-reto-modal .djc-core-reto-final { padding-top: 12px; }
