@@ -3,19 +3,19 @@
   <!-- Home (portadas por idioma) -->
   <url>
     <loc>https://tutorial.djc.pe/en/</loc>
-    <lastmod>2026-11-02T18:00:00-05:00</lastmod>
+    <lastmod>2026-11-03T19:00:00-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://tutorial.djc.pe/es/</loc>
-    <lastmod>2026-11-02T18:00:00-05:00</lastmod>
+    <lastmod>2026-11-03T19:00:00-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://tutorial.djc.pe/zh-cn/</loc>
-    <lastmod>2026-11-02T18:00:00-05:00</lastmod>
+    <lastmod>2026-11-03T19:00:00-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -47,7 +47,7 @@
   </url>
   <url>
     <loc>https://tutorial.djc.pe/en/c/devops/</loc>
-    <lastmod>2026-09-25T10:24:47-05:00</lastmod>
+    <lastmod>2026-11-03T19:00:00-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -91,7 +91,7 @@
   </url>
   <url>
     <loc>https://tutorial.djc.pe/es/c/devops/</loc>
-    <lastmod>2026-09-25T10:24:47-05:00</lastmod>
+    <lastmod>2026-11-03T19:00:00-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -135,7 +135,7 @@
   </url>
   <url>
     <loc>https://tutorial.djc.pe/zh-cn/c/devops/</loc>
-    <lastmod>2026-09-25T10:24:47-05:00</lastmod>
+    <lastmod>2026-11-03T19:00:00-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -180,6 +180,12 @@
   <url>
     <loc>https://tutorial.djc.pe/en/d5/fd/3f/a8/11/5b/4b/d1/a2/d8/91/10/82/63/55/9b/</loc>
     <lastmod>2026-11-02T20:00:00-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tutorial.djc.pe/en/fc/08/5d/9d/a1/9c/4d/9e/92/01/9f/7d/d1/78/af/ef/</loc>
+    <lastmod>2026-11-03T19:00:00-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -234,6 +240,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://tutorial.djc.pe/es/fc/08/5d/9d/a1/9c/4d/9e/92/01/9f/7d/d1/78/af/ef/</loc>
+    <lastmod>2026-11-03T19:00:00-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://tutorial.djc.pe/es/52/07/4a/ff/40/30/4c/9c/bf/de/87/d3/42/fc/21/41/</loc>
     <lastmod>2026-11-02T18:00:00-05:00</lastmod>
     <changefreq>monthly</changefreq>
@@ -280,6 +292,12 @@
   <url>
     <loc>https://tutorial.djc.pe/zh-cn/d5/fd/3f/a8/11/5b/4b/d1/a2/d8/91/10/82/63/55/9b/</loc>
     <lastmod>2026-11-02T20:00:00-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tutorial.djc.pe/zh-cn/fc/08/5d/9d/a1/9c/4d/9e/92/01/9f/7d/d1/78/af/ef/</loc>
+    <lastmod>2026-11-03T19:00:00-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
