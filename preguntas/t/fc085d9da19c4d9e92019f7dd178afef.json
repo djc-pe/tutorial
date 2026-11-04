@@ -1,0 +1,555 @@
+{
+  "version": 1,
+  "tutorial": "fc085d9da19c4d9e92019f7dd178afef",
+  "url": {
+    "es": "es/fc/08/5d/9d/a1/9c/4d/9e/92/01/9f/7d/d1/78/af/ef/",
+    "en": "en/fc/08/5d/9d/a1/9c/4d/9e/92/01/9f/7d/d1/78/af/ef/",
+    "zh-cn": "zh-cn/fc/08/5d/9d/a1/9c/4d/9e/92/01/9f/7d/d1/78/af/ef/"
+  },
+  "prefijo": "ssh",
+  "categorias": [
+    "devops"
+  ],
+  "preguntas": [
+    {
+      "id": "ssh-001",
+      "dificultad": 8,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Qué comando crea tu par de claves?",
+        "opciones": [
+          {
+            "texto": "ssh-keygen -t ed25519",
+            "correcta": true
+          },
+          {
+            "texto": "ssh-copy-id",
+            "explica": "Copia tu clave pública a un servidor; no la crea."
+          },
+          {
+            "texto": "ssh -R",
+            "explica": "Abre un túnel inverso; no tiene que ver con las claves."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-002",
+      "dificultad": 12,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Quieres entrar desde el trabajo a la PC de tu casa, que no tiene IP pública, usando un servidor en internet como puente. ¿Qué máquina abre el túnel?",
+        "opciones": [
+          {
+            "texto": "La PC de casa",
+            "correcta": true,
+            "explica": "El router no deja entrar pero sí salir, así que es la casa la que llama al puente."
+          },
+          {
+            "texto": "La PC del trabajo",
+            "explica": "El trabajo usa el túnel, pero no lo abre."
+          },
+          {
+            "texto": "El puente",
+            "explica": "El puente no puede entrar a tu casa: el router no deja entrar a nadie."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-003",
+      "dificultad": 14,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Cuál de estos archivos nunca debe salir de tu PC?",
+        "opciones": [
+          {
+            "texto": "~/.ssh/id_ed25519",
+            "correcta": true,
+            "explica": "Es la clave privada."
+          },
+          {
+            "texto": "~/.ssh/id_ed25519.pub",
+            "explica": "Es la pública: justamente la copias a otras máquinas."
+          },
+          {
+            "texto": "~/.ssh/authorized_keys",
+            "explica": "Tiene claves públicas de otros; no es un secreto."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-004",
+      "dificultad": 18,
+      "tipo": "varias",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Por qué no conviene abrir el puerto 22 del router de tu casa?",
+        "opciones": [
+          {
+            "texto": "Con CGNAT tu router no tiene una IP pública propia que abrir",
+            "correcta": true
+          },
+          {
+            "texto": "La IP de tu casa cambia cada cierto tiempo",
+            "correcta": true
+          },
+          {
+            "texto": "Expones el SSH de tu casa a los bots de todo internet",
+            "correcta": true
+          },
+          {
+            "texto": "SSH no funciona en el puerto 22 de un router",
+            "explica": "SSH funciona en cualquier puerto; el problema es llegar a él y exponerlo."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-005",
+      "dificultad": 20,
+      "tipo": "varias",
+      "contexto": false,
+      "elige": true,
+      "es": {
+        "pregunta": "Tu casa abre un túnel hacia un servidor puente, y desde el trabajo entras a casa saltando por ese puente con ssh -J. ¿Qué claves públicas tiene que aceptar el puente?",
+        "opciones": [
+          {
+            "texto": "La de la PC de casa",
+            "correcta": true,
+            "explica": "Para abrir el túnel, la casa se conecta al puente."
+          },
+          {
+            "texto": "La de la PC del trabajo",
+            "correcta": true,
+            "explica": "Con -J, el trabajo también se conecta primero al puente."
+          },
+          {
+            "texto": "La clave privada del trabajo",
+            "explica": "Ninguna clave privada va al puente."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-006",
+      "dificultad": 25,
+      "tipo": "ordenar",
+      "contexto": false,
+      "es": {
+        "pregunta": "Tu casa no tiene IP pública. Ordena el comando que abre en el servidor puente.ejemplo.com (usuario tunel) un puerto 2222 que lleva al SSH de tu casa",
+        "frase": "ssh -N -R 2222:localhost:22 tunel@puente.ejemplo.com",
+        "extra": [
+          "-L"
+        ]
+      }
+    },
+    {
+      "id": "ssh-007",
+      "dificultad": 30,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Desde tu casa abres un túnel hacia un servidor con ssh -R 2222:localhost:22. ¿Qué es el 22?",
+        "opciones": [
+          {
+            "texto": "El puerto donde escucha el SSH de tu casa",
+            "correcta": true
+          },
+          {
+            "texto": "El puerto que se abre en el puente",
+            "explica": "Ese es el primer número, el 2222."
+          },
+          {
+            "texto": "El puerto del SSH del puente",
+            "explica": "Al puente llegas por su puerto normal; el último número del -R está del lado de tu casa."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-008",
+      "dificultad": 32,
+      "tipo": "ordenar",
+      "contexto": false,
+      "es": {
+        "pregunta": "Tu casa abrió un túnel en el puerto 2222 del servidor puente.ejemplo.com (usuario tunel). Ordena el comando para entrar a tu casa desde el trabajo como ana, saltando por ese servidor",
+        "frase": "ssh -J tunel@puente.ejemplo.com -p 2222 ana@localhost",
+        "extra": [
+          "-R"
+        ]
+      }
+    },
+    {
+      "id": "ssh-009",
+      "dificultad": 36,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Tienes esta configuración en el ~/.ssh/config del trabajo. ¿Qué escribes para entrar a la PC de tu casa?",
+        "opciones": [
+          {
+            "texto": "ssh casa",
+            "correcta": true
+          },
+          {
+            "texto": "ssh puente",
+            "explica": "Eso te deja en el puente, no en tu casa."
+          },
+          {
+            "texto": "ssh -R casa",
+            "explica": "-R abre un túnel; para entrar no lo necesitas."
+          }
+        ],
+        "frase": "Host puente\n    HostName puente.ejemplo.com\n    User tunel\n\nHost casa\n    HostName localhost\n    Port 2222\n    User ana\n    ProxyJump puente"
+      }
+    },
+    {
+      "id": "ssh-010",
+      "dificultad": 42,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Con esta configuración, ssh casa entra a una PC sin IP pública pasando por un servidor intermedio. ¿Qué línea hace que pase por ese servidor?",
+        "opciones": [
+          {
+            "texto": "ProxyJump puente",
+            "correcta": true
+          },
+          {
+            "texto": "Port 2222",
+            "explica": "Es el puerto del túnel en el puente, pero no dice por dónde pasar."
+          },
+          {
+            "texto": "HostName localhost",
+            "explica": "Es el localhost del servidor intermedio, pero sin ProxyJump buscaría tu propia PC."
+          }
+        ],
+        "frase": "Host casa\n    HostName localhost\n    Port 2222\n    User ana\n    ProxyJump puente"
+      }
+    },
+    {
+      "id": "ssh-011",
+      "dificultad": 48,
+      "tipo": "varias",
+      "contexto": false,
+      "es": {
+        "pregunta": "Un servicio de systemd mantiene abierto un túnel SSH (ssh -N -R ...). ¿Qué opciones hacen que el túnel vuelva solo si se cae?",
+        "opciones": [
+          {
+            "texto": "ServerAliveInterval=30",
+            "correcta": true,
+            "explica": "Detecta que el puente ya no responde y corta."
+          },
+          {
+            "texto": "ExitOnForwardFailure=yes",
+            "correcta": true,
+            "explica": "Si no pudo abrir el puerto, termina para que lo vuelvan a intentar."
+          },
+          {
+            "texto": "Restart=always",
+            "correcta": true,
+            "explica": "Es lo que vuelve a abrir el túnel cuando termina."
+          },
+          {
+            "texto": "BatchMode=yes",
+            "explica": "Evita que se quede esperando una contraseña, pero no lo vuelve a abrir."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-012",
+      "dificultad": 52,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Tu PC de casa mantiene un túnel con un servicio de systemd que usa -o BatchMode=yes. ¿Qué pasa cuando tú entras desde el trabajo con ssh y tu clave tiene frase de paso?",
+        "opciones": [
+          {
+            "texto": "Te pide la frase de paso como siempre",
+            "correcta": true,
+            "explica": "BatchMode solo aplica a la conexión que hace el servicio, no a las tuyas."
+          },
+          {
+            "texto": "Falla, porque BatchMode no permite frases de paso",
+            "explica": "Eso le pasaría al servicio, no a ti."
+          },
+          {
+            "texto": "Entra sin pedirte nada",
+            "explica": "BatchMode no salta la frase de paso; solo evita quedarse esperando."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-013",
+      "dificultad": 55,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Un servidor recibe un túnel inverso (ssh -R 2222:...) desde tu casa. ¿Para qué sirve poner ClientAliveInterval 30 en su sshd_config?",
+        "opciones": [
+          {
+            "texto": "Para que suelte rápido el puerto 2222 cuando la conexión de tu casa murió",
+            "correcta": true
+          },
+          {
+            "texto": "Para que la conexión del trabajo no se corte",
+            "explica": "Del lado del cliente eso lo hace ServerAliveInterval."
+          },
+          {
+            "texto": "Para limitar los intentos de contraseña",
+            "explica": "No tiene que ver con contraseñas."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-014",
+      "dificultad": 60,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Ya entras a tu casa con ssh casa. Quieres abrir en el navegador del trabajo una web que corre en el puerto 8080 de tu casa. ¿Qué comando usas?",
+        "opciones": [
+          {
+            "texto": "ssh -N -L 8080:localhost:8080 casa",
+            "correcta": true,
+            "explica": "-L abre el puerto en tu lado, el trabajo."
+          },
+          {
+            "texto": "ssh -N -R 8080:localhost:8080 casa",
+            "explica": "-R abriría el puerto del otro lado, en tu casa."
+          },
+          {
+            "texto": "scp casa:8080 .",
+            "explica": "scp copia archivos; no abre puertos."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-015",
+      "dificultad": 64,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Entras a tu casa pasando por un servidor puente con ProxyJump. En la salida de ssh -v, ¿qué línea confirma que llegaste a tu casa a través del puente?",
+        "opciones": [
+          {
+            "texto": "Authenticated to localhost (via proxy) using \"publickey\".",
+            "correcta": true
+          },
+          {
+            "texto": "Authenticated to puente.ejemplo.com ([203.0.113.10]:22) using \"publickey\".",
+            "explica": "Esa dice que entraste al puente; todavía no a tu casa."
+          },
+          {
+            "texto": "debug1: Setting implicit ProxyCommand from ProxyJump",
+            "explica": "Solo anuncia que va a usar el puente."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-016",
+      "dificultad": 68,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Por qué hace falta command=\"/bin/false\" si la clave ya tiene restrict?",
+        "opciones": [
+          {
+            "texto": "restrict quita la terminal, pero todavía deja ejecutar un comando suelto",
+            "correcta": true,
+            "explica": "Por ejemplo, ssh tunel@puente id funcionaría."
+          },
+          {
+            "texto": "restrict bloquea los túneles y command los vuelve a permitir",
+            "explica": "Al revés: restrict quita los túneles y port-forwarding los devuelve."
+          },
+          {
+            "texto": "Sin command, -N no funciona",
+            "explica": "-N funciona igual; command solo cierra los comandos sueltos."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-017",
+      "dificultad": 72,
+      "tipo": "varias",
+      "contexto": false,
+      "es": {
+        "pregunta": "En el registro del túnel de tu casa ves esto. ¿Qué puede estar pasando?",
+        "frase": "connect_to localhost port 2222: failed.",
+        "opciones": [
+          {
+            "texto": "El último número del -R no es el puerto del SSH de tu casa",
+            "correcta": true,
+            "explica": "Con -R 2222:localhost:2222 el túnel busca un SSH en el 2222 de tu casa."
+          },
+          {
+            "texto": "El SSH de tu casa no está corriendo",
+            "correcta": true,
+            "explica": "La conexión llega a tu casa y no encuentra a nadie."
+          },
+          {
+            "texto": "permitopen no coincide en el puente",
+            "explica": "Eso da «administratively prohibited», y lo ves en el trabajo."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-018",
+      "dificultad": 75,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Desde el trabajo ves este error. En tu config tienes HostName 127.0.0.1 y en el puente permitopen=\"localhost:2222\". ¿Qué pasa?",
+        "frase": "channel 0: open failed: administratively prohibited: open failed",
+        "opciones": [
+          {
+            "texto": "permitopen compara el texto tal cual, y 127.0.0.1 no es localhost",
+            "correcta": true
+          },
+          {
+            "texto": "El túnel de tu casa está caído",
+            "explica": "Eso daría «Connection refused»."
+          },
+          {
+            "texto": "La huella de tu casa cambió",
+            "explica": "Eso daría «Host key verification failed»."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-019",
+      "dificultad": 78,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Desde el trabajo, al saltar por el puente hacia tu casa, ves este error. ¿Qué revisas primero?",
+        "frase": "channel 0: open failed: connect failed: Connection refused",
+        "opciones": [
+          {
+            "texto": "Que el túnel de tu casa esté abierto (el servicio que lo mantiene)",
+            "correcta": true,
+            "explica": "En el puente nadie escucha en ese puerto: el túnel no está."
+          },
+          {
+            "texto": "Que permitopen coincida",
+            "explica": "Si no coincidiera, verías «administratively prohibited»."
+          },
+          {
+            "texto": "ClientAliveInterval en el puente",
+            "explica": "Eso es para cuando el puerto queda ocupado, no para cuando nadie escucha."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-020",
+      "dificultad": 82,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En el registro de SSH del puente aparece esta conexión con una huella que no reconoces. ¿Cómo sabes de qué clave es?",
+        "opciones": [
+          {
+            "texto": "Comparándola con ssh-keygen -lf sobre el authorized_keys de ese usuario",
+            "correcta": true
+          },
+          {
+            "texto": "Con last",
+            "explica": "last no muestra las conexiones que solo abren un túnel (-N), porque no abren terminal."
+          },
+          {
+            "texto": "Con who",
+            "explica": "who tampoco ve las conexiones que solo son túnel."
+          }
+        ],
+        "frase": "Accepted publickey for tunel from 198.51.100.7 port 52114 ssh2: ED25519 SHA256:x4Gk..."
+      }
+    },
+    {
+      "id": "ssh-021",
+      "dificultad": 86,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Entras a tu casa por un puente con ssh -J. ssh -v muestra esto en el tramo de tu casa. ¿Qué haces para que la conexión sea post-cuántica?",
+        "frase": "debug1: kex: algorithm: curve25519-sha256",
+        "opciones": [
+          {
+            "texto": "Actualizar OpenSSH a la 9.0 o más en el trabajo y en casa",
+            "correcta": true
+          },
+          {
+            "texto": "Cambiar tu clave a RSA",
+            "explica": "El tipo de clave no cambia cómo se acuerda la clave de la sesión."
+          },
+          {
+            "texto": "Generar una clave ed25519 nueva",
+            "explica": "Tu clave no tiene que ver: depende de la versión de OpenSSH."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-022",
+      "dificultad": 92,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "El túnel se cae cada noche, y al volver internet el registro de casa repite este error durante varios minutos. ¿Qué falta?",
+        "frase": "remote port forwarding failed for listen port 2222",
+        "opciones": [
+          {
+            "texto": "ClientAliveInterval en el sshd del puente",
+            "correcta": true,
+            "explica": "El puente sigue guardando el puerto para la conexión muerta."
+          },
+          {
+            "texto": "Quitar BatchMode=yes",
+            "explica": "BatchMode solo evita esperar una contraseña."
+          },
+          {
+            "texto": "Restart=always",
+            "explica": "Ya lo vuelve a intentar; el problema es que el puerto sigue ocupado."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ssh-023",
+      "dificultad": 96,
+      "tipo": "varias",
+      "contexto": false,
+      "es": {
+        "pregunta": "Tu casa abre un túnel inverso en el puerto 2222 de un servidor puente, y entras con ssh -J. Un compañero propone poner GatewayPorts yes en el puente para entrar sin -J. ¿Qué problemas tiene?",
+        "opciones": [
+          {
+            "texto": "El 2222 queda abierto a todo internet",
+            "correcta": true
+          },
+          {
+            "texto": "Es lo mismo que exponer el SSH de tu casa, que es lo que querías evitar",
+            "correcta": true
+          },
+          {
+            "texto": "La conexión deja de ser post-cuántica",
+            "explica": "El cifrado no cambia; lo que cambia es quién puede llegar al puerto."
+          }
+        ]
+      }
+    }
+  ]
+}

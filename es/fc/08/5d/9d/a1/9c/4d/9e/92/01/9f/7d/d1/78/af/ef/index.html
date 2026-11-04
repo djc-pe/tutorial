@@ -9,12 +9,17 @@
   <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/variable.css">
   <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/style.css">
   <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/index.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/ui/1/ui.css">
   <script src="https://story.djc.pe/assets/djc/base/1/index.js" defer></script>
   <script src="https://story.djc.pe/assets/djc/nav/1/script.js" defer></script>
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/progreso/1/progreso.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.js" defer></script>
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
-  <script src="https://story.djc.pe/assets/djc/ads/1/header.js"></script>
-  <script src="https://story.djc.pe/assets/djc/ads/1/content.js"></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-movil.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-pc.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/ads.js" defer></script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
@@ -37,15 +42,17 @@
 </head>
 <body>
 
-  <main class="content">
-    <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:4px;"><a href="https://tutorial.djc.pe/" style="color:var(--color-accent); text-decoration:none;">Inicio</a> / <a href="/es/c/devops/" style="color:var(--color-accent); text-decoration:none;">DevOps</a></p>
+  <main class="content djc-core-page">
+    <p class="djc-core-breadcrumb"><a href="https://tutorial.djc.pe/">Inicio</a> / <a href="../../../../../../../../../../../../../../../../c/devops/">DevOps</a></p>
     <h1>Cómo entrar a la PC de tu casa desde cualquier lugar con SSH</h1>
-    <p data-author style="color:var(--color-text-muted); font-size:14px;">Tutorial por <a href="https://www.djc.pe/u/@null_djc/" style="color:var(--color-accent); text-decoration:none;">@null_djc</a></p>
+    <p class="djc-core-author" data-author>Tutorial por <a href="https://www.djc.pe/u/@null_djc/">@null_djc</a></p>
 
-    <p>Si alguna vez quisiste entrar a la PC de tu casa desde el trabajo o desde la calle, seguro te topaste con lo mismo que nosotros: tu casa no tiene una IP pública fija y el router no deja entrar a nadie. La salida es usar un servidor que sí está en internet como <strong>puente</strong> (también se le dice <em>jump host</em> o bastión) y que sea tu casa la que se conecte a él.</p>
-    <p>Son dos comandos: en casa, <code>ssh -R</code> para abrir un túnel hacia el puente, y fuera de casa, <code>ssh -J</code> para entrar por ese túnel. Abajo vemos por qué funciona, cómo dejarlo andando solo y en qué nos equivocamos al principio.</p>
+    <div class="djc-core-card">
+      <p>Si alguna vez quisiste entrar a la PC de tu casa desde el trabajo o desde la calle, seguro te topaste con lo mismo que nosotros: tu casa no tiene una IP pública fija y el router no deja entrar a nadie. La salida es usar un servidor que sí está en internet como <strong>puente</strong> (también se le dice <em>jump host</em> o bastión) y que sea tu casa la que se conecte a él.</p>
+      <p>Son dos comandos: en casa, <code>ssh -R</code> para abrir un túnel hacia el puente, y fuera de casa, <code>ssh -J</code> para entrar por ese túnel. Lo vemos en tres niveles: <a href="#basico">básico</a> (tu primera conexión), <a href="#intermedio">intermedio</a> (que funcione solo) y <a href="#avanzado">avanzado</a> (seguridad y diagnóstico). Cada uno termina con un reto.</p>
+    </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>La idea en un ejemplo</h2>
       <p>Tenemos tres máquinas:</p>
       <ul>
@@ -53,8 +60,8 @@
         <li><strong>El puente</strong>, <code>puente.ejemplo.com</code>: un servidor en internet (un VPS cualquiera) con IP pública y SSH.</li>
         <li><strong>La PC del trabajo</strong>, o tu laptop en la calle: desde donde quieres entrar.</li>
       </ul>
-      <figure style="margin:16px 0; text-align:center;">
-      <svg viewBox="0 0 360 200" style="width:100%; max-width:460px; height:auto;" role="img" aria-label="La PC de casa abre un túnel hacia el puente; la PC del trabajo entra al puente y por el túnel llega a casa; no hay camino directo del trabajo a casa.">
+      <figure class="djc-core-figure">
+      <svg viewBox="0 0 360 200" role="img" aria-label="La PC de casa abre un túnel hacia el puente; la PC del trabajo entra al puente y por el túnel llega a casa; no hay camino directo del trabajo a casa.">
         <defs><marker id="ssh-flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--color-accent)"/></marker></defs>
         <rect x="244" y="58" width="110" height="122" rx="12" style="fill:none; stroke:var(--color-text-muted); stroke-width:1.5; stroke-dasharray:6 5"/>
         <text x="299" y="172" text-anchor="middle" style="fill:var(--color-text-muted); font:500 11px var(--font-base)">Tu casa (router)</text>
@@ -75,12 +82,12 @@
         <text x="113" y="111" text-anchor="middle" style="fill:var(--color-accent); font:600 10px var(--font-base)">-J</text>
         <text x="242" y="111" text-anchor="middle" style="fill:var(--color-accent); font:600 10px var(--font-base)">-R</text>
       </svg>
-      <figcaption style="color:var(--color-text-muted); font-size:13px; margin-top:6px;">La casa abre un túnel hacia el puente con <code>-R</code>. Desde el trabajo entras al puente con <code>-J</code> y por ese túnel llegas a casa.</figcaption>
+      <figcaption>La casa abre un túnel hacia el puente con <code>-R</code>. Desde el trabajo entras al puente con <code>-J</code> y por ese túnel llegas a casa.</figcaption>
       </figure>
       <p>Lo que queremos es escribir <code>ssh casa</code> en el trabajo y quedar dentro de la PC de casa, como si estuviera al lado.</p>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>La trampa</h2>
       <p>Lo primero que pensamos fue lo obvio: abrir el puerto 22 en el router (<em>port forwarding</em>) y conectarnos directo a la IP de la casa. Tiene tres problemas:</p>
       <ol>
@@ -90,12 +97,12 @@
       </ol>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>La idea</h2>
       <p>El router no deja <strong>entrar</strong>, pero sí deja <strong>salir</strong>. Entonces le damos la vuelta: es la PC de casa la que se conecta al puente y le dice "abre tu puerto 2222 y todo lo que llegue ahí mándamelo a mí". Eso es un <strong>túnel inverso</strong> (<code>-R</code>).</p>
       <p>Desde el trabajo entras al puente y le pides que te conecte a su puerto 2222. Al otro lado está tu casa. Por ese camino va una conexión SSH <strong>cifrada de punta a punta entre el trabajo y tu casa</strong>: el puente solo pasa bytes que no puede leer.</p>
       <p>Hay dos conexiones, y en cada una la clave se reparte igual: la <strong>privada</strong> se queda en la máquina que inicia la conexión y la <strong>pública</strong> va en el <code>~/.ssh/authorized_keys</code> de la máquina a la que se conecta.</p>
-      <div style="overflow-x:auto">
+      <div class="djc-core-table">
       <table>
         <thead><tr><th>Conexión</th><th>Quién inicia (clave privada)</th><th>A dónde se conecta (clave pública)</th></tr></thead>
         <tbody>
@@ -108,33 +115,25 @@
       <p>Ninguna clave privada pasa por el puente.</p>
     </div>
 
-    <div class="section">
-      <h2>La solución</h2>
+    <div class="djc-core-card">
+      <h2 id="basico">Básico: tu primera conexión por el puente</h2>
+      <p>Primero lo hacemos a mano, con los comandos completos, para ver cada pieza. Al final de cada nivel hay un reto para comprobar que te quedó claro.</p>
       <h3>1. Preparar la PC de casa</h3>
       <p>La PC de casa necesita un servidor SSH para que puedan entrar a ella, y una clave para conectarse al puente. En Ubuntu o Debian:</p>
 <pre><code>sudo apt install openssh-server
 ssh-keygen -t ed25519</code></pre>
-      <p>La clave pública queda en <code>~/.ssh/id_ed25519.pub</code>. En la PC del trabajo haces lo mismo con <code>ssh-keygen</code>, y su clave pública va en el <code>~/.ssh/authorized_keys</code> de la PC de casa. Ese paso hazlo mientras estás en casa.</p>
+      <p><code>ssh-keygen</code> crea dos archivos: <code>~/.ssh/id_ed25519</code>, la clave <strong>privada</strong>, que nunca sale de esa máquina, y <code>~/.ssh/id_ed25519.pub</code>, la <strong>pública</strong>, que es la que copias a otros lados. En la PC del trabajo haces lo mismo, y su clave pública va en el <code>~/.ssh/authorized_keys</code> de la PC de casa. Ese paso hazlo mientras estás en casa.</p>
 
-      <h3>2. Un usuario solo para el túnel en el puente</h3>
+      <h3>2. Un usuario para el túnel en el puente</h3>
       <p>En el puente creamos un usuario aparte, <code>tunel</code>, para no mezclarlo con el usuario con el que administras el servidor:</p>
 <pre><code>sudo adduser --disabled-password tunel</code></pre>
-      <p>En su <code>/home/tunel/.ssh/authorized_keys</code> van las dos claves públicas, cada una con lo único que puede hacer:</p>
-<pre><code>restrict,port-forwarding,command="/bin/false",permitlisten="localhost:2222" ssh-ed25519 AAAA... ana@casa
-restrict,port-forwarding,command="/bin/false",permitopen="localhost:2222" ssh-ed25519 AAAA... ana@trabajo</code></pre>
-      <ul>
-        <li><code>restrict</code> quita todo (terminal, reenvíos, agente) y <code>port-forwarding</code> vuelve a permitir solo los túneles.</li>
-        <li><code>command="/bin/false"</code> hace que cualquier comando termine de inmediato: con estas claves no se puede usar el puente para nada más.</li>
-        <li><code>permitlisten="localhost:2222"</code>: la casa solo puede <strong>abrir</strong> el puerto 2222.</li>
-        <li><code>permitopen="localhost:2222"</code>: el trabajo solo puede <strong>ir</strong> al puerto 2222.</li>
-      </ul>
-      <p>Si alguien te roba alguna de esas claves, en el puente no puede abrir una terminal, ver archivos ni saltar a otro lado.</p>
+      <p>En su <code>/home/tunel/.ssh/authorized_keys</code> van las dos claves públicas, la de casa y la del trabajo, una por línea. Por ahora así, tal cual; en el nivel avanzado las limitamos para que solo sirvan para el túnel.</p>
 
       <h3>3. Abrir el túnel desde casa</h3>
       <p>En la PC de casa:</p>
 <pre><code>ssh -N -R 2222:localhost:22 tunel@puente.ejemplo.com</code></pre>
       <ul>
-        <li><code>-R 2222:localhost:22</code>: el puerto 2222 del puente lleva al SSH (puerto 22) de tu casa.</li>
+        <li><code>-R 2222:localhost:22</code>: el puerto 2222 del puente lleva al SSH (puerto 22) de tu casa. El primer número es el puerto que se abre en el puente; el último, el puerto donde escucha el SSH de tu casa.</li>
         <li><code>-N</code>: no abre una terminal, solo mantiene el túnel.</li>
       </ul>
       <p>Ese 2222 solo escucha dentro del puente (<code>localhost</code>). Desde internet no se ve, que es justo lo que queremos.</p>
@@ -143,7 +142,15 @@ restrict,port-forwarding,command="/bin/false",permitopen="localhost:2222" ssh-ed
       <p>Con el túnel abierto, desde la PC del trabajo:</p>
 <pre><code>ssh -J tunel@puente.ejemplo.com -p 2222 ana@localhost</code></pre>
       <p><code>-J</code> significa "salta por aquí". El <code>localhost</code> es el del puente, que es la puerta hacia tu casa, y <code>ana</code> es tu usuario en la PC de casa.</p>
-      <p>Escribir eso cada vez cansa. En el <code>~/.ssh/config</code> de la PC del trabajo le pones nombre a cada máquina:</p>
+      <p>La primera vez, SSH te pide aceptar dos huellas: la del puente y la de tu casa, que aparece como <code>[localhost]:2222</code>. Si ya estás dentro, lo lograste.</p>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="fc085d9da19c4d9e92019f7dd178afef" data-djc-core-reto-seccion="basico"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="intermedio">Intermedio: que funcione solo</h2>
+      <p>Ya entras, pero con un comando largo y un túnel que muere si se reinicia la PC. Ahora lo dejamos cómodo y andando solo.</p>
+      <h3>Un nombre para cada máquina</h3>
+      <p>Escribir el comando completo cada vez cansa. En el <code>~/.ssh/config</code> de la PC del trabajo le pones nombre a cada máquina:</p>
 <pre><code>Host puente
     HostName puente.ejemplo.com
     User tunel
@@ -156,7 +163,7 @@ Host casa
       <p>Y para entrar basta con:</p>
 <pre><code>ssh casa</code></pre>
 
-      <h3>5. Que el túnel no se caiga</h3>
+      <h3>Que el túnel no se caiga</h3>
       <p>Si se corta internet en casa o se reinicia la PC, el túnel muere. Lo dejamos como un servicio de systemd en la PC de casa, en <code>/etc/systemd/system/tunel-puente.service</code>:</p>
 <pre><code>[Unit]
 Description=Túnel inverso al puente
@@ -182,8 +189,9 @@ WantedBy=multi-user.target</code></pre>
         <li><code>ServerAliveInterval=30</code> y <code>ServerAliveCountMax=3</code>: cada 30 segundos revisa que el puente responda. Si falla tres veces, corta y systemd lo vuelve a abrir.</li>
         <li><code>ExitOnForwardFailure=yes</code>: si no pudo abrir el puerto 2222, termina en vez de quedarse conectado sin túnel.</li>
         <li><code>BatchMode=yes</code>: si algo pide contraseña o confirmar una huella, falla en vez de quedarse esperando una respuesta que nunca llega.</li>
+        <li><code>Restart=always</code> y <code>RestartSec=5</code>: cuando el túnel termina, por lo que sea, systemd lo vuelve a abrir a los 5 segundos.</li>
       </ul>
-      <p><code>BatchMode</code> solo aplica al túnel, que es la conexión que hace este servicio. Cuando tú entras con <code>ssh casa</code>, SSH te pide tu contraseña o la frase de paso de tu clave como siempre. Lo que sí necesita el túnel es una clave sin frase de paso, porque al arrancar solo no hay nadie que la escriba. Por eso en el puente esa clave está limitada a abrir el puerto 2222.</p>
+      <p><code>BatchMode</code> solo aplica al túnel, que es la conexión que hace este servicio. Cuando tú entras con <code>ssh casa</code>, SSH te pide tu contraseña o la frase de paso de tu clave como siempre. Lo que sí necesita el túnel es una clave sin frase de paso, porque al arrancar solo no hay nadie que la escriba.</p>
       <p>Por eso, antes de activarlo, conéctate una vez a mano con el usuario <code>ana</code> para aceptar la huella del puente. Después:</p>
 <pre><code>sudo systemctl daemon-reload
 sudo systemctl enable --now tunel-puente</code></pre>
@@ -203,11 +211,9 @@ rsync -av proyecto/ casa:/home/ana/proyecto/</code></pre>
       <h3>Abrir en el trabajo un servicio de casa</h3>
       <p>Si en casa corre una web en el puerto 8080 (o una base de datos en el 5432), puedes traerla a la PC del trabajo con un túnel:</p>
 <pre><code>ssh -N -L 8080:localhost:8080 casa</code></pre>
-      <p>Mientras ese comando esté abierto, entras a <code>http://localhost:8080</code> en tu navegador y llegas al servicio de tu casa.</p>
-    </div>
+      <p>Mientras ese comando esté abierto, entras a <code>http://localhost:8080</code> en tu navegador y llegas al servicio de tu casa. Fíjate en la diferencia: <code>-R</code> abre un puerto <strong>en el otro lado</strong> (el puente), <code>-L</code> lo abre <strong>en tu lado</strong> (el trabajo).</p>
 
-    <div class="section">
-      <h2>Comprobarlo</h2>
+      <h3>Comprobarlo</h3>
       <p>Antes de confiar en algo, nos gusta ver que de verdad pasa por donde creemos. En la PC de casa, revisa que el túnel esté vivo:</p>
 <pre><code>systemctl status tunel-puente</code></pre>
       <p>Tiene que decir <code>active (running)</code>. Desde el trabajo, con <code>-v</code>, SSH cuenta lo que hace:</p>
@@ -217,6 +223,47 @@ rsync -av proyecto/ casa:/home/ana/proyecto/</code></pre>
 Authenticated to puente.ejemplo.com ([203.0.113.10]:22) using "publickey".
 Authenticated to localhost (via proxy) using "publickey".</code></pre>
       <p>La primera dice que va a usar el puente, la segunda que entró al puente y la tercera que entró a tu casa <strong>a través</strong> del puente (<code>via proxy</code>).</p>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="fc085d9da19c4d9e92019f7dd178afef" data-djc-core-reto-seccion="intermedio"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="avanzado">Avanzado: seguridad y diagnóstico</h2>
+      <p>Funciona y anda solo. Ahora lo cerramos bien, aprendemos a leer sus errores y a saber quién entró.</p>
+      <h3>Limitar las claves en el puente</h3>
+      <p>Hasta aquí, las claves del usuario <code>tunel</code> pueden abrir una terminal en el puente. Si alguien te roba una, entra a tu servidor. En el <code>/home/tunel/.ssh/authorized_keys</code> del puente, a cada clave le ponemos delante lo único que puede hacer:</p>
+<pre><code>restrict,port-forwarding,command="/bin/false",permitlisten="localhost:2222" ssh-ed25519 AAAA... ana@casa
+restrict,port-forwarding,command="/bin/false",permitopen="localhost:2222" ssh-ed25519 AAAA... ana@trabajo</code></pre>
+      <ul>
+        <li><code>restrict</code> quita todo (terminal, reenvíos, agente) y <code>port-forwarding</code> vuelve a permitir solo los túneles.</li>
+        <li><code>command="/bin/false"</code> hace que cualquier comando termine de inmediato. Hace falta: <code>restrict</code> solo quita la terminal, pero todavía deja ejecutar un comando suelto como <code>ssh tunel@puente id</code>.</li>
+        <li><code>permitlisten="localhost:2222"</code>: la casa solo puede <strong>abrir</strong> el puerto 2222.</li>
+        <li><code>permitopen="localhost:2222"</code>: el trabajo solo puede <strong>ir</strong> al puerto 2222. Se compara el texto tal cual: si en tu config pones <code>127.0.0.1</code> en vez de <code>localhost</code>, el puente lo rechaza.</li>
+      </ul>
+      <p>Con eso, una clave robada no sirve para abrir una terminal, ver archivos ni saltar a otro lado.</p>
+
+      <h3>Cuando algo falla: qué dice cada error</h3>
+      <p>SSH da mensajes cortos, y el mismo síntoma ("no entro") puede tener varias causas. Esta es la tabla que nos hubiera gustado tener:</p>
+      <div class="djc-core-table">
+      <table>
+        <thead><tr><th>Mensaje</th><th>Dónde lo ves</th><th>Qué pasa</th></tr></thead>
+        <tbody>
+          <tr><td><code>administratively prohibited: open failed</code></td><td>Trabajo</td><td>El puente no te deja ir a ese puerto: <code>permitopen</code> no coincide (por ejemplo <code>localhost</code> frente a <code>127.0.0.1</code>) o el puente tiene <code>AllowTcpForwarding no</code>.</td></tr>
+          <tr><td><code>connect failed: Connection refused</code></td><td>Trabajo</td><td>En el puente nadie escucha en el 2222: el túnel de tu casa no está abierto.</td></tr>
+          <tr><td><code>connect_to localhost port 2222: failed.</code></td><td>Casa (<code>journalctl -u tunel-puente</code>)</td><td>La conexión llegó a tu casa, pero ahí nadie escucha en ese puerto: el último número del <code>-R</code> no es el puerto del SSH de tu casa, o su SSH no está corriendo.</td></tr>
+          <tr><td><code>remote port forwarding failed for listen port 2222</code></td><td>Casa</td><td>El puente no abrió el puerto: lo guarda para una conexión vieja (falta <code>ClientAliveInterval</code>) o <code>permitlisten</code> no lo permite.</td></tr>
+          <tr><td><code>Host key verification failed.</code></td><td>Trabajo</td><td>No aceptaste la huella del puente o la de tu casa (<code>[localhost]:2222</code>).</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Los dos primeros terminan con <code>Connection closed by UNKNOWN port 65535</code>. Ese final no dice nada: es SSH avisando que el salto se cortó. Lo que importa es la línea de antes.</p>
+
+      <h3>Saber quién entró</h3>
+      <p>Con <code>-N</code> no se abre una terminal, así que <code>who</code> y <code>last</code> no muestran las conexiones del túnel. El registro de SSH sí. En el puente:</p>
+<pre><code>sudo journalctl -u ssh | grep 'Accepted publickey for tunel'</code></pre>
+<pre><code>Accepted publickey for tunel from 198.51.100.7 port 52114 ssh2: ED25519 SHA256:x4Gk...</code></pre>
+      <p>La IP dice desde dónde se conectaron y el <code>SHA256:...</code> dice con qué clave. Para saber cuál de tus claves es, compara con las huellas de las que tienes autorizadas:</p>
+<pre><code>sudo ssh-keygen -lf /home/tunel/.ssh/authorized_keys</code></pre>
+      <p>Si aparece una huella que no es de casa ni del trabajo, alguien tiene una clave que no debería: bórrala del <code>authorized_keys</code>.</p>
 
       <h3>¿Tu conexión es post-cuántica?</h3>
       <p>Alguien podría grabar hoy tu conexión cifrada y guardarla hasta que exista una computadora cuántica capaz de descifrarla. Para eso, SSH acuerda la clave de cada sesión con un método que resiste a esas computadoras. Para ver cuál usó:</p>
@@ -229,10 +276,8 @@ debug1: kex: algorithm: mlkem768x25519-sha256</code></pre>
         <li><code>curve25519-sha256</code> u otro: segura hoy, pero no contra esa grabación. La PC del trabajo o la de casa tiene un OpenSSH anterior a la 9.0; actualízalo.</li>
       </ul>
       <p>Tu clave <code>ed25519</code> no cambia: esto depende de la versión de OpenSSH, no de la clave.</p>
-    </div>
 
-    <div class="section">
-      <h2>Si tu SSH es antiguo</h2>
+      <h3>Si tu SSH es antiguo</h3>
       <p><code>-J</code> y <code>ProxyJump</code> existen desde OpenSSH 7.3, y <code>permitlisten</code> desde la 7.8 (lo ves con <code>ssh -V</code>). Si el SSH del trabajo es más viejo, en el bloque de <code>casa</code> se usa la forma clásica, que hace lo mismo:</p>
 <pre><code>Host casa
     HostName localhost
@@ -240,22 +285,18 @@ debug1: kex: algorithm: mlkem768x25519-sha256</code></pre>
     User ana
     ProxyCommand ssh -W %h:%p puente</code></pre>
       <p>En Windows 10 y 11 el cliente de OpenSSH ya viene incluido y entiende <code>-J</code>. El archivo de configuración está en <code>C:\Users\tu-usuario\.ssh\config</code>.</p>
-    </div>
 
-    <div class="section">
-      <h2>Lo que hay que mirar con cuidado</h2>
+      <h3>Lo que hay que mirar con cuidado</h3>
       <ul>
         <li><strong>No copies ninguna clave privada al puente.</strong> Con <code>-J</code> no hace falta: el puente solo ve claves públicas.</li>
         <li><strong>No abras el 2222 a internet.</strong> El puente puede publicarlo con <code>GatewayPorts yes</code> y te ahorrarías el <code>-J</code>, pero es lo mismo que abrir el SSH de tu casa a todo el mundo, que es lo que queríamos evitar.</li>
         <li><strong>Cuidado con <code>-A</code> (reenviar el agente).</strong> Mientras estás conectado, quien tenga permisos de administrador en el puente puede usar tus claves. Con <code>-J</code> no lo necesitas.</li>
-        <li><strong>Si ves <code>remote port forwarding failed for listen port 2222</code></strong>, el puente todavía guarda el puerto para una conexión vieja. Con <code>ClientAliveInterval</code> en el puente se arregla solo en un rato.</li>
-        <li><strong>La huella se confirma dos veces.</strong> La primera vez, SSH te pide aceptar la del puente y después la de tu casa, que aparece como <code>[localhost]:2222</code>. Si respondes que no, verás <code>Host key verification failed.</code></li>
-        <li><strong>El puente tiene que permitir el reenvío.</strong> Viene permitido por defecto, pero si alguien puso <code>AllowTcpForwarding no</code> en el puente, el salto falla con <code>administratively prohibited: open failed</code>.</li>
         <li><strong>Apaga las contraseñas en casa.</strong> Cuando ya entres con tu clave, pon <code>PasswordAuthentication no</code> en el <code>/etc/ssh/sshd_config</code> de la PC de casa.</li>
       </ul>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="fc085d9da19c4d9e92019f7dd178afef" data-djc-core-reto-seccion="avanzado"></div>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>Qué nos enseñó</h2>
       <p>Que el camino obvio (abrir un puerto en el router) muchas veces no se puede y, cuando se puede, deja tu casa a la vista de todos. Si lo das vuelta, es la casa la que llama al puente con <code>-R</code>, tú entras por ese túnel con <code>-J</code> y el puente queda como un tubo que no puede leer nada. Con el servicio de systemd y el usuario <code>tunel</code> limitado, solo te queda escribir <code>ssh casa</code> desde donde estés. Pruébalo primero con <code>ssh -v casa</code> y mira esa línea de <code>via proxy</code>: cuando la ves, sabes que estás entrando como corresponde.</p>
     </div>

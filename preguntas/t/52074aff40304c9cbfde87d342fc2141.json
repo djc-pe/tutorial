@@ -1,0 +1,210 @@
+{
+  "version": 1,
+  "tutorial": "52074aff40304c9cbfde87d342fc2141",
+  "url": {
+    "es": "es/52/07/4a/ff/40/30/4c/9c/bf/de/87/d3/42/fc/21/41/",
+    "en": "en/52/07/4a/ff/40/30/4c/9c/bf/de/87/d3/42/fc/21/41/",
+    "zh-cn": "zh-cn/52/07/4a/ff/40/30/4c/9c/bf/de/87/d3/42/fc/21/41/"
+  },
+  "prefijo": "en01",
+  "categorias": [
+    "ingles"
+  ],
+  "escala": "idiomas",
+  "preguntas": [
+    {
+      "id": "en01-001",
+      "dificultad": 4,
+      "tipo": "elegir",
+      "contexto": false,
+      "oir": true,
+      "es": {
+        "pregunta": "¿Qué significa?",
+        "frase": "Nice to meet you.",
+        "opciones": [
+          {
+            "texto": "Mucho gusto.",
+            "correcta": true
+          },
+          {
+            "texto": "¿Cómo estás?"
+          },
+          {
+            "texto": "¿De dónde eres?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "en01-002",
+      "dificultad": 6,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Qué significa?",
+        "frase": "Where are you from?",
+        "opciones": [
+          {
+            "texto": "¿De dónde eres?",
+            "correcta": true
+          },
+          {
+            "texto": "¿Dónde estás?"
+          },
+          {
+            "texto": "¿Adónde vas?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "en01-003",
+      "dificultad": 8,
+      "tipo": "ordenar",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Cómo te llamas?",
+        "frase": "What's your name?",
+        "extra": [
+          "you"
+        ]
+      }
+    },
+    {
+      "id": "en01-004",
+      "dificultad": 9,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesEn": true,
+      "es": {
+        "pregunta": "Completa: Soy de Perú.",
+        "frase": "I'm ___ Peru.",
+        "opciones": [
+          {
+            "texto": "from",
+            "correcta": true
+          },
+          {
+            "texto": "of"
+          },
+          {
+            "texto": "in"
+          }
+        ],
+        "explica": "Para decir de dónde eres se usa from: I'm from Peru."
+      }
+    },
+    {
+      "id": "en01-005",
+      "dificultad": 5,
+      "tipo": "elegir",
+      "contexto": false,
+      "oir": true,
+      "es": {
+        "pregunta": "¿Qué significa?",
+        "frase": "How are you?",
+        "opciones": [
+          {
+            "texto": "¿Cómo estás?",
+            "correcta": true
+          },
+          {
+            "texto": "¿Quién eres?"
+          },
+          {
+            "texto": "¿Cuántos años tienes?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "en01-006",
+      "dificultad": 12,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesEn": true,
+      "es": {
+        "pregunta": "¿Cómo se dice «Tengo 25 años»?",
+        "opciones": [
+          {
+            "texto": "I'm 25.",
+            "correcta": true
+          },
+          {
+            "texto": "I have 25 years."
+          },
+          {
+            "texto": "I am 25 year."
+          }
+        ],
+        "explica": "En inglés la edad no se tiene, se es: I'm 25 o I'm 25 years old."
+      }
+    },
+    {
+      "id": "en01-007",
+      "dificultad": 11,
+      "tipo": "ordenar",
+      "contexto": false,
+      "es": {
+        "pregunta": "Bien, gracias. ¿Y tú?",
+        "frase": "I'm fine, thanks. And you?"
+      }
+    },
+    {
+      "id": "en01-008",
+      "dificultad": 13,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesEn": true,
+      "es": {
+        "pregunta": "¿Cómo se dice «Estoy de acuerdo»?",
+        "opciones": [
+          {
+            "texto": "I agree.",
+            "correcta": true
+          },
+          {
+            "texto": "I am agree."
+          },
+          {
+            "texto": "I'm agree."
+          }
+        ],
+        "explica": "Agree ya es un verbo, no lleva am: I agree."
+      }
+    },
+    {
+      "id": "en01-009",
+      "dificultad": 15,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Qué significa actually aquí?",
+        "frase": "Actually, I'm from Lima.",
+        "opciones": [
+          {
+            "texto": "En realidad",
+            "correcta": true
+          },
+          {
+            "texto": "Actualmente"
+          },
+          {
+            "texto": "Exactamente"
+          }
+        ],
+        "explica": "Es un falso amigo: actually significa «en realidad». Actualmente se dice currently o nowadays."
+      }
+    },
+    {
+      "id": "en01-010",
+      "dificultad": 14,
+      "tipo": "hablar",
+      "contexto": false,
+      "es": {
+        "pregunta": "Preséntate como Carlos:",
+        "frase": "Hi! I'm Carlos. Nice to meet you."
+      }
+    }
+  ]
+}

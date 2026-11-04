@@ -1,0 +1,213 @@
+/*
+ * djc-core-ui (v1): estilos base de tutorial.djc.pe. Ver docs/ui.md.
+ *
+ * Componentes con nombre (como Bootstrap) y pocas utilidades (como Tailwind),
+ * todo con el prefijo djc-core-. Solo colores de marca (variable.css) y sus
+ * tonalidades. Las páginas no llevan style="...".
+ */
+
+/* ---------- Tokens ---------- */
+
+:root {
+  --djc-core-radius: 12px;
+  --djc-core-radius-sm: 8px;
+  --djc-core-border: 1px solid var(--color-border);
+  --djc-core-accent-08: rgba(229, 247, 116, 0.08);
+  --djc-core-accent-16: rgba(229, 247, 116, 0.16);
+  --djc-core-accent-25: rgba(229, 247, 116, 0.25);
+  --djc-core-accent-50: rgba(229, 247, 116, 0.5);
+  --djc-core-border-soft: 1px solid var(--djc-core-accent-25);
+  --djc-core-space-1: 4px;
+  --djc-core-space-2: 8px;
+  --djc-core-space-3: 12px;
+  --djc-core-space-4: 16px;
+  --djc-core-space-5: 24px;
+  --djc-core-space-6: 32px;
+}
+
+/* ---------- Página ---------- */
+
+/* El artículo deja de ser un solo bloque gris: cada cuadro se ve sobre el fondo. */
+main.content.djc-core-page {
+  background: transparent;
+  padding: var(--djc-core-space-5) var(--djc-core-space-4);
+}
+
+@media (max-width: 600px) {
+  main.content.djc-core-page {
+    margin: 0;
+    padding: var(--djc-core-space-4);
+  }
+}
+
+.djc-core-page h1 {
+  margin: var(--djc-core-space-2) 0 var(--djc-core-space-2);
+  line-height: 1.25;
+}
+
+/* Inicio / Categoría */
+.djc-core-breadcrumb {
+  margin: 0 0 var(--djc-core-space-1);
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.djc-core-breadcrumb a,
+.djc-core-author a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.djc-core-breadcrumb a:hover,
+.djc-core-author a:hover { text-decoration: underline; }
+
+/* Serie por @editor */
+.djc-core-author {
+  margin: 0 0 var(--djc-core-space-5);
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+/* ---------- Cuadro ---------- */
+
+.djc-core-card {
+  margin: 0 0 var(--djc-core-space-4);
+  padding: var(--djc-core-space-4) 1.2rem;
+  border: var(--djc-core-border);
+  border-radius: var(--djc-core-radius);
+  background: var(--color-surface);
+}
+
+.djc-core-card > :first-child { margin-top: 0; }
+.djc-core-card > :last-child { margin-bottom: 0; }
+
+.djc-core-card h2 {
+  margin: 0 0 var(--djc-core-space-3);
+  color: var(--color-accent);
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.djc-core-card h3 {
+  margin: var(--djc-core-space-5) 0 var(--djc-core-space-2);
+  font-size: 18px;
+}
+
+/* Si se salta a un ancla (#basico), que el título no quede bajo la barra del sitio */
+.djc-core-card [id] { scroll-margin-top: 80px; }
+
+/* Los enlaces dentro del texto */
+.djc-core-card p a,
+.djc-core-card li a {
+  color: var(--color-accent);
+}
+
+/* Bloques de código dentro de un cuadro: fondo negro y borde en tono del acento */
+.djc-core-card pre {
+  background: var(--color-bg);
+  border: var(--djc-core-border-soft);
+  border-radius: var(--djc-core-radius-sm);
+}
+
+/* ---------- Tabla ---------- */
+
+/* <div class="djc-core-table"><table>...</table></div>: se desplaza en el celular */
+.djc-core-table {
+  margin: var(--djc-core-space-3) 0;
+  overflow-x: auto;
+}
+
+.djc-core-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.djc-core-table th,
+.djc-core-table td {
+  padding: var(--djc-core-space-2);
+  text-align: left;
+  vertical-align: top;
+}
+
+.djc-core-table thead tr {
+  color: var(--color-accent);
+  border-bottom: 1px solid var(--color-accent);
+}
+
+.djc-core-table tbody tr { border-bottom: var(--djc-core-border-soft); }
+.djc-core-table tbody tr:last-child { border-bottom: 0; }
+
+/* ---------- Figura ---------- */
+
+.djc-core-figure {
+  margin: var(--djc-core-space-4) 0;
+  text-align: center;
+}
+
+.djc-core-figure svg {
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+}
+
+.djc-core-figure figcaption {
+  margin-top: 6px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+/* ---------- Respuestas ocultas ---------- */
+
+.djc-core-details {
+  margin-top: var(--djc-core-space-3);
+  padding: 10px 14px;
+  border: var(--djc-core-border-soft);
+  border-radius: var(--djc-core-radius-sm);
+  background: var(--color-bg);
+}
+
+.djc-core-details summary {
+  cursor: pointer;
+  color: var(--color-accent);
+}
+
+/* ---------- Utilidades ---------- */
+
+.djc-core-text-muted { color: var(--color-text-muted); }
+.djc-core-text-accent { color: var(--color-accent); }
+.djc-core-text-sm { font-size: 14px; }
+.djc-core-text-center { text-align: center; }
+
+.djc-core-mt-0 { margin-top: 0; }
+.djc-core-mt-2 { margin-top: var(--djc-core-space-2); }
+.djc-core-mt-4 { margin-top: var(--djc-core-space-4); }
+.djc-core-mt-6 { margin-top: var(--djc-core-space-6); }
+.djc-core-mb-0 { margin-bottom: 0; }
+.djc-core-mb-2 { margin-bottom: var(--djc-core-space-2); }
+.djc-core-mb-4 { margin-bottom: var(--djc-core-space-4); }
+.djc-core-mb-6 { margin-bottom: var(--djc-core-space-6); }
+
+/* ---------- Anuncio (core/ads) ---------- */
+
+/* Un cuadro como los demás, sin etiqueta; aunque no llegue anuncio, se ve. */
+.djc-core-card.djc-core-ads {
+  min-height: 6rem;
+  overflow: hidden;
+}
+
+/* Móvil: el anuncio es de tamaño fijo (300x250); centrado y con poco margen
+ * lateral para que quepa en pantallas estrechas. */
+@media (max-width: 768px) {
+  .djc-core-card.djc-core-ads {
+    padding: var(--djc-core-space-4) var(--djc-core-space-2);
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .djc-core-card.djc-core-ads {
+    padding-left: var(--djc-core-space-1);
+    padding-right: var(--djc-core-space-1);
+  }
+}

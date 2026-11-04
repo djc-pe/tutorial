@@ -9,12 +9,14 @@
   <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/variable.css">
   <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/style.css">
   <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/index.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/ui/1/ui.css">
   <script src="https://story.djc.pe/assets/djc/base/1/index.js" defer></script>
   <script src="https://story.djc.pe/assets/djc/nav/1/script.js" defer></script>
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
-  <script src="https://story.djc.pe/assets/djc/ads/1/header.js"></script>
-  <script src="https://story.djc.pe/assets/djc/ads/1/content.js"></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-movil.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-pc.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/ads.js" defer></script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
@@ -37,15 +39,17 @@
 </head>
 <body>
 
-  <main class="content">
-    <p style="color:var(--color-text-muted); font-size:13px; margin-bottom:4px;"><a href="https://tutorial.djc.pe/" style="color:var(--color-accent); text-decoration:none;">Home</a> / <a href="/en/c/devops/" style="color:var(--color-accent); text-decoration:none;">DevOps</a></p>
+  <main class="content djc-core-page">
+    <p class="djc-core-breadcrumb"><a href="https://tutorial.djc.pe/">Home</a> / <a href="../../../../../../../../../../../../../../../../c/devops/">DevOps</a></p>
     <h1>How to Access Your Home PC from Anywhere with SSH</h1>
-    <p data-author style="color:var(--color-text-muted); font-size:14px;">Tutorial by <a href="https://www.djc.pe/u/@null_djc/" style="color:var(--color-accent); text-decoration:none;">@null_djc</a></p>
+    <p class="djc-core-author" data-author>Tutorial by <a href="https://www.djc.pe/u/@null_djc/">@null_djc</a></p>
 
-    <p>If you have ever wanted to get into your home PC from work or from a coffee shop, you probably hit the same wall we did: your home has no fixed public IP and the router lets nobody in. The way out is to use a server that does live on the internet as a <strong>jump host</strong> (also called a bastion) and have your home be the one that connects to it.</p>
-    <p>It takes two commands: at home, <code>ssh -R</code> to open a tunnel to the jump host, and away from home, <code>ssh -J</code> to come in through that tunnel. Below we look at why it works, how to keep it running on its own and where we got it wrong at first.</p>
+    <div class="djc-core-card">
+      <p>If you have ever wanted to get into your home PC from work or from a coffee shop, you probably hit the same wall we did: your home has no fixed public IP and the router lets nobody in. The way out is to use a server that does live on the internet as a <strong>jump host</strong> (also called a bastion) and have your home be the one that connects to it.</p>
+      <p>It takes two commands: at home, <code>ssh -R</code> to open a tunnel to the jump host, and away from home, <code>ssh -J</code> to come in through that tunnel. Below we look at why it works, how to keep it running on its own and where we got it wrong at first.</p>
+    </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>The idea in an example</h2>
       <p>We have three machines:</p>
       <ul>
@@ -53,8 +57,8 @@
         <li><strong>The jump host</strong>, <code>jump.example.com</code>: a server on the internet (any VPS) with a public IP and SSH.</li>
         <li><strong>The work PC</strong>, or your laptop on the go: where you want to connect from.</li>
       </ul>
-      <figure style="margin:16px 0; text-align:center;">
-      <svg viewBox="0 0 360 200" style="width:100%; max-width:460px; height:auto;" role="img" aria-label="The home PC opens a tunnel to the jump host; the work PC connects to the jump host and reaches home through the tunnel; there is no direct path from work to home.">
+      <figure class="djc-core-figure">
+      <svg viewBox="0 0 360 200" role="img" aria-label="The home PC opens a tunnel to the jump host; the work PC connects to the jump host and reaches home through the tunnel; there is no direct path from work to home.">
         <defs><marker id="ssh-flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" style="fill:var(--color-accent)"/></marker></defs>
         <rect x="244" y="58" width="110" height="122" rx="12" style="fill:none; stroke:var(--color-text-muted); stroke-width:1.5; stroke-dasharray:6 5"/>
         <text x="299" y="172" text-anchor="middle" style="fill:var(--color-text-muted); font:500 11px var(--font-base)">Your home (router)</text>
@@ -75,12 +79,12 @@
         <text x="113" y="111" text-anchor="middle" style="fill:var(--color-accent); font:600 10px var(--font-base)">-J</text>
         <text x="242" y="111" text-anchor="middle" style="fill:var(--color-accent); font:600 10px var(--font-base)">-R</text>
       </svg>
-      <figcaption style="color:var(--color-text-muted); font-size:13px; margin-top:6px;">Home opens a tunnel to the jump host with <code>-R</code>. From work you connect to the jump host with <code>-J</code> and reach home through that tunnel.</figcaption>
+      <figcaption>Home opens a tunnel to the jump host with <code>-R</code>. From work you connect to the jump host with <code>-J</code> and reach home through that tunnel.</figcaption>
       </figure>
       <p>What we want is to type <code>ssh home</code> at work and land inside the home PC, as if it were right next to us.</p>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>The trap</h2>
       <p>The first thing we thought of was the obvious one: open port 22 on the router (<em>port forwarding</em>) and connect straight to the home IP. It has three problems:</p>
       <ol>
@@ -90,12 +94,12 @@
       </ol>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>The idea</h2>
       <p>The router does not let anything <strong>in</strong>, but it does let things <strong>out</strong>. So we turn it around: the home PC connects to the jump host and tells it "open your port 2222 and send me whatever arrives there". That is a <strong>reverse tunnel</strong> (<code>-R</code>).</p>
       <p>From work you connect to the jump host and ask it to take you to its port 2222. Your home is on the other side. Along that path travels an SSH connection <strong>encrypted end to end between work and your home</strong>: the jump host only passes along bytes it cannot read.</p>
       <p>There are two connections, and in each one the key is split the same way: the <strong>private</strong> key stays on the machine that starts the connection and the <strong>public</strong> key goes in the <code>~/.ssh/authorized_keys</code> of the machine it connects to.</p>
-      <div style="overflow-x:auto">
+      <div class="djc-core-table">
       <table>
         <thead><tr><th>Connection</th><th>Who starts it (private key)</th><th>Where it connects (public key)</th></tr></thead>
         <tbody>
@@ -108,7 +112,7 @@
       <p>No private key ever goes through the jump host.</p>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>The solution</h2>
       <h3>1. Prepare the home PC</h3>
       <p>The home PC needs an SSH server so others can connect to it, and a key to connect to the jump host. On Ubuntu or Debian:</p>
@@ -206,7 +210,7 @@ rsync -av project/ home:/home/ana/project/</code></pre>
       <p>While that command is open, you go to <code>http://localhost:8080</code> in your browser and reach the service at your home.</p>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>Check it</h2>
       <p>Before trusting something, we like to see that it really goes where we think. On the home PC, check that the tunnel is alive:</p>
 <pre><code>systemctl status jump-tunnel</code></pre>
@@ -231,7 +235,7 @@ debug1: kex: algorithm: mlkem768x25519-sha256</code></pre>
       <p>Your <code>ed25519</code> key does not change: this depends on the OpenSSH version, not on the key.</p>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>If your SSH is old</h2>
       <p><code>-J</code> and <code>ProxyJump</code> exist since OpenSSH 7.3, and <code>permitlisten</code> since 7.8 (you can check with <code>ssh -V</code>). If the SSH at work is older, the <code>home</code> block uses the classic form, which does the same:</p>
 <pre><code>Host home
@@ -242,7 +246,7 @@ debug1: kex: algorithm: mlkem768x25519-sha256</code></pre>
       <p>Windows 10 and 11 already include the OpenSSH client, and it understands <code>-J</code>. The config file is at <code>C:\Users\your-user\.ssh\config</code>.</p>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>What to watch out for</h2>
       <ul>
         <li><strong>Do not copy any private key to the jump host.</strong> With <code>-J</code> there is no need: the jump host only sees public keys.</li>
@@ -255,7 +259,7 @@ debug1: kex: algorithm: mlkem768x25519-sha256</code></pre>
       </ul>
     </div>
 
-    <div class="section">
+    <div class="djc-core-card">
       <h2>What it taught us</h2>
       <p>That the obvious path (opening a port on the router) is often not possible and, when it is, leaves your home in plain sight. If you flip it around, home calls the jump host with <code>-R</code>, you come in through that tunnel with <code>-J</code> and the jump host is left as a pipe that cannot read anything. With the systemd service and the limited <code>tunnel</code> user, all that is left is typing <code>ssh home</code> wherever you are. Try it first with <code>ssh -v home</code> and look for that <code>via proxy</code> line: when you see it, you know you are getting in the right way.</p>
     </div>
