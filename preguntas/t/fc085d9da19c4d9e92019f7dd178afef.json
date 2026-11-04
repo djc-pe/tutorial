@@ -32,6 +32,23 @@
             "explica": "Abre un túnel inverso; no tiene que ver con las claves."
           }
         ]
+      },
+      "en": {
+        "pregunta": "Which command creates your key pair?",
+        "opciones": [
+          {
+            "texto": "ssh-keygen -t ed25519",
+            "correcta": true
+          },
+          {
+            "texto": "ssh-copy-id",
+            "explica": "It copies your public key to a server; it does not create it."
+          },
+          {
+            "texto": "ssh -R",
+            "explica": "It opens a reverse tunnel; it has nothing to do with keys."
+          }
+        ]
       }
     },
     {
@@ -56,6 +73,24 @@
             "explica": "El puente no puede entrar a tu casa: el router no deja entrar a nadie."
           }
         ]
+      },
+      "en": {
+        "pregunta": "You want to reach your home PC, which has no public IP, from work, using a server on the internet as a jump host. Which machine opens the tunnel?",
+        "opciones": [
+          {
+            "texto": "The home PC",
+            "correcta": true,
+            "explica": "The router lets nothing in but lets things out, so home is the one that calls the jump host."
+          },
+          {
+            "texto": "The work PC",
+            "explica": "Work uses the tunnel, but it does not open it."
+          },
+          {
+            "texto": "The jump host",
+            "explica": "The jump host cannot get into your home: the router lets nobody in."
+          }
+        ]
       }
     },
     {
@@ -78,6 +113,24 @@
           {
             "texto": "~/.ssh/authorized_keys",
             "explica": "Tiene claves públicas de otros; no es un secreto."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "Which of these files must never leave your PC?",
+        "opciones": [
+          {
+            "texto": "~/.ssh/id_ed25519",
+            "correcta": true,
+            "explica": "It is the private key."
+          },
+          {
+            "texto": "~/.ssh/id_ed25519.pub",
+            "explica": "It is the public one: you copy it to other machines on purpose."
+          },
+          {
+            "texto": "~/.ssh/authorized_keys",
+            "explica": "It holds other people's public keys; it is not a secret."
           }
         ]
       }
@@ -107,6 +160,27 @@
             "explica": "SSH funciona en cualquier puerto; el problema es llegar a él y exponerlo."
           }
         ]
+      },
+      "en": {
+        "pregunta": "Why is it a bad idea to open port 22 on your home router?",
+        "opciones": [
+          {
+            "texto": "With CGNAT your router has no public IP of its own to open",
+            "correcta": true
+          },
+          {
+            "texto": "Your home IP changes from time to time",
+            "correcta": true
+          },
+          {
+            "texto": "You expose your home SSH to bots from the whole internet",
+            "correcta": true
+          },
+          {
+            "texto": "SSH does not work on port 22 of a router",
+            "explica": "SSH works on any port; the problem is reaching it and exposing it."
+          }
+        ]
       }
     },
     {
@@ -133,6 +207,25 @@
             "explica": "Ninguna clave privada va al puente."
           }
         ]
+      },
+      "en": {
+        "pregunta": "Your home opens a tunnel to a jump host, and from work you get home by jumping through it with ssh -J. Which public keys does the jump host have to accept?",
+        "opciones": [
+          {
+            "texto": "The home PC's",
+            "correcta": true,
+            "explica": "To open the tunnel, home connects to the jump host."
+          },
+          {
+            "texto": "The work PC's",
+            "correcta": true,
+            "explica": "With -J, work also connects to the jump host first."
+          },
+          {
+            "texto": "The work PC's private key",
+            "explica": "No private key goes to the jump host."
+          }
+        ]
       }
     },
     {
@@ -143,6 +236,13 @@
       "es": {
         "pregunta": "Tu casa no tiene IP pública. Ordena el comando que abre en el servidor puente.ejemplo.com (usuario tunel) un puerto 2222 que lleva al SSH de tu casa",
         "frase": "ssh -N -R 2222:localhost:22 tunel@puente.ejemplo.com",
+        "extra": [
+          "-L"
+        ]
+      },
+      "en": {
+        "pregunta": "Your home has no public IP. Put in order the command that opens on the server jump.example.com (user tunnel) a port 2222 that leads to your home SSH",
+        "frase": "ssh -N -R 2222:localhost:22 tunnel@jump.example.com",
         "extra": [
           "-L"
         ]
@@ -169,6 +269,23 @@
             "explica": "Al puente llegas por su puerto normal; el último número del -R está del lado de tu casa."
           }
         ]
+      },
+      "en": {
+        "pregunta": "From your home you open a tunnel to a server with ssh -R 2222:localhost:22. What is the 22?",
+        "opciones": [
+          {
+            "texto": "The port your home SSH listens on",
+            "correcta": true
+          },
+          {
+            "texto": "The port opened on the server",
+            "explica": "That is the first number, 2222."
+          },
+          {
+            "texto": "The SSH port of the server",
+            "explica": "You reach the server on its normal port; the last number of -R is on your home side."
+          }
+        ]
       }
     },
     {
@@ -179,6 +296,13 @@
       "es": {
         "pregunta": "Tu casa abrió un túnel en el puerto 2222 del servidor puente.ejemplo.com (usuario tunel). Ordena el comando para entrar a tu casa desde el trabajo como ana, saltando por ese servidor",
         "frase": "ssh -J tunel@puente.ejemplo.com -p 2222 ana@localhost",
+        "extra": [
+          "-R"
+        ]
+      },
+      "en": {
+        "pregunta": "Your home opened a tunnel on port 2222 of the server jump.example.com (user tunnel). Put in order the command to get home from work as ana, jumping through that server",
+        "frase": "ssh -J tunnel@jump.example.com -p 2222 ana@localhost",
         "extra": [
           "-R"
         ]
@@ -206,6 +330,24 @@
           }
         ],
         "frase": "Host puente\n    HostName puente.ejemplo.com\n    User tunel\n\nHost casa\n    HostName localhost\n    Port 2222\n    User ana\n    ProxyJump puente"
+      },
+      "en": {
+        "pregunta": "You have this configuration in the ~/.ssh/config of your work PC. What do you type to get into your home PC?",
+        "frase": "Host jump\n    HostName jump.example.com\n    User tunnel\n\nHost home\n    HostName localhost\n    Port 2222\n    User ana\n    ProxyJump jump",
+        "opciones": [
+          {
+            "texto": "ssh home",
+            "correcta": true
+          },
+          {
+            "texto": "ssh jump",
+            "explica": "That leaves you on the jump host, not at your home."
+          },
+          {
+            "texto": "ssh -R home",
+            "explica": "-R opens a tunnel; you do not need it to get in."
+          }
+        ]
       }
     },
     {
@@ -230,6 +372,24 @@
           }
         ],
         "frase": "Host casa\n    HostName localhost\n    Port 2222\n    User ana\n    ProxyJump puente"
+      },
+      "en": {
+        "pregunta": "With this configuration, ssh home gets into a PC with no public IP by going through a middle server. Which line makes it go through that server?",
+        "frase": "Host home\n    HostName localhost\n    Port 2222\n    User ana\n    ProxyJump jump",
+        "opciones": [
+          {
+            "texto": "ProxyJump jump",
+            "correcta": true
+          },
+          {
+            "texto": "Port 2222",
+            "explica": "It is the tunnel port on the jump host, but it does not say where to go through."
+          },
+          {
+            "texto": "HostName localhost",
+            "explica": "It is the middle server's localhost, but without ProxyJump it would look for your own PC."
+          }
+        ]
       }
     },
     {
@@ -260,6 +420,30 @@
             "explica": "Evita que se quede esperando una contraseña, pero no lo vuelve a abrir."
           }
         ]
+      },
+      "en": {
+        "pregunta": "A systemd service keeps an SSH tunnel open (ssh -N -R ...). Which options make the tunnel come back on its own if it drops?",
+        "opciones": [
+          {
+            "texto": "ServerAliveInterval=30",
+            "correcta": true,
+            "explica": "It notices the jump host no longer answers and disconnects."
+          },
+          {
+            "texto": "ExitOnForwardFailure=yes",
+            "correcta": true,
+            "explica": "If it could not open the port, it exits so it can be retried."
+          },
+          {
+            "texto": "Restart=always",
+            "correcta": true,
+            "explica": "It is what opens the tunnel again when it ends."
+          },
+          {
+            "texto": "BatchMode=yes",
+            "explica": "It keeps it from waiting for a password, but it does not reopen it."
+          }
+        ]
       }
     },
     {
@@ -284,6 +468,24 @@
             "explica": "BatchMode no salta la frase de paso; solo evita quedarse esperando."
           }
         ]
+      },
+      "en": {
+        "pregunta": "Your home PC keeps a tunnel with a systemd service that uses -o BatchMode=yes. What happens when you connect from work with ssh and your key has a passphrase?",
+        "opciones": [
+          {
+            "texto": "It asks for the passphrase as usual",
+            "correcta": true,
+            "explica": "BatchMode only applies to the connection the service makes, not to yours."
+          },
+          {
+            "texto": "It fails, because BatchMode does not allow passphrases",
+            "explica": "That would happen to the service, not to you."
+          },
+          {
+            "texto": "It gets in without asking anything",
+            "explica": "BatchMode does not skip the passphrase; it only avoids waiting."
+          }
+        ]
       }
     },
     {
@@ -305,6 +507,23 @@
           {
             "texto": "Para limitar los intentos de contraseña",
             "explica": "No tiene que ver con contraseñas."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "A server receives a reverse tunnel (ssh -R 2222:...) from your home. What is ClientAliveInterval 30 in its sshd_config for?",
+        "opciones": [
+          {
+            "texto": "To release port 2222 quickly when the connection from your home died",
+            "correcta": true
+          },
+          {
+            "texto": "To keep the work connection from dropping",
+            "explica": "On the client side that is what ServerAliveInterval does."
+          },
+          {
+            "texto": "To limit password attempts",
+            "explica": "It has nothing to do with passwords."
           }
         ]
       }
@@ -331,6 +550,24 @@
             "explica": "scp copia archivos; no abre puertos."
           }
         ]
+      },
+      "en": {
+        "pregunta": "You already get home with ssh home. You want to open, in your work browser, a website running on port 8080 at your home. Which command do you use?",
+        "opciones": [
+          {
+            "texto": "ssh -N -L 8080:localhost:8080 home",
+            "correcta": true,
+            "explica": "-L opens the port on your side, work."
+          },
+          {
+            "texto": "ssh -N -R 8080:localhost:8080 home",
+            "explica": "-R would open the port on the other side, at your home."
+          },
+          {
+            "texto": "scp home:8080 .",
+            "explica": "scp copies files; it does not open ports."
+          }
+        ]
       }
     },
     {
@@ -352,6 +589,23 @@
           {
             "texto": "debug1: Setting implicit ProxyCommand from ProxyJump",
             "explica": "Solo anuncia que va a usar el puente."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "You get home through a jump host with ProxyJump. In the output of ssh -v, which line confirms you reached your home through the jump host?",
+        "opciones": [
+          {
+            "texto": "Authenticated to localhost (via proxy) using \"publickey\".",
+            "correcta": true
+          },
+          {
+            "texto": "Authenticated to jump.example.com ([203.0.113.10]:22) using \"publickey\".",
+            "explica": "That one says you got into the jump host; not your home yet."
+          },
+          {
+            "texto": "debug1: Setting implicit ProxyCommand from ProxyJump",
+            "explica": "It only announces that it will use the jump host."
           }
         ]
       }
@@ -376,6 +630,24 @@
           {
             "texto": "Sin command, -N no funciona",
             "explica": "-N funciona igual; command solo cierra los comandos sueltos."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "Why do you need command=\"/bin/false\" if the key already has restrict?",
+        "opciones": [
+          {
+            "texto": "restrict removes the terminal, but it still lets you run a single command",
+            "correcta": true,
+            "explica": "For example, ssh tunnel@jump id would work."
+          },
+          {
+            "texto": "restrict blocks tunnels and command allows them again",
+            "explica": "It is the other way around: restrict removes tunnels and port-forwarding brings them back."
+          },
+          {
+            "texto": "Without command, -N does not work",
+            "explica": "-N works the same; command only shuts down single commands."
           }
         ]
       }
@@ -404,6 +676,26 @@
             "explica": "Eso da «administratively prohibited», y lo ves en el trabajo."
           }
         ]
+      },
+      "en": {
+        "pregunta": "In the log of your home tunnel you see this. What could be going on?",
+        "frase": "connect_to localhost port 2222: failed.",
+        "opciones": [
+          {
+            "texto": "The last number of -R is not your home SSH port",
+            "correcta": true,
+            "explica": "With -R 2222:localhost:2222 the tunnel looks for an SSH on port 2222 of your home."
+          },
+          {
+            "texto": "The SSH at your home is not running",
+            "correcta": true,
+            "explica": "The connection reaches your home and finds nobody there."
+          },
+          {
+            "texto": "permitopen does not match on the jump host",
+            "explica": "That gives «administratively prohibited», and you see it at work."
+          }
+        ]
       }
     },
     {
@@ -426,6 +718,24 @@
           {
             "texto": "La huella de tu casa cambió",
             "explica": "Eso daría «Host key verification failed»."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "From work you see this error. Your config has HostName 127.0.0.1 and the jump host has permitopen=\"localhost:2222\". What is going on?",
+        "frase": "channel 0: open failed: administratively prohibited: open failed",
+        "opciones": [
+          {
+            "texto": "permitopen compares the text as is, and 127.0.0.1 is not localhost",
+            "correcta": true
+          },
+          {
+            "texto": "The tunnel from your home is down",
+            "explica": "That would give «Connection refused»."
+          },
+          {
+            "texto": "Your home fingerprint changed",
+            "explica": "That would give «Host key verification failed»."
           }
         ]
       }
@@ -453,6 +763,25 @@
             "explica": "Eso es para cuando el puerto queda ocupado, no para cuando nadie escucha."
           }
         ]
+      },
+      "en": {
+        "pregunta": "From work, while jumping through the jump host to your home, you see this error. What do you check first?",
+        "frase": "channel 0: open failed: connect failed: Connection refused",
+        "opciones": [
+          {
+            "texto": "That the tunnel from your home is open (the service that keeps it)",
+            "correcta": true,
+            "explica": "Nothing listens on that port on the jump host: the tunnel is not there."
+          },
+          {
+            "texto": "That permitopen matches",
+            "explica": "If it did not match, you would see «administratively prohibited»."
+          },
+          {
+            "texto": "ClientAliveInterval on the jump host",
+            "explica": "That is for when the port stays taken, not for when nothing listens."
+          }
+        ]
       }
     },
     {
@@ -477,6 +806,24 @@
           }
         ],
         "frase": "Accepted publickey for tunel from 198.51.100.7 port 52114 ssh2: ED25519 SHA256:x4Gk..."
+      },
+      "en": {
+        "pregunta": "The SSH log of the jump host shows this connection with a fingerprint you do not recognize. How do you find out which key it is?",
+        "frase": "Accepted publickey for tunnel from 198.51.100.7 port 52114 ssh2: ED25519 SHA256:x4Gk...",
+        "opciones": [
+          {
+            "texto": "Comparing it with ssh-keygen -lf on that user's authorized_keys",
+            "correcta": true
+          },
+          {
+            "texto": "With last",
+            "explica": "last does not show connections that only open a tunnel (-N), because they open no terminal."
+          },
+          {
+            "texto": "With who",
+            "explica": "who does not see tunnel-only connections either."
+          }
+        ]
       }
     },
     {
@@ -499,6 +846,24 @@
           {
             "texto": "Generar una clave ed25519 nueva",
             "explica": "Tu clave no tiene que ver: depende de la versión de OpenSSH."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "You get home through a jump host with ssh -J. ssh -v shows this for the leg to your home. What do you do to make the connection post-quantum?",
+        "frase": "debug1: kex: algorithm: curve25519-sha256",
+        "opciones": [
+          {
+            "texto": "Update OpenSSH to 9.0 or later at work and at home",
+            "correcta": true
+          },
+          {
+            "texto": "Switch your key to RSA",
+            "explica": "The key type does not change how the session key is agreed."
+          },
+          {
+            "texto": "Generate a new ed25519 key",
+            "explica": "Your key has nothing to do with it: it depends on the OpenSSH version."
           }
         ]
       }
@@ -526,6 +891,25 @@
             "explica": "Ya lo vuelve a intentar; el problema es que el puerto sigue ocupado."
           }
         ]
+      },
+      "en": {
+        "pregunta": "The tunnel drops every night, and when the internet comes back the home log repeats this error for several minutes. What is missing?",
+        "frase": "remote port forwarding failed for listen port 2222",
+        "opciones": [
+          {
+            "texto": "ClientAliveInterval in the jump host's sshd",
+            "correcta": true,
+            "explica": "The jump host keeps holding the port for the dead connection."
+          },
+          {
+            "texto": "Removing BatchMode=yes",
+            "explica": "BatchMode only avoids waiting for a password."
+          },
+          {
+            "texto": "Restart=always",
+            "explica": "It already retries; the problem is that the port is still taken."
+          }
+        ]
       }
     },
     {
@@ -547,6 +931,23 @@
           {
             "texto": "La conexión deja de ser post-cuántica",
             "explica": "El cifrado no cambia; lo que cambia es quién puede llegar al puerto."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "Your home opens a reverse tunnel on port 2222 of a jump host, and you get in with ssh -J. A coworker suggests setting GatewayPorts yes on the jump host to get in without -J. What problems does it have?",
+        "opciones": [
+          {
+            "texto": "Port 2222 is open to the whole internet",
+            "correcta": true
+          },
+          {
+            "texto": "It is the same as exposing your home SSH, which is what you wanted to avoid",
+            "correcta": true
+          },
+          {
+            "texto": "The connection stops being post-quantum",
+            "explica": "The encryption does not change; what changes is who can reach the port."
           }
         ]
       }

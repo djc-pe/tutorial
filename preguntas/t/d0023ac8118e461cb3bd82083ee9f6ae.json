@@ -1,0 +1,1063 @@
+{
+  "version": 1,
+  "tutorial": "d0023ac8118e461cb3bd82083ee9f6ae",
+  "url": {
+    "es": "es/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/",
+    "en": "en/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/",
+    "zh-cn": "zh-cn/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/"
+  },
+  "prefijo": "tricpp",
+  "categorias": [
+    "programacion",
+    "cpp",
+    "principiantes"
+  ],
+  "preguntas": [
+    {
+      "id": "tricpp-001",
+      "dificultad": 8,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "¿Qué imprime este código?",
+        "frase": "#include <iostream>\n#include <string>\n\nint main() {\n    int n = 3;\n    for (int i = 1; i <= n; i++) {\n        std::cout << std::string(i, '*') << \"\\n\";\n    }\n}",
+        "opciones": [
+          {
+            "texto": "*\n**\n***",
+            "correcta": true
+          },
+          {
+            "texto": "***\n**\n*",
+            "explica": "Ese es el invertido: el bucle tendría que contar hacia atrás."
+          },
+          {
+            "texto": "*\n*\n*",
+            "explica": "std::string(i, '*') tiene i asteriscos, así que cada fila tiene uno más."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does this code print?",
+        "frase": "#include <iostream>\n#include <string>\n\nint main() {\n    int n = 3;\n    for (int i = 1; i <= n; i++) {\n        std::cout << std::string(i, '*') << \"\\n\";\n    }\n}",
+        "opciones": [
+          {
+            "texto": "*\n**\n***",
+            "correcta": true
+          },
+          {
+            "texto": "***\n**\n*",
+            "explica": "That is the inverted one: the loop would have to count backwards."
+          },
+          {
+            "texto": "*\n*\n*",
+            "explica": "std::string(i, '*') has i asterisks, so each row has one more."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "这段代码会打印什么？",
+        "frase": "#include <iostream>\n#include <string>\n\nint main() {\n    int n = 3;\n    for (int i = 1; i <= n; i++) {\n        std::cout << std::string(i, '*') << \"\\n\";\n    }\n}",
+        "opciones": [
+          {
+            "texto": "*\n**\n***",
+            "correcta": true
+          },
+          {
+            "texto": "***\n**\n*",
+            "explica": "那是倒置的三角形：循环要倒着数。"
+          },
+          {
+            "texto": "*\n*\n*",
+            "explica": "std::string(i, '*') 有 i 个星号，所以每一行多一个。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-002",
+      "dificultad": 12,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Qué es std::string(4, '*') en C++?",
+        "opciones": [
+          {
+            "texto": "\"****\", un texto con cuatro asteriscos",
+            "correcta": true,
+            "explica": "Primero va la cantidad y después el carácter."
+          },
+          {
+            "texto": "\"4*\"",
+            "explica": "No pega el número: repite el carácter."
+          },
+          {
+            "texto": "Un error de compilación",
+            "explica": "Es la forma normal de crear un texto con un carácter repetido."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What is std::string(4, '*') in C++?",
+        "opciones": [
+          {
+            "texto": "\"****\", a text with four asterisks",
+            "correcta": true,
+            "explica": "The count goes first and then the character."
+          },
+          {
+            "texto": "\"4*\"",
+            "explica": "It does not stick the number on: it repeats the character."
+          },
+          {
+            "texto": "A compile error",
+            "explica": "It is the normal way to create a text with a repeated character."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在 C++ 里 std::string(4, '*') 是什么？",
+        "opciones": [
+          {
+            "texto": "\"****\"，一个有四个星号的文本",
+            "correcta": true,
+            "explica": "先写个数，再写字符。"
+          },
+          {
+            "texto": "\"4*\"",
+            "explica": "不会把数字拼上去：而是重复字符。"
+          },
+          {
+            "texto": "编译错误",
+            "explica": "这是创建重复字符文本的正常写法。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-003",
+      "dificultad": 18,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Este bucle debería imprimir 5 filas, de 1 a 5 asteriscos, pero arriba sale una línea vacía y falta la fila de cinco. ¿Qué cambias?",
+        "frase": "for (int i = 0; i < n; i++) {\n    std::cout << std::string(i, '*') << \"\\n\";\n}",
+        "opciones": [
+          {
+            "texto": "Empezar en 1 y usar <=: for (int i = 1; i <= n; i++)",
+            "correcta": true,
+            "explica": "Desde 0, la primera fila es std::string(0, '*'), vacía, y con < nunca llega a 5."
+          },
+          {
+            "texto": "Cambiar int n = 5 por int n = 6",
+            "explica": "Aparece la fila de cinco, pero sigue la línea vacía de arriba."
+          },
+          {
+            "texto": "Cambiar \"\\n\" por std::endl",
+            "explica": "Los dos saltan de línea; el problema es el bucle."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "This loop should print 5 rows, from 1 to 5 asterisks, but there is an empty line at the top and the row of five is missing. What do you change?",
+        "frase": "for (int i = 0; i < n; i++) {\n    std::cout << std::string(i, '*') << \"\\n\";\n}",
+        "opciones": [
+          {
+            "texto": "Start at 1 and use <=: for (int i = 1; i <= n; i++)",
+            "correcta": true,
+            "explica": "From 0, the first row is std::string(0, '*'), empty, and with < it never gets to 5."
+          },
+          {
+            "texto": "Change int n = 5 to int n = 6",
+            "explica": "The row of five shows up, but the empty line at the top is still there."
+          },
+          {
+            "texto": "Change \"\\n\" to std::endl",
+            "explica": "Both jump to a new line; the problem is the loop."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "这个循环应该打印 5 行，从 1 个到 5 个星号，但最上面多了一个空行，而且少了五个星号的那一行。你要改什么？",
+        "frase": "for (int i = 0; i < n; i++) {\n    std::cout << std::string(i, '*') << \"\\n\";\n}",
+        "opciones": [
+          {
+            "texto": "从 1 开始并用 <=：for (int i = 1; i <= n; i++)",
+            "correcta": true,
+            "explica": "从 0 开始的话，第一行是 std::string(0, '*')，是空的，而且用 < 永远到不了 5。"
+          },
+          {
+            "texto": "把 int n = 5 改成 int n = 6",
+            "explica": "五个星号的那一行出现了，但最上面的空行还在。"
+          },
+          {
+            "texto": "把 \"\\n\" 改成 std::endl",
+            "explica": "两者都会换行；问题在循环。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-004",
+      "dificultad": 22,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Lees el tamaño con std::cin >> n y el usuario escribe hola. ¿Qué pasa?",
+        "opciones": [
+          {
+            "texto": "cin falla en silencio, n queda en 0 y el programa no imprime nada",
+            "correcta": true,
+            "explica": "Para darte cuenta, revisa la lectura: if (!(std::cin >> n))."
+          },
+          {
+            "texto": "El programa muestra un error y se detiene",
+            "explica": "C++ no avisa: hay que revisar si la lectura funcionó."
+          },
+          {
+            "texto": "n vale 4, por las cuatro letras",
+            "explica": "cin no cuenta letras: la lectura falla."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "You read the size with std::cin >> n and the user types hello. What happens?",
+        "opciones": [
+          {
+            "texto": "cin fails silently, n stays at 0 and the program prints nothing",
+            "correcta": true,
+            "explica": "To notice, check the read: if (!(std::cin >> n))."
+          },
+          {
+            "texto": "The program shows an error and stops",
+            "explica": "C++ does not warn you: you have to check whether the read worked."
+          },
+          {
+            "texto": "n is 5, for the five letters",
+            "explica": "cin does not count letters: the read fails."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "你用 std::cin >> n 读取大小，用户输入了 hello。会怎样？",
+        "opciones": [
+          {
+            "texto": "cin 悄悄失败，n 保持为 0，程序什么也不打印",
+            "correcta": true,
+            "explica": "要发现这个问题，就检查读取：if (!(std::cin >> n))。"
+          },
+          {
+            "texto": "程序显示一个错误并停下",
+            "explica": "C++ 不会提醒你：你得自己检查读取是否成功。"
+          },
+          {
+            "texto": "n 是 5，因为有五个字母",
+            "explica": "cin 不会数字母：读取会失败。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-005",
+      "dificultad": 25,
+      "tipo": "ordenar",
+      "contexto": false,
+      "es": {
+        "pregunta": "Ordena la primera línea de un bucle de C++ que recorre las filas del 1 al n",
+        "frase": "for (int i = 1; i <= n; i++) {",
+        "extra": [
+          "i < n;"
+        ]
+      },
+      "en": {
+        "pregunta": "Put in order the first line of a C++ loop that goes through rows 1 to n",
+        "frase": "for (int i = 1; i <= n; i++) {",
+        "extra": [
+          "i < n;"
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "把一个遍历第 1 行到第 n 行的 C++ 循环的第一行按顺序排好",
+        "frase": "for (int i = 1; i <= n; i++) {",
+        "extra": [
+          "i < n;"
+        ]
+      }
+    },
+    {
+      "id": "tricpp-006",
+      "dificultad": 30,
+      "tipo": "varias",
+      "contexto": false,
+      "elige": true,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "¿Cuáles de estos códigos de C++ imprimen una fila de cuatro asteriscos (****)?",
+        "opciones": [
+          {
+            "texto": "std::cout << std::string(4, '*') << \"\\n\";",
+            "correcta": true
+          },
+          {
+            "texto": "for (int j = 0; j < 4; j++) {\n    std::cout << '*';\n}\nstd::cout << \"\\n\";",
+            "correcta": true,
+            "explica": "Cada vuelta imprime un asterisco y el salto de línea va al final."
+          },
+          {
+            "texto": "for (int j = 0; j < 4; j++) {\n    std::cout << '*' << \"\\n\";\n}",
+            "explica": "Imprime cuatro asteriscos, pero uno en cada línea."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "Which of these C++ snippets print a row of four asterisks (****)?",
+        "opciones": [
+          {
+            "texto": "std::cout << std::string(4, '*') << \"\\n\";",
+            "correcta": true
+          },
+          {
+            "texto": "for (int j = 0; j < 4; j++) {\n    std::cout << '*';\n}\nstd::cout << \"\\n\";",
+            "correcta": true,
+            "explica": "Each pass prints one asterisk and the line break goes at the end."
+          },
+          {
+            "texto": "for (int j = 0; j < 4; j++) {\n    std::cout << '*' << \"\\n\";\n}",
+            "explica": "It prints four asterisks, but each one on its own line."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "下面哪些 C++ 代码会打印一行四个星号（****）？",
+        "opciones": [
+          {
+            "texto": "std::cout << std::string(4, '*') << \"\\n\";",
+            "correcta": true
+          },
+          {
+            "texto": "for (int j = 0; j < 4; j++) {\n    std::cout << '*';\n}\nstd::cout << \"\\n\";",
+            "correcta": true,
+            "explica": "每次循环打印一个星号，换行放在最后。"
+          },
+          {
+            "texto": "for (int j = 0; j < 4; j++) {\n    std::cout << '*' << \"\\n\";\n}",
+            "explica": "它打印了四个星号，但每个都在单独一行。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-007",
+      "dificultad": 38,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En una pirámide de asteriscos de 5 filas (1, 3, 5, 7 y 9 asteriscos), ¿cuántos asteriscos van en la fila 3?",
+        "opciones": [
+          {
+            "texto": "5",
+            "correcta": true,
+            "explica": "La fila i lleva 2 * i - 1: con i = 3, son 5."
+          },
+          {
+            "texto": "6",
+            "explica": "2 * i daría números pares y la pirámide no tendría centro."
+          },
+          {
+            "texto": "3",
+            "explica": "Eso sería el triángulo rectángulo, no la pirámide."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In a 5-row asterisk pyramid (1, 3, 5, 7 and 9 asterisks), how many asterisks go in row 3?",
+        "opciones": [
+          {
+            "texto": "5",
+            "correcta": true,
+            "explica": "Row i has 2 * i - 1: with i = 3, that is 5."
+          },
+          {
+            "texto": "6",
+            "explica": "2 * i would give even numbers and the pyramid would have no center."
+          },
+          {
+            "texto": "3",
+            "explica": "That would be the right triangle, not the pyramid."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在一个 5 行的星号金字塔里（1、3、5、7、9 个星号），第 3 行有几个星号？",
+        "opciones": [
+          {
+            "texto": "5",
+            "correcta": true,
+            "explica": "第 i 行有 2 * i - 1 个：i = 3 时是 5 个。"
+          },
+          {
+            "texto": "6",
+            "explica": "2 * i 会得到偶数，金字塔就没有中心了。"
+          },
+          {
+            "texto": "3",
+            "explica": "那是直角三角形，不是金字塔。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-008",
+      "dificultad": 42,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "¿Qué imprime este código?",
+        "frase": "#include <iostream>\n#include <string>\n\nint main() {\n    int n = 3;\n    for (int i = 1; i <= n; i++) {\n        std::cout << std::string(n - i, ' ') << std::string(i, '*') << \"\\n\";\n    }\n}",
+        "opciones": [
+          {
+            "texto": "  *\n **\n***",
+            "correcta": true,
+            "explica": "Cada fila empieza con n - i espacios, así el triángulo queda pegado a la derecha."
+          },
+          {
+            "texto": "*\n**\n***",
+            "explica": "Ese no tiene espacios: es el triángulo pegado a la izquierda."
+          },
+          {
+            "texto": "***\n **\n  *",
+            "explica": "Ese va hacia abajo: los espacios crecen en vez de bajar."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does this code print?",
+        "frase": "#include <iostream>\n#include <string>\n\nint main() {\n    int n = 3;\n    for (int i = 1; i <= n; i++) {\n        std::cout << std::string(n - i, ' ') << std::string(i, '*') << \"\\n\";\n    }\n}",
+        "opciones": [
+          {
+            "texto": "  *\n **\n***",
+            "correcta": true,
+            "explica": "Each row starts with n - i spaces, so the triangle sits against the right."
+          },
+          {
+            "texto": "*\n**\n***",
+            "explica": "That one has no spaces: it is the triangle against the left."
+          },
+          {
+            "texto": "***\n **\n  *",
+            "explica": "That one goes down: the spaces grow instead of shrinking."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "这段代码会打印什么？",
+        "frase": "#include <iostream>\n#include <string>\n\nint main() {\n    int n = 3;\n    for (int i = 1; i <= n; i++) {\n        std::cout << std::string(n - i, ' ') << std::string(i, '*') << \"\\n\";\n    }\n}",
+        "opciones": [
+          {
+            "texto": "  *\n **\n***",
+            "correcta": true,
+            "explica": "每一行先有 n - i 个空格，所以三角形靠右。"
+          },
+          {
+            "texto": "*\n**\n***",
+            "explica": "那个没有空格：是靠左的三角形。"
+          },
+          {
+            "texto": "***\n **\n  *",
+            "explica": "那个是往下的：空格在变多而不是变少。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-009",
+      "dificultad": 48,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Escribes std::string('*', 3) en vez de std::string(3, '*'). Compila sin errores. ¿Qué texto crea?",
+        "opciones": [
+          {
+            "texto": "42 caracteres invisibles",
+            "correcta": true,
+            "explica": "El '*' vale 42, así que es la cantidad, y el 3 se toma como el carácter número 3, que no se ve."
+          },
+          {
+            "texto": "\"***\", igual que al revés",
+            "explica": "El orden importa: primero la cantidad y después el carácter."
+          },
+          {
+            "texto": "\"*3\"",
+            "explica": "No pega nada: repite un carácter."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "You write std::string('*', 3) instead of std::string(3, '*'). It compiles without errors. What text does it create?",
+        "opciones": [
+          {
+            "texto": "42 invisible characters",
+            "correcta": true,
+            "explica": "'*' is 42, so it is the count, and the 3 is taken as character number 3, which cannot be seen."
+          },
+          {
+            "texto": "\"***\", the same as the other way around",
+            "explica": "The order matters: the count goes first and then the character."
+          },
+          {
+            "texto": "\"*3\"",
+            "explica": "It does not stick anything on: it repeats a character."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "你写了 std::string('*', 3)，而不是 std::string(3, '*')。编译没有任何错误。它创建了什么文本？",
+        "opciones": [
+          {
+            "texto": "42 个看不见的字符",
+            "correcta": true,
+            "explica": "'*' 的值是 42，所以它被当成个数，而 3 被当成第 3 号字符，看不见。"
+          },
+          {
+            "texto": "\"***\"，和反过来写一样",
+            "explica": "顺序很重要：先写个数，再写字符。"
+          },
+          {
+            "texto": "\"*3\"",
+            "explica": "不会拼接任何东西：它是在重复一个字符。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-010",
+      "dificultad": 54,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Qué hace std::setw(5) antes de std::string(3, '*') en std::cout?",
+        "opciones": [
+          {
+            "texto": "Reserva 5 lugares y alinea a la derecha: \"  ***\"",
+            "correcta": true
+          },
+          {
+            "texto": "Imprime 5 asteriscos",
+            "explica": "setw no cambia lo que se imprime, solo el ancho que ocupa."
+          },
+          {
+            "texto": "Pone 5 espacios delante",
+            "explica": "El 5 es el ancho total, no la cantidad de espacios."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does std::setw(5) do before std::string(3, '*') in std::cout?",
+        "opciones": [
+          {
+            "texto": "It reserves 5 places and aligns to the right: \"  ***\"",
+            "correcta": true
+          },
+          {
+            "texto": "It prints 5 asterisks",
+            "explica": "setw does not change what is printed, only the width it takes up."
+          },
+          {
+            "texto": "It adds 5 spaces in front",
+            "explica": "The 5 is the total width, not the number of spaces."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在 std::cout 里，std::string(3, '*') 前面的 std::setw(5) 起什么作用？",
+        "opciones": [
+          {
+            "texto": "预留 5 个位置并靠右对齐：\"  ***\"",
+            "correcta": true
+          },
+          {
+            "texto": "打印 5 个星号",
+            "explica": "setw 不改变打印的内容，只改变它占的宽度。"
+          },
+          {
+            "texto": "在前面加 5 个空格",
+            "explica": "5 是总宽度，不是空格的个数。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-011",
+      "dificultad": 58,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "En una pirámide hueca de 5 filas (solo el borde), ¿cómo se ve la fila 3?",
+        "opciones": [
+          {
+            "texto": "  *   *",
+            "correcta": true,
+            "explica": "Dos espacios delante, un asterisco, tres espacios y otro asterisco."
+          },
+          {
+            "texto": "  *****",
+            "explica": "Esa es la fila 3 de la pirámide llena."
+          },
+          {
+            "texto": "  * *",
+            "explica": "Faltan espacios en el medio: van 2 * i - 3, que con i = 3 son tres."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In a 5-row hollow pyramid (only the border), what does row 3 look like?",
+        "opciones": [
+          {
+            "texto": "  *   *",
+            "correcta": true,
+            "explica": "Two spaces in front, an asterisk, three spaces and another asterisk."
+          },
+          {
+            "texto": "  *****",
+            "explica": "That is row 3 of the full pyramid."
+          },
+          {
+            "texto": "  * *",
+            "explica": "Spaces are missing in the middle: there are 2 * i - 3, which with i = 3 is three."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在一个 5 行的空心金字塔里（只有边框），第 3 行是什么样子？",
+        "opciones": [
+          {
+            "texto": "  *   *",
+            "correcta": true,
+            "explica": "前面两个空格，一个星号，三个空格，再一个星号。"
+          },
+          {
+            "texto": "  *****",
+            "explica": "那是实心金字塔的第 3 行。"
+          },
+          {
+            "texto": "  * *",
+            "explica": "中间少了空格：应该有 2 * i - 3 个，i = 3 时是三个。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-012",
+      "dificultad": 64,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En C++, ¿por qué se prefiere \"\\n\" a std::endl cuando un programa imprime muchas líneas?",
+        "opciones": [
+          {
+            "texto": "std::endl además vacía la salida en cada línea, y eso lo hace más lento",
+            "correcta": true
+          },
+          {
+            "texto": "std::endl no salta de línea",
+            "explica": "Sí salta de línea; además vacía la salida."
+          },
+          {
+            "texto": "\"\\n\" no funciona en Windows",
+            "explica": "\"\\n\" funciona en todos los sistemas."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In C++, why is \"\\n\" preferred over std::endl when a program prints many lines?",
+        "opciones": [
+          {
+            "texto": "std::endl also flushes the output on every line, and that makes it slower",
+            "correcta": true
+          },
+          {
+            "texto": "std::endl does not jump to a new line",
+            "explica": "It does jump to a new line; it also flushes the output."
+          },
+          {
+            "texto": "\"\\n\" does not work on Windows",
+            "explica": "\"\\n\" works on every system."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在 C++ 里，当程序要打印很多行时，为什么更推荐 \"\\n\" 而不是 std::endl？",
+        "opciones": [
+          {
+            "texto": "std::endl 每一行还会刷新输出，这会让程序变慢",
+            "correcta": true
+          },
+          {
+            "texto": "std::endl 不会换行",
+            "explica": "它会换行；只是还会刷新输出。"
+          },
+          {
+            "texto": "\"\\n\" 在 Windows 上不能用",
+            "explica": "\"\\n\" 在所有系统上都能用。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-013",
+      "dificultad": 70,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Para el triángulo de Sierpinski escribes j & i == j, sin paréntesis. ¿Qué pasa en C++?",
+        "opciones": [
+          {
+            "texto": "Se calcula primero i == j, y el dibujo sale roto; g++ con -Wall avisa con suggest parentheses",
+            "correcta": true,
+            "explica": "En C++ == va antes que &: hacen falta los paréntesis, (j & i) == j."
+          },
+          {
+            "texto": "Funciona igual que con paréntesis",
+            "explica": "Así es en Python y Rust, pero en C++ el orden es al revés."
+          },
+          {
+            "texto": "No compila",
+            "explica": "Compila; con -Wall solo da un aviso."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "For the Sierpinski triangle you write j & i == j, without parentheses. What happens in C++?",
+        "opciones": [
+          {
+            "texto": "i == j is evaluated first, and the drawing comes out broken; g++ with -Wall warns with suggest parentheses",
+            "correcta": true,
+            "explica": "In C++ == comes before &: you need the parentheses, (j & i) == j."
+          },
+          {
+            "texto": "It works the same as with parentheses",
+            "explica": "That is how it is in Python and Rust, but in C++ the order is the other way around."
+          },
+          {
+            "texto": "It does not compile",
+            "explica": "It compiles; with -Wall it only gives a warning."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "画谢尔宾斯基三角形时你写了 j & i == j，没加括号。在 C++ 里会怎样？",
+        "opciones": [
+          {
+            "texto": "会先算 i == j，图形坏掉；用 -Wall 时 g++ 会提示 suggest parentheses",
+            "correcta": true,
+            "explica": "在 C++ 里 == 比 & 先算：需要加括号，(j & i) == j。"
+          },
+          {
+            "texto": "和加括号一样",
+            "explica": "在 Python 和 Rust 里是这样，但在 C++ 里顺序相反。"
+          },
+          {
+            "texto": "编译不通过",
+            "explica": "能编译；用 -Wall 时只会给出警告。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-014",
+      "dificultad": 75,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En el triángulo de Pascal cada número es la suma de los dos que tiene encima. ¿Qué fila sigue a 1 3 3 1?",
+        "opciones": [
+          {
+            "texto": "1 4 6 4 1",
+            "correcta": true,
+            "explica": "1, 1 + 3, 3 + 3, 3 + 1 y 1."
+          },
+          {
+            "texto": "1 3 6 3 1",
+            "explica": "Los de al lado del 1 son 1 + 3 = 4."
+          },
+          {
+            "texto": "1 4 4 4 1",
+            "explica": "El del centro es 3 + 3 = 6."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In Pascal's triangle each number is the sum of the two on top of it. Which row comes after 1 3 3 1?",
+        "opciones": [
+          {
+            "texto": "1 4 6 4 1",
+            "correcta": true,
+            "explica": "1, 1 + 3, 3 + 3, 3 + 1 and 1."
+          },
+          {
+            "texto": "1 3 6 3 1",
+            "explica": "The ones next to the 1 are 1 + 3 = 4."
+          },
+          {
+            "texto": "1 4 4 4 1",
+            "explica": "The middle one is 3 + 3 = 6."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在杨辉三角里，每个数等于它正上方两个数之和。1 3 3 1 的下一行是什么？",
+        "opciones": [
+          {
+            "texto": "1 4 6 4 1",
+            "correcta": true,
+            "explica": "1、1 + 3、3 + 3、3 + 1 和 1。"
+          },
+          {
+            "texto": "1 3 6 3 1",
+            "explica": "1 旁边的数是 1 + 3 = 4。"
+          },
+          {
+            "texto": "1 4 4 4 1",
+            "explica": "中间的是 3 + 3 = 6。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-015",
+      "dificultad": 80,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Tu triángulo de Pascal con long long imprime bien hasta unas 67 filas y después números que no tienen sentido, sin ningún error. ¿Qué pasa?",
+        "opciones": [
+          {
+            "texto": "Las sumas pasan del máximo de long long y C++ no avisa: es comportamiento indefinido",
+            "correcta": true
+          },
+          {
+            "texto": "std::vector no puede tener más de 67 elementos",
+            "explica": "Un vector puede tener millones de elementos."
+          },
+          {
+            "texto": "std::cout corta los números largos",
+            "explica": "cout muestra el número que recibe; ya llega mal."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "Your Pascal's triangle with long long prints fine up to about 67 rows and after that numbers that make no sense, without any error. What is going on?",
+        "opciones": [
+          {
+            "texto": "The sums go past the maximum of long long and C++ does not warn you: it is undefined behavior",
+            "correcta": true
+          },
+          {
+            "texto": "std::vector cannot hold more than 67 elements",
+            "explica": "A vector can hold millions of elements."
+          },
+          {
+            "texto": "std::cout cuts long numbers",
+            "explica": "cout shows the number it gets; it already arrives wrong."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "你用 long long 写的杨辉三角大约到 67 行都正常，之后打印出没有意义的数，而且没有任何错误。这是怎么回事？",
+        "opciones": [
+          {
+            "texto": "加法超过了 long long 的最大值，而 C++ 不会提醒你：这是未定义行为",
+            "correcta": true
+          },
+          {
+            "texto": "std::vector 存不下超过 67 个元素",
+            "explica": "一个 vector 可以存几百万个元素。"
+          },
+          {
+            "texto": "std::cout 会截断长数字",
+            "explica": "cout 显示的是它收到的数；收到时就已经错了。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-016",
+      "dificultad": 84,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Por qué conviene compilar siempre con -Wall?",
+        "opciones": [
+          {
+            "texto": "Activa avisos de errores comunes, como los paréntesis que faltan, aunque el programa compile",
+            "correcta": true
+          },
+          {
+            "texto": "Hace que el programa corra más rápido",
+            "explica": "Eso lo hacen opciones como -O2; -Wall solo agrega avisos."
+          },
+          {
+            "texto": "Es obligatorio para usar std::string",
+            "explica": "std::string funciona sin -Wall."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "Why is it a good idea to always compile with -Wall?",
+        "opciones": [
+          {
+            "texto": "It turns on warnings for common mistakes, like missing parentheses, even if the program compiles",
+            "correcta": true
+          },
+          {
+            "texto": "It makes the program run faster",
+            "explica": "Options like -O2 do that; -Wall only adds warnings."
+          },
+          {
+            "texto": "It is required to use std::string",
+            "explica": "std::string works without -Wall."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "为什么最好一直用 -Wall 编译？",
+        "opciones": [
+          {
+            "texto": "它会对常见错误发出警告，比如缺少括号，即使程序能编译",
+            "correcta": true
+          },
+          {
+            "texto": "它会让程序跑得更快",
+            "explica": "那是 -O2 这类选项做的；-Wall 只是增加警告。"
+          },
+          {
+            "texto": "使用 std::string 必须加它",
+            "explica": "不加 -Wall，std::string 也能用。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-017",
+      "dificultad": 90,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Para el triángulo de Sierpinski, la posición j de la fila i lleva un asterisco cuando (j & i) == j. ¿Qué tienen de especial esas posiciones?",
+        "opciones": [
+          {
+            "texto": "Que en el triángulo de Pascal el número en esa posición es impar",
+            "correcta": true,
+            "explica": "Pintar los impares de Pascal dibuja el triángulo de Sierpinski."
+          },
+          {
+            "texto": "Que son las posiciones pares",
+            "explica": "No depende de si j es par, sino de sus bits comparados con los de i."
+          },
+          {
+            "texto": "Que son los bordes de la fila",
+            "explica": "Los bordes siempre llevan asterisco, pero también muchas posiciones del medio."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "For the Sierpinski triangle, position j of row i gets an asterisk when (j & i) == j. What is special about those positions?",
+        "opciones": [
+          {
+            "texto": "In Pascal's triangle the number at that position is odd",
+            "correcta": true,
+            "explica": "Painting the odd numbers of Pascal draws the Sierpinski triangle."
+          },
+          {
+            "texto": "They are the even positions",
+            "explica": "It does not depend on whether j is even, but on its bits compared with those of i."
+          },
+          {
+            "texto": "They are the borders of the row",
+            "explica": "The borders always get an asterisk, but so do many positions in the middle."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "画谢尔宾斯基三角形时，第 i 行第 j 个位置在 (j & i) == j 时放星号。这些位置有什么特别？",
+        "opciones": [
+          {
+            "texto": "在杨辉三角里，这个位置上的数是奇数",
+            "correcta": true,
+            "explica": "把杨辉三角的奇数涂出来，就是谢尔宾斯基三角形。"
+          },
+          {
+            "texto": "它们是偶数位置",
+            "explica": "和 j 是不是偶数无关，而是和 j 与 i 的二进制位有关。"
+          },
+          {
+            "texto": "它们是每一行的两边",
+            "explica": "两边总是有星号，但中间很多位置也有。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tricpp-018",
+      "dificultad": 95,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Una función recursiva dibuja el triángulo de Sierpinski: en cada nivel cambia un triángulo por tres de la mitad de tamaño. ¿Cuántos triángulos chicos dibuja con nivel 4?",
+        "opciones": [
+          {
+            "texto": "81",
+            "correcta": true,
+            "explica": "3 × 3 × 3 × 3."
+          },
+          {
+            "texto": "12",
+            "explica": "Eso sería sumar 3 por cada nivel; en realidad se multiplica."
+          },
+          {
+            "texto": "64",
+            "explica": "64 es 4 × 4 × 4; aquí cada nivel multiplica por 3."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "A recursive function draws the Sierpinski triangle: at each level it replaces a triangle with three half its size. How many small triangles does it draw with level 4?",
+        "opciones": [
+          {
+            "texto": "81",
+            "correcta": true,
+            "explica": "3 × 3 × 3 × 3."
+          },
+          {
+            "texto": "12",
+            "explica": "That would be adding 3 per level; it actually multiplies."
+          },
+          {
+            "texto": "64",
+            "explica": "64 is 4 × 4 × 4; here each level multiplies by 3."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "一个递归函数画谢尔宾斯基三角形：每一层把一个三角形换成三个边长一半的三角形。层级为 4 时，它画了多少个小三角形？",
+        "opciones": [
+          {
+            "texto": "81",
+            "correcta": true,
+            "explica": "3 × 3 × 3 × 3。"
+          },
+          {
+            "texto": "12",
+            "explica": "那是每层加 3；实际上是乘。"
+          },
+          {
+            "texto": "64",
+            "explica": "64 是 4 × 4 × 4；这里每一层乘以 3。"
+          }
+        ]
+      }
+    }
+  ]
+}

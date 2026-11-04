@@ -1,0 +1,42 @@
+{
+  "categoria": "javascript",
+  "version": "c8ecd99d",
+  "titulo": {
+    "en": "JavaScript",
+    "es": "JavaScript",
+    "zh-cn": "JavaScript"
+  },
+  "tutoriales": [
+    {
+      "tutorial": "fc3866cdf7d746319dc9ea8e38540102",
+      "archivo": "preguntas/t/fc3866cdf7d746319dc9ea8e38540102.json",
+      "titulo": {
+        "es": "Cómo hacer un triángulo en JavaScript: asteriscos, pirámide y canvas",
+        "en": "How to Make a Triangle in JavaScript: Asterisks, Pyramid and Canvas",
+        "zh-cn": "如何用 JavaScript 打印三角形：星号、金字塔和 canvas"
+      },
+      "url": {
+        "es": "es/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/",
+        "en": "en/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/",
+        "zh-cn": "zh-cn/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/"
+      },
+      "secciones": {
+        "es": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        },
+        "en": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        },
+        "zh-cn": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        }
+      }
+    }
+  ]
+}

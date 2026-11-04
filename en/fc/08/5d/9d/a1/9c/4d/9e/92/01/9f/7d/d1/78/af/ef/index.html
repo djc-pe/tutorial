@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/ui/1/ui.css">
   <script src="https://story.djc.pe/assets/djc/base/1/index.js" defer></script>
   <script src="https://story.djc.pe/assets/djc/nav/1/script.js" defer></script>
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/progreso/1/progreso.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.js" defer></script>
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
   <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-movil.js" defer></script>
@@ -46,7 +49,7 @@
 
     <div class="djc-core-card">
       <p>If you have ever wanted to get into your home PC from work or from a coffee shop, you probably hit the same wall we did: your home has no fixed public IP and the router lets nobody in. The way out is to use a server that does live on the internet as a <strong>jump host</strong> (also called a bastion) and have your home be the one that connects to it.</p>
-      <p>It takes two commands: at home, <code>ssh -R</code> to open a tunnel to the jump host, and away from home, <code>ssh -J</code> to come in through that tunnel. Below we look at why it works, how to keep it running on its own and where we got it wrong at first.</p>
+      <p>It takes two commands: at home, <code>ssh -R</code> to open a tunnel to the jump host, and away from home, <code>ssh -J</code> to come in through that tunnel. We cover it in three levels: <a href="#basico">basic</a> (your first connection), <a href="#intermedio">intermediate</a> (make it run on its own) and <a href="#avanzado">advanced</a> (security and troubleshooting). Each one ends with a challenge.</p>
     </div>
 
     <div class="djc-core-card">
@@ -113,32 +116,24 @@
     </div>
 
     <div class="djc-core-card">
-      <h2>The solution</h2>
+      <h2 id="basico">Basic: your first connection through the jump host</h2>
+      <p>First we do it by hand, with the full commands, to see every piece. At the end of each level there is a challenge to check that it clicked.</p>
       <h3>1. Prepare the home PC</h3>
       <p>The home PC needs an SSH server so others can connect to it, and a key to connect to the jump host. On Ubuntu or Debian:</p>
 <pre><code>sudo apt install openssh-server
 ssh-keygen -t ed25519</code></pre>
-      <p>The public key ends up in <code>~/.ssh/id_ed25519.pub</code>. On the work PC you do the same with <code>ssh-keygen</code>, and its public key goes in the <code>~/.ssh/authorized_keys</code> of the home PC. Do that step while you are at home.</p>
+      <p><code>ssh-keygen</code> creates two files: <code>~/.ssh/id_ed25519</code>, the <strong>private</strong> key, which never leaves that machine, and <code>~/.ssh/id_ed25519.pub</code>, the <strong>public</strong> one, which is the one you copy elsewhere. On the work PC you do the same, and its public key goes in the <code>~/.ssh/authorized_keys</code> of the home PC. Do that step while you are at home.</p>
 
-      <h3>2. A user just for the tunnel on the jump host</h3>
+      <h3>2. A user for the tunnel on the jump host</h3>
       <p>On the jump host we create a separate user, <code>tunnel</code>, so it does not get mixed up with the user you manage the server with:</p>
 <pre><code>sudo adduser --disabled-password tunnel</code></pre>
-      <p>Its <code>/home/tunnel/.ssh/authorized_keys</code> holds both public keys, each one with the only thing it is allowed to do:</p>
-<pre><code>restrict,port-forwarding,command="/bin/false",permitlisten="localhost:2222" ssh-ed25519 AAAA... ana@home
-restrict,port-forwarding,command="/bin/false",permitopen="localhost:2222" ssh-ed25519 AAAA... ana@work</code></pre>
-      <ul>
-        <li><code>restrict</code> removes everything (terminal, forwarding, agent) and <code>port-forwarding</code> allows only tunnels again.</li>
-        <li><code>command="/bin/false"</code> makes any command end right away: with these keys the jump host cannot be used for anything else.</li>
-        <li><code>permitlisten="localhost:2222"</code>: home can only <strong>open</strong> port 2222.</li>
-        <li><code>permitopen="localhost:2222"</code>: work can only <strong>go</strong> to port 2222.</li>
-      </ul>
-      <p>If someone steals one of those keys, on the jump host they cannot open a terminal, look at files or jump anywhere else.</p>
+      <p>Its <code>/home/tunnel/.ssh/authorized_keys</code> holds both public keys, the home one and the work one, one per line. For now just like that; in the advanced level we limit them so they only work for the tunnel.</p>
 
       <h3>3. Open the tunnel from home</h3>
       <p>On the home PC:</p>
 <pre><code>ssh -N -R 2222:localhost:22 tunnel@jump.example.com</code></pre>
       <ul>
-        <li><code>-R 2222:localhost:22</code>: port 2222 on the jump host leads to the SSH (port 22) of your home.</li>
+        <li><code>-R 2222:localhost:22</code>: port 2222 on the jump host leads to the SSH (port 22) of your home. The first number is the port opened on the jump host; the last one, the port your home SSH listens on.</li>
         <li><code>-N</code>: no terminal, it just keeps the tunnel open.</li>
       </ul>
       <p>That 2222 only listens inside the jump host (<code>localhost</code>). It cannot be seen from the internet, which is exactly what we want.</p>
@@ -147,7 +142,15 @@ restrict,port-forwarding,command="/bin/false",permitopen="localhost:2222" ssh-ed
       <p>With the tunnel open, from the work PC:</p>
 <pre><code>ssh -J tunnel@jump.example.com -p 2222 ana@localhost</code></pre>
       <p><code>-J</code> means "jump through here". That <code>localhost</code> is the jump host's, which is the door to your home, and <code>ana</code> is your user on the home PC.</p>
-      <p>Typing that every time gets old. In the <code>~/.ssh/config</code> of the work PC you give each machine a name:</p>
+      <p>The first time, SSH asks you to accept two fingerprints: the jump host's and your home's, which shows up as <code>[localhost]:2222</code>. If you are in, you made it.</p>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="fc085d9da19c4d9e92019f7dd178afef" data-djc-core-reto-seccion="basico"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="intermedio">Intermediate: make it run on its own</h2>
+      <p>You can get in now, but with a long command and a tunnel that dies when the PC restarts. Now we make it comfortable and keep it running by itself.</p>
+      <h3>A name for each machine</h3>
+      <p>Typing the full command every time gets old. In the <code>~/.ssh/config</code> of the work PC you give each machine a name:</p>
 <pre><code>Host jump
     HostName jump.example.com
     User tunnel
@@ -160,7 +163,7 @@ Host home
       <p>And to get in all you need is:</p>
 <pre><code>ssh home</code></pre>
 
-      <h3>5. Keep the tunnel from dying</h3>
+      <h3>Keep the tunnel from dying</h3>
       <p>If the home internet drops or the PC restarts, the tunnel dies. We set it up as a systemd service on the home PC, in <code>/etc/systemd/system/jump-tunnel.service</code>:</p>
 <pre><code>[Unit]
 Description=Reverse tunnel to the jump host
@@ -186,8 +189,9 @@ WantedBy=multi-user.target</code></pre>
         <li><code>ServerAliveInterval=30</code> and <code>ServerAliveCountMax=3</code>: every 30 seconds it checks that the jump host answers. If it fails three times, it disconnects and systemd opens it again.</li>
         <li><code>ExitOnForwardFailure=yes</code>: if it could not open port 2222, it exits instead of staying connected with no tunnel.</li>
         <li><code>BatchMode=yes</code>: if something asks for a password or to confirm a fingerprint, it fails instead of waiting for an answer that never comes.</li>
+        <li><code>Restart=always</code> and <code>RestartSec=5</code>: when the tunnel ends, for whatever reason, systemd opens it again after 5 seconds.</li>
       </ul>
-      <p><code>BatchMode</code> only applies to the tunnel, which is the connection this service makes. When you connect with <code>ssh home</code>, SSH asks for your password or your key's passphrase as usual. What the tunnel does need is a key without a passphrase, because when it starts on its own there is nobody to type it. That is why that key is limited on the jump host to opening port 2222.</p>
+      <p><code>BatchMode</code> only applies to the tunnel, which is the connection this service makes. When you connect with <code>ssh home</code>, SSH asks for your password or your key's passphrase as usual. What the tunnel does need is a key without a passphrase, because when it starts on its own there is nobody to type it.</p>
       <p>So before enabling it, connect once by hand as <code>ana</code> to accept the jump host's fingerprint. Then:</p>
 <pre><code>sudo systemctl daemon-reload
 sudo systemctl enable --now jump-tunnel</code></pre>
@@ -207,11 +211,9 @@ rsync -av project/ home:/home/ana/project/</code></pre>
       <h3>Open a home service at work</h3>
       <p>If a website runs at home on port 8080 (or a database on 5432), you can bring it to the work PC with a tunnel:</p>
 <pre><code>ssh -N -L 8080:localhost:8080 home</code></pre>
-      <p>While that command is open, you go to <code>http://localhost:8080</code> in your browser and reach the service at your home.</p>
-    </div>
+      <p>While that command is open, you go to <code>http://localhost:8080</code> in your browser and reach the service at your home. Note the difference: <code>-R</code> opens a port <strong>on the other side</strong> (the jump host), <code>-L</code> opens it <strong>on your side</strong> (work).</p>
 
-    <div class="djc-core-card">
-      <h2>Check it</h2>
+      <h3>Check it</h3>
       <p>Before trusting something, we like to see that it really goes where we think. On the home PC, check that the tunnel is alive:</p>
 <pre><code>systemctl status jump-tunnel</code></pre>
       <p>It should say <code>active (running)</code>. From work, with <code>-v</code>, SSH tells you what it is doing:</p>
@@ -221,6 +223,47 @@ rsync -av project/ home:/home/ana/project/</code></pre>
 Authenticated to jump.example.com ([203.0.113.10]:22) using "publickey".
 Authenticated to localhost (via proxy) using "publickey".</code></pre>
       <p>The first says it will use the jump host, the second that it got into the jump host and the third that it got into your home <strong>through</strong> the jump host (<code>via proxy</code>).</p>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="fc085d9da19c4d9e92019f7dd178afef" data-djc-core-reto-seccion="intermedio"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="avanzado">Advanced: security and troubleshooting</h2>
+      <p>It works and runs on its own. Now we lock it down properly, learn to read its errors and find out who logged in.</p>
+      <h3>Limit the keys on the jump host</h3>
+      <p>Up to here, the keys of the <code>tunnel</code> user can open a terminal on the jump host. If someone steals one, they get into your server. In the jump host's <code>/home/tunnel/.ssh/authorized_keys</code>, we put in front of each key the only thing it is allowed to do:</p>
+<pre><code>restrict,port-forwarding,command="/bin/false",permitlisten="localhost:2222" ssh-ed25519 AAAA... ana@home
+restrict,port-forwarding,command="/bin/false",permitopen="localhost:2222" ssh-ed25519 AAAA... ana@work</code></pre>
+      <ul>
+        <li><code>restrict</code> removes everything (terminal, forwarding, agent) and <code>port-forwarding</code> allows only tunnels again.</li>
+        <li><code>command="/bin/false"</code> makes any command end right away. It is needed: <code>restrict</code> only removes the terminal, but it still lets you run a single command like <code>ssh tunnel@jump id</code>.</li>
+        <li><code>permitlisten="localhost:2222"</code>: home can only <strong>open</strong> port 2222.</li>
+        <li><code>permitopen="localhost:2222"</code>: work can only <strong>go</strong> to port 2222. The text is compared as is: if your config says <code>127.0.0.1</code> instead of <code>localhost</code>, the jump host rejects it.</li>
+      </ul>
+      <p>With that, a stolen key cannot open a terminal, look at files or jump anywhere else.</p>
+
+      <h3>When something fails: what each error means</h3>
+      <p>SSH gives short messages, and the same symptom ("I cannot get in") can have several causes. This is the table we wish we had had:</p>
+      <div class="djc-core-table">
+      <table>
+        <thead><tr><th>Message</th><th>Where you see it</th><th>What is going on</th></tr></thead>
+        <tbody>
+          <tr><td><code>administratively prohibited: open failed</code></td><td>Work</td><td>The jump host will not let you go to that port: <code>permitopen</code> does not match (for example <code>localhost</code> versus <code>127.0.0.1</code>) or the jump host has <code>AllowTcpForwarding no</code>.</td></tr>
+          <tr><td><code>connect failed: Connection refused</code></td><td>Work</td><td>Nothing listens on 2222 on the jump host: the tunnel from your home is not open.</td></tr>
+          <tr><td><code>connect_to localhost port 2222: failed.</code></td><td>Home (<code>journalctl -u jump-tunnel</code>)</td><td>The connection reached your home, but nothing listens on that port there: the last number of <code>-R</code> is not your home SSH port, or its SSH is not running.</td></tr>
+          <tr><td><code>remote port forwarding failed for listen port 2222</code></td><td>Home</td><td>The jump host did not open the port: it is holding it for an old connection (<code>ClientAliveInterval</code> is missing) or <code>permitlisten</code> does not allow it.</td></tr>
+          <tr><td><code>Host key verification failed.</code></td><td>Work</td><td>You did not accept the fingerprint of the jump host or of your home (<code>[localhost]:2222</code>).</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>The first two end with <code>Connection closed by UNKNOWN port 65535</code>. That ending says nothing: it is SSH reporting that the jump was cut. What matters is the line before it.</p>
+
+      <h3>Find out who logged in</h3>
+      <p>With <code>-N</code> no terminal is opened, so <code>who</code> and <code>last</code> do not show the tunnel connections. The SSH log does. On the jump host:</p>
+<pre><code>sudo journalctl -u ssh | grep 'Accepted publickey for tunnel'</code></pre>
+<pre><code>Accepted publickey for tunnel from 198.51.100.7 port 52114 ssh2: ED25519 SHA256:x4Gk...</code></pre>
+      <p>The IP tells you where they connected from and the <code>SHA256:...</code> tells you which key they used. To know which of your keys it is, compare it with the fingerprints of the ones you authorized:</p>
+<pre><code>sudo ssh-keygen -lf /home/tunnel/.ssh/authorized_keys</code></pre>
+      <p>If a fingerprint shows up that is neither home nor work, someone has a key they should not have: remove it from <code>authorized_keys</code>.</p>
 
       <h3>Is your connection post-quantum?</h3>
       <p>Someone could record your encrypted connection today and keep it until there is a quantum computer able to decrypt it. Against that, SSH agrees on each session's key with a method that resists those computers. To see which one it used:</p>
@@ -233,10 +276,8 @@ debug1: kex: algorithm: mlkem768x25519-sha256</code></pre>
         <li><code>curve25519-sha256</code> or another: safe today, but not against that recording. The work PC or the home PC has an OpenSSH older than 9.0; update it.</li>
       </ul>
       <p>Your <code>ed25519</code> key does not change: this depends on the OpenSSH version, not on the key.</p>
-    </div>
 
-    <div class="djc-core-card">
-      <h2>If your SSH is old</h2>
+      <h3>If your SSH is old</h3>
       <p><code>-J</code> and <code>ProxyJump</code> exist since OpenSSH 7.3, and <code>permitlisten</code> since 7.8 (you can check with <code>ssh -V</code>). If the SSH at work is older, the <code>home</code> block uses the classic form, which does the same:</p>
 <pre><code>Host home
     HostName localhost
@@ -244,19 +285,15 @@ debug1: kex: algorithm: mlkem768x25519-sha256</code></pre>
     User ana
     ProxyCommand ssh -W %h:%p jump</code></pre>
       <p>Windows 10 and 11 already include the OpenSSH client, and it understands <code>-J</code>. The config file is at <code>C:\Users\your-user\.ssh\config</code>.</p>
-    </div>
 
-    <div class="djc-core-card">
-      <h2>What to watch out for</h2>
+      <h3>What to watch out for</h3>
       <ul>
         <li><strong>Do not copy any private key to the jump host.</strong> With <code>-J</code> there is no need: the jump host only sees public keys.</li>
         <li><strong>Do not open 2222 to the internet.</strong> The jump host can publish it with <code>GatewayPorts yes</code> and you would skip the <code>-J</code>, but that is the same as opening your home SSH to the whole world, which is what we wanted to avoid.</li>
         <li><strong>Careful with <code>-A</code> (agent forwarding).</strong> While you are connected, anyone with admin rights on the jump host can use your keys. With <code>-J</code> you do not need it.</li>
-        <li><strong>If you see <code>remote port forwarding failed for listen port 2222</code></strong>, the jump host still holds the port for an old connection. With <code>ClientAliveInterval</code> on the jump host it sorts itself out in a while.</li>
-        <li><strong>The fingerprint is confirmed twice.</strong> The first time, SSH asks you to accept the jump host's and then your home's, which shows up as <code>[localhost]:2222</code>. If you answer no, you will see <code>Host key verification failed.</code></li>
-        <li><strong>The jump host has to allow forwarding.</strong> It is allowed by default, but if someone set <code>AllowTcpForwarding no</code> on the jump host, the jump fails with <code>administratively prohibited: open failed</code>.</li>
         <li><strong>Turn off passwords at home.</strong> Once you get in with your key, set <code>PasswordAuthentication no</code> in the home PC's <code>/etc/ssh/sshd_config</code>.</li>
       </ul>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="fc085d9da19c4d9e92019f7dd178afef" data-djc-core-reto-seccion="avanzado"></div>
     </div>
 
     <div class="djc-core-card">

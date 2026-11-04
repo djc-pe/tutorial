@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- 87.34.2.92 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/assets/djc/base/1/icon.png">
+
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/index.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/ui/1/ui.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/base/1/index.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/nav/1/script.js" defer></script>
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/progreso/1/progreso.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.js" defer></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-movil.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-pc.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/ads.js" defer></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <title>How to Make a Triangle in Python: Asterisks, Pyramid and Turtle | DJC Tutorial</title>
+  <meta name="description" content="Learn to print asterisk triangles in Python step by step: right, inverted, pyramid, hollow, Pascal and Sierpinski, the typical mistakes and how to draw it with turtle.">
+
+  <link rel="canonical" href="https://tutorial.djc.pe/en/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/">
+  <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/">
+  <link rel="alternate" hreflang="es" href="https://tutorial.djc.pe/es/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/">
+  <link rel="alternate" hreflang="zh-cn" href="https://tutorial.djc.pe/zh-cn/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/">
+
+</head>
+<body>
+
+  <main class="content djc-core-page">
+    <p class="djc-core-breadcrumb"><a href="https://tutorial.djc.pe/">Home</a> / <a href="../../../../../../../../../../../../../../../../c/programming/">Programming</a></p>
+    <h1>How to Make a Triangle in Python: Asterisks, Pyramid and Turtle</h1>
+    <p class="djc-core-author" data-author>Series by <a href="https://www.djc.pe/u/@null_djc/">@null_djc</a></p>
+    <ul class="djc-core-tags">
+      <li><a href="../../../../../../../../../../../../../../../../c/programming/">Programming</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/python/">Python</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/beginners/">Beginners</a></li>
+    </ul>
+
+    <div class="djc-core-card">
+      <p>If you are learning to code, sooner or later you get it: "print a triangle of asterisks". It looks like a game, but it is the exercise that makes you really understand loops: how many times it runs, what changes on each pass and why a row always seems to be missing. It took us longer than we expected, and almost always because of the same number.</p>
+      <p>We cover it in three levels: <a href="#basico">basic</a> (the triangle and its traps), <a href="#intermedio">intermediate</a> (the pyramid and its variants) and <a href="#avanzado">advanced</a> (Pascal, Sierpinski and drawing with <code>turtle</code>). Each level ends with a challenge.</p>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>Play with the triangle</h2>
+      <p>Before reading, pick a type and move the size. Below you see what it prints and the Python code that does it; you can copy it and try it on your computer.</p>
+      <div class="djc-core-patron" data-djc-core-patron-lenguaje="python"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="basico">Basic: the triangle and its traps</h2>
+      <h3>The triangle in three lines</h3>
+      <p>The idea is simple: row 1 has one asterisk, row 2 has two, row 3 has three. The row and the number of asterisks are the same number.</p>
+<pre><code>n = 5
+for i in range(1, n + 1):
+    print("*" * i)</code></pre>
+<pre><code>*
+**
+***
+****
+*****</code></pre>
+      <ul>
+        <li><code>range(1, n + 1)</code> gives the numbers 1 to 5: it starts at the first one and stops <strong>before</strong> the second. That is why it is <code>n + 1</code>.</li>
+        <li><code>"*" * i</code> repeats the text: <code>"*" * 3</code> is <code>"***"</code>. Python lets you multiply text by a number, and that saves us a loop.</li>
+      </ul>
+
+      <h3>The trap: the missing row</h3>
+      <p>The first thing we wrote was this, and the triangle came out wrong:</p>
+<pre><code>n = 5
+for i in range(n):
+    print("*" * i)</code></pre>
+<pre><code>
+*
+**
+***
+****</code></pre>
+      <p>There is an empty line at the top and the row of five is missing. <code>range(n)</code> goes from 0 to 4: the first pass prints <code>"*" * 0</code>, which is empty text, and it never gets to 5. It is the most common mistake in this exercise, and it shows up the same way in other languages: when the result has one row too many or too few, first check where the loop starts and where it ends.</p>
+
+      <h3>Upside down</h3>
+      <p>For the inverted triangle, the loop counts backwards: <code>range(n, 0, -1)</code> goes from 5 to 1 (the third number is the step).</p>
+<pre><code>n = 5
+for i in range(n, 0, -1):
+    print("*" * i)</code></pre>
+<pre><code>*****
+****
+***
+**
+*</code></pre>
+
+      <h3>Let the user choose the size</h3>
+<pre><code>n = int(input("Size: "))
+for i in range(1, n + 1):
+    print("*" * i)</code></pre>
+      <p><code>input()</code> always returns text, even if you type a number. If you forget the <code>int()</code>, Python complains at the <code>range</code>:</p>
+<pre><code>TypeError: can only concatenate str (not "int") to str</code></pre>
+      <p>And if the user types something that is not a number, like <code>hello</code>, the one that fails is <code>int()</code>:</p>
+<pre><code>ValueError: invalid literal for int() with base 10: 'hello'</code></pre>
+
+      <h3>With two loops</h3>
+      <p>Multiplying text is a Python shortcut. Many languages do not have it, and you do it with a loop inside another: the outer one goes through the rows and the inner one prints the asterisks of that row.</p>
+<pre><code>n = 3
+for i in range(1, n + 1):
+    for j in range(i):
+        print("*", end="")
+    print()</code></pre>
+<pre><code>*
+**
+***</code></pre>
+      <p><code>end=""</code> makes <code>print</code> not jump to a new line after each asterisk, and the empty <code>print()</code> jumps to a new line when the row is done. This is the form you will see when we make the same triangle in other languages.</p>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="c276a902779e44579c01c705495e4cbb" data-djc-core-reto-seccion="basico"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="intermedio">Intermediate: the pyramid and its variants</h2>
+      <h3>Right-aligned</h3>
+      <p>To push the triangle to the right, each row starts with spaces. Row 1 is four asterisks short of five, so it gets four spaces; the last one, none: <code>n - i</code> spaces.</p>
+<pre><code>n = 5
+for i in range(1, n + 1):
+    print(" " * (n - i) + "*" * i)</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+
+      <h3>The pyramid</h3>
+      <p>The pyramid grows by two asterisks per row (1, 3, 5, 7, 9), so it has a center. That number is <code>2 * i - 1</code>, and the spaces are still <code>n - i</code>:</p>
+<pre><code>n = 5
+for i in range(1, n + 1):
+    print(" " * (n - i) + "*" * (2 * i - 1))</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+      <div class="djc-core-table">
+      <table>
+        <thead><tr><th>Row (<code>i</code>)</th><th>Spaces (<code>n - i</code>)</th><th>Asterisks (<code>2 * i - 1</code>)</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>4</td><td>1</td></tr>
+          <tr><td>2</td><td>3</td><td>3</td></tr>
+          <tr><td>3</td><td>2</td><td>5</td></tr>
+          <tr><td>4</td><td>1</td><td>7</td></tr>
+          <tr><td>5</td><td>0</td><td>9</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>This table is the trick for any pattern: write down by hand how much goes in each row and look for the formula that gives those numbers. If your pyramid comes out crooked, the spaces are almost always <code>n - i - 1</code> or the asterisks <code>2 * i</code>.</p>
+
+      <h3>Hollow</h3>
+      <p>The hollow pyramid only draws the border. The first row has one asterisk, the last one is full and the middle ones have an asterisk on each side with spaces in the center (the same <code>2 * i - 1</code> places, minus the two borders):</p>
+<pre><code>n = 5
+for i in range(1, n + 1):
+    if i == 1:
+        print(" " * (n - 1) + "*")
+    elif i == n:
+        print("*" * (2 * n - 1))
+    else:
+        print(" " * (n - i) + "*" + " " * (2 * i - 3) + "*")</code></pre>
+<pre><code>    *
+   * *
+  *   *
+ *     *
+*********</code></pre>
+
+      <h3>With numbers</h3>
+      <p>Instead of asterisks, each row counts from 1 to the row number. <code>str(j)</code> turns the number into text and <code>" ".join(...)</code> joins them with a space:</p>
+<pre><code>n = 5
+for i in range(1, n + 1):
+    print(" ".join(str(j) for j in range(1, i + 1)))</code></pre>
+<pre><code>1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5</code></pre>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="c276a902779e44579c01c705495e4cbb" data-djc-core-reto-seccion="intermedio"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="avanzado">Advanced: Pascal, Sierpinski and turtle</h2>
+      <h3>The pyramid in one line</h3>
+      <p><code>center()</code> centers a text within a given width, so there is no need to work out the spaces:</p>
+<pre><code>n = 5
+print("\n".join(("*" * (2 * i - 1)).center(2 * n - 1).rstrip() for i in range(1, n + 1)))</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+      <p><code>center()</code> also adds spaces on the right. You cannot see them, but they are there, and a judge like Codeforces' can mark the answer as wrong because of that. <code>rstrip()</code> removes them.</p>
+
+      <h3>Pascal's triangle</h3>
+      <p>Each number is the sum of the two right above it, and the borders are 1. Each row is built from the previous one:</p>
+<pre><code>n = 5
+row = [1]
+for i in range(n):
+    print(" " * (n - i - 1) + " ".join(str(x) for x in row))
+    row = [1] + [row[k] + row[k + 1] for k in range(len(row) - 1)] + [1]</code></pre>
+<pre><code>    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1</code></pre>
+      <p>With a bigger <code>n</code>, two and three digit numbers throw the drawing off. To see it right, give every number the same width (for example with <code>str(x).center(4)</code>).</p>
+
+      <h3>Sierpinski with asterisks</h3>
+      <p>If you only paint the odd numbers of Pascal's triangle, a triangle made of triangles appears: Sierpinski's. There is a quick way to know whether a Pascal number is odd without computing it: the one in row <code>i</code> and position <code>j</code> is odd when <code>(j &amp; i) == j</code>, that is, when the bits of <code>j</code> all fit inside those of <code>i</code>.</p>
+<pre><code>n = 8
+for i in range(n):
+    row = ["*" if (j &amp; i) == j else " " for j in range(i + 1)]
+    print(" " * (n - i - 1) + " ".join(row))</code></pre>
+<pre><code>       *
+      * *
+     *   *
+    * * * *
+   *       *
+  * *     * *
+ *   *   *   *
+* * * * * * * *</code></pre>
+      <p>With <code>n</code> equal to 4, 8, 16 or 32 the drawing comes out complete. The parentheses in <code>(j &amp; i) == j</code> are not required in Python, because <code>&amp;</code> is evaluated before <code>==</code>, but in other languages, like JavaScript or C++, it is the other way around: without parentheses the result changes.</p>
+
+      <h3>Draw it with turtle</h3>
+      <p>Python comes with <code>turtle</code>, a turtle that draws in a window as it walks. For an equilateral triangle it moves forward, turns 120 degrees and repeats three times:</p>
+<pre><code>import turtle
+
+t = turtle.Turtle()
+for _ in range(3):
+    t.forward(200)
+    t.left(120)
+
+turtle.done()</code></pre>
+      <p>Why 120 and not 60? The inside angles of the triangle are 60, but the turtle turns what it needs to face the new direction, which is 180 − 60 = 120. The three turns add up to 360: the turtle ends up facing where it started.</p>
+      <p>And Sierpinski with the turtle: a triangle is made of three triangles half its size, and each of those of three more, down to the level you ask for. It is recursion: the function calls itself with one level less.</p>
+<pre><code>import turtle
+
+
+def sierpinski(t, side, level):
+    if level == 0:
+        for _ in range(3):
+            t.forward(side)
+            t.left(120)
+        return
+    half = side / 2
+    sierpinski(t, half, level - 1)                # bottom left
+    t.forward(half)
+    sierpinski(t, half, level - 1)                # bottom right
+    t.backward(half)
+    t.left(60)
+    t.forward(half)
+    t.right(60)
+    sierpinski(t, half, level - 1)                # top
+    t.left(60)
+    t.backward(half)
+    t.right(60)
+
+
+t = turtle.Turtle()
+t.speed(0)
+t.penup()
+t.goto(-200, -170)
+t.pendown()
+sierpinski(t, 400, 4)
+turtle.done()</code></pre>
+      <ul>
+        <li>Each call draws the three small triangles (bottom left, bottom right and top) and brings the turtle back to the point and direction where it started. That is what lets it repeat.</li>
+        <li>With level 4 it draws 81 triangles (3 × 3 × 3 × 3). <code>t.speed(0)</code> is the fastest speed.</li>
+      </ul>
+
+      <h3>What to watch out for</h3>
+      <ul>
+        <li><strong>If you see <code>ModuleNotFoundError: No module named 'tkinter'</code></strong>, your Python is missing the part that opens windows. On Ubuntu or Debian you install it with <code>sudo apt install python3-tk</code>; on Windows and macOS it already comes with the python.org installer.</li>
+        <li><strong>turtle needs a window.</strong> It does not work in online notebooks like Google Colab; the asterisk triangles do.</li>
+        <li><strong>Indentation matters.</strong> If the <code>print</code> is not inside the <code>for</code>, Python warns you with <code>IndentationError: expected an indented block after 'for' statement</code>.</li>
+      </ul>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="c276a902779e44579c01c705495e4cbb" data-djc-core-reto-seccion="avanzado"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>The same triangle in other languages</h2>
+      <p>The same patterns, with what changes in each language:</p>
+      <ul>
+        <li><a href="../../../../../../../../../../../../../../../../fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">How to make a triangle in JavaScript</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/">How to make a triangle in Rust</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/">How to make a triangle in C++</a></li>
+      </ul>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>What it taught us</h2>
+      <p>That an asterisk triangle is not a drawing, it is a table: how many spaces and how many asterisks go in each row. When you write it down by hand, the formula comes out on its own, and almost every mistake is one number too many or too few in the <code>range</code>. From there you get to the pyramid, to Pascal's triangle and, with a bit of bits, to Sierpinski's. Try the viewer above with <code>n</code> equal to 16 and Sierpinski: it is the same old loop.</p>
+    </div>
+  </main>
+
+</body>
+</html>

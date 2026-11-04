@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- 87.34.2.92 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/assets/djc/base/1/icon.png">
+
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/index.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/ui/1/ui.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.js" defer></script>
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/lienzo/1/lienzo.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/lienzo/1/lienzo.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/base/1/index.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/nav/1/script.js" defer></script>
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/progreso/1/progreso.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.js" defer></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-movil.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-pc.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/ads.js" defer></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <title>Cómo hacer un triángulo en JavaScript: asteriscos, pirámide y canvas | DJC Tutorial</title>
+  <meta name="description" content="Aprende a imprimir triángulos de asteriscos en JavaScript paso a paso: rectángulo, invertido, pirámide, hueco, Pascal y Sierpinski, los errores típicos y cómo dibujarlo en un canvas.">
+
+  <link rel="canonical" href="https://tutorial.djc.pe/es/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">
+  <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">
+  <link rel="alternate" hreflang="es" href="https://tutorial.djc.pe/es/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">
+  <link rel="alternate" hreflang="zh-cn" href="https://tutorial.djc.pe/zh-cn/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">
+
+</head>
+<body>
+
+  <main class="content djc-core-page">
+    <p class="djc-core-breadcrumb"><a href="https://tutorial.djc.pe/">Inicio</a> / <a href="../../../../../../../../../../../../../../../../c/programacion/">Programación</a></p>
+    <h1>Cómo hacer un triángulo en JavaScript: asteriscos, pirámide y canvas</h1>
+    <p class="djc-core-author" data-author>Serie por <a href="https://www.djc.pe/u/@null_djc/">@null_djc</a></p>
+    <ul class="djc-core-tags">
+      <li><a href="../../../../../../../../../../../../../../../../c/programacion/">Programación</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/javascript/">JavaScript</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/principiantes/">Principiantes</a></li>
+    </ul>
+
+    <div class="djc-core-card">
+      <p>El triángulo de asteriscos es el primer ejercicio de bucles en casi cualquier curso, y en JavaScript tiene sus propias sorpresas: lo que llega de afuera siempre es texto, un número que no es número no da error y el orden de los operadores no es el que esperas. Lo armamos en la consola y, al final, lo dibujamos en la página.</p>
+      <p>Lo vemos en tres niveles: <a href="#basico">básico</a> (el triángulo y sus trampas), <a href="#intermedio">intermedio</a> (la pirámide y sus variantes) y <a href="#avanzado">avanzado</a> (Pascal, Sierpinski y el dibujo en un <code>canvas</code>). Cada nivel termina con un reto. Todo se puede correr con Node (<code>node triangulo.js</code>) o pegándolo en la consola del navegador (F12).</p>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>Juega con el triángulo</h2>
+      <p>Antes de leer, elige un tipo y mueve el tamaño. Abajo ves lo que imprime y el código en JavaScript que lo hace; puedes copiarlo y probarlo.</p>
+      <div class="djc-core-patron" data-djc-core-patron-lenguaje="javascript"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="basico">Básico: el triángulo y sus trampas</h2>
+      <h3>El triángulo con un bucle</h3>
+      <p>En la fila 1 va un asterisco, en la 2 van dos, en la 3 van tres: la fila y la cantidad son el mismo número.</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  console.log("*".repeat(i));
+}</code></pre>
+<pre><code>*
+**
+***
+****
+*****</code></pre>
+      <ul>
+        <li><code>for (let i = 1; i &lt;= n; i++)</code> cuenta del 1 al 5: empieza en 1, sigue mientras <code>i</code> sea menor o igual a 5 y suma 1 en cada vuelta.</li>
+        <li><code>"*".repeat(i)</code> repite el texto: <code>"*".repeat(3)</code> es <code>"***"</code>.</li>
+        <li><code>console.log</code> imprime y salta de línea.</li>
+      </ul>
+
+      <h3>La trampa: la fila que falta</h3>
+      <p>Muchos bucles en JavaScript se escriben desde 0 y con <code>&lt;</code>, por costumbre. Aquí eso rompe el triángulo:</p>
+<pre><code>const n = 5;
+for (let i = 0; i &lt; n; i++) {
+  console.log("*".repeat(i));
+}</code></pre>
+<pre><code>
+*
+**
+***
+****</code></pre>
+      <p>Arriba sale una línea vacía (<code>"*".repeat(0)</code> es un texto vacío) y falta la fila de cinco, porque <code>i &lt; n</code> se detiene en 4. Cuando el resultado tiene una fila de más o de menos, revisa primero dónde empieza el bucle y si la condición es <code>&lt;</code> o <code>&lt;=</code>.</p>
+
+      <h3>Al revés</h3>
+      <p>Para el triángulo invertido, el bucle cuenta hacia atrás: empieza en <code>n</code> y resta 1 (<code>i--</code>).</p>
+<pre><code>const n = 5;
+for (let i = n; i &gt;= 1; i--) {
+  console.log("*".repeat(i));
+}</code></pre>
+<pre><code>*****
+****
+***
+**
+*</code></pre>
+
+      <h3>Que el usuario elija el tamaño</h3>
+      <p>Con Node, lo que escribes después del nombre del archivo llega en <code>process.argv</code>. <code>node triangulo.js 4</code> imprime:</p>
+<pre><code>const n = Number(process.argv[2]);
+for (let i = 1; i &lt;= n; i++) {
+  console.log("*".repeat(i));
+}</code></pre>
+<pre><code>*
+**
+***
+****</code></pre>
+      <p>Todo lo que llega de afuera (de <code>process.argv</code>, de <code>prompt()</code> en el navegador o de un formulario) es <strong>texto</strong>. Por eso va <code>Number()</code>. Sin él, a veces funciona por suerte y a veces no:</p>
+<pre><code>console.log("5" + 1);
+console.log(Number("5") + 1);
+console.log(Number("hola"));</code></pre>
+<pre><code>51
+6
+NaN</code></pre>
+      <p><code>"5" + 1</code> pega los textos y da <code>"51"</code>. Y si alguien escribe <code>hola</code>, <code>Number("hola")</code> da <code>NaN</code> ("no es un número"): el bucle no da ni una vuelta y el programa termina sin imprimir nada y sin ningún error. Para avisarle al usuario, revisa con <code>Number.isNaN(n)</code>.</p>
+
+      <h3>Con dos bucles</h3>
+      <p><code>repeat</code> es un atajo. Sin él, la fila se arma con un bucle dentro de otro: el de afuera recorre las filas y el de adentro va sumando asteriscos a un texto, que se imprime al final de la fila.</p>
+<pre><code>const n = 4;
+for (let i = 1; i &lt;= n; i++) {
+  let fila = "";
+  for (let j = 0; j &lt; i; j++) {
+    fila += "*";
+  }
+  console.log(fila);
+}</code></pre>
+<pre><code>*
+**
+***
+****</code></pre>
+      <p>En JavaScript <code>console.log</code> siempre salta de línea, así que la fila se arma completa antes de imprimirla.</p>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="fc3866cdf7d746319dc9ea8e38540102" data-djc-core-reto-seccion="basico"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="intermedio">Intermedio: la pirámide y sus variantes</h2>
+      <h3>Alineado a la derecha</h3>
+      <p>Cada fila empieza con <code>n - i</code> espacios, así el triángulo queda pegado a la derecha:</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  console.log(" ".repeat(n - i) + "*".repeat(i));
+}</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+      <p>JavaScript tiene un atajo para esto: <code>padStart(n)</code> rellena con espacios a la izquierda hasta llegar a <code>n</code> caracteres.</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  console.log("*".repeat(i).padStart(n));
+}</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+
+      <h3>La pirámide</h3>
+      <p>La pirámide crece de a dos asteriscos por fila (1, 3, 5, 7, 9) para que quede un centro: <code>2 * i - 1</code> asteriscos y <code>n - i</code> espacios.</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  console.log(" ".repeat(n - i) + "*".repeat(2 * i - 1));
+}</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+      <div class="djc-core-table">
+      <table>
+        <thead><tr><th>Fila (<code>i</code>)</th><th>Espacios (<code>n - i</code>)</th><th>Asteriscos (<code>2 * i - 1</code>)</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>4</td><td>1</td></tr>
+          <tr><td>2</td><td>3</td><td>3</td></tr>
+          <tr><td>3</td><td>2</td><td>5</td></tr>
+          <tr><td>4</td><td>1</td><td>7</td></tr>
+          <tr><td>5</td><td>0</td><td>9</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Esta tabla es el truco para cualquier patrón: escribe a mano cuánto va en cada fila y busca la fórmula. Si la pirámide sale torcida, casi siempre los espacios están en <code>n - i - 1</code> o los asteriscos en <code>2 * i</code>.</p>
+
+      <h3>Hueca</h3>
+      <p>Solo el borde: la primera fila con un asterisco, la última llena y las del medio con un asterisco a cada lado y <code>2 * i - 3</code> espacios en el centro.</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  if (i === 1) {
+    console.log(" ".repeat(n - 1) + "*");
+  } else if (i === n) {
+    console.log("*".repeat(2 * n - 1));
+  } else {
+    console.log(" ".repeat(n - i) + "*" + " ".repeat(2 * i - 3) + "*");
+  }
+}</code></pre>
+<pre><code>    *
+   * *
+  *   *
+ *     *
+*********</code></pre>
+      <p>Fíjate en el <code>===</code>: en JavaScript compara sin convertir tipos. Con <code>==</code>, <code>"1" == 1</code> da <code>true</code>, y eso esconde justo el error del texto que llega de afuera.</p>
+
+      <h3>Con números</h3>
+      <p>Cada fila cuenta del 1 al número de la fila. Los números se guardan en un arreglo y <code>join(" ")</code> los une con espacios:</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  const nums = [];
+  for (let j = 1; j &lt;= i; j++) {
+    nums.push(j);
+  }
+  console.log(nums.join(" "));
+}</code></pre>
+<pre><code>1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5</code></pre>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="fc3866cdf7d746319dc9ea8e38540102" data-djc-core-reto-seccion="intermedio"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="avanzado">Avanzado: Pascal, Sierpinski y canvas</h2>
+      <h3>La pirámide en una línea</h3>
+      <p><code>Array.from</code> crea un arreglo de <code>n</code> filas y arma cada una con una función; <code>join("\n")</code> las une con saltos de línea. Aquí <code>k</code> va del 0 al 4, por eso los asteriscos son <code>2 * k + 1</code>.</p>
+<pre><code>const n = 5;
+console.log(Array.from({ length: n }, (_, k) =&gt; " ".repeat(n - k - 1) + "*".repeat(2 * k + 1)).join("\n"));</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+
+      <h3>El triángulo de Pascal</h3>
+      <p>Cada número es la suma de los dos que tiene encima, y los bordes son 1. Cada fila se arma a partir de la anterior:</p>
+<pre><code>const n = 5;
+let fila = [1];
+for (let i = 0; i &lt; n; i++) {
+  console.log(" ".repeat(n - i - 1) + fila.join(" "));
+  const nueva = [1];
+  for (let k = 0; k &lt; fila.length - 1; k++) {
+    nueva.push(fila[k] + fila[k + 1]);
+  }
+  nueva.push(1);
+  fila = nueva;
+}</code></pre>
+<pre><code>    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1</code></pre>
+      <p>Los números de JavaScript son exactos hasta <code>Number.MAX_SAFE_INTEGER</code> (9007199254740991). Con <code>n</code> de 58 o más, los números del centro pasan de ese límite y empiezan a salir redondeados, sin ningún aviso; para filas tan grandes se usa <code>BigInt</code>.</p>
+
+      <h3>Sierpinski con asteriscos, y la trampa de los paréntesis</h3>
+      <p>Si en el triángulo de Pascal pintas solo los números impares, aparece el triángulo de Sierpinski. El número de la fila <code>i</code> y la posición <code>j</code> es impar cuando <code>(j &amp; i) === j</code>:</p>
+<pre><code>const n = 8;
+for (let i = 0; i &lt; n; i++) {
+  const fila = [];
+  for (let j = 0; j &lt;= i; j++) {
+    fila.push((j &amp; i) === j ? "*" : " ");
+  }
+  console.log(" ".repeat(n - i - 1) + fila.join(" "));
+}</code></pre>
+<pre><code>       *
+      * *
+     *   *
+    * * * *
+   *       *
+  * *     * *
+ *   *   *   *
+* * * * * * * *</code></pre>
+      <p>En Python esos paréntesis no hacen falta. En JavaScript sí: <code>===</code> se calcula <strong>antes</strong> que <code>&amp;</code>. Sin paréntesis, <code>j &amp; i === j</code> es <code>j &amp; (i === j)</code>, y el dibujo se rompe sin ningún error:</p>
+<pre><code>const n = 8;
+for (let i = 0; i &lt; n; i++) {
+  const fila = [];
+  for (let j = 0; j &lt;= i; j++) {
+    fila.push(j &amp; i === j ? "*" : " ");
+  }
+  console.log(" ".repeat(n - i - 1) + fila.join(" "));
+}</code></pre>
+<pre><code>        
+        *
+          
+          *
+            
+            *
+              
+              *</code></pre>
+
+      <h3>Dibujarlo en un canvas</h3>
+      <p>En el navegador no hace falta imprimir asteriscos: un <code>&lt;canvas&gt;</code> es una superficie donde se dibuja. Un triángulo de Sierpinski se arma con tres de la mitad de tamaño, y cada uno de esos con tres más, hasta el nivel que pidas. Muévelo:</p>
+      <div class="djc-core-lienzo"></div>
+      <ul>
+        <li><code>triangulo</code> dibuja uno relleno: va a cada esquina con <code>moveTo</code> y <code>lineTo</code>, lo cierra y lo pinta con <code>fill()</code>. El alto de un triángulo equilátero es <code>lado * √3 / 2</code>.</li>
+        <li><code>sierpinski</code> se llama a sí misma con la mitad del lado y un nivel menos, tres veces: abajo a la izquierda, abajo a la derecha y arriba. Con nivel 0 dibuja un triángulo y termina.</li>
+        <li>Para usarlo en tu página, pones un <code>&lt;canvas id="dibujo" width="400" height="347"&gt;</code> y, después de las dos funciones, <code>sierpinski(document.getElementById("dibujo").getContext("2d"), 0, 347, 400, 5)</code>. El 347 es el alto (400 × √3 / 2) y el punto de partida es la esquina de abajo a la izquierda.</li>
+      </ul>
+
+      <h3>Lo que hay que mirar con cuidado</h3>
+      <ul>
+        <li><strong>La consola del navegador junta las líneas iguales.</strong> Si imprimes la misma fila varias veces seguidas, Chrome muestra una sola con un número al lado. No es tu programa: en Node salen todas.</li>
+        <li><strong>Espacios al final.</strong> Si armas cada fila con <code>padEnd</code> o con espacios de más, no se ven, pero un juez como el de Codeforces los cuenta. <code>trimEnd()</code> los quita.</li>
+        <li><strong><code>let</code> o <code>const</code>, nunca sin nada.</strong> Un <code>for (i = 1; ...)</code> sin <code>let</code> crea una variable global y, en un módulo o en modo estricto, da <code>ReferenceError: i is not defined</code>.</li>
+      </ul>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="fc3866cdf7d746319dc9ea8e38540102" data-djc-core-reto-seccion="avanzado"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>El mismo triángulo en otros lenguajes</h2>
+      <p>Los mismos patrones, con lo que cambia en cada lenguaje:</p>
+      <ul>
+        <li><a href="../../../../../../../../../../../../../../../../c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/">Cómo hacer un triángulo en Python</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/">Cómo hacer un triángulo en Rust</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/">Cómo hacer un triángulo en C++</a></li>
+      </ul>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>Qué nos enseñó</h2>
+      <p>Que el triángulo es una tabla (cuántos espacios y cuántos asteriscos en cada fila), igual que en cualquier lenguaje, y que en JavaScript lo que más se rompe no es la fórmula sino lo que la rodea: el texto que llega de afuera, el <code>&lt;</code> que debería ser <code>&lt;=</code> y un operador que se calcula antes de lo que esperabas. Lo bueno es que el navegador ya trae dónde dibujarlo: mueve el nivel del canvas y mira cómo el mismo patrón se repite dentro de sí mismo.</p>
+    </div>
+  </main>
+
+</body>
+</html>

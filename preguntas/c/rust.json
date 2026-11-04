@@ -1,0 +1,42 @@
+{
+  "categoria": "rust",
+  "version": "f5e6df15",
+  "titulo": {
+    "en": "Rust",
+    "es": "Rust",
+    "zh-cn": "Rust"
+  },
+  "tutoriales": [
+    {
+      "tutorial": "5deeaf38e9d840d294788a9bbd0f24a1",
+      "archivo": "preguntas/t/5deeaf38e9d840d294788a9bbd0f24a1.json",
+      "titulo": {
+        "es": "Cómo hacer un triángulo en Rust: asteriscos, pirámide y Sierpinski",
+        "en": "How to Make a Triangle in Rust: Asterisks, Pyramid and Sierpinski",
+        "zh-cn": "如何用 Rust 打印三角形：星号、金字塔和谢尔宾斯基"
+      },
+      "url": {
+        "es": "es/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/",
+        "en": "en/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/",
+        "zh-cn": "zh-cn/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/"
+      },
+      "secciones": {
+        "es": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        },
+        "en": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        },
+        "zh-cn": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        }
+      }
+    }
+  ]
+}

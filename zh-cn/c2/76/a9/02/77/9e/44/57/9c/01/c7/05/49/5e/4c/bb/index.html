@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <!-- 87.34.2.92 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/assets/djc/base/1/icon.png">
+
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/index.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/ui/1/ui.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/base/1/index.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/nav/1/script.js" defer></script>
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/progreso/1/progreso.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.js" defer></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-movil.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-pc.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/ads.js" defer></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <title>如何用 Python 打印三角形：星号、金字塔和 turtle | DJC Tutorial</title>
+  <meta name="description" content="一步一步学会用 Python 打印星号三角形：直角、倒置、金字塔、空心、杨辉三角和谢尔宾斯基三角形，常见错误，以及如何用 turtle 画出来。">
+
+  <link rel="canonical" href="https://tutorial.djc.pe/zh-cn/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/">
+  <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/">
+  <link rel="alternate" hreflang="es" href="https://tutorial.djc.pe/es/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/">
+  <link rel="alternate" hreflang="zh-cn" href="https://tutorial.djc.pe/zh-cn/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/">
+
+</head>
+<body>
+
+  <main class="content djc-core-page">
+    <p class="djc-core-breadcrumb"><a href="https://tutorial.djc.pe/">首页</a> / <a href="../../../../../../../../../../../../../../../../c/programming/">编程</a></p>
+    <h1>如何用 Python 打印三角形：星号、金字塔和 turtle</h1>
+    <p class="djc-core-author" data-author>作者：<a href="https://www.djc.pe/u/@null_djc/">@null_djc</a>（系列）</p>
+    <ul class="djc-core-tags">
+      <li><a href="../../../../../../../../../../../../../../../../c/programming/">编程</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/python/">Python</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/beginners/">入门</a></li>
+    </ul>
+
+    <div class="djc-core-card">
+      <p>如果你正在学编程，迟早会遇到这道题：“用星号打印一个三角形”。看起来像个游戏，但它正是逼你真正理解循环的练习：循环跑几次、每一次变的是什么，以及为什么总像是少了一行。我们花的时间比想象中多，而且几乎每次都错在同一个数字上。</p>
+      <p>我们分三个层级来讲：<a href="#basico">基础</a>（三角形和它的陷阱）、<a href="#intermedio">中级</a>（金字塔及其变体）和<a href="#avanzado">高级</a>（杨辉三角、谢尔宾斯基三角形和用 <code>turtle</code> 画图）。每个层级最后都有一个挑战。</p>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>玩一玩三角形</h2>
+      <p>读之前，先选一种类型并调整大小。下面会显示它打印出来的结果，以及实现它的 Python 代码；你可以复制下来在自己的电脑上试试。</p>
+      <div class="djc-core-patron" data-djc-core-patron-lenguaje="python"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="basico">基础：三角形和它的陷阱</h2>
+      <h3>三行代码的三角形</h3>
+      <p>思路很简单：第 1 行一个星号，第 2 行两个，第 3 行三个。行号和星号的个数是同一个数。</p>
+<pre><code>n = 5
+for i in range(1, n + 1):
+    print("*" * i)</code></pre>
+<pre><code>*
+**
+***
+****
+*****</code></pre>
+      <ul>
+        <li><code>range(1, n + 1)</code> 给出 1 到 5：从第一个数开始，在第二个数<strong>之前</strong>停下。所以要写 <code>n + 1</code>。</li>
+        <li><code>"*" * i</code> 会重复文本：<code>"*" * 3</code> 就是 <code>"***"</code>。Python 允许用文本乘以数字，这样就省掉了一个循环。</li>
+      </ul>
+
+      <h3>陷阱：少了一行</h3>
+      <p>我们最开始写的是这样，结果三角形不对：</p>
+<pre><code>n = 5
+for i in range(n):
+    print("*" * i)</code></pre>
+<pre><code>
+*
+**
+***
+****</code></pre>
+      <p>最上面多了一个空行，最下面少了五个星号的那一行。<code>range(n)</code> 是从 0 到 4：第一次循环打印 <code>"*" * 0</code>，也就是空文本，而且永远到不了 5。这是这道题最常见的错误，在其他语言里也一样：如果结果多一行或少一行，先检查循环从哪里开始、到哪里结束。</p>
+
+      <h3>倒过来</h3>
+      <p>倒置的三角形，循环要倒着数：<code>range(n, 0, -1)</code> 从 5 数到 1（第三个数是步长）。</p>
+<pre><code>n = 5
+for i in range(n, 0, -1):
+    print("*" * i)</code></pre>
+<pre><code>*****
+****
+***
+**
+*</code></pre>
+
+      <h3>让用户自己选大小</h3>
+<pre><code>n = int(input("Size: "))
+for i in range(1, n + 1):
+    print("*" * i)</code></pre>
+      <p><code>input()</code> 返回的永远是文本，就算你输入的是数字。如果忘了 <code>int()</code>，Python 会在 <code>range</code> 那里报错：</p>
+<pre><code>TypeError: can only concatenate str (not "int") to str</code></pre>
+      <p>如果用户输入的不是数字，比如 <code>hello</code>，出错的就是 <code>int()</code>：</p>
+<pre><code>ValueError: invalid literal for int() with base 10: 'hello'</code></pre>
+
+      <h3>用两个循环</h3>
+      <p>文本相乘是 Python 的捷径。很多语言没有这个功能，要用一个循环套另一个循环：外层循环遍历每一行，内层循环打印这一行的星号。</p>
+<pre><code>n = 3
+for i in range(1, n + 1):
+    for j in range(i):
+        print("*", end="")
+    print()</code></pre>
+<pre><code>*
+**
+***</code></pre>
+      <p><code>end=""</code> 让 <code>print</code> 在每个星号之后不换行，空的 <code>print()</code> 在一行结束时换行。之后我们用其他语言写同样的三角形时，看到的就是这种写法。</p>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="c276a902779e44579c01c705495e4cbb" data-djc-core-reto-seccion="basico"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="intermedio">中级：金字塔及其变体</h2>
+      <h3>靠右对齐</h3>
+      <p>要把三角形推到右边，每一行都先打印空格。第 1 行离五个星号还差四个，所以放四个空格；最后一行一个也不用：<code>n - i</code> 个空格。</p>
+<pre><code>n = 5
+for i in range(1, n + 1):
+    print(" " * (n - i) + "*" * i)</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+
+      <h3>金字塔</h3>
+      <p>金字塔每一行多两个星号（1、3、5、7、9），这样才有中心。这个数就是 <code>2 * i - 1</code>，空格仍然是 <code>n - i</code>：</p>
+<pre><code>n = 5
+for i in range(1, n + 1):
+    print(" " * (n - i) + "*" * (2 * i - 1))</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+      <div class="djc-core-table">
+      <table>
+        <thead><tr><th>行（<code>i</code>）</th><th>空格（<code>n - i</code>）</th><th>星号（<code>2 * i - 1</code>）</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>4</td><td>1</td></tr>
+          <tr><td>2</td><td>3</td><td>3</td></tr>
+          <tr><td>3</td><td>2</td><td>5</td></tr>
+          <tr><td>4</td><td>1</td><td>7</td></tr>
+          <tr><td>5</td><td>0</td><td>9</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>这张表就是做任何图案的诀窍：先手写出每一行要放多少，再找出能算出这些数的公式。如果金字塔歪了，几乎总是空格写成了 <code>n - i - 1</code>，或者星号写成了 <code>2 * i</code>。</p>
+
+      <h3>空心</h3>
+      <p>空心金字塔只画边框。第一行一个星号，最后一行是满的，中间每一行两边各一个星号，中间是空格（同样是 <code>2 * i - 1</code> 个位置，减去两边）：</p>
+<pre><code>n = 5
+for i in range(1, n + 1):
+    if i == 1:
+        print(" " * (n - 1) + "*")
+    elif i == n:
+        print("*" * (2 * n - 1))
+    else:
+        print(" " * (n - i) + "*" + " " * (2 * i - 3) + "*")</code></pre>
+<pre><code>    *
+   * *
+  *   *
+ *     *
+*********</code></pre>
+
+      <h3>用数字</h3>
+      <p>不用星号，每一行从 1 数到这一行的行号。<code>str(j)</code> 把数字变成文本，<code>" ".join(...)</code> 用空格把它们连起来：</p>
+<pre><code>n = 5
+for i in range(1, n + 1):
+    print(" ".join(str(j) for j in range(1, i + 1)))</code></pre>
+<pre><code>1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5</code></pre>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="c276a902779e44579c01c705495e4cbb" data-djc-core-reto-seccion="intermedio"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="avanzado">高级：杨辉三角、谢尔宾斯基和 turtle</h2>
+      <h3>一行代码的金字塔</h3>
+      <p><code>center()</code> 会把文本放在给定宽度的正中间，所以不用自己算空格：</p>
+<pre><code>n = 5
+print("\n".join(("*" * (2 * i - 1)).center(2 * n - 1).rstrip() for i in range(1, n + 1)))</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+      <p><code>center()</code> 在右边也会补空格。看不见，但确实存在，像 Codeforces 这样的评测系统可能会因此判你答案错误。<code>rstrip()</code> 可以把它们去掉。</p>
+
+      <h3>杨辉三角</h3>
+      <p>每个数等于它正上方两个数之和，两边都是 1。每一行都由上一行算出来：</p>
+<pre><code>n = 5
+row = [1]
+for i in range(n):
+    print(" " * (n - i - 1) + " ".join(str(x) for x in row))
+    row = [1] + [row[k] + row[k + 1] for k in range(len(row) - 1)] + [1]</code></pre>
+<pre><code>    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1</code></pre>
+      <p><code>n</code> 变大以后，两位数和三位数会让图形对不齐。要想好看，就给每个数相同的宽度（比如用 <code>str(x).center(4)</code>）。</p>
+
+      <h3>用星号画谢尔宾斯基三角形</h3>
+      <p>如果在杨辉三角里只把奇数涂出来，就会出现一个由三角形组成的三角形：谢尔宾斯基三角形。有一个不用计算就能判断杨辉三角里某个数是不是奇数的方法：第 <code>i</code> 行第 <code>j</code> 个数是奇数，当且仅当 <code>(j &amp; i) == j</code>，也就是 <code>j</code> 的二进制位都包含在 <code>i</code> 里。</p>
+<pre><code>n = 8
+for i in range(n):
+    row = ["*" if (j &amp; i) == j else " " for j in range(i + 1)]
+    print(" " * (n - i - 1) + " ".join(row))</code></pre>
+<pre><code>       *
+      * *
+     *   *
+    * * * *
+   *       *
+  * *     * *
+ *   *   *   *
+* * * * * * * *</code></pre>
+      <p>当 <code>n</code> 等于 4、8、16 或 32 时，图形是完整的。在 Python 里 <code>(j &amp; i) == j</code> 的括号不是必须的，因为 <code>&amp;</code> 比 <code>==</code> 先算；但在 JavaScript 或 C++ 这些语言里正好相反：不加括号，结果就变了。</p>
+
+      <h3>用 turtle 画出来</h3>
+      <p>Python 自带 <code>turtle</code>，一只边走边在窗口里画画的小海龟。画等边三角形就是：前进、转 120 度，重复三次：</p>
+<pre><code>import turtle
+
+t = turtle.Turtle()
+for _ in range(3):
+    t.forward(200)
+    t.left(120)
+
+turtle.done()</code></pre>
+      <p>为什么是 120 而不是 60？三角形的内角是 60 度，但海龟转的是朝向新方向所需要的角度，也就是 180 − 60 = 120。三次转弯加起来是 360 度：海龟最后又面朝出发时的方向。</p>
+      <p>再用海龟画谢尔宾斯基三角形：一个三角形由三个边长一半的三角形组成，每一个又由三个更小的组成，一直到你指定的层级。这就是递归：函数用少一层的参数调用自己。</p>
+<pre><code>import turtle
+
+
+def sierpinski(t, side, level):
+    if level == 0:
+        for _ in range(3):
+            t.forward(side)
+            t.left(120)
+        return
+    half = side / 2
+    sierpinski(t, half, level - 1)                # bottom left
+    t.forward(half)
+    sierpinski(t, half, level - 1)                # bottom right
+    t.backward(half)
+    t.left(60)
+    t.forward(half)
+    t.right(60)
+    sierpinski(t, half, level - 1)                # top
+    t.left(60)
+    t.backward(half)
+    t.right(60)
+
+
+t = turtle.Turtle()
+t.speed(0)
+t.penup()
+t.goto(-200, -170)
+t.pendown()
+sierpinski(t, 400, 4)
+turtle.done()</code></pre>
+      <ul>
+        <li>每次调用都会画出三个小三角形（左下、右下和上面），并把海龟带回出发时的位置和方向。正因为这样，它才能一直重复下去。</li>
+        <li>层级为 4 时会画出 81 个三角形（3 × 3 × 3 × 3）。<code>t.speed(0)</code> 是最快的速度。</li>
+      </ul>
+
+      <h3>需要注意的地方</h3>
+      <ul>
+        <li><strong>如果看到 <code>ModuleNotFoundError: No module named 'tkinter'</code></strong>，说明你的 Python 缺少打开窗口的那部分。在 Ubuntu 或 Debian 上用 <code>sudo apt install python3-tk</code> 安装；在 Windows 和 macOS 上，python.org 的安装包已经自带了。</li>
+        <li><strong>turtle 需要一个窗口。</strong>在 Google Colab 这样的在线笔记本里用不了；星号三角形可以。</li>
+        <li><strong>缩进很重要。</strong>如果 <code>print</code> 没有缩进到 <code>for</code> 里面，Python 会提示 <code>IndentationError: expected an indented block after 'for' statement</code>。</li>
+      </ul>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="c276a902779e44579c01c705495e4cbb" data-djc-core-reto-seccion="avanzado"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>用其他语言画同样的三角形</h2>
+      <p>同样的图案，以及每种语言的不同之处：</p>
+      <ul>
+        <li><a href="../../../../../../../../../../../../../../../../fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">如何用 JavaScript 打印三角形</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/">如何用 Rust 打印三角形</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/">如何用 C++ 打印三角形</a></li>
+      </ul>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>我们学到了什么</h2>
+      <p>星号三角形其实不是一幅画，而是一张表：每一行放多少个空格、多少个星号。把它手写出来，公式自己就出来了，而几乎所有错误都是 <code>range</code> 里多了一个或少了一个数。从这里可以走到金字塔、杨辉三角，再加上一点位运算，就到了谢尔宾斯基三角形。在上面的工具里把 <code>n</code> 设成 16 再选谢尔宾斯基试试：还是那个熟悉的循环。</p>
+    </div>
+  </main>
+
+</body>
+</html>

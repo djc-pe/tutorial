@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- 87.34.2.92 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/assets/djc/base/1/icon.png">
+
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/index.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/ui/1/ui.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/base/1/index.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/nav/1/script.js" defer></script>
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/progreso/1/progreso.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.js" defer></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-movil.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-pc.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/ads.js" defer></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <title>How to Make a Triangle in C++: Asterisks, Pyramid and Sierpinski | DJC Tutorial</title>
+  <meta name="description" content="Learn to print asterisk triangles in C++ step by step: right, inverted, pyramid, hollow, Pascal and Sierpinski, with the typical mistakes with loops, cin and parentheses.">
+
+  <link rel="canonical" href="https://tutorial.djc.pe/en/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/">
+  <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/">
+  <link rel="alternate" hreflang="es" href="https://tutorial.djc.pe/es/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/">
+  <link rel="alternate" hreflang="zh-cn" href="https://tutorial.djc.pe/zh-cn/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/">
+
+</head>
+<body>
+
+  <main class="content djc-core-page">
+    <p class="djc-core-breadcrumb"><a href="https://tutorial.djc.pe/">Home</a> / <a href="../../../../../../../../../../../../../../../../c/programming/">Programming</a></p>
+    <h1>How to Make a Triangle in C++: Asterisks, Pyramid and Sierpinski</h1>
+    <p class="djc-core-author" data-author>Series by <a href="https://www.djc.pe/u/@null_djc/">@null_djc</a></p>
+    <ul class="djc-core-tags">
+      <li><a href="../../../../../../../../../../../../../../../../c/programming/">Programming</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/cpp/">C++</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/beginners/">Beginners</a></li>
+    </ul>
+
+    <div class="djc-core-card">
+      <p>The asterisk triangle is the first loop exercise of almost any course, and in C++ it is also the first one many people solve on a judge like Codeforces. C++ warns you about almost nothing: if something goes wrong, the program carries on as if nothing happened. Here we look at where those mistakes hide and how to get the compiler to help you.</p>
+      <p>We cover it in three levels: <a href="#basico">basic</a> (the triangle and its traps), <a href="#intermedio">intermediate</a> (the pyramid and its variants) and <a href="#avanzado">advanced</a> (Pascal, Sierpinski and the parentheses trap). Each level ends with a challenge. To try the code: <code>g++ -std=c++17 -Wall triangle.cpp -o triangle &amp;&amp; ./triangle</code>.</p>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>Play with the triangle</h2>
+      <p>Before reading, pick a type and move the size. Below you see what it prints and the C++ code that does it; you can copy it and try it.</p>
+      <div class="djc-core-patron" data-djc-core-patron-lenguaje="cpp"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="basico">Basic: the triangle and its traps</h2>
+      <h3>The triangle with one loop</h3>
+      <p>Row 1 has one asterisk, row 2 has two, row 3 has three: the row and the count are the same number.</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = 1; i &lt;= n; i++) {
+        std::cout &lt;&lt; std::string(i, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>*
+**
+***
+****
+*****</code></pre>
+      <ul>
+        <li><code>for (int i = 1; i &lt;= n; i++)</code> counts from 1 to 5: it starts at 1, keeps going while <code>i</code> is less than or equal to 5 and adds 1 on each pass.</li>
+        <li><code>std::string(i, '*')</code> creates a text with <code>i</code> asterisks. The count goes first and then the character, in single quotes.</li>
+        <li><code>"\n"</code> jumps to a new line. It is preferred over <code>std::endl</code>, which also flushes the output and makes the program slower when it prints a lot.</li>
+      </ul>
+
+      <h3>The trap: the missing row</h3>
+      <p>Out of habit, many C++ loops start at 0 and use <code>&lt;</code>. Here that breaks the triangle:</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = 0; i &lt; n; i++) {
+        std::cout &lt;&lt; std::string(i, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>
+*
+**
+***
+****</code></pre>
+      <p>There is an empty line at the top (<code>std::string(0, '*')</code> is empty text) and the row of five is missing, because <code>i &lt; n</code> stops at 4. When the result has one row too many or too few, check where the loop starts and whether the condition is <code>&lt;</code> or <code>&lt;=</code>.</p>
+
+      <h3>Upside down</h3>
+      <p>For the inverted triangle, the loop starts at <code>n</code> and subtracts 1 (<code>i--</code>):</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = n; i &gt;= 1; i--) {
+        std::cout &lt;&lt; std::string(i, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>*****
+****
+***
+**
+*</code></pre>
+
+      <h3>Let the user choose the size</h3>
+      <p><code>std::cin &gt;&gt; n</code> reads a number from the input. Typing <code>3</code>:</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n;
+    std::cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; i++) {
+        std::cout &lt;&lt; std::string(i, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>*
+**
+***</code></pre>
+      <p>And if the user types <code>hello</code>? C++ gives no error at all: <code>cin</code> fails silently, <code>n</code> stays at 0, the loop does not run even once and the program ends without printing anything. To notice, check whether the read worked:</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n;
+    if (!(std::cin &gt;&gt; n)) {
+        std::cout &lt;&lt; "That is not a number\n";
+        return 1;
+    }
+    for (int i = 1; i &lt;= n; i++) {
+        std::cout &lt;&lt; std::string(i, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>That is not a number</code></pre>
+
+      <h3>With two loops</h3>
+      <p>Without <code>std::string(i, '*')</code>, the row is printed with a loop inside another: the outer one goes through the rows and the inner one prints one asterisk per pass.</p>
+<pre><code>#include &lt;iostream&gt;
+
+int main() {
+    int n = 4;
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 0; j &lt; i; j++) {
+            std::cout &lt;&lt; '*';
+        }
+        std::cout &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>*
+**
+***
+****</code></pre>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="d0023ac8118e461cb3bd82083ee9f6ae" data-djc-core-reto-seccion="basico"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="intermedio">Intermediate: the pyramid and its variants</h2>
+      <h3>Right-aligned</h3>
+      <p>Each row starts with <code>n - i</code> spaces, so the triangle sits against the right:</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = 1; i &lt;= n; i++) {
+        std::cout &lt;&lt; std::string(n - i, ' ') &lt;&lt; std::string(i, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+      <p>C++ can also do it with <code>std::setw(n)</code> (from <code>&lt;iomanip&gt;</code>), which reserves <code>n</code> places and right-aligns what comes next:</p>
+<pre><code>#include &lt;iomanip&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = 1; i &lt;= n; i++) {
+        std::cout &lt;&lt; std::setw(n) &lt;&lt; std::string(i, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+
+      <h3>The pyramid</h3>
+      <p>The pyramid grows by two asterisks per row (1, 3, 5, 7, 9) so it has a center: <code>2 * i - 1</code> asterisks and <code>n - i</code> spaces.</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = 1; i &lt;= n; i++) {
+        std::cout &lt;&lt; std::string(n - i, ' ') &lt;&lt; std::string(2 * i - 1, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+      <div class="djc-core-table">
+      <table>
+        <thead><tr><th>Row (<code>i</code>)</th><th>Spaces (<code>n - i</code>)</th><th>Asterisks (<code>2 * i - 1</code>)</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>4</td><td>1</td></tr>
+          <tr><td>2</td><td>3</td><td>3</td></tr>
+          <tr><td>3</td><td>2</td><td>5</td></tr>
+          <tr><td>4</td><td>1</td><td>7</td></tr>
+          <tr><td>5</td><td>0</td><td>9</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>This table is the trick for any pattern: write down by hand how much goes in each row and look for the formula. If the pyramid comes out crooked, the spaces are almost always <code>n - i - 1</code> or the asterisks <code>2 * i</code>.</p>
+
+      <h3>Hollow</h3>
+      <p>Only the border: the first row with one asterisk, the last one full and the middle ones with an asterisk on each side and <code>2 * i - 3</code> spaces in the center.</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = 1; i &lt;= n; i++) {
+        if (i == 1) {
+            std::cout &lt;&lt; std::string(n - 1, ' ') &lt;&lt; "*\n";
+        } else if (i == n) {
+            std::cout &lt;&lt; std::string(2 * n - 1, '*') &lt;&lt; "\n";
+        } else {
+            std::cout &lt;&lt; std::string(n - i, ' ') &lt;&lt; "*" &lt;&lt; std::string(2 * i - 3, ' ') &lt;&lt; "*\n";
+        }
+    }
+}</code></pre>
+<pre><code>    *
+   * *
+  *   *
+ *     *
+*********</code></pre>
+
+      <h3>With numbers</h3>
+      <p>Each row counts from 1 to the row number, with a space between numbers (but not before the first one, hence the <code>if (j &gt; 1)</code>):</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 1; j &lt;= i; j++) {
+            if (j &gt; 1) std::cout &lt;&lt; " ";
+            std::cout &lt;&lt; j;
+        }
+        std::cout &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5</code></pre>
+
+      <h3>The order trap in <code>std::string</code></h3>
+      <p><code>std::string(3, '*')</code> is three asterisks. The other way around, <code>std::string('*', 3)</code> compiles without complaint, because a character is also a number (<code>'*'</code> is 42):</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::string row('*', 3);
+    std::cout &lt;&lt; row.size() &lt;&lt; "\n";
+}</code></pre>
+<pre><code>42</code></pre>
+      <p>That is 42 invisible characters (character number 3). On screen it looks like nothing was printed, but a judge marks it as wrong.</p>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="d0023ac8118e461cb3bd82083ee9f6ae" data-djc-core-reto-seccion="intermedio"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="avanzado">Advanced: Pascal, Sierpinski and the parentheses</h2>
+      <h3>Pascal's triangle</h3>
+      <p>Each number is the sum of the two on top of it, and the borders are 1. Each row is built from the previous one, in a <code>std::vector</code>:</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+
+int main() {
+    int n = 5;
+    std::vector&lt;long long&gt; row = {1};
+    for (int i = 0; i &lt; n; i++) {
+        std::cout &lt;&lt; std::string(n - i - 1, ' ');
+        for (size_t k = 0; k &lt; row.size(); k++) {
+            if (k &gt; 0) std::cout &lt;&lt; " ";
+            std::cout &lt;&lt; row[k];
+        }
+        std::cout &lt;&lt; "\n";
+        std::vector&lt;long long&gt; next = {1};
+        for (size_t k = 0; k + 1 &lt; row.size(); k++) {
+            next.push_back(row[k] + row[k + 1]);
+        }
+        next.push_back(1);
+        row = next;
+    }
+}</code></pre>
+<pre><code>    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1</code></pre>
+      <p>A <code>long long</code> goes up to 9223372036854775807. With <code>n</code> of 68 or more, the numbers in the center no longer fit, and C++ does not warn you: the result is a wrong number (technically, undefined behavior). With <code>unsigned long long</code> you gain one more row; for bigger rows you need big integers.</p>
+
+      <h3>Sierpinski with asterisks</h3>
+      <p>If you only paint the odd numbers of Pascal's triangle, the Sierpinski triangle appears. The number in row <code>i</code> and position <code>j</code> is odd when <code>(j &amp; i) == j</code>:</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 8;
+    for (int i = 0; i &lt; n; i++) {
+        std::cout &lt;&lt; std::string(n - i - 1, ' ');
+        for (int j = 0; j &lt;= i; j++) {
+            if (j &gt; 0) std::cout &lt;&lt; " ";
+            std::cout &lt;&lt; ((j &amp; i) == j ? "*" : " ");
+        }
+        std::cout &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>       *
+      * *
+     *   *
+    * * * *
+   *       *
+  * *     * *
+ *   *   *   *
+* * * * * * * *</code></pre>
+
+      <h3>The parentheses trap</h3>
+      <p>In C++, <code>==</code> is evaluated <strong>before</strong> <code>&amp;</code>. Without parentheses, <code>j &amp; i == j</code> is <code>j &amp; (i == j)</code>, and the drawing breaks:</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 8;
+    for (int i = 0; i &lt; n; i++) {
+        std::cout &lt;&lt; std::string(n - i - 1, ' ');
+        for (int j = 0; j &lt;= i; j++) {
+            if (j &gt; 0) std::cout &lt;&lt; " ";
+            std::cout &lt;&lt; (j &amp; i == j ? "*" : " ");
+        }
+        std::cout &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>        
+        *
+          
+          *
+            
+            *
+              
+              *</code></pre>
+      <p>That is why we compile with <code>-Wall</code>: with that option, g++ warns exactly about this.</p>
+<pre><code>warning: suggest parentheses around comparison in operand of ‘&amp;’ [-Wparentheses]</code></pre>
+      <p>A warning does not stop the compilation, so it is easy to miss. Get used to compiling with <code>-Wall</code> and reading what it says before running.</p>
+
+      <h3>And to draw it?</h3>
+      <p>C++ has nothing built in to draw in a window. There are libraries for that (like SFML or SDL), but they take quite a bit of installing and setting up for a first program. If you want to see Sierpinski drawn, there is the JavaScript version, which is drawn right here in the browser, and the Python one with <code>turtle</code>.</p>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="d0023ac8118e461cb3bd82083ee9f6ae" data-djc-core-reto-seccion="avanzado"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>The same triangle in other languages</h2>
+      <p>The same patterns, with what changes in each language:</p>
+      <ul>
+        <li><a href="../../../../../../../../../../../../../../../../c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/">How to make a triangle in Python</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">How to make a triangle in JavaScript</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/">How to make a triangle in Rust</a></li>
+      </ul>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>What it taught us</h2>
+      <p>That the triangle is a table (how many spaces and how many asterisks in each row), just like in any language, and that in C++ the most expensive mistakes are the quiet ones: the <code>cin</code> that fails without warning, the <code>std::string</code> with its arguments swapped, the number that does not fit and the operator that is evaluated first. Always compile with <code>-Wall</code>: many of those traps are a warning the compiler was already giving you.</p>
+    </div>
+  </main>
+
+</body>
+</html>

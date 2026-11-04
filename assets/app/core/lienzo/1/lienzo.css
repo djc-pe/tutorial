@@ -1,0 +1,52 @@
+/* djc-core-lienzo (v1): Sierpinski en canvas. Solo colores de marca. */
+
+.djc-core-lienzo {
+  margin: var(--djc-core-space-4, 16px) 0;
+  padding: var(--djc-core-space-4, 16px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--djc-core-radius, 12px);
+  background: var(--color-bg);
+}
+
+.djc-core-lienzo-canvas {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto 14px;
+}
+
+.djc-core-lienzo-control {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-bottom: 14px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.djc-core-lienzo-control strong { color: var(--color-accent); }
+
+.djc-core-lienzo-control input[type="range"] {
+  flex: 1;
+  min-width: 140px;
+  accent-color: var(--color-accent);
+}
+
+.djc-core-lienzo-cuenta { font-size: 13px; }
+
+.djc-core-lienzo-titulo {
+  margin: 0 0 6px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.djc-core-lienzo pre {
+  margin: 0;
+  padding: 12px 14px;
+  overflow-x: auto;
+  border: 1px solid rgba(229, 247, 116, 0.25);
+  border-radius: 8px;
+  background: var(--color-surface);
+  font-size: 13px;
+  line-height: 1.4;
+}
