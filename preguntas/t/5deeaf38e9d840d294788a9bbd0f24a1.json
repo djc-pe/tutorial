@@ -1,0 +1,1064 @@
+{
+  "version": 1,
+  "tutorial": "5deeaf38e9d840d294788a9bbd0f24a1",
+  "url": {
+    "es": "es/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/",
+    "en": "en/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/",
+    "zh-cn": "zh-cn/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/"
+  },
+  "prefijo": "trirs",
+  "categorias": [
+    "programacion",
+    "rust",
+    "principiantes"
+  ],
+  "preguntas": [
+    {
+      "id": "trirs-001",
+      "dificultad": 8,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "¿Qué imprime este código?",
+        "frase": "fn main() {\n    let n = 3;\n    for i in 1..=n {\n        println!(\"{}\", \"*\".repeat(i));\n    }\n}",
+        "opciones": [
+          {
+            "texto": "*\n**\n***",
+            "correcta": true
+          },
+          {
+            "texto": "***\n**\n*",
+            "explica": "Ese es el invertido: necesitaría (1..=n).rev()."
+          },
+          {
+            "texto": "*\n*\n*",
+            "explica": "\"*\".repeat(i) repite el asterisco i veces, así que cada fila tiene uno más."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does this code print?",
+        "frase": "fn main() {\n    let n = 3;\n    for i in 1..=n {\n        println!(\"{}\", \"*\".repeat(i));\n    }\n}",
+        "opciones": [
+          {
+            "texto": "*\n**\n***",
+            "correcta": true
+          },
+          {
+            "texto": "***\n**\n*",
+            "explica": "That is the inverted one: it would need (1..=n).rev()."
+          },
+          {
+            "texto": "*\n*\n*",
+            "explica": "\"*\".repeat(i) repeats the asterisk i times, so each row has one more."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "这段代码会打印什么？",
+        "frase": "fn main() {\n    let n = 3;\n    for i in 1..=n {\n        println!(\"{}\", \"*\".repeat(i));\n    }\n}",
+        "opciones": [
+          {
+            "texto": "*\n**\n***",
+            "correcta": true
+          },
+          {
+            "texto": "***\n**\n*",
+            "explica": "那是倒置的三角形：需要 (1..=n).rev()。"
+          },
+          {
+            "texto": "*\n*\n*",
+            "explica": "\"*\".repeat(i) 会把星号重复 i 次，所以每一行多一个。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-002",
+      "dificultad": 12,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Qué números da el rango 1..4 en Rust?",
+        "opciones": [
+          {
+            "texto": "1, 2 y 3",
+            "correcta": true,
+            "explica": "Con .. el último no entra; con ..= sí."
+          },
+          {
+            "texto": "1, 2, 3 y 4",
+            "explica": "Eso es 1..=4."
+          },
+          {
+            "texto": "0, 1, 2 y 3",
+            "explica": "Empieza en el primer número, el 1."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "Which numbers does the range 1..4 give in Rust?",
+        "opciones": [
+          {
+            "texto": "1, 2 and 3",
+            "correcta": true,
+            "explica": "With .. the last one is not included; with ..= it is."
+          },
+          {
+            "texto": "1, 2, 3 and 4",
+            "explica": "That is 1..=4."
+          },
+          {
+            "texto": "0, 1, 2 and 3",
+            "explica": "It starts at the first number, 1."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在 Rust 里，范围 1..4 会给出哪些数？",
+        "opciones": [
+          {
+            "texto": "1、2 和 3",
+            "correcta": true,
+            "explica": "用 .. 不包括最后一个；用 ..= 才包括。"
+          },
+          {
+            "texto": "1、2、3 和 4",
+            "explica": "那是 1..=4。"
+          },
+          {
+            "texto": "0、1、2 和 3",
+            "explica": "它从第一个数 1 开始。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-003",
+      "dificultad": 18,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Este código debería imprimir 5 filas, de 1 a 5 asteriscos, pero arriba sale una línea vacía y falta la fila de cinco. ¿Qué cambias?",
+        "frase": "for i in 0..n {\n    println!(\"{}\", \"*\".repeat(i));\n}",
+        "opciones": [
+          {
+            "texto": "0..n por 1..=n",
+            "correcta": true,
+            "explica": "0..n va del 0 al 4: la primera fila es \"*\".repeat(0), vacía, y nunca llega a 5."
+          },
+          {
+            "texto": "0..n por 0..=n",
+            "explica": "Aparece la fila de cinco, pero sigue la línea vacía de arriba."
+          },
+          {
+            "texto": "println! por print!",
+            "explica": "print! no salta de línea: saldría todo en una sola."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "This code should print 5 rows, from 1 to 5 asterisks, but there is an empty line at the top and the row of five is missing. What do you change?",
+        "frase": "for i in 0..n {\n    println!(\"{}\", \"*\".repeat(i));\n}",
+        "opciones": [
+          {
+            "texto": "0..n to 1..=n",
+            "correcta": true,
+            "explica": "0..n goes from 0 to 4: the first row is \"*\".repeat(0), empty, and it never gets to 5."
+          },
+          {
+            "texto": "0..n to 0..=n",
+            "explica": "The row of five shows up, but the empty line at the top is still there."
+          },
+          {
+            "texto": "println! to print!",
+            "explica": "print! does not jump to a new line: everything would come out on one line."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "这段代码应该打印 5 行，从 1 个到 5 个星号，但最上面多了一个空行，而且少了五个星号的那一行。你要改什么？",
+        "frase": "for i in 0..n {\n    println!(\"{}\", \"*\".repeat(i));\n}",
+        "opciones": [
+          {
+            "texto": "把 0..n 改成 1..=n",
+            "correcta": true,
+            "explica": "0..n 是从 0 到 4：第一行是 \"*\".repeat(0)，是空的，而且永远到不了 5。"
+          },
+          {
+            "texto": "把 0..n 改成 0..=n",
+            "explica": "五个星号的那一行出现了，但最上面的空行还在。"
+          },
+          {
+            "texto": "把 println! 改成 print!",
+            "explica": "print! 不会换行：所有内容会挤在一行。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-004",
+      "dificultad": 22,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Lees el tamaño con read_line y haces linea.parse::<usize>().unwrap(). Escribes 3 y Enter, y el programa se detiene con ParseIntError { kind: InvalidDigit }. ¿Qué falta?",
+        "opciones": [
+          {
+            "texto": "trim(): read_line guarda también el salto de línea del Enter",
+            "correcta": true,
+            "explica": "linea es \"3\\n\", y \\n no es un dígito. linea.trim().parse() funciona."
+          },
+          {
+            "texto": "Usar i32 en vez de usize",
+            "explica": "Cualquier tipo de número falla igual: el problema es el \\n."
+          },
+          {
+            "texto": "Escribir el 3 entre comillas",
+            "explica": "Lo que escribes ya llega como texto; sobra el salto de línea."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "You read the size with read_line and do line.parse::<usize>().unwrap(). You type 3 and Enter, and the program stops with ParseIntError { kind: InvalidDigit }. What is missing?",
+        "opciones": [
+          {
+            "texto": "trim(): read_line also keeps the line break from the Enter key",
+            "correcta": true,
+            "explica": "line is \"3\\n\", and \\n is not a digit. line.trim().parse() works."
+          },
+          {
+            "texto": "Using i32 instead of usize",
+            "explica": "Any number type fails the same way: the problem is the \\n."
+          },
+          {
+            "texto": "Typing the 3 in quotes",
+            "explica": "What you type already arrives as text; the line break is what is extra."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "你用 read_line 读取大小，再写 line.parse::<usize>().unwrap()。输入 3 再按回车，程序停下并显示 ParseIntError { kind: InvalidDigit }。缺了什么？",
+        "opciones": [
+          {
+            "texto": "trim()：read_line 会把回车的换行也一起保存",
+            "correcta": true,
+            "explica": "line 是 \"3\\n\"，而 \\n 不是数字。line.trim().parse() 就可以。"
+          },
+          {
+            "texto": "用 i32 代替 usize",
+            "explica": "任何数字类型都会一样失败：问题在 \\n。"
+          },
+          {
+            "texto": "输入 3 时加上引号",
+            "explica": "你输入的内容本来就是文本；多出来的是换行。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-005",
+      "dificultad": 25,
+      "tipo": "ordenar",
+      "contexto": false,
+      "es": {
+        "pregunta": "Ordena la primera línea de un bucle de Rust que recorre las filas del 1 al n, incluido n",
+        "frase": "for i in 1..=n {",
+        "extra": [
+          "1..n"
+        ]
+      },
+      "en": {
+        "pregunta": "Put in order the first line of a Rust loop that goes through rows 1 to n, including n",
+        "frase": "for i in 1..=n {",
+        "extra": [
+          "1..n"
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "把一个遍历第 1 行到第 n 行（包括 n）的 Rust 循环的第一行按顺序排好",
+        "frase": "for i in 1..=n {",
+        "extra": [
+          "1..n"
+        ]
+      }
+    },
+    {
+      "id": "trirs-006",
+      "dificultad": 30,
+      "tipo": "varias",
+      "contexto": false,
+      "elige": true,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "¿Cuáles de estos códigos de Rust imprimen una fila de cuatro asteriscos (****)?",
+        "opciones": [
+          {
+            "texto": "println!(\"{}\", \"*\".repeat(4));",
+            "correcta": true
+          },
+          {
+            "texto": "for _ in 0..4 {\n    print!(\"*\");\n}\nprintln!();",
+            "correcta": true,
+            "explica": "print! no salta de línea; el println!() del final sí."
+          },
+          {
+            "texto": "for _ in 0..4 {\n    println!(\"*\");\n}",
+            "explica": "Imprime cuatro asteriscos, pero uno en cada línea."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "Which of these Rust snippets print a row of four asterisks (****)?",
+        "opciones": [
+          {
+            "texto": "println!(\"{}\", \"*\".repeat(4));",
+            "correcta": true
+          },
+          {
+            "texto": "for _ in 0..4 {\n    print!(\"*\");\n}\nprintln!();",
+            "correcta": true,
+            "explica": "print! does not jump to a new line; the println!() at the end does."
+          },
+          {
+            "texto": "for _ in 0..4 {\n    println!(\"*\");\n}",
+            "explica": "It prints four asterisks, but each one on its own line."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "下面哪些 Rust 代码会打印一行四个星号（****）？",
+        "opciones": [
+          {
+            "texto": "println!(\"{}\", \"*\".repeat(4));",
+            "correcta": true
+          },
+          {
+            "texto": "for _ in 0..4 {\n    print!(\"*\");\n}\nprintln!();",
+            "correcta": true,
+            "explica": "print! 不会换行；最后的 println!() 会。"
+          },
+          {
+            "texto": "for _ in 0..4 {\n    println!(\"*\");\n}",
+            "explica": "它打印了四个星号，但每个都在单独一行。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-007",
+      "dificultad": 38,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En una pirámide de asteriscos de 5 filas (1, 3, 5, 7 y 9 asteriscos), ¿cuántos asteriscos van en la fila 3?",
+        "opciones": [
+          {
+            "texto": "5",
+            "correcta": true,
+            "explica": "La fila i lleva 2 * i - 1: con i = 3, son 5."
+          },
+          {
+            "texto": "6",
+            "explica": "2 * i daría números pares y la pirámide no tendría centro."
+          },
+          {
+            "texto": "3",
+            "explica": "Eso sería el triángulo rectángulo, no la pirámide."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In a 5-row asterisk pyramid (1, 3, 5, 7 and 9 asterisks), how many asterisks go in row 3?",
+        "opciones": [
+          {
+            "texto": "5",
+            "correcta": true,
+            "explica": "Row i has 2 * i - 1: with i = 3, that is 5."
+          },
+          {
+            "texto": "6",
+            "explica": "2 * i would give even numbers and the pyramid would have no center."
+          },
+          {
+            "texto": "3",
+            "explica": "That would be the right triangle, not the pyramid."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在一个 5 行的星号金字塔里（1、3、5、7、9 个星号），第 3 行有几个星号？",
+        "opciones": [
+          {
+            "texto": "5",
+            "correcta": true,
+            "explica": "第 i 行有 2 * i - 1 个：i = 3 时是 5 个。"
+          },
+          {
+            "texto": "6",
+            "explica": "2 * i 会得到偶数，金字塔就没有中心了。"
+          },
+          {
+            "texto": "3",
+            "explica": "那是直角三角形，不是金字塔。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-008",
+      "dificultad": 44,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "¿Qué imprime println!(\"[{:>5}]\", \"***\") en Rust?",
+        "opciones": [
+          {
+            "texto": "[  ***]",
+            "correcta": true,
+            "explica": "{:>5} alinea a la derecha en un ancho de 5: dos espacios y tres asteriscos."
+          },
+          {
+            "texto": "[***  ]",
+            "explica": "Eso es {:<5}, alineado a la izquierda."
+          },
+          {
+            "texto": "[ *** ]",
+            "explica": "Eso es {:^5}, centrado."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does println!(\"[{:>5}]\", \"***\") print in Rust?",
+        "opciones": [
+          {
+            "texto": "[  ***]",
+            "correcta": true,
+            "explica": "{:>5} aligns to the right within a width of 5: two spaces and three asterisks."
+          },
+          {
+            "texto": "[***  ]",
+            "explica": "That is {:<5}, aligned to the left."
+          },
+          {
+            "texto": "[ *** ]",
+            "explica": "That is {:^5}, centered."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在 Rust 里 println!(\"[{:>5}]\", \"***\") 会打印什么？",
+        "opciones": [
+          {
+            "texto": "[  ***]",
+            "correcta": true,
+            "explica": "{:>5} 在宽度 5 里靠右对齐：两个空格加三个星号。"
+          },
+          {
+            "texto": "[***  ]",
+            "explica": "那是 {:<5}，靠左对齐。"
+          },
+          {
+            "texto": "[ *** ]",
+            "explica": "那是 {:^5}，居中。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-009",
+      "dificultad": 50,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "¿Qué imprime este código?",
+        "frase": "fn main() {\n    let n = 3;\n    for i in 1..=n {\n        let nums: Vec<String> = (1..=i).map(|j| j.to_string()).collect();\n        println!(\"{}\", nums.join(\" \"));\n    }\n}",
+        "opciones": [
+          {
+            "texto": "1\n1 2\n1 2 3",
+            "correcta": true
+          },
+          {
+            "texto": "1\n12\n123",
+            "explica": "join(\" \") une los números con un espacio entre ellos."
+          },
+          {
+            "texto": "1\n2 2\n3 3 3",
+            "explica": "Cada fila cuenta del 1 hasta i; no repite el número de la fila."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does this code print?",
+        "frase": "fn main() {\n    let n = 3;\n    for i in 1..=n {\n        let nums: Vec<String> = (1..=i).map(|j| j.to_string()).collect();\n        println!(\"{}\", nums.join(\" \"));\n    }\n}",
+        "opciones": [
+          {
+            "texto": "1\n1 2\n1 2 3",
+            "correcta": true
+          },
+          {
+            "texto": "1\n12\n123",
+            "explica": "join(\" \") joins the numbers with a space between them."
+          },
+          {
+            "texto": "1\n2 2\n3 3 3",
+            "explica": "Each row counts from 1 up to i; it does not repeat the row number."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "这段代码会打印什么？",
+        "frase": "fn main() {\n    let n = 3;\n    for i in 1..=n {\n        let nums: Vec<String> = (1..=i).map(|j| j.to_string()).collect();\n        println!(\"{}\", nums.join(\" \"));\n    }\n}",
+        "opciones": [
+          {
+            "texto": "1\n1 2\n1 2 3",
+            "correcta": true
+          },
+          {
+            "texto": "1\n12\n123",
+            "explica": "join(\" \") 会用空格把数字连起来。"
+          },
+          {
+            "texto": "1\n2 2\n3 3 3",
+            "explica": "每一行从 1 数到 i；不会重复行号。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-010",
+      "dificultad": 55,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En Rust, ¿para qué sirve .collect() en (1..=i).map(|j| j.to_string()).collect()?",
+        "opciones": [
+          {
+            "texto": "Junta los resultados del map en una colección, como un Vec<String>",
+            "correcta": true,
+            "explica": "map solo describe la transformación; collect la ejecuta y guarda el resultado."
+          },
+          {
+            "texto": "Imprime cada número",
+            "explica": "No imprime nada: arma la lista."
+          },
+          {
+            "texto": "Convierte los números en texto",
+            "explica": "Eso lo hace to_string(); collect los junta."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In Rust, what is .collect() for in (1..=i).map(|j| j.to_string()).collect()?",
+        "opciones": [
+          {
+            "texto": "It gathers the results of the map into a collection, like a Vec<String>",
+            "correcta": true,
+            "explica": "map only describes the transformation; collect runs it and stores the result."
+          },
+          {
+            "texto": "It prints each number",
+            "explica": "It prints nothing: it builds the list."
+          },
+          {
+            "texto": "It turns the numbers into text",
+            "explica": "That is what to_string() does; collect gathers them."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在 Rust 里，(1..=i).map(|j| j.to_string()).collect() 中的 .collect() 有什么用？",
+        "opciones": [
+          {
+            "texto": "把 map 的结果收集到一个集合里，比如 Vec<String>",
+            "correcta": true,
+            "explica": "map 只是描述转换；collect 才会执行并保存结果。"
+          },
+          {
+            "texto": "打印每个数",
+            "explica": "它什么也不打印：它是在组成列表。"
+          },
+          {
+            "texto": "把数字变成文本",
+            "explica": "那是 to_string() 做的；collect 是把它们收集起来。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-011",
+      "dificultad": 60,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "En una pirámide hueca de 5 filas (solo el borde), ¿cómo se ve la fila 3?",
+        "opciones": [
+          {
+            "texto": "  *   *",
+            "correcta": true,
+            "explica": "Dos espacios delante, un asterisco, tres espacios y otro asterisco."
+          },
+          {
+            "texto": "  *****",
+            "explica": "Esa es la fila 3 de la pirámide llena."
+          },
+          {
+            "texto": "  * *",
+            "explica": "Faltan espacios en el medio: van 2 * i - 3, que con i = 3 son tres."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In a 5-row hollow pyramid (only the border), what does row 3 look like?",
+        "opciones": [
+          {
+            "texto": "  *   *",
+            "correcta": true,
+            "explica": "Two spaces in front, an asterisk, three spaces and another asterisk."
+          },
+          {
+            "texto": "  *****",
+            "explica": "That is row 3 of the full pyramid."
+          },
+          {
+            "texto": "  * *",
+            "explica": "Spaces are missing in the middle: there are 2 * i - 3, which with i = 3 is three."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在一个 5 行的空心金字塔里（只有边框），第 3 行是什么样子？",
+        "opciones": [
+          {
+            "texto": "  *   *",
+            "correcta": true,
+            "explica": "前面两个空格，一个星号，三个空格，再一个星号。"
+          },
+          {
+            "texto": "  *****",
+            "explica": "那是实心金字塔的第 3 行。"
+          },
+          {
+            "texto": "  * *",
+            "explica": "中间少了空格：应该有 2 * i - 3 个，i = 3 时是三个。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-012",
+      "dificultad": 65,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Al centrar cada fila con format!(\"{:^ancho$}\", ...), la pirámide se ve bien pero un juez automático la marca como incorrecta. ¿Por qué?",
+        "opciones": [
+          {
+            "texto": "El formato también pone espacios a la derecha; hay que quitarlos con trim_end()",
+            "correcta": true
+          },
+          {
+            "texto": "{:^ancho$} no existe en Rust",
+            "explica": "Sí existe: centra en un ancho."
+          },
+          {
+            "texto": "println! agrega un espacio al final",
+            "explica": "println! agrega un salto de línea, no espacios."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "When you center each row with format!(\"{:^width$}\", ...), the pyramid looks fine but an automatic judge marks it as wrong. Why?",
+        "opciones": [
+          {
+            "texto": "The formatting also adds spaces on the right; you have to remove them with trim_end()",
+            "correcta": true
+          },
+          {
+            "texto": "{:^width$} does not exist in Rust",
+            "explica": "It does: it centers within a width."
+          },
+          {
+            "texto": "println! adds a space at the end",
+            "explica": "println! adds a line break, not spaces."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "用 format!(\"{:^width$}\", ...) 把每一行居中后，金字塔看起来没问题，但自动评测系统判它错误。为什么？",
+        "opciones": [
+          {
+            "texto": "格式化也会在右边补空格；要用 trim_end() 去掉",
+            "correcta": true
+          },
+          {
+            "texto": "Rust 里没有 {:^width$}",
+            "explica": "有的：它会在一个宽度里居中。"
+          },
+          {
+            "texto": "println! 会在末尾加一个空格",
+            "explica": "println! 加的是换行，不是空格。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-013",
+      "dificultad": 70,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Tu bucle es for i in 0..=n y cada fila imprime \" \".repeat(n - i - 1). Al llegar a la última vuelta, el programa se detiene con «attempt to subtract with overflow». ¿Qué pasa?",
+        "opciones": [
+          {
+            "texto": "Con i = n, n - i - 1 sería -1, y un usize no puede ser negativo; el rango tenía que ser 0..n",
+            "correcta": true
+          },
+          {
+            "texto": "El texto de espacios es demasiado largo",
+            "explica": "El problema es la resta, no el largo."
+          },
+          {
+            "texto": "repeat no acepta el número 0",
+            "explica": "repeat(0) da un texto vacío sin problema."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "Your loop is for i in 0..=n and each row prints \" \".repeat(n - i - 1). On the last pass, the program stops with «attempt to subtract with overflow». What is going on?",
+        "opciones": [
+          {
+            "texto": "With i = n, n - i - 1 would be -1, and a usize cannot be negative; the range had to be 0..n",
+            "correcta": true
+          },
+          {
+            "texto": "The text of spaces is too long",
+            "explica": "The problem is the subtraction, not the length."
+          },
+          {
+            "texto": "repeat does not accept the number 0",
+            "explica": "repeat(0) gives empty text with no problem."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "你的循环是 for i in 0..=n，每一行打印 \" \".repeat(n - i - 1)。到最后一次时，程序停下并显示 «attempt to subtract with overflow»。这是怎么回事？",
+        "opciones": [
+          {
+            "texto": "i = n 时，n - i - 1 会是 -1，而 usize 不能是负数；范围应该是 0..n",
+            "correcta": true
+          },
+          {
+            "texto": "空格文本太长了",
+            "explica": "问题在减法，不在长度。"
+          },
+          {
+            "texto": "repeat 不接受数字 0",
+            "explica": "repeat(0) 会得到空文本，没有问题。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-014",
+      "dificultad": 75,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En el triángulo de Pascal cada número es la suma de los dos que tiene encima. ¿Qué fila sigue a 1 3 3 1?",
+        "opciones": [
+          {
+            "texto": "1 4 6 4 1",
+            "correcta": true,
+            "explica": "1, 1 + 3, 3 + 3, 3 + 1 y 1."
+          },
+          {
+            "texto": "1 3 6 3 1",
+            "explica": "Los de al lado del 1 son 1 + 3 = 4."
+          },
+          {
+            "texto": "1 4 4 4 1",
+            "explica": "El del centro es 3 + 3 = 6."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In Pascal's triangle each number is the sum of the two on top of it. Which row comes after 1 3 3 1?",
+        "opciones": [
+          {
+            "texto": "1 4 6 4 1",
+            "correcta": true,
+            "explica": "1, 1 + 3, 3 + 3, 3 + 1 and 1."
+          },
+          {
+            "texto": "1 3 6 3 1",
+            "explica": "The ones next to the 1 are 1 + 3 = 4."
+          },
+          {
+            "texto": "1 4 4 4 1",
+            "explica": "The middle one is 3 + 3 = 6."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在杨辉三角里，每个数等于它正上方两个数之和。1 3 3 1 的下一行是什么？",
+        "opciones": [
+          {
+            "texto": "1 4 6 4 1",
+            "correcta": true,
+            "explica": "1、1 + 3、3 + 3、3 + 1 和 1。"
+          },
+          {
+            "texto": "1 3 6 3 1",
+            "explica": "1 旁边的数是 1 + 3 = 4。"
+          },
+          {
+            "texto": "1 4 4 4 1",
+            "explica": "中间的是 3 + 3 = 6。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-015",
+      "dificultad": 82,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Tu triángulo de Pascal con números u64 se detiene con «attempt to add with overflow» al pedir unas 70 filas, pero compilado con --release imprime algo. ¿Qué pasa?",
+        "opciones": [
+          {
+            "texto": "Las sumas pasan del máximo de u64; en --release no se revisa y el resultado da la vuelta, así que los números están mal",
+            "correcta": true
+          },
+          {
+            "texto": "En --release el programa se arregla solo",
+            "explica": "No se arregla: deja de revisar y los números salen equivocados."
+          },
+          {
+            "texto": "u64 no puede guardar números de más de 10 cifras",
+            "explica": "u64 llega hasta unos 18 trillones (20 cifras), y los números del centro de esas filas ya pasan de ahí."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "Your Pascal's triangle with u64 numbers stops with «attempt to add with overflow» when you ask for about 70 rows, but compiled with --release it prints something. What is going on?",
+        "opciones": [
+          {
+            "texto": "The sums go past the maximum of u64; with --release it is not checked and the result wraps around, so the numbers are wrong",
+            "correcta": true
+          },
+          {
+            "texto": "With --release the program fixes itself",
+            "explica": "It does not get fixed: it stops checking and the numbers come out wrong."
+          },
+          {
+            "texto": "u64 cannot store numbers with more than 10 digits",
+            "explica": "u64 goes up to about 18 quintillion (20 digits), and the numbers in the center of those rows already go past that."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "你用 u64 写的杨辉三角在要大约 70 行时停下并显示 «attempt to add with overflow»，但用 --release 编译却能打印出东西。这是怎么回事？",
+        "opciones": [
+          {
+            "texto": "加法超过了 u64 的最大值；用 --release 时不检查，结果会溢出回绕，所以数字是错的",
+            "correcta": true
+          },
+          {
+            "texto": "用 --release 程序就自己修好了",
+            "explica": "并没有修好：只是不再检查，数字是错的。"
+          },
+          {
+            "texto": "u64 存不下超过 10 位的数",
+            "explica": "u64 最大大约是 1800 亿亿（20 位），而这些行中间的数已经超过了。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-016",
+      "dificultad": 86,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Para el triángulo de Sierpinski, la posición j de la fila i lleva un asterisco cuando (j & i) == j. ¿Qué tienen de especial esas posiciones?",
+        "opciones": [
+          {
+            "texto": "Que en el triángulo de Pascal el número en esa posición es impar",
+            "correcta": true,
+            "explica": "Pintar los impares de Pascal dibuja el triángulo de Sierpinski."
+          },
+          {
+            "texto": "Que son las posiciones pares",
+            "explica": "No depende de si j es par, sino de sus bits comparados con los de i."
+          },
+          {
+            "texto": "Que son los bordes de la fila",
+            "explica": "Los bordes siempre llevan asterisco, pero también muchas posiciones del medio."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "For the Sierpinski triangle, position j of row i gets an asterisk when (j & i) == j. What is special about those positions?",
+        "opciones": [
+          {
+            "texto": "In Pascal's triangle the number at that position is odd",
+            "correcta": true,
+            "explica": "Painting the odd numbers of Pascal draws the Sierpinski triangle."
+          },
+          {
+            "texto": "They are the even positions",
+            "explica": "It does not depend on whether j is even, but on its bits compared with those of i."
+          },
+          {
+            "texto": "They are the borders of the row",
+            "explica": "The borders always get an asterisk, but so do many positions in the middle."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "画谢尔宾斯基三角形时，第 i 行第 j 个位置在 (j & i) == j 时放星号。这些位置有什么特别？",
+        "opciones": [
+          {
+            "texto": "在杨辉三角里，这个位置上的数是奇数",
+            "correcta": true,
+            "explica": "把杨辉三角的奇数涂出来，就是谢尔宾斯基三角形。"
+          },
+          {
+            "texto": "它们是偶数位置",
+            "explica": "和 j 是不是偶数无关，而是和 j 与 i 的二进制位有关。"
+          },
+          {
+            "texto": "它们是每一行的两边",
+            "explica": "两边总是有星号，但中间很多位置也有。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-017",
+      "dificultad": 90,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En Rust, ¿cómo se calcula j & i == j, sin paréntesis?",
+        "opciones": [
+          {
+            "texto": "Como (j & i) == j, igual que en Python",
+            "correcta": true,
+            "explica": "En Rust & va antes que ==. En JavaScript y C++ es al revés."
+          },
+          {
+            "texto": "Como j & (i == j), igual que en C++",
+            "explica": "En C++ sí, pero en Rust & se calcula primero."
+          },
+          {
+            "texto": "No compila",
+            "explica": "Compila: & tiene más prioridad que ==."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In Rust, how is j & i == j, without parentheses, evaluated?",
+        "opciones": [
+          {
+            "texto": "As (j & i) == j, just like in Python",
+            "correcta": true,
+            "explica": "In Rust & comes before ==. In JavaScript and C++ it is the other way around."
+          },
+          {
+            "texto": "As j & (i == j), just like in C++",
+            "explica": "In C++ yes, but in Rust & is evaluated first."
+          },
+          {
+            "texto": "It does not compile",
+            "explica": "It compiles: & has higher precedence than ==."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在 Rust 里，不加括号的 j & i == j 是怎么计算的？",
+        "opciones": [
+          {
+            "texto": "算成 (j & i) == j，和 Python 一样",
+            "correcta": true,
+            "explica": "在 Rust 里 & 比 == 先算。在 JavaScript 和 C++ 里正好相反。"
+          },
+          {
+            "texto": "算成 j & (i == j)，和 C++ 一样",
+            "explica": "C++ 是这样，但在 Rust 里 & 先算。"
+          },
+          {
+            "texto": "编译不通过",
+            "explica": "能编译：& 的优先级比 == 高。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trirs-018",
+      "dificultad": 95,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Una función recursiva dibuja el triángulo de Sierpinski: en cada nivel cambia un triángulo por tres de la mitad de tamaño. ¿Cuántos triángulos chicos dibuja con nivel 4?",
+        "opciones": [
+          {
+            "texto": "81",
+            "correcta": true,
+            "explica": "3 × 3 × 3 × 3."
+          },
+          {
+            "texto": "12",
+            "explica": "Eso sería sumar 3 por cada nivel; en realidad se multiplica."
+          },
+          {
+            "texto": "64",
+            "explica": "64 es 4 × 4 × 4; aquí cada nivel multiplica por 3."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "A recursive function draws the Sierpinski triangle: at each level it replaces a triangle with three half its size. How many small triangles does it draw with level 4?",
+        "opciones": [
+          {
+            "texto": "81",
+            "correcta": true,
+            "explica": "3 × 3 × 3 × 3."
+          },
+          {
+            "texto": "12",
+            "explica": "That would be adding 3 per level; it actually multiplies."
+          },
+          {
+            "texto": "64",
+            "explica": "64 is 4 × 4 × 4; here each level multiplies by 3."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "一个递归函数画谢尔宾斯基三角形：每一层把一个三角形换成三个边长一半的三角形。层级为 4 时，它画了多少个小三角形？",
+        "opciones": [
+          {
+            "texto": "81",
+            "correcta": true,
+            "explica": "3 × 3 × 3 × 3。"
+          },
+          {
+            "texto": "12",
+            "explica": "那是每层加 3；实际上是乘。"
+          },
+          {
+            "texto": "64",
+            "explica": "64 是 4 × 4 × 4；这里每一层乘以 3。"
+          }
+        ]
+      }
+    }
+  ]
+}

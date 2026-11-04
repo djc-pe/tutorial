@@ -1,0 +1,135 @@
+{
+  "categoria": "principiantes",
+  "version": "e655d0e4",
+  "titulo": {
+    "en": "Beginners",
+    "es": "Principiantes",
+    "zh-cn": "入门"
+  },
+  "tutoriales": [
+    {
+      "tutorial": "5deeaf38e9d840d294788a9bbd0f24a1",
+      "archivo": "preguntas/t/5deeaf38e9d840d294788a9bbd0f24a1.json",
+      "titulo": {
+        "es": "Cómo hacer un triángulo en Rust: asteriscos, pirámide y Sierpinski",
+        "en": "How to Make a Triangle in Rust: Asterisks, Pyramid and Sierpinski",
+        "zh-cn": "如何用 Rust 打印三角形：星号、金字塔和谢尔宾斯基"
+      },
+      "url": {
+        "es": "es/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/",
+        "en": "en/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/",
+        "zh-cn": "zh-cn/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/"
+      },
+      "secciones": {
+        "es": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        },
+        "en": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        },
+        "zh-cn": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        }
+      }
+    },
+    {
+      "tutorial": "c276a902779e44579c01c705495e4cbb",
+      "archivo": "preguntas/t/c276a902779e44579c01c705495e4cbb.json",
+      "titulo": {
+        "es": "Cómo hacer un triángulo en Python: asteriscos, pirámide y turtle",
+        "en": "How to Make a Triangle in Python: Asterisks, Pyramid and Turtle",
+        "zh-cn": "如何用 Python 打印三角形：星号、金字塔和 turtle"
+      },
+      "url": {
+        "es": "es/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/",
+        "en": "en/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/",
+        "zh-cn": "zh-cn/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/"
+      },
+      "secciones": {
+        "es": {
+          "basico": 7,
+          "intermedio": 7,
+          "avanzado": 7
+        },
+        "en": {
+          "basico": 7,
+          "intermedio": 7,
+          "avanzado": 7
+        },
+        "zh-cn": {
+          "basico": 7,
+          "intermedio": 7,
+          "avanzado": 7
+        }
+      }
+    },
+    {
+      "tutorial": "d0023ac8118e461cb3bd82083ee9f6ae",
+      "archivo": "preguntas/t/d0023ac8118e461cb3bd82083ee9f6ae.json",
+      "titulo": {
+        "es": "Cómo hacer un triángulo en C++: asteriscos, pirámide y Sierpinski",
+        "en": "How to Make a Triangle in C++: Asterisks, Pyramid and Sierpinski",
+        "zh-cn": "如何用 C++ 打印三角形：星号、金字塔和谢尔宾斯基"
+      },
+      "url": {
+        "es": "es/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/",
+        "en": "en/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/",
+        "zh-cn": "zh-cn/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/"
+      },
+      "secciones": {
+        "es": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        },
+        "en": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        },
+        "zh-cn": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        }
+      }
+    },
+    {
+      "tutorial": "fc3866cdf7d746319dc9ea8e38540102",
+      "archivo": "preguntas/t/fc3866cdf7d746319dc9ea8e38540102.json",
+      "titulo": {
+        "es": "Cómo hacer un triángulo en JavaScript: asteriscos, pirámide y canvas",
+        "en": "How to Make a Triangle in JavaScript: Asterisks, Pyramid and Canvas",
+        "zh-cn": "如何用 JavaScript 打印三角形：星号、金字塔和 canvas"
+      },
+      "url": {
+        "es": "es/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/",
+        "en": "en/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/",
+        "zh-cn": "zh-cn/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/"
+      },
+      "secciones": {
+        "es": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        },
+        "en": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        },
+        "zh-cn": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        }
+      }
+    }
+  ]
+}

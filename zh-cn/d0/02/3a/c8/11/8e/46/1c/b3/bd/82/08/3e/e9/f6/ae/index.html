@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <!-- 87.34.2.92 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/assets/djc/base/1/icon.png">
+
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/index.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/ui/1/ui.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/base/1/index.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/nav/1/script.js" defer></script>
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/progreso/1/progreso.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.js" defer></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-movil.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-pc.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/ads.js" defer></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <title>如何用 C++ 打印三角形：星号、金字塔和谢尔宾斯基 | DJC Tutorial</title>
+  <meta name="description" content="一步一步学会用 C++ 打印星号三角形：直角、倒置、金字塔、空心、杨辉三角和谢尔宾斯基三角形，以及循环、cin 和括号的常见错误。">
+
+  <link rel="canonical" href="https://tutorial.djc.pe/zh-cn/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/">
+  <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/">
+  <link rel="alternate" hreflang="es" href="https://tutorial.djc.pe/es/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/">
+  <link rel="alternate" hreflang="zh-cn" href="https://tutorial.djc.pe/zh-cn/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/">
+
+</head>
+<body>
+
+  <main class="content djc-core-page">
+    <p class="djc-core-breadcrumb"><a href="https://tutorial.djc.pe/">首页</a> / <a href="../../../../../../../../../../../../../../../../c/programming/">编程</a></p>
+    <h1>如何用 C++ 打印三角形：星号、金字塔和谢尔宾斯基</h1>
+    <p class="djc-core-author" data-author>作者：<a href="https://www.djc.pe/u/@null_djc/">@null_djc</a>（系列）</p>
+    <ul class="djc-core-tags">
+      <li><a href="../../../../../../../../../../../../../../../../c/programming/">编程</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/cpp/">C++</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/beginners/">入门</a></li>
+    </ul>
+
+    <div class="djc-core-card">
+      <p>星号三角形几乎是所有课程里的第一个循环练习，在 C++ 里它也是很多人在 Codeforces 这样的评测系统上解出的第一道题。C++ 几乎什么都不提醒你：如果出了问题，程序照样继续运行。这里我们来看这些错误藏在哪里，以及怎样让编译器帮你。</p>
+      <p>我们分三个层级来讲：<a href="#basico">基础</a>（三角形和它的陷阱）、<a href="#intermedio">中级</a>（金字塔及其变体）和<a href="#avanzado">高级</a>（杨辉三角、谢尔宾斯基三角形和括号的陷阱）。每个层级最后都有一个挑战。运行代码的方法：<code>g++ -std=c++17 -Wall triangle.cpp -o triangle &amp;&amp; ./triangle</code>。</p>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>玩一玩三角形</h2>
+      <p>读之前，先选一种类型并调整大小。下面会显示它打印出来的结果，以及实现它的 C++ 代码；你可以复制下来试试。</p>
+      <div class="djc-core-patron" data-djc-core-patron-lenguaje="cpp"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="basico">基础：三角形和它的陷阱</h2>
+      <h3>一个循环的三角形</h3>
+      <p>第 1 行一个星号，第 2 行两个，第 3 行三个：行号和个数是同一个数。</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = 1; i &lt;= n; i++) {
+        std::cout &lt;&lt; std::string(i, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>*
+**
+***
+****
+*****</code></pre>
+      <ul>
+        <li><code>for (int i = 1; i &lt;= n; i++)</code> 从 1 数到 5：从 1 开始，只要 <code>i</code> 小于或等于 5 就继续，每次加 1。</li>
+        <li><code>std::string(i, '*')</code> 创建一个有 <code>i</code> 个星号的文本。先写个数，再写字符，字符用单引号。</li>
+        <li><code>"\n"</code> 用来换行。比起 <code>std::endl</code> 更推荐它，因为 <code>std::endl</code> 还会刷新输出，打印很多行时会让程序变慢。</li>
+      </ul>
+
+      <h3>陷阱：少了一行</h3>
+      <p>出于习惯，很多 C++ 循环从 0 开始并用 <code>&lt;</code>。在这里这样写会把三角形弄坏：</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = 0; i &lt; n; i++) {
+        std::cout &lt;&lt; std::string(i, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>
+*
+**
+***
+****</code></pre>
+      <p>最上面多了一个空行（<code>std::string(0, '*')</code> 是空文本），而且少了五个星号的那一行，因为 <code>i &lt; n</code> 到 4 就停了。如果结果多一行或少一行，检查循环从哪里开始，以及条件是 <code>&lt;</code> 还是 <code>&lt;=</code>。</p>
+
+      <h3>倒过来</h3>
+      <p>倒置的三角形，循环从 <code>n</code> 开始，每次减 1（<code>i--</code>）：</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = n; i &gt;= 1; i--) {
+        std::cout &lt;&lt; std::string(i, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>*****
+****
+***
+**
+*</code></pre>
+
+      <h3>让用户自己选大小</h3>
+      <p><code>std::cin &gt;&gt; n</code> 从输入读一个数字。输入 <code>3</code>：</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n;
+    std::cin &gt;&gt; n;
+    for (int i = 1; i &lt;= n; i++) {
+        std::cout &lt;&lt; std::string(i, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>*
+**
+***</code></pre>
+      <p>如果用户输入 <code>hello</code> 呢？C++ 不会报任何错误：<code>cin</code> 会悄悄失败，<code>n</code> 保持为 0，循环一次也不执行，程序什么也不打印就结束了。要发现这个问题，就检查读取是否成功：</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n;
+    if (!(std::cin &gt;&gt; n)) {
+        std::cout &lt;&lt; "这不是一个数字\n";
+        return 1;
+    }
+    for (int i = 1; i &lt;= n; i++) {
+        std::cout &lt;&lt; std::string(i, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>这不是一个数字</code></pre>
+
+      <h3>用两个循环</h3>
+      <p>不用 <code>std::string(i, '*')</code> 的话，就用一个循环套另一个循环来打印：外层遍历每一行，内层每次打印一个星号。</p>
+<pre><code>#include &lt;iostream&gt;
+
+int main() {
+    int n = 4;
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 0; j &lt; i; j++) {
+            std::cout &lt;&lt; '*';
+        }
+        std::cout &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>*
+**
+***
+****</code></pre>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="d0023ac8118e461cb3bd82083ee9f6ae" data-djc-core-reto-seccion="basico"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="intermedio">中级：金字塔及其变体</h2>
+      <h3>靠右对齐</h3>
+      <p>每一行先放 <code>n - i</code> 个空格，三角形就靠右了：</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = 1; i &lt;= n; i++) {
+        std::cout &lt;&lt; std::string(n - i, ' ') &lt;&lt; std::string(i, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+      <p>C++ 也可以用 <code>std::setw(n)</code>（在 <code>&lt;iomanip&gt;</code> 里），它会预留 <code>n</code> 个位置，并把后面的内容靠右对齐：</p>
+<pre><code>#include &lt;iomanip&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = 1; i &lt;= n; i++) {
+        std::cout &lt;&lt; std::setw(n) &lt;&lt; std::string(i, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+
+      <h3>金字塔</h3>
+      <p>金字塔每一行多两个星号（1、3、5、7、9），这样才有中心：<code>2 * i - 1</code> 个星号和 <code>n - i</code> 个空格。</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = 1; i &lt;= n; i++) {
+        std::cout &lt;&lt; std::string(n - i, ' ') &lt;&lt; std::string(2 * i - 1, '*') &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+      <div class="djc-core-table">
+      <table>
+        <thead><tr><th>行（<code>i</code>）</th><th>空格（<code>n - i</code>）</th><th>星号（<code>2 * i - 1</code>）</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>4</td><td>1</td></tr>
+          <tr><td>2</td><td>3</td><td>3</td></tr>
+          <tr><td>3</td><td>2</td><td>5</td></tr>
+          <tr><td>4</td><td>1</td><td>7</td></tr>
+          <tr><td>5</td><td>0</td><td>9</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>这张表就是做任何图案的诀窍：先手写出每一行要放多少，再找出公式。如果金字塔歪了，几乎总是空格写成了 <code>n - i - 1</code>，或者星号写成了 <code>2 * i</code>。</p>
+
+      <h3>空心</h3>
+      <p>只画边框：第一行一个星号，最后一行是满的，中间每一行两边各一个星号，中间是 <code>2 * i - 3</code> 个空格。</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = 1; i &lt;= n; i++) {
+        if (i == 1) {
+            std::cout &lt;&lt; std::string(n - 1, ' ') &lt;&lt; "*\n";
+        } else if (i == n) {
+            std::cout &lt;&lt; std::string(2 * n - 1, '*') &lt;&lt; "\n";
+        } else {
+            std::cout &lt;&lt; std::string(n - i, ' ') &lt;&lt; "*" &lt;&lt; std::string(2 * i - 3, ' ') &lt;&lt; "*\n";
+        }
+    }
+}</code></pre>
+<pre><code>    *
+   * *
+  *   *
+ *     *
+*********</code></pre>
+
+      <h3>用数字</h3>
+      <p>每一行从 1 数到这一行的行号，数字之间有一个空格（第一个数前面没有，所以有 <code>if (j &gt; 1)</code>）：</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 5;
+    for (int i = 1; i &lt;= n; i++) {
+        for (int j = 1; j &lt;= i; j++) {
+            if (j &gt; 1) std::cout &lt;&lt; " ";
+            std::cout &lt;&lt; j;
+        }
+        std::cout &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5</code></pre>
+
+      <h3><code>std::string</code> 参数顺序的陷阱</h3>
+      <p><code>std::string(3, '*')</code> 是三个星号。反过来写 <code>std::string('*', 3)</code> 也能顺利编译，因为字符也是数字（<code>'*'</code> 的值是 42）：</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    std::string row('*', 3);
+    std::cout &lt;&lt; row.size() &lt;&lt; "\n";
+}</code></pre>
+<pre><code>42</code></pre>
+      <p>这是 42 个看不见的字符（第 3 号字符）。屏幕上看起来什么都没打印，但评测系统会判为错误。</p>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="d0023ac8118e461cb3bd82083ee9f6ae" data-djc-core-reto-seccion="intermedio"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="avanzado">高级：杨辉三角、谢尔宾斯基和括号</h2>
+      <h3>杨辉三角</h3>
+      <p>每个数等于它正上方两个数之和，两边都是 1。每一行都由上一行算出来，放在一个 <code>std::vector</code> 里：</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+
+int main() {
+    int n = 5;
+    std::vector&lt;long long&gt; row = {1};
+    for (int i = 0; i &lt; n; i++) {
+        std::cout &lt;&lt; std::string(n - i - 1, ' ');
+        for (size_t k = 0; k &lt; row.size(); k++) {
+            if (k &gt; 0) std::cout &lt;&lt; " ";
+            std::cout &lt;&lt; row[k];
+        }
+        std::cout &lt;&lt; "\n";
+        std::vector&lt;long long&gt; next = {1};
+        for (size_t k = 0; k + 1 &lt; row.size(); k++) {
+            next.push_back(row[k] + row[k + 1]);
+        }
+        next.push_back(1);
+        row = next;
+    }
+}</code></pre>
+<pre><code>    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1</code></pre>
+      <p><code>long long</code> 最大到 9223372036854775807。当 <code>n</code> 达到 68 或更大时，中间的数就放不下了，而 C++ 不会提醒你：结果是一个错误的数（严格来说是未定义行为）。用 <code>unsigned long long</code> 可以多一行；更大的行需要大整数。</p>
+
+      <h3>用星号画谢尔宾斯基三角形</h3>
+      <p>如果在杨辉三角里只把奇数涂出来，就会出现谢尔宾斯基三角形。第 <code>i</code> 行第 <code>j</code> 个数是奇数，当且仅当 <code>(j &amp; i) == j</code>：</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 8;
+    for (int i = 0; i &lt; n; i++) {
+        std::cout &lt;&lt; std::string(n - i - 1, ' ');
+        for (int j = 0; j &lt;= i; j++) {
+            if (j &gt; 0) std::cout &lt;&lt; " ";
+            std::cout &lt;&lt; ((j &amp; i) == j ? "*" : " ");
+        }
+        std::cout &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>       *
+      * *
+     *   *
+    * * * *
+   *       *
+  * *     * *
+ *   *   *   *
+* * * * * * * *</code></pre>
+
+      <h3>括号的陷阱</h3>
+      <p>在 C++ 里，<code>==</code> 比 <code>&amp;</code> <strong>先</strong>算。不加括号，<code>j &amp; i == j</code> 就是 <code>j &amp; (i == j)</code>，图形会坏掉：</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+int main() {
+    int n = 8;
+    for (int i = 0; i &lt; n; i++) {
+        std::cout &lt;&lt; std::string(n - i - 1, ' ');
+        for (int j = 0; j &lt;= i; j++) {
+            if (j &gt; 0) std::cout &lt;&lt; " ";
+            std::cout &lt;&lt; (j &amp; i == j ? "*" : " ");
+        }
+        std::cout &lt;&lt; "\n";
+    }
+}</code></pre>
+<pre><code>        
+        *
+          
+          *
+            
+            *
+              
+              *</code></pre>
+      <p>所以我们用 <code>-Wall</code> 编译：加上这个选项，g++ 正好会对这个问题发出警告。</p>
+<pre><code>warning: suggest parentheses around comparison in operand of ‘&amp;’ [-Wparentheses]</code></pre>
+      <p>警告不会让编译停下，所以很容易忽略。养成用 <code>-Wall</code> 编译、运行前先看看它说了什么的习惯。</p>
+
+      <h3>那怎么画出来？</h3>
+      <p>C++ 本身没有在窗口里画图的功能。有一些库可以做到（比如 SFML 或 SDL），但对第一个程序来说，安装和配置都比较麻烦。如果你想看画出来的谢尔宾斯基三角形，可以看 JavaScript 版本，它就在浏览器里直接画出来，还有用 <code>turtle</code> 的 Python 版本。</p>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="d0023ac8118e461cb3bd82083ee9f6ae" data-djc-core-reto-seccion="avanzado"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>用其他语言画同样的三角形</h2>
+      <p>同样的图案，以及每种语言的不同之处：</p>
+      <ul>
+        <li><a href="../../../../../../../../../../../../../../../../c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/">如何用 Python 打印三角形</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">如何用 JavaScript 打印三角形</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/">如何用 Rust 打印三角形</a></li>
+      </ul>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>我们学到了什么</h2>
+      <p>三角形是一张表（每一行放多少空格、多少星号），在任何语言里都一样；而在 C++ 里代价最大的错误是那些不出声的：悄悄失败的 <code>cin</code>、参数写反的 <code>std::string</code>、放不下的数，以及先被计算的运算符。一定要用 <code>-Wall</code> 编译：很多这样的陷阱，编译器其实早就在警告你了。</p>
+    </div>
+  </main>
+
+</body>
+</html>

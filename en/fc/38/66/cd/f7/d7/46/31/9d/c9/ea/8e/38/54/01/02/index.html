@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- 87.34.2.92 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/assets/djc/base/1/icon.png">
+
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/index.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/ui/1/ui.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.js" defer></script>
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/lienzo/1/lienzo.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/lienzo/1/lienzo.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/base/1/index.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/nav/1/script.js" defer></script>
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/progreso/1/progreso.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.js" defer></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-movil.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-pc.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/ads.js" defer></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <title>How to Make a Triangle in JavaScript: Asterisks, Pyramid and Canvas | DJC Tutorial</title>
+  <meta name="description" content="Learn to print asterisk triangles in JavaScript step by step: right, inverted, pyramid, hollow, Pascal and Sierpinski, the typical mistakes and how to draw it on a canvas.">
+
+  <link rel="canonical" href="https://tutorial.djc.pe/en/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">
+  <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">
+  <link rel="alternate" hreflang="es" href="https://tutorial.djc.pe/es/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">
+  <link rel="alternate" hreflang="zh-cn" href="https://tutorial.djc.pe/zh-cn/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">
+
+</head>
+<body>
+
+  <main class="content djc-core-page">
+    <p class="djc-core-breadcrumb"><a href="https://tutorial.djc.pe/">Home</a> / <a href="../../../../../../../../../../../../../../../../c/programming/">Programming</a></p>
+    <h1>How to Make a Triangle in JavaScript: Asterisks, Pyramid and Canvas</h1>
+    <p class="djc-core-author" data-author>Series by <a href="https://www.djc.pe/u/@null_djc/">@null_djc</a></p>
+    <ul class="djc-core-tags">
+      <li><a href="../../../../../../../../../../../../../../../../c/programming/">Programming</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/javascript/">JavaScript</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/beginners/">Beginners</a></li>
+    </ul>
+
+    <div class="djc-core-card">
+      <p>The asterisk triangle is the first loop exercise in almost any course, and in JavaScript it has its own surprises: whatever comes from outside is always text, a number that is not a number does not throw an error and the order of operators is not the one you expect. We build it in the console and, at the end, we draw it on the page.</p>
+      <p>We cover it in three levels: <a href="#basico">basic</a> (the triangle and its traps), <a href="#intermedio">intermediate</a> (the pyramid and its variants) and <a href="#avanzado">advanced</a> (Pascal, Sierpinski and drawing on a <code>canvas</code>). Each level ends with a challenge. Everything runs with Node (<code>node triangle.js</code>) or pasted into the browser console (F12).</p>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>Play with the triangle</h2>
+      <p>Before reading, pick a type and move the size. Below you see what it prints and the JavaScript code that does it; you can copy it and try it.</p>
+      <div class="djc-core-patron" data-djc-core-patron-lenguaje="javascript"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="basico">Basic: the triangle and its traps</h2>
+      <h3>The triangle with one loop</h3>
+      <p>Row 1 has one asterisk, row 2 has two, row 3 has three: the row and the count are the same number.</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  console.log("*".repeat(i));
+}</code></pre>
+<pre><code>*
+**
+***
+****
+*****</code></pre>
+      <ul>
+        <li><code>for (let i = 1; i &lt;= n; i++)</code> counts from 1 to 5: it starts at 1, keeps going while <code>i</code> is less than or equal to 5 and adds 1 on each pass.</li>
+        <li><code>"*".repeat(i)</code> repeats the text: <code>"*".repeat(3)</code> is <code>"***"</code>.</li>
+        <li><code>console.log</code> prints and jumps to a new line.</li>
+      </ul>
+
+      <h3>The trap: the missing row</h3>
+      <p>Out of habit, many JavaScript loops start at 0 and use <code>&lt;</code>. Here that breaks the triangle:</p>
+<pre><code>const n = 5;
+for (let i = 0; i &lt; n; i++) {
+  console.log("*".repeat(i));
+}</code></pre>
+<pre><code>
+*
+**
+***
+****</code></pre>
+      <p>There is an empty line at the top (<code>"*".repeat(0)</code> is empty text) and the row of five is missing, because <code>i &lt; n</code> stops at 4. When the result has one row too many or too few, first check where the loop starts and whether the condition is <code>&lt;</code> or <code>&lt;=</code>.</p>
+
+      <h3>Upside down</h3>
+      <p>For the inverted triangle, the loop counts backwards: it starts at <code>n</code> and subtracts 1 (<code>i--</code>).</p>
+<pre><code>const n = 5;
+for (let i = n; i &gt;= 1; i--) {
+  console.log("*".repeat(i));
+}</code></pre>
+<pre><code>*****
+****
+***
+**
+*</code></pre>
+
+      <h3>Let the user choose the size</h3>
+      <p>With Node, whatever you type after the file name arrives in <code>process.argv</code>. <code>node triangle.js 4</code> prints:</p>
+<pre><code>const n = Number(process.argv[2]);
+for (let i = 1; i &lt;= n; i++) {
+  console.log("*".repeat(i));
+}</code></pre>
+<pre><code>*
+**
+***
+****</code></pre>
+      <p>Everything that comes from outside (from <code>process.argv</code>, from <code>prompt()</code> in the browser or from a form) is <strong>text</strong>. That is why there is a <code>Number()</code>. Without it, sometimes it works by luck and sometimes it does not:</p>
+<pre><code>console.log("5" + 1);
+console.log(Number("5") + 1);
+console.log(Number("hello"));</code></pre>
+<pre><code>51
+6
+NaN</code></pre>
+      <p><code>"5" + 1</code> sticks the texts together and gives <code>"51"</code>. And if someone types <code>hello</code>, <code>Number("hello")</code> gives <code>NaN</code> ("not a number"): the loop does not run even once and the program ends without printing anything and without any error. To warn the user, check with <code>Number.isNaN(n)</code>.</p>
+
+      <h3>With two loops</h3>
+      <p><code>repeat</code> is a shortcut. Without it, the row is built with a loop inside another: the outer one goes through the rows and the inner one keeps adding asterisks to a text, which is printed at the end of the row.</p>
+<pre><code>const n = 4;
+for (let i = 1; i &lt;= n; i++) {
+  let row = "";
+  for (let j = 0; j &lt; i; j++) {
+    row += "*";
+  }
+  console.log(row);
+}</code></pre>
+<pre><code>*
+**
+***
+****</code></pre>
+      <p>In JavaScript <code>console.log</code> always jumps to a new line, so the whole row is built before printing it.</p>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="fc3866cdf7d746319dc9ea8e38540102" data-djc-core-reto-seccion="basico"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="intermedio">Intermediate: the pyramid and its variants</h2>
+      <h3>Right-aligned</h3>
+      <p>Each row starts with <code>n - i</code> spaces, so the triangle sits against the right:</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  console.log(" ".repeat(n - i) + "*".repeat(i));
+}</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+      <p>JavaScript has a shortcut for this: <code>padStart(n)</code> pads with spaces on the left until it reaches <code>n</code> characters.</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  console.log("*".repeat(i).padStart(n));
+}</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+
+      <h3>The pyramid</h3>
+      <p>The pyramid grows by two asterisks per row (1, 3, 5, 7, 9) so it has a center: <code>2 * i - 1</code> asterisks and <code>n - i</code> spaces.</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  console.log(" ".repeat(n - i) + "*".repeat(2 * i - 1));
+}</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+      <div class="djc-core-table">
+      <table>
+        <thead><tr><th>Row (<code>i</code>)</th><th>Spaces (<code>n - i</code>)</th><th>Asterisks (<code>2 * i - 1</code>)</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>4</td><td>1</td></tr>
+          <tr><td>2</td><td>3</td><td>3</td></tr>
+          <tr><td>3</td><td>2</td><td>5</td></tr>
+          <tr><td>4</td><td>1</td><td>7</td></tr>
+          <tr><td>5</td><td>0</td><td>9</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>This table is the trick for any pattern: write down by hand how much goes in each row and look for the formula. If the pyramid comes out crooked, the spaces are almost always <code>n - i - 1</code> or the asterisks <code>2 * i</code>.</p>
+
+      <h3>Hollow</h3>
+      <p>Only the border: the first row with one asterisk, the last one full and the middle ones with an asterisk on each side and <code>2 * i - 3</code> spaces in the center.</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  if (i === 1) {
+    console.log(" ".repeat(n - 1) + "*");
+  } else if (i === n) {
+    console.log("*".repeat(2 * n - 1));
+  } else {
+    console.log(" ".repeat(n - i) + "*" + " ".repeat(2 * i - 3) + "*");
+  }
+}</code></pre>
+<pre><code>    *
+   * *
+  *   *
+ *     *
+*********</code></pre>
+      <p>Note the <code>===</code>: in JavaScript it compares without converting types. With <code>==</code>, <code>"1" == 1</code> gives <code>true</code>, and that hides exactly the mistake of the text that comes from outside.</p>
+
+      <h3>With numbers</h3>
+      <p>Each row counts from 1 to the row number. The numbers are stored in an array and <code>join(" ")</code> joins them with spaces:</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  const nums = [];
+  for (let j = 1; j &lt;= i; j++) {
+    nums.push(j);
+  }
+  console.log(nums.join(" "));
+}</code></pre>
+<pre><code>1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5</code></pre>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="fc3866cdf7d746319dc9ea8e38540102" data-djc-core-reto-seccion="intermedio"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="avanzado">Advanced: Pascal, Sierpinski and canvas</h2>
+      <h3>The pyramid in one line</h3>
+      <p><code>Array.from</code> creates an array of <code>n</code> rows and builds each one with a function; <code>join("\n")</code> joins them with line breaks. Here <code>k</code> goes from 0 to 4, so the asterisks are <code>2 * k + 1</code>.</p>
+<pre><code>const n = 5;
+console.log(Array.from({ length: n }, (_, k) =&gt; " ".repeat(n - k - 1) + "*".repeat(2 * k + 1)).join("\n"));</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+
+      <h3>Pascal's triangle</h3>
+      <p>Each number is the sum of the two on top of it, and the borders are 1. Each row is built from the previous one:</p>
+<pre><code>const n = 5;
+let row = [1];
+for (let i = 0; i &lt; n; i++) {
+  console.log(" ".repeat(n - i - 1) + row.join(" "));
+  const next = [1];
+  for (let k = 0; k &lt; row.length - 1; k++) {
+    next.push(row[k] + row[k + 1]);
+  }
+  next.push(1);
+  row = next;
+}</code></pre>
+<pre><code>    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1</code></pre>
+      <p>JavaScript numbers are exact up to <code>Number.MAX_SAFE_INTEGER</code> (9007199254740991). With <code>n</code> of 58 or more, the numbers in the center go past that limit and start coming out rounded, without any warning; for rows that big you use <code>BigInt</code>.</p>
+
+      <h3>Sierpinski with asterisks, and the parentheses trap</h3>
+      <p>If you only paint the odd numbers of Pascal's triangle, the Sierpinski triangle appears. The number in row <code>i</code> and position <code>j</code> is odd when <code>(j &amp; i) === j</code>:</p>
+<pre><code>const n = 8;
+for (let i = 0; i &lt; n; i++) {
+  const row = [];
+  for (let j = 0; j &lt;= i; j++) {
+    row.push((j &amp; i) === j ? "*" : " ");
+  }
+  console.log(" ".repeat(n - i - 1) + row.join(" "));
+}</code></pre>
+<pre><code>       *
+      * *
+     *   *
+    * * * *
+   *       *
+  * *     * *
+ *   *   *   *
+* * * * * * * *</code></pre>
+      <p>In Python those parentheses are not needed. In JavaScript they are: <code>===</code> is evaluated <strong>before</strong> <code>&amp;</code>. Without parentheses, <code>j &amp; i === j</code> is <code>j &amp; (i === j)</code>, and the drawing breaks without any error:</p>
+<pre><code>const n = 8;
+for (let i = 0; i &lt; n; i++) {
+  const row = [];
+  for (let j = 0; j &lt;= i; j++) {
+    row.push(j &amp; i === j ? "*" : " ");
+  }
+  console.log(" ".repeat(n - i - 1) + row.join(" "));
+}</code></pre>
+<pre><code>        
+        *
+          
+          *
+            
+            *
+              
+              *</code></pre>
+
+      <h3>Draw it on a canvas</h3>
+      <p>In the browser there is no need to print asterisks: a <code>&lt;canvas&gt;</code> is a surface you draw on. A Sierpinski triangle is made of three half its size, and each of those of three more, down to the level you ask for. Move it:</p>
+      <div class="djc-core-lienzo"></div>
+      <ul>
+        <li><code>triangle</code> draws a filled one: it goes to each corner with <code>moveTo</code> and <code>lineTo</code>, closes it and paints it with <code>fill()</code>. The height of an equilateral triangle is <code>side * √3 / 2</code>.</li>
+        <li><code>sierpinski</code> calls itself with half the side and one level less, three times: bottom left, bottom right and top. At level 0 it draws a triangle and stops.</li>
+        <li>To use it on your page, add a <code>&lt;canvas id="drawing" width="400" height="347"&gt;</code> and, after the two functions, <code>sierpinski(document.getElementById("drawing").getContext("2d"), 0, 347, 400, 5)</code>. The 347 is the height (400 × √3 / 2) and the starting point is the bottom left corner.</li>
+      </ul>
+
+      <h3>What to watch out for</h3>
+      <ul>
+        <li><strong>The browser console groups identical lines.</strong> If you print the same row several times in a row, Chrome shows a single one with a number next to it. It is not your program: in Node they all show up.</li>
+        <li><strong>Trailing spaces.</strong> If you build each row with <code>padEnd</code> or with extra spaces, you cannot see them, but a judge like Codeforces' counts them. <code>trimEnd()</code> removes them.</li>
+        <li><strong><code>let</code> or <code>const</code>, never nothing.</strong> A <code>for (i = 1; ...)</code> without <code>let</code> creates a global variable and, in a module or in strict mode, gives <code>ReferenceError: i is not defined</code>.</li>
+      </ul>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="fc3866cdf7d746319dc9ea8e38540102" data-djc-core-reto-seccion="avanzado"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>The same triangle in other languages</h2>
+      <p>The same patterns, with what changes in each language:</p>
+      <ul>
+        <li><a href="../../../../../../../../../../../../../../../../c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/">How to make a triangle in Python</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/">How to make a triangle in Rust</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/">How to make a triangle in C++</a></li>
+      </ul>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>What it taught us</h2>
+      <p>That the triangle is a table (how many spaces and how many asterisks in each row), just like in any language, and that in JavaScript what breaks most is not the formula but what surrounds it: the text that comes from outside, the <code>&lt;</code> that should be <code>&lt;=</code> and an operator that is evaluated earlier than you expected. The good news is that the browser already has a place to draw it: move the canvas level and watch the same pattern repeat inside itself.</p>
+    </div>
+  </main>
+
+</body>
+</html>

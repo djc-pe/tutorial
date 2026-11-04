@@ -1,0 +1,42 @@
+{
+  "categoria": "python",
+  "version": "1694a3ab",
+  "titulo": {
+    "en": "Python",
+    "es": "Python",
+    "zh-cn": "Python"
+  },
+  "tutoriales": [
+    {
+      "tutorial": "c276a902779e44579c01c705495e4cbb",
+      "archivo": "preguntas/t/c276a902779e44579c01c705495e4cbb.json",
+      "titulo": {
+        "es": "Cómo hacer un triángulo en Python: asteriscos, pirámide y turtle",
+        "en": "How to Make a Triangle in Python: Asterisks, Pyramid and Turtle",
+        "zh-cn": "如何用 Python 打印三角形：星号、金字塔和 turtle"
+      },
+      "url": {
+        "es": "es/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/",
+        "en": "en/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/",
+        "zh-cn": "zh-cn/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/"
+      },
+      "secciones": {
+        "es": {
+          "basico": 7,
+          "intermedio": 7,
+          "avanzado": 7
+        },
+        "en": {
+          "basico": 7,
+          "intermedio": 7,
+          "avanzado": 7
+        },
+        "zh-cn": {
+          "basico": 7,
+          "intermedio": 7,
+          "avanzado": 7
+        }
+      }
+    }
+  ]
+}

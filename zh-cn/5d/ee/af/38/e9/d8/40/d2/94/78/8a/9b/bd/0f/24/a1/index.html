@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <!-- 87.34.2.92 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/assets/djc/base/1/icon.png">
+
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/index.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/ui/1/ui.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/base/1/index.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/nav/1/script.js" defer></script>
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/progreso/1/progreso.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.js" defer></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-movil.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-pc.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/ads.js" defer></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <title>如何用 Rust 打印三角形：星号、金字塔和谢尔宾斯基 | DJC Tutorial</title>
+  <meta name="description" content="一步一步学会用 Rust 打印星号三角形：直角、倒置、金字塔、空心、杨辉三角和谢尔宾斯基三角形，以及范围、parse 和 usize 的常见错误。">
+
+  <link rel="canonical" href="https://tutorial.djc.pe/zh-cn/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/">
+  <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/">
+  <link rel="alternate" hreflang="es" href="https://tutorial.djc.pe/es/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/">
+  <link rel="alternate" hreflang="zh-cn" href="https://tutorial.djc.pe/zh-cn/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/">
+
+</head>
+<body>
+
+  <main class="content djc-core-page">
+    <p class="djc-core-breadcrumb"><a href="https://tutorial.djc.pe/">首页</a> / <a href="../../../../../../../../../../../../../../../../c/programming/">编程</a></p>
+    <h1>如何用 Rust 打印三角形：星号、金字塔和谢尔宾斯基</h1>
+    <p class="djc-core-author" data-author>作者：<a href="https://www.djc.pe/u/@null_djc/">@null_djc</a>（系列）</p>
+    <ul class="djc-core-tags">
+      <li><a href="../../../../../../../../../../../../../../../../c/programming/">编程</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/rust/">Rust</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/beginners/">入门</a></li>
+    </ul>
+
+    <div class="djc-core-card">
+      <p>星号三角形几乎是所有课程里的第一个循环练习。在 Rust 里它写起来和 Python 很像，但编译器会帮你盯住那些在其他语言里悄悄发生的事：读不出来的数字、减到零以下的减法，或者放不下的加法。这里我们用真实的错误信息来看这些陷阱。</p>
+      <p>我们分三个层级来讲：<a href="#basico">基础</a>（三角形和它的陷阱）、<a href="#intermedio">中级</a>（金字塔及其变体）和<a href="#avanzado">高级</a>（格式化、杨辉三角和谢尔宾斯基三角形）。每个层级最后都有一个挑战。运行代码的方法：<code>rustc triangle.rs &amp;&amp; ./triangle</code>，在项目里用 <code>cargo run</code>，或者在浏览器里用 Rust Playground。</p>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>玩一玩三角形</h2>
+      <p>读之前，先选一种类型并调整大小。下面会显示它打印出来的结果，以及实现它的 Rust 代码；你可以复制下来试试。</p>
+      <div class="djc-core-patron" data-djc-core-patron-lenguaje="rust"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="basico">基础：三角形和它的陷阱</h2>
+      <h3>一个循环的三角形</h3>
+      <p>第 1 行一个星号，第 2 行两个，第 3 行三个：行号和个数是同一个数。</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 1..=n {
+        println!("{}", "*".repeat(i));
+    }
+}</code></pre>
+<pre><code>*
+**
+***
+****
+*****</code></pre>
+      <ul>
+        <li><code>1..=n</code> 是从 1 到 5 的范围，<strong>包括</strong> 5（因为有 <code>=</code>）。</li>
+        <li><code>"*".repeat(i)</code> 会重复文本：<code>"*".repeat(3)</code> 就是 <code>"***"</code>。</li>
+        <li><code>println!</code> 打印并换行；<code>{}</code> 是放值的地方。</li>
+      </ul>
+
+      <h3>陷阱：少了一行</h3>
+      <p>Rust 里有两种很像的范围：<code>0..n</code> 不包括最后一个，<code>0..=n</code> 包括。用第一种，三角形就错了：</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 0..n {
+        println!("{}", "*".repeat(i));
+    }
+}</code></pre>
+<pre><code>
+*
+**
+***
+****</code></pre>
+      <p>最上面多了一个空行（<code>"*".repeat(0)</code> 是空文本），而且少了五个星号的那一行。如果结果多一行或少一行，先检查范围：从哪里开始，有没有 <code>=</code>。</p>
+
+      <h3>倒过来</h3>
+      <p>倒置的三角形，用 <code>.rev()</code> 把范围倒过来遍历：</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in (1..=n).rev() {
+        println!("{}", "*".repeat(i));
+    }
+}</code></pre>
+<pre><code>*****
+****
+***
+**
+*</code></pre>
+
+      <h3>让用户自己选大小</h3>
+      <p>大小作为文本从输入读进来，再用 <code>parse</code> 转换成数字。输入 <code>3</code>：</p>
+<pre><code>use std::io;
+
+fn main() {
+    let mut line = String::new();
+    io::stdin().read_line(&amp;mut line).unwrap();
+    let n: usize = line.trim().parse().unwrap();
+    for i in 1..=n {
+        println!("{}", "*".repeat(i));
+    }
+}</code></pre>
+<pre><code>*
+**
+***</code></pre>
+      <p><code>trim()</code> 就是陷阱所在：<code>read_line</code> 会把回车键的换行也一起保存（<code>"3\n"</code>），而这个 <code>\n</code> 不是数字。没有 <code>trim()</code> 的话，程序会停下并显示这条信息：</p>
+<pre><code>called `Result::unwrap()` on an `Err` value: ParseIntError { kind: InvalidDigit }</code></pre>
+      <p>如果用户输入 <code>hello</code>，也是这条信息。<code>unwrap()</code> 的意思是“如果失败，就停止程序”；如果想提醒用户而不是停止，就对 <code>parse</code> 的结果使用 <code>match</code>。</p>
+
+      <h3>用两个循环</h3>
+      <p><code>repeat</code> 是一个捷径。不用它的话，就用一个循环套另一个循环：外层遍历每一行，内层用 <code>print!</code> 打印星号，它不会换行。空的 <code>println!()</code> 在一行结束时换行。</p>
+<pre><code>fn main() {
+    let n = 4;
+    for i in 1..=n {
+        for _ in 0..i {
+            print!("*");
+        }
+        println!();
+    }
+}</code></pre>
+<pre><code>*
+**
+***
+****</code></pre>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="5deeaf38e9d840d294788a9bbd0f24a1" data-djc-core-reto-seccion="basico"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="intermedio">中级：金字塔及其变体</h2>
+      <h3>靠右对齐</h3>
+      <p>每一行先放 <code>n - i</code> 个空格，三角形就靠右了：</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 1..=n {
+        println!("{}{}", " ".repeat(n - i), "*".repeat(i));
+    }
+}</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+
+      <h3>金字塔</h3>
+      <p>金字塔每一行多两个星号（1、3、5、7、9），这样才有中心：<code>2 * i - 1</code> 个星号和 <code>n - i</code> 个空格。</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 1..=n {
+        println!("{}{}", " ".repeat(n - i), "*".repeat(2 * i - 1));
+    }
+}</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+      <div class="djc-core-table">
+      <table>
+        <thead><tr><th>行（<code>i</code>）</th><th>空格（<code>n - i</code>）</th><th>星号（<code>2 * i - 1</code>）</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>4</td><td>1</td></tr>
+          <tr><td>2</td><td>3</td><td>3</td></tr>
+          <tr><td>3</td><td>2</td><td>5</td></tr>
+          <tr><td>4</td><td>1</td><td>7</td></tr>
+          <tr><td>5</td><td>0</td><td>9</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>这张表就是做任何图案的诀窍：先手写出每一行要放多少，再找出公式。如果金字塔歪了，几乎总是空格写成了 <code>n - i - 1</code>，或者星号写成了 <code>2 * i</code>。</p>
+
+      <h3>空心</h3>
+      <p>只画边框：第一行一个星号，最后一行是满的，中间每一行两边各一个星号，中间是 <code>2 * i - 3</code> 个空格。</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 1..=n {
+        if i == 1 {
+            println!("{}*", " ".repeat(n - 1));
+        } else if i == n {
+            println!("{}", "*".repeat(2 * n - 1));
+        } else {
+            println!("{}*{}*", " ".repeat(n - i), " ".repeat(2 * i - 3));
+        }
+    }
+}</code></pre>
+<pre><code>    *
+   * *
+  *   *
+ *     *
+*********</code></pre>
+
+      <h3>用数字</h3>
+      <p>每一行从 1 数到这一行的行号。<code>map</code> 把每个数变成文本，<code>collect</code> 把它们收集到一个 <code>Vec</code> 里，<code>join(" ")</code> 用空格把它们连起来：</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 1..=n {
+        let nums: Vec&lt;String&gt; = (1..=i).map(|j| j.to_string()).collect();
+        println!("{}", nums.join(" "));
+    }
+}</code></pre>
+<pre><code>1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5</code></pre>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="5deeaf38e9d840d294788a9bbd0f24a1" data-djc-core-reto-seccion="intermedio"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="avanzado">高级：格式化、杨辉三角和谢尔宾斯基</h2>
+      <h3>让格式化来干活</h3>
+      <p><code>println!</code> 会对齐：<code>{:&gt;width$}</code> 在一个宽度里靠右对齐，<code>{:^width$}</code> 居中。这样就不用自己算空格：</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 1..=n {
+        println!("{:&gt;width$}", "*".repeat(i), width = n);
+    }
+}</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 1..=n {
+        let row = format!("{:^width$}", "*".repeat(2 * i - 1), width = 2 * n - 1);
+        println!("{}", row.trim_end());
+    }
+}</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+      <p>居中时，格式化也会在右边补空格。看不见，但像 Codeforces 这样的评测系统会算进去；<code>trim_end()</code> 可以去掉它们。</p>
+
+      <h3>减到零以下的减法</h3>
+      <p>Rust 里的大小是 <code>usize</code>：无符号数，不能是负数。如果循环多跑了一次，<code>n - i - 1</code> 会试图减到零以下，程序就会停下：</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 0..=n {
+        println!("{}{}", " ".repeat(n - i - 1), "*".repeat(2 * i + 1));
+    }
+}</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+<pre><code>attempt to subtract with overflow</code></pre>
+      <p>在其他语言里，这个减法会得到一个负数，错误就藏起来了。这里的信息准确地说明了发生了什么：范围应该是 <code>0..n</code>。</p>
+
+      <h3>杨辉三角</h3>
+      <p>每个数等于它正上方两个数之和，两边都是 1。每一行都由上一行算出来：</p>
+<pre><code>fn main() {
+    let n = 5;
+    let mut row: Vec&lt;u64&gt; = vec![1];
+    for i in 0..n {
+        let text: Vec&lt;String&gt; = row.iter().map(|x| x.to_string()).collect();
+        println!("{}{}", " ".repeat(n - i - 1), text.join(" "));
+        let mut next = vec![1];
+        for k in 0..row.len() - 1 {
+            next.push(row[k] + row[k + 1]);
+        }
+        next.push(1);
+        row = next;
+    }
+}</code></pre>
+<pre><code>    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1</code></pre>
+      <p><code>u64</code> 最大到 18446744073709551615。当 <code>n</code> 达到 68 或更大时，有一次加法就放不下了：用 <code>rustc</code>（或 <code>cargo run</code>）编译时，程序会停下并显示</p>
+<pre><code>attempt to add with overflow</code></pre>
+      <p>但如果开启优化编译（<code>-O</code> 或 <code>cargo run --release</code>），这个检查会被关掉，加法会悄悄地溢出回绕：<code>n = 70</code> 时，最后一行中间的数是 <code>1505813374405535736</code>，这是错的。这么大的行要用 <code>u128</code> 或大整数库。</p>
+
+      <h3>用星号画谢尔宾斯基三角形</h3>
+      <p>如果在杨辉三角里只把奇数涂出来，就会出现谢尔宾斯基三角形。第 <code>i</code> 行第 <code>j</code> 个数是奇数，当且仅当 <code>(j &amp; i) == j</code>：</p>
+<pre><code>fn main() {
+    let n = 8;
+    for i in 0..n {
+        let row: Vec&lt;&amp;str&gt; = (0..=i).map(|j| if (j &amp; i) == j { "*" } else { " " }).collect();
+        println!("{}{}", " ".repeat(n - i - 1), row.join(" "));
+    }
+}</code></pre>
+<pre><code>       *
+      * *
+     *   *
+    * * * *
+   *       *
+  * *     * *
+ *   *   *   *
+* * * * * * * *</code></pre>
+      <p>在 Rust 里，和 Python 一样，<code>&amp;</code> 比 <code>==</code> 先算，所以不加括号也能用。我们还是加上：在 JavaScript 和 C++ 里正好相反，这样代码在哪里读起来都一样。</p>
+
+      <h3>那怎么画出来？</h3>
+      <p>Rust 本身没有在窗口里画图的功能。有一些库（crate）可以做到，但对第一个程序来说，安装和配置都比较麻烦。如果你想看画出来的谢尔宾斯基三角形，可以看 JavaScript 版本，它就在浏览器里直接画出来，还有用 <code>turtle</code> 的 Python 版本。</p>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="5deeaf38e9d840d294788a9bbd0f24a1" data-djc-core-reto-seccion="avanzado"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>用其他语言画同样的三角形</h2>
+      <p>同样的图案，以及每种语言的不同之处：</p>
+      <ul>
+        <li><a href="../../../../../../../../../../../../../../../../c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/">如何用 Python 打印三角形</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">如何用 JavaScript 打印三角形</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/">如何用 C++ 打印三角形</a></li>
+      </ul>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>我们学到了什么</h2>
+      <p>三角形是一张表（每一行放多少空格、多少星号），在任何语言里都一样；而 Rust 会把隐藏的错误变成清楚的信息：让数字读不出来的换行、减到零以下的减法、放不下的加法。一开始会觉得烦，但每一条信息都是你在别的语言里要摸黑去找的错误。</p>
+    </div>
+  </main>
+
+</body>
+</html>

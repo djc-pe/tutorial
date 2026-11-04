@@ -1,0 +1,1262 @@
+{
+  "version": 1,
+  "tutorial": "c276a902779e44579c01c705495e4cbb",
+  "url": {
+    "es": "es/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/",
+    "en": "en/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/",
+    "zh-cn": "zh-cn/c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/"
+  },
+  "prefijo": "tripy",
+  "categorias": [
+    "programacion",
+    "python",
+    "principiantes"
+  ],
+  "preguntas": [
+    {
+      "id": "tripy-001",
+      "dificultad": 8,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "¿Qué imprime este código?",
+        "frase": "n = 3\nfor i in range(1, n + 1):\n    print(\"*\" * i)",
+        "opciones": [
+          {
+            "texto": "*\n**\n***",
+            "correcta": true
+          },
+          {
+            "texto": "***\n**\n*",
+            "explica": "Ese es el invertido: necesitaría range(n, 0, -1)."
+          },
+          {
+            "texto": "*\n*\n*",
+            "explica": "\"*\" * i repite el asterisco i veces, así que cada fila tiene uno más."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does this code print?",
+        "frase": "n = 3\nfor i in range(1, n + 1):\n    print(\"*\" * i)",
+        "opciones": [
+          {
+            "texto": "*\n**\n***",
+            "correcta": true
+          },
+          {
+            "texto": "***\n**\n*",
+            "explica": "That is the inverted one: it would need range(n, 0, -1)."
+          },
+          {
+            "texto": "*\n*\n*",
+            "explica": "\"*\" * i repeats the asterisk i times, so each row has one more."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "这段代码会打印什么？",
+        "frase": "n = 3\nfor i in range(1, n + 1):\n    print(\"*\" * i)",
+        "opciones": [
+          {
+            "texto": "*\n**\n***",
+            "correcta": true
+          },
+          {
+            "texto": "***\n**\n*",
+            "explica": "那是倒置的三角形：需要 range(n, 0, -1)。"
+          },
+          {
+            "texto": "*\n*\n*",
+            "explica": "\"*\" * i 会把星号重复 i 次，所以每一行多一个。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-002",
+      "dificultad": 12,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Qué da \"*\" * 4 en Python?",
+        "opciones": [
+          {
+            "texto": "\"****\"",
+            "correcta": true,
+            "explica": "Multiplicar un texto por un número lo repite."
+          },
+          {
+            "texto": "Un error: no se puede multiplicar un texto",
+            "explica": "En Python sí se puede: repite el texto."
+          },
+          {
+            "texto": "\"4*\"",
+            "explica": "No pega el número: repite el texto 4 veces."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does \"*\" * 4 give in Python?",
+        "opciones": [
+          {
+            "texto": "\"****\"",
+            "correcta": true,
+            "explica": "Multiplying a text by a number repeats it."
+          },
+          {
+            "texto": "An error: you cannot multiply a text",
+            "explica": "In Python you can: it repeats the text."
+          },
+          {
+            "texto": "\"4*\"",
+            "explica": "It does not stick the number on: it repeats the text 4 times."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在 Python 里 \"*\" * 4 的结果是什么？",
+        "opciones": [
+          {
+            "texto": "\"****\"",
+            "correcta": true,
+            "explica": "文本乘以数字会把它重复。"
+          },
+          {
+            "texto": "报错：文本不能相乘",
+            "explica": "在 Python 里可以：它会重复文本。"
+          },
+          {
+            "texto": "\"4*\"",
+            "explica": "不会把数字拼上去：而是把文本重复 4 次。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-003",
+      "dificultad": 18,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Este código debería imprimir 5 filas, de 1 a 5 asteriscos, pero arriba sale una línea vacía y falta la fila de cinco. ¿Qué cambias?",
+        "frase": "n = 5\nfor i in range(n):\n    print(\"*\" * i)",
+        "opciones": [
+          {
+            "texto": "range(n) por range(1, n + 1)",
+            "correcta": true,
+            "explica": "range(n) va del 0 al 4: la primera fila es \"*\" * 0, que está vacía."
+          },
+          {
+            "texto": "\"*\" * i por \"*\" * (i - 1)",
+            "explica": "Así cada fila tendría uno menos: empeora."
+          },
+          {
+            "texto": "n = 5 por n = 6",
+            "explica": "Aparece la fila de cinco, pero sigue la línea vacía de arriba."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "This code should print 5 rows, from 1 to 5 asterisks, but there is an empty line at the top and the row of five is missing. What do you change?",
+        "frase": "n = 5\nfor i in range(n):\n    print(\"*\" * i)",
+        "opciones": [
+          {
+            "texto": "range(n) to range(1, n + 1)",
+            "correcta": true,
+            "explica": "range(n) goes from 0 to 4: the first row is \"*\" * 0, which is empty."
+          },
+          {
+            "texto": "\"*\" * i to \"*\" * (i - 1)",
+            "explica": "Then every row would have one less: it gets worse."
+          },
+          {
+            "texto": "n = 5 to n = 6",
+            "explica": "The row of five shows up, but the empty line at the top is still there."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "这段代码应该打印 5 行，从 1 个到 5 个星号，但最上面多了一个空行，而且少了五个星号的那一行。你要改什么？",
+        "frase": "n = 5\nfor i in range(n):\n    print(\"*\" * i)",
+        "opciones": [
+          {
+            "texto": "把 range(n) 改成 range(1, n + 1)",
+            "correcta": true,
+            "explica": "range(n) 是从 0 到 4：第一行是 \"*\" * 0，也就是空的。"
+          },
+          {
+            "texto": "把 \"*\" * i 改成 \"*\" * (i - 1)",
+            "explica": "这样每一行都少一个：更糟了。"
+          },
+          {
+            "texto": "把 n = 5 改成 n = 6",
+            "explica": "五个星号的那一行出现了，但最上面的空行还在。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-004",
+      "dificultad": 22,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Qué números da range(5, 0, -1)?",
+        "opciones": [
+          {
+            "texto": "5 4 3 2 1",
+            "correcta": true
+          },
+          {
+            "texto": "5 4 3 2 1 0",
+            "explica": "range se detiene antes del segundo número: el 0 no entra."
+          },
+          {
+            "texto": "0 1 2 3 4 5",
+            "explica": "El -1 hace que cuente hacia atrás."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "Which numbers does range(5, 0, -1) give?",
+        "opciones": [
+          {
+            "texto": "5 4 3 2 1",
+            "correcta": true
+          },
+          {
+            "texto": "5 4 3 2 1 0",
+            "explica": "range stops before the second number: 0 is not included."
+          },
+          {
+            "texto": "0 1 2 3 4 5",
+            "explica": "The -1 makes it count backwards."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "range(5, 0, -1) 会给出哪些数？",
+        "opciones": [
+          {
+            "texto": "5 4 3 2 1",
+            "correcta": true
+          },
+          {
+            "texto": "5 4 3 2 1 0",
+            "explica": "range 在第二个数之前停下：0 不包括在内。"
+          },
+          {
+            "texto": "0 1 2 3 4 5",
+            "explica": "-1 让它倒着数。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-005",
+      "dificultad": 25,
+      "tipo": "ordenar",
+      "contexto": false,
+      "es": {
+        "pregunta": "Ordena la primera línea de un bucle de Python que recorre las filas del 1 al n",
+        "frase": "for i in range(1, n + 1):",
+        "extra": [
+          "range(n):"
+        ]
+      },
+      "en": {
+        "pregunta": "Put in order the first line of a Python loop that goes through rows 1 to n",
+        "frase": "for i in range(1, n + 1):",
+        "extra": [
+          "range(n):"
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "把一个遍历第 1 行到第 n 行的 Python 循环的第一行按顺序排好",
+        "frase": "for i in range(1, n + 1):",
+        "extra": [
+          "range(n):"
+        ]
+      }
+    },
+    {
+      "id": "tripy-006",
+      "dificultad": 28,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Ejecutas este código, escribes 5 y Python muestra «TypeError: can only concatenate str (not \"int\") to str». ¿Qué falta?",
+        "frase": "n = input(\"Tamaño: \")\nfor i in range(1, n + 1):\n    print(\"*\" * i)",
+        "opciones": [
+          {
+            "texto": "Convertir el texto en número: n = int(input(\"Tamaño: \"))",
+            "correcta": true,
+            "explica": "input() siempre devuelve texto, aunque escribas un número."
+          },
+          {
+            "texto": "Usar range(n) en vez de range(1, n + 1)",
+            "explica": "El problema no es el rango: es que n es texto."
+          },
+          {
+            "texto": "Escribir el 5 entre comillas",
+            "explica": "Lo que escribes ya llega como texto; hay que convertirlo con int()."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "You run this code, type 5 and Python shows «TypeError: can only concatenate str (not \"int\") to str». What is missing?",
+        "frase": "n = input(\"Size: \")\nfor i in range(1, n + 1):\n    print(\"*\" * i)",
+        "opciones": [
+          {
+            "texto": "Turning the text into a number: n = int(input(\"Size: \"))",
+            "correcta": true,
+            "explica": "input() always returns text, even if you type a number."
+          },
+          {
+            "texto": "Using range(n) instead of range(1, n + 1)",
+            "explica": "The range is not the problem: n is text."
+          },
+          {
+            "texto": "Typing the 5 in quotes",
+            "explica": "What you type already arrives as text; you have to convert it with int()."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "运行这段代码，输入 5，Python 显示 «TypeError: can only concatenate str (not \"int\") to str»。缺了什么？",
+        "frase": "n = input(\"Size: \")\nfor i in range(1, n + 1):\n    print(\"*\" * i)",
+        "opciones": [
+          {
+            "texto": "把文本转换成数字：n = int(input(\"Size: \"))",
+            "correcta": true,
+            "explica": "input() 返回的永远是文本，就算你输入的是数字。"
+          },
+          {
+            "texto": "用 range(n) 代替 range(1, n + 1)",
+            "explica": "问题不在 range：而是 n 是文本。"
+          },
+          {
+            "texto": "输入 5 时加上引号",
+            "explica": "你输入的内容本来就是文本；要用 int() 转换。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-007",
+      "dificultad": 32,
+      "tipo": "varias",
+      "contexto": false,
+      "elige": true,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "¿Cuáles de estos códigos imprimen una fila de cuatro asteriscos (****)?",
+        "opciones": [
+          {
+            "texto": "print(\"*\" * 4)",
+            "correcta": true
+          },
+          {
+            "texto": "for j in range(4):\n    print(\"*\", end=\"\")\nprint()",
+            "correcta": true,
+            "explica": "end=\"\" hace que no salte de línea después de cada asterisco."
+          },
+          {
+            "texto": "for j in range(4):\n    print(\"*\")",
+            "explica": "Imprime cuatro asteriscos, pero uno en cada línea."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "Which of these snippets print a row of four asterisks (****)?",
+        "opciones": [
+          {
+            "texto": "print(\"*\" * 4)",
+            "correcta": true
+          },
+          {
+            "texto": "for j in range(4):\n    print(\"*\", end=\"\")\nprint()",
+            "correcta": true,
+            "explica": "end=\"\" keeps it from jumping to a new line after each asterisk."
+          },
+          {
+            "texto": "for j in range(4):\n    print(\"*\")",
+            "explica": "It prints four asterisks, but each one on its own line."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "下面哪些代码会打印一行四个星号（****）？",
+        "opciones": [
+          {
+            "texto": "print(\"*\" * 4)",
+            "correcta": true
+          },
+          {
+            "texto": "for j in range(4):\n    print(\"*\", end=\"\")\nprint()",
+            "correcta": true,
+            "explica": "end=\"\" 让它在每个星号之后不换行。"
+          },
+          {
+            "texto": "for j in range(4):\n    print(\"*\")",
+            "explica": "它打印了四个星号，但每个都在单独一行。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-008",
+      "dificultad": 38,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En una pirámide de asteriscos de 5 filas (1, 3, 5, 7 y 9 asteriscos), ¿cuántos asteriscos van en la fila 3?",
+        "opciones": [
+          {
+            "texto": "5",
+            "correcta": true,
+            "explica": "La fila i lleva 2 * i - 1: con i = 3, son 5."
+          },
+          {
+            "texto": "6",
+            "explica": "2 * i daría números pares y la pirámide no tendría centro."
+          },
+          {
+            "texto": "3",
+            "explica": "Eso sería el triángulo rectángulo, no la pirámide."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In a 5-row asterisk pyramid (1, 3, 5, 7 and 9 asterisks), how many asterisks go in row 3?",
+        "opciones": [
+          {
+            "texto": "5",
+            "correcta": true,
+            "explica": "Row i has 2 * i - 1: with i = 3, that is 5."
+          },
+          {
+            "texto": "6",
+            "explica": "2 * i would give even numbers and the pyramid would have no center."
+          },
+          {
+            "texto": "3",
+            "explica": "That would be the right triangle, not the pyramid."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在一个 5 行的星号金字塔里（1、3、5、7、9 个星号），第 3 行有几个星号？",
+        "opciones": [
+          {
+            "texto": "5",
+            "correcta": true,
+            "explica": "第 i 行有 2 * i - 1 个：i = 3 时是 5 个。"
+          },
+          {
+            "texto": "6",
+            "explica": "2 * i 会得到偶数，金字塔就没有中心了。"
+          },
+          {
+            "texto": "3",
+            "explica": "那是直角三角形，不是金字塔。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-009",
+      "dificultad": 42,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "¿Qué imprime este código?",
+        "frase": "n = 3\nfor i in range(1, n + 1):\n    print(\" \" * (n - i) + \"*\" * i)",
+        "opciones": [
+          {
+            "texto": "  *\n **\n***",
+            "correcta": true,
+            "explica": "Cada fila empieza con n - i espacios, así el triángulo queda pegado a la derecha."
+          },
+          {
+            "texto": "*\n**\n***",
+            "explica": "Ese no tiene espacios: es el triángulo pegado a la izquierda."
+          },
+          {
+            "texto": "***\n **\n  *",
+            "explica": "Ese va hacia abajo: los espacios crecen en vez de bajar."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does this code print?",
+        "frase": "n = 3\nfor i in range(1, n + 1):\n    print(\" \" * (n - i) + \"*\" * i)",
+        "opciones": [
+          {
+            "texto": "  *\n **\n***",
+            "correcta": true,
+            "explica": "Each row starts with n - i spaces, so the triangle sits against the right."
+          },
+          {
+            "texto": "*\n**\n***",
+            "explica": "That one has no spaces: it is the triangle against the left."
+          },
+          {
+            "texto": "***\n **\n  *",
+            "explica": "That one goes down: the spaces grow instead of shrinking."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "这段代码会打印什么？",
+        "frase": "n = 3\nfor i in range(1, n + 1):\n    print(\" \" * (n - i) + \"*\" * i)",
+        "opciones": [
+          {
+            "texto": "  *\n **\n***",
+            "correcta": true,
+            "explica": "每一行先有 n - i 个空格，所以三角形靠右。"
+          },
+          {
+            "texto": "*\n**\n***",
+            "explica": "那个没有空格：是靠左的三角形。"
+          },
+          {
+            "texto": "***\n **\n  *",
+            "explica": "那个是往下的：空格在变多而不是变少。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-010",
+      "dificultad": 48,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Querías una pirámide de 4 filas con un asterisco arriba, pero sale así. ¿Qué está mal?",
+        "frase": "   **\n  ****\n ******\n********",
+        "opciones": [
+          {
+            "texto": "Los asteriscos van en 2 * i y deberían ir en 2 * i - 1",
+            "correcta": true,
+            "explica": "Con 2 * i todas las filas son pares y no hay un asterisco al centro."
+          },
+          {
+            "texto": "Los espacios deberían ser n + i",
+            "explica": "Con n + i la pirámide se correría a la derecha y se ensancharía."
+          },
+          {
+            "texto": "Falta un rstrip() al final",
+            "explica": "rstrip() quita espacios de la derecha; aquí sobran asteriscos."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "You wanted a 4-row pyramid with one asterisk at the top, but it comes out like this. What is wrong?",
+        "frase": "   **\n  ****\n ******\n********",
+        "opciones": [
+          {
+            "texto": "The asterisks are 2 * i and should be 2 * i - 1",
+            "correcta": true,
+            "explica": "With 2 * i every row is even and there is no asterisk in the center."
+          },
+          {
+            "texto": "The spaces should be n + i",
+            "explica": "With n + i the pyramid would shift to the right and get wider."
+          },
+          {
+            "texto": "An rstrip() is missing at the end",
+            "explica": "rstrip() removes spaces on the right; here there are too many asterisks."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "你想要一个 4 行、顶上一个星号的金字塔，结果却是这样。哪里错了？",
+        "frase": "   **\n  ****\n ******\n********",
+        "opciones": [
+          {
+            "texto": "星号写成了 2 * i，应该是 2 * i - 1",
+            "correcta": true,
+            "explica": "用 2 * i 每一行都是偶数，中间就没有星号。"
+          },
+          {
+            "texto": "空格应该是 n + i",
+            "explica": "用 n + i 金字塔会往右偏，而且变宽。"
+          },
+          {
+            "texto": "最后少了 rstrip()",
+            "explica": "rstrip() 去掉右边的空格；这里多的是星号。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-011",
+      "dificultad": 52,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "¿Qué imprime este código?",
+        "frase": "n = 3\nfor i in range(1, n + 1):\n    print(\" \".join(str(j) for j in range(1, i + 1)))",
+        "opciones": [
+          {
+            "texto": "1\n1 2\n1 2 3",
+            "correcta": true
+          },
+          {
+            "texto": "1\n12\n123",
+            "explica": "\" \".join(...) une los números con un espacio entre ellos."
+          },
+          {
+            "texto": "1\n2 2\n3 3 3",
+            "explica": "Cada fila cuenta del 1 hasta i; no repite el número de la fila."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does this code print?",
+        "frase": "n = 3\nfor i in range(1, n + 1):\n    print(\" \".join(str(j) for j in range(1, i + 1)))",
+        "opciones": [
+          {
+            "texto": "1\n1 2\n1 2 3",
+            "correcta": true
+          },
+          {
+            "texto": "1\n12\n123",
+            "explica": "\" \".join(...) joins the numbers with a space between them."
+          },
+          {
+            "texto": "1\n2 2\n3 3 3",
+            "explica": "Each row counts from 1 up to i; it does not repeat the row number."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "这段代码会打印什么？",
+        "frase": "n = 3\nfor i in range(1, n + 1):\n    print(\" \".join(str(j) for j in range(1, i + 1)))",
+        "opciones": [
+          {
+            "texto": "1\n1 2\n1 2 3",
+            "correcta": true
+          },
+          {
+            "texto": "1\n12\n123",
+            "explica": "\" \".join(...) 会用空格把数字连起来。"
+          },
+          {
+            "texto": "1\n2 2\n3 3 3",
+            "explica": "每一行从 1 数到 i；不会重复行号。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-012",
+      "dificultad": 58,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Tienes una pirámide que se imprime con for i in range(1, n + 1). ¿Qué cambias para que salga al revés, con la fila más ancha arriba?",
+        "opciones": [
+          {
+            "texto": "El bucle, por for i in range(n, 0, -1):",
+            "correcta": true,
+            "explica": "Si las filas van del n al 1, la más ancha sale primero."
+          },
+          {
+            "texto": "Los asteriscos, por \"*\" * (2 * i + 1)",
+            "explica": "Así cada fila tendría dos asteriscos más, pero el orden sería el mismo."
+          },
+          {
+            "texto": "Los espacios, por \" \" * (i - n)",
+            "explica": "Un número negativo de espacios da texto vacío: \" \" * -2 es \"\"."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "You have a pyramid printed with for i in range(1, n + 1). What do you change so it comes out upside down, with the widest row on top?",
+        "opciones": [
+          {
+            "texto": "The loop, to for i in range(n, 0, -1):",
+            "correcta": true,
+            "explica": "If the rows go from n to 1, the widest one comes first."
+          },
+          {
+            "texto": "The asterisks, to \"*\" * (2 * i + 1)",
+            "explica": "Each row would have two more asterisks, but the order would be the same."
+          },
+          {
+            "texto": "The spaces, to \" \" * (i - n)",
+            "explica": "A negative number of spaces gives empty text: \" \" * -2 is \"\"."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "你有一个用 for i in range(1, n + 1) 打印的金字塔。要怎么改，才能让它倒过来，最宽的一行在上面？",
+        "opciones": [
+          {
+            "texto": "把循环改成 for i in range(n, 0, -1):",
+            "correcta": true,
+            "explica": "如果行是从 n 到 1，最宽的一行就会先出来。"
+          },
+          {
+            "texto": "把星号改成 \"*\" * (2 * i + 1)",
+            "explica": "每一行会多两个星号，但顺序不变。"
+          },
+          {
+            "texto": "把空格改成 \" \" * (i - n)",
+            "explica": "负数个空格得到的是空文本：\" \" * -2 就是 \"\"。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-013",
+      "dificultad": 62,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "En una pirámide hueca de 5 filas (solo el borde), ¿cómo se ve la fila 3?",
+        "opciones": [
+          {
+            "texto": "  *   *",
+            "correcta": true,
+            "explica": "Dos espacios delante, un asterisco, tres espacios y otro asterisco."
+          },
+          {
+            "texto": "  *****",
+            "explica": "Esa es la fila 3 de la pirámide llena."
+          },
+          {
+            "texto": "  * *",
+            "explica": "Faltan espacios en el medio: van 2 * i - 3, que con i = 3 son tres."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In a 5-row hollow pyramid (only the border), what does row 3 look like?",
+        "opciones": [
+          {
+            "texto": "  *   *",
+            "correcta": true,
+            "explica": "Two spaces in front, an asterisk, three spaces and another asterisk."
+          },
+          {
+            "texto": "  *****",
+            "explica": "That is row 3 of the full pyramid."
+          },
+          {
+            "texto": "  * *",
+            "explica": "Spaces are missing in the middle: there are 2 * i - 3, which with i = 3 is three."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在一个 5 行的空心金字塔里（只有边框），第 3 行是什么样子？",
+        "opciones": [
+          {
+            "texto": "  *   *",
+            "correcta": true,
+            "explica": "前面两个空格，一个星号，三个空格，再一个星号。"
+          },
+          {
+            "texto": "  *****",
+            "explica": "那是实心金字塔的第 3 行。"
+          },
+          {
+            "texto": "  * *",
+            "explica": "中间少了空格：应该有 2 * i - 3 个，i = 3 时是三个。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-014",
+      "dificultad": 65,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Por qué una pirámide de asteriscos usa 2 * i - 1 asteriscos en cada fila y no 2 * i?",
+        "opciones": [
+          {
+            "texto": "Para que cada fila tenga un número impar y quede un asterisco justo en el centro",
+            "correcta": true
+          },
+          {
+            "texto": "Porque range empieza en 0",
+            "explica": "Con range(1, n + 1) empieza en 1; el -1 es por la forma de la pirámide."
+          },
+          {
+            "texto": "Para que no queden espacios a la derecha",
+            "explica": "Los espacios de la derecha no dependen de esa cuenta."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "Why does an asterisk pyramid use 2 * i - 1 asterisks per row and not 2 * i?",
+        "opciones": [
+          {
+            "texto": "So each row has an odd number and one asterisk sits right in the center",
+            "correcta": true
+          },
+          {
+            "texto": "Because range starts at 0",
+            "explica": "With range(1, n + 1) it starts at 1; the -1 is about the shape of the pyramid."
+          },
+          {
+            "texto": "So there are no spaces on the right",
+            "explica": "The spaces on the right do not depend on that count."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "为什么星号金字塔每一行用 2 * i - 1 个星号，而不是 2 * i？",
+        "opciones": [
+          {
+            "texto": "为了让每一行都是奇数，正中间刚好有一个星号",
+            "correcta": true
+          },
+          {
+            "texto": "因为 range 从 0 开始",
+            "explica": "用 range(1, n + 1) 是从 1 开始的；-1 是为了金字塔的形状。"
+          },
+          {
+            "texto": "为了让右边没有空格",
+            "explica": "右边的空格和这个数无关。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-015",
+      "dificultad": 70,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Este código imprime bien una pirámide en pantalla, pero un juez automático (como el de Codeforces) la marca como incorrecta. ¿Por qué?",
+        "frase": "print(\"\\n\".join((\"*\" * (2 * i - 1)).center(2 * n - 1) for i in range(1, n + 1)))",
+        "opciones": [
+          {
+            "texto": "center() también deja espacios a la derecha de cada fila; hay que quitarlos con rstrip()",
+            "correcta": true,
+            "explica": "Por ejemplo, con n = 5 la primera fila lleva cuatro espacios antes del asterisco y cuatro después, y esos últimos no se ven."
+          },
+          {
+            "texto": "center() no existe en Python",
+            "explica": "Sí existe: centra un texto en un ancho."
+          },
+          {
+            "texto": "Falta convertir n con int()",
+            "explica": "Si n ya es un número, no hace falta."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "This code prints a pyramid that looks fine on screen, but an automatic judge (like Codeforces') marks it as wrong. Why?",
+        "frase": "print(\"\\n\".join((\"*\" * (2 * i - 1)).center(2 * n - 1) for i in range(1, n + 1)))",
+        "opciones": [
+          {
+            "texto": "center() also leaves spaces on the right of each row; you have to remove them with rstrip()",
+            "correcta": true,
+            "explica": "For example, with n = 5 the first row has four spaces before the asterisk and four after it, and the last ones cannot be seen."
+          },
+          {
+            "texto": "center() does not exist in Python",
+            "explica": "It does: it centers a text within a width."
+          },
+          {
+            "texto": "n is missing an int() conversion",
+            "explica": "If n is already a number, there is no need."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "这段代码在屏幕上打印出的金字塔看起来没问题，但自动评测系统（比如 Codeforces 的）判它错误。为什么？",
+        "frase": "print(\"\\n\".join((\"*\" * (2 * i - 1)).center(2 * n - 1) for i in range(1, n + 1)))",
+        "opciones": [
+          {
+            "texto": "center() 也会在每一行右边留空格；要用 rstrip() 去掉",
+            "correcta": true,
+            "explica": "比如 n = 5 时，第一行星号前面有四个空格，后面也有四个，后面的那些看不见。"
+          },
+          {
+            "texto": "Python 里没有 center()",
+            "explica": "有的：它会把文本放在一个宽度的中间。"
+          },
+          {
+            "texto": "n 少了 int() 转换",
+            "explica": "如果 n 已经是数字，就不需要。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-016",
+      "dificultad": 75,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En el triángulo de Pascal cada número es la suma de los dos que tiene encima. ¿Qué fila sigue a 1 3 3 1?",
+        "opciones": [
+          {
+            "texto": "1 4 6 4 1",
+            "correcta": true,
+            "explica": "1, 1 + 3, 3 + 3, 3 + 1 y 1."
+          },
+          {
+            "texto": "1 3 6 3 1",
+            "explica": "Los de al lado del 1 son 1 + 3 = 4."
+          },
+          {
+            "texto": "1 4 4 4 1",
+            "explica": "El del centro es 3 + 3 = 6."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In Pascal's triangle each number is the sum of the two on top of it. Which row comes after 1 3 3 1?",
+        "opciones": [
+          {
+            "texto": "1 4 6 4 1",
+            "correcta": true,
+            "explica": "1, 1 + 3, 3 + 3, 3 + 1 and 1."
+          },
+          {
+            "texto": "1 3 6 3 1",
+            "explica": "The ones next to the 1 are 1 + 3 = 4."
+          },
+          {
+            "texto": "1 4 4 4 1",
+            "explica": "The middle one is 3 + 3 = 6."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在杨辉三角里，每个数等于它正上方两个数之和。1 3 3 1 的下一行是什么？",
+        "opciones": [
+          {
+            "texto": "1 4 6 4 1",
+            "correcta": true,
+            "explica": "1、1 + 3、3 + 3、3 + 1 和 1。"
+          },
+          {
+            "texto": "1 3 6 3 1",
+            "explica": "1 旁边的数是 1 + 3 = 4。"
+          },
+          {
+            "texto": "1 4 4 4 1",
+            "explica": "中间的是 3 + 3 = 6。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-017",
+      "dificultad": 80,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Para imprimir el triángulo de Sierpinski con asteriscos, la posición j de la fila i lleva un asterisco cuando (j & i) == j. ¿Qué tienen de especial esas posiciones?",
+        "opciones": [
+          {
+            "texto": "Que en el triángulo de Pascal el número en esa posición es impar",
+            "correcta": true,
+            "explica": "Pintar los impares de Pascal dibuja el triángulo de Sierpinski."
+          },
+          {
+            "texto": "Que son las posiciones pares",
+            "explica": "No depende de si j es par, sino de sus bits comparados con los de i."
+          },
+          {
+            "texto": "Que son los bordes de la fila",
+            "explica": "Los bordes siempre llevan asterisco, pero también muchas posiciones del medio."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "To print the Sierpinski triangle with asterisks, position j of row i gets an asterisk when (j & i) == j. What is special about those positions?",
+        "opciones": [
+          {
+            "texto": "In Pascal's triangle the number at that position is odd",
+            "correcta": true,
+            "explica": "Painting the odd numbers of Pascal draws the Sierpinski triangle."
+          },
+          {
+            "texto": "They are the even positions",
+            "explica": "It does not depend on whether j is even, but on its bits compared with those of i."
+          },
+          {
+            "texto": "They are the borders of the row",
+            "explica": "The borders always get an asterisk, but so do many positions in the middle."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "用星号打印谢尔宾斯基三角形时，第 i 行第 j 个位置在 (j & i) == j 时放星号。这些位置有什么特别？",
+        "opciones": [
+          {
+            "texto": "在杨辉三角里，这个位置上的数是奇数",
+            "correcta": true,
+            "explica": "把杨辉三角的奇数涂出来，就是谢尔宾斯基三角形。"
+          },
+          {
+            "texto": "它们是偶数位置",
+            "explica": "和 j 是不是偶数无关，而是和 j 与 i 的二进制位有关。"
+          },
+          {
+            "texto": "它们是每一行的两边",
+            "explica": "两边总是有星号，但中间很多位置也有。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-018",
+      "dificultad": 84,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Con turtle de Python, ¿cuántos grados tiene que girar la tortuga en cada esquina para dibujar un triángulo equilátero?",
+        "frase": "for _ in range(3):\n    t.forward(200)\n    t.left(???)",
+        "opciones": [
+          {
+            "texto": "120",
+            "correcta": true,
+            "explica": "Gira lo que le falta para la nueva dirección: 180 − 60. Las tres vueltas suman 360."
+          },
+          {
+            "texto": "60",
+            "explica": "60 es el ángulo de adentro del triángulo, no lo que gira la tortuga."
+          },
+          {
+            "texto": "90",
+            "explica": "Con 90 dibujaría un cuadrado, si repitiera cuatro veces."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "With Python's turtle, how many degrees does the turtle turn at each corner to draw an equilateral triangle?",
+        "frase": "for _ in range(3):\n    t.forward(200)\n    t.left(???)",
+        "opciones": [
+          {
+            "texto": "120",
+            "correcta": true,
+            "explica": "It turns what it needs for the new direction: 180 − 60. The three turns add up to 360."
+          },
+          {
+            "texto": "60",
+            "explica": "60 is the inside angle of the triangle, not what the turtle turns."
+          },
+          {
+            "texto": "90",
+            "explica": "With 90 it would draw a square, if it repeated four times."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "用 Python 的 turtle 画等边三角形，海龟在每个角要转多少度？",
+        "frase": "for _ in range(3):\n    t.forward(200)\n    t.left(???)",
+        "opciones": [
+          {
+            "texto": "120",
+            "correcta": true,
+            "explica": "它转的是朝向新方向需要的角度：180 − 60。三次加起来是 360。"
+          },
+          {
+            "texto": "60",
+            "explica": "60 是三角形的内角，不是海龟转的角度。"
+          },
+          {
+            "texto": "90",
+            "explica": "转 90 度的话，重复四次会画出正方形。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-019",
+      "dificultad": 88,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En Ubuntu ejecutas un programa que usa turtle y aparece este error. ¿Qué haces?",
+        "frase": "ModuleNotFoundError: No module named 'tkinter'",
+        "opciones": [
+          {
+            "texto": "Instalar la parte de ventanas de Python: sudo apt install python3-tk",
+            "correcta": true
+          },
+          {
+            "texto": "pip install turtle",
+            "explica": "turtle ya viene con Python; lo que falta es tkinter, que no se instala con pip."
+          },
+          {
+            "texto": "Cambiar turtle.done() por turtle.exit()",
+            "explica": "El error aparece antes, al importar: falta tkinter."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "On Ubuntu you run a program that uses turtle and this error shows up. What do you do?",
+        "frase": "ModuleNotFoundError: No module named 'tkinter'",
+        "opciones": [
+          {
+            "texto": "Install the window part of Python: sudo apt install python3-tk",
+            "correcta": true
+          },
+          {
+            "texto": "pip install turtle",
+            "explica": "turtle already comes with Python; what is missing is tkinter, which is not installed with pip."
+          },
+          {
+            "texto": "Change turtle.done() to turtle.exit()",
+            "explica": "The error shows up earlier, on import: tkinter is missing."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在 Ubuntu 上运行一个用 turtle 的程序，出现了这个错误。你该怎么做？",
+        "frase": "ModuleNotFoundError: No module named 'tkinter'",
+        "opciones": [
+          {
+            "texto": "安装 Python 的窗口部分：sudo apt install python3-tk",
+            "correcta": true
+          },
+          {
+            "texto": "pip install turtle",
+            "explica": "turtle 是 Python 自带的；缺的是 tkinter，它不能用 pip 安装。"
+          },
+          {
+            "texto": "把 turtle.done() 改成 turtle.exit()",
+            "explica": "错误在更早的时候、导入时就出现了：缺的是 tkinter。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-020",
+      "dificultad": 92,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Una función recursiva dibuja el triángulo de Sierpinski: en cada nivel cambia un triángulo por tres de la mitad de tamaño. ¿Cuántos triángulos chicos dibuja con nivel 4?",
+        "opciones": [
+          {
+            "texto": "81",
+            "correcta": true,
+            "explica": "3 × 3 × 3 × 3."
+          },
+          {
+            "texto": "12",
+            "explica": "Eso sería sumar 3 por cada nivel; en realidad se multiplica."
+          },
+          {
+            "texto": "64",
+            "explica": "64 es 4 × 4 × 4; aquí cada nivel multiplica por 3."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "A recursive function draws the Sierpinski triangle: at each level it replaces a triangle with three half its size. How many small triangles does it draw with level 4?",
+        "opciones": [
+          {
+            "texto": "81",
+            "correcta": true,
+            "explica": "3 × 3 × 3 × 3."
+          },
+          {
+            "texto": "12",
+            "explica": "That would be adding 3 per level; it actually multiplies."
+          },
+          {
+            "texto": "64",
+            "explica": "64 is 4 × 4 × 4; here each level multiplies by 3."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "一个递归函数画谢尔宾斯基三角形：每一层把一个三角形换成三个边长一半的三角形。层级为 4 时，它画了多少个小三角形？",
+        "opciones": [
+          {
+            "texto": "81",
+            "correcta": true,
+            "explica": "3 × 3 × 3 × 3。"
+          },
+          {
+            "texto": "12",
+            "explica": "那是每层加 3；实际上是乘。"
+          },
+          {
+            "texto": "64",
+            "explica": "64 是 4 × 4 × 4；这里每一层乘以 3。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tripy-021",
+      "dificultad": 96,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En Python, (j & i) == j funciona igual sin paréntesis. En JavaScript escribes j & i === j, sin paréntesis. ¿Qué pasa?",
+        "opciones": [
+          {
+            "texto": "Se calcula primero i === j, y el resultado cambia",
+            "correcta": true,
+            "explica": "En JavaScript (y en C++) la comparación va antes que &: hay que poner los paréntesis."
+          },
+          {
+            "texto": "Funciona igual que en Python",
+            "explica": "En Python & va antes que ==, pero en JavaScript es al revés."
+          },
+          {
+            "texto": "Da un error de sintaxis",
+            "explica": "Es código válido, pero calcula otra cosa."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In Python, (j & i) == j works the same without parentheses. In JavaScript you write j & i === j, without parentheses. What happens?",
+        "opciones": [
+          {
+            "texto": "i === j is evaluated first, and the result changes",
+            "correcta": true,
+            "explica": "In JavaScript (and in C++) the comparison comes before &: you need the parentheses."
+          },
+          {
+            "texto": "It works the same as in Python",
+            "explica": "In Python & comes before ==, but in JavaScript it is the other way around."
+          },
+          {
+            "texto": "It gives a syntax error",
+            "explica": "It is valid code, but it computes something else."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在 Python 里，(j & i) == j 不加括号也一样。在 JavaScript 里你写了 j & i === j，没加括号。会怎样？",
+        "opciones": [
+          {
+            "texto": "会先算 i === j，结果就变了",
+            "correcta": true,
+            "explica": "在 JavaScript（和 C++）里比较运算比 & 先算：需要加括号。"
+          },
+          {
+            "texto": "和 Python 里一样",
+            "explica": "在 Python 里 & 比 == 先算，但在 JavaScript 里正好相反。"
+          },
+          {
+            "texto": "语法错误",
+            "explica": "这是合法的代码，只是算的是别的东西。"
+          }
+        ]
+      }
+    }
+  ]
+}

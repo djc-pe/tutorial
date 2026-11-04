@@ -308,6 +308,7 @@
         oir: !!(q.oir && Voz && Voz.disponible),
         elige: !!q.elige,
         opcionesEn: !!q.opcionesEn,
+        opcionesCodigo: !!q.opcionesCodigo, /* opciones que son código o salidas de consola */
         contexto: q.contexto !== false, /* si falta, se trata como que necesita el tutorial */
         t: q[LANG],
         tutorial: archivo.tutorial,
@@ -705,7 +706,7 @@
         }
       }, [
         varias ? el('span', { clase: c('casilla'), 'aria-hidden': 'true' }) : null,
-        el('span', { clase: c('opcion-texto'), texto: o.texto })
+        el(q.opcionesCodigo ? 'pre' : 'span', { clase: c('opcion-texto') + (q.opcionesCodigo ? ' ' + c('opcion-codigo') : ''), texto: o.texto })
       ]);
       botones.push({ b: b, i: i, o: o });
       grupo.appendChild(b);
@@ -729,7 +730,7 @@
       var buenas = q.t.opciones.filter(function (o) { return o.correcta; }).map(function (o) { return o.texto; });
       /* Si las opciones están en inglés, se escucha la correcta; si no, la frase que se oyó. */
       var decir = q.opcionesEn && buenas.length === 1 ? buenas[0] : (q.oir ? q.t.frase : null);
-      return { ok: ok, correcta: buenas.join(' / '), varias: varias, notas: notas, decir: decir };
+      return { ok: ok, correcta: buenas.join(' / '), codigo: q.opcionesCodigo, varias: varias, notas: notas, decir: decir };
     };
   };
 
@@ -860,13 +861,20 @@
       el('p', { clase: c('respuesta-titulo'), texto: titulo })
     ]);
     if (!r.ok && !r.varias) {
-      var linea = el('p', null, [T.respuestaEs + ' ', el('strong', { texto: r.correcta })]);
+      var linea = r.codigo
+        ? el('div', null, [el('p', { texto: T.respuestaEs }), el('pre', { clase: c('codigo'), texto: r.correcta })])
+        : el('p', null, [T.respuestaEs + ' ', el('strong', { texto: r.correcta })]);
       if (Voz && Voz.disponible && r.decir) { linea.appendChild(document.createTextNode(' ')); linea.appendChild(Voz.boton(r.decir)); }
       caja.appendChild(linea);
     }
     var simbolo = { ok: '✓', falto: '⚠', mal: '✕' };
+    var orden = { ok: 0, falto: 1, mal: 2 };
+    r.notas.sort(function (x, y) { return orden[x.marca] - orden[y.marca]; }); /* primero lo que era correcto */
     r.notas.forEach(function (n) {
-      caja.appendChild(el('p', { clase: c('nota') }, [el('span', { clase: c('nota-marca', 'nota-' + n.marca), texto: simbolo[n.marca] }), ' ', el('strong', { texto: n.texto }), n.explica ? ': ' + n.explica : '']));
+      /* Si arriba ya dice "La respuesta es: ...", la nota de la correcta no repite su texto. */
+      var yaDicha = !r.ok && !r.varias && n.marca === 'ok';
+      var cuerpoNota = q.opcionesCodigo || yaDicha ? (n.explica || '') : [el('strong', { texto: n.texto }), n.explica ? ': ' + n.explica : ''];
+      caja.appendChild(el('p', { clase: c('nota') }, [el('span', { clase: c('nota-marca', 'nota-' + n.marca), texto: simbolo[n.marca] }), ' '].concat(cuerpoNota)));
     });
     if (q.t.explica) caja.appendChild(el('p', { texto: q.t.explica }));
     if (!r.ok && q.origen && q.origen.url) {

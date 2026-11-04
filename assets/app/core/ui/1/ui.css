@@ -68,6 +68,32 @@ main.content.djc-core-page {
   font-size: 14px;
 }
 
+/* Las categorías del tutorial, debajo del autor: cada una lleva a su página */
+.djc-core-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--djc-core-space-2);
+  margin: calc(-1 * var(--djc-core-space-3)) 0 var(--djc-core-space-5);
+  padding: 0;
+  list-style: none;
+}
+
+.djc-core-tags a {
+  display: inline-block;
+  padding: 4px 12px;
+  border: var(--djc-core-border-soft);
+  border-radius: 999px;
+  background: var(--djc-core-accent-08);
+  color: var(--color-accent);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.djc-core-tags a:hover {
+  border-color: var(--color-accent);
+  background: var(--djc-core-accent-16);
+}
+
 /* ---------- Cuadro ---------- */
 
 .djc-core-card {
@@ -107,6 +133,46 @@ main.content.djc-core-page {
   background: var(--color-bg);
   border: var(--djc-core-border-soft);
   border-radius: var(--djc-core-radius-sm);
+}
+
+/* ---------- Lista de tarjetas (categorías) ---------- */
+
+.djc-core-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--djc-core-space-4);
+  margin: var(--djc-core-space-3) 0 var(--djc-core-space-5);
+}
+
+/* Una tarjeta que es un enlace: el cuadro completo se puede tocar */
+a.djc-core-card-link {
+  display: block;
+  margin: 0;
+  padding: var(--djc-core-space-4);
+  border: var(--djc-core-border);
+  border-radius: var(--djc-core-radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+a.djc-core-card-link:hover { box-shadow: inset 0 0 0 1px var(--color-accent); }
+
+a.djc-core-card-link h2 {
+  margin: 0 0 var(--djc-core-space-2);
+  color: var(--color-accent);
+  font-size: 18px;
+}
+
+a.djc-core-card-link p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
+
+.djc-core-lead {
+  margin: 0 0 var(--djc-core-space-4);
+  color: var(--color-text-muted);
 }
 
 /* ---------- Tabla ---------- */

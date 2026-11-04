@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <!-- 87.34.2.92 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/assets/djc/base/1/icon.png">
+
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/index.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/ui/1/ui.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.js" defer></script>
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/lienzo/1/lienzo.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/lienzo/1/lienzo.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/base/1/index.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/nav/1/script.js" defer></script>
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/progreso/1/progreso.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.js" defer></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-movil.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-pc.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/ads.js" defer></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <title>如何用 JavaScript 打印三角形：星号、金字塔和 canvas | DJC Tutorial</title>
+  <meta name="description" content="一步一步学会用 JavaScript 打印星号三角形：直角、倒置、金字塔、空心、杨辉三角和谢尔宾斯基三角形，常见错误，以及如何在 canvas 上画出来。">
+
+  <link rel="canonical" href="https://tutorial.djc.pe/zh-cn/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">
+  <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">
+  <link rel="alternate" hreflang="es" href="https://tutorial.djc.pe/es/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">
+  <link rel="alternate" hreflang="zh-cn" href="https://tutorial.djc.pe/zh-cn/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">
+
+</head>
+<body>
+
+  <main class="content djc-core-page">
+    <p class="djc-core-breadcrumb"><a href="https://tutorial.djc.pe/">首页</a> / <a href="../../../../../../../../../../../../../../../../c/programming/">编程</a></p>
+    <h1>如何用 JavaScript 打印三角形：星号、金字塔和 canvas</h1>
+    <p class="djc-core-author" data-author>作者：<a href="https://www.djc.pe/u/@null_djc/">@null_djc</a>（系列）</p>
+    <ul class="djc-core-tags">
+      <li><a href="../../../../../../../../../../../../../../../../c/programming/">编程</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/javascript/">JavaScript</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/beginners/">入门</a></li>
+    </ul>
+
+    <div class="djc-core-card">
+      <p>星号三角形几乎是所有课程里的第一个循环练习，而在 JavaScript 里它有自己的意外：从外部来的东西永远是文本，一个不是数字的数字不会报错，运算符的先后顺序也和你想的不一样。我们先在控制台里把它做出来，最后再把它画到网页上。</p>
+      <p>我们分三个层级来讲：<a href="#basico">基础</a>（三角形和它的陷阱）、<a href="#intermedio">中级</a>（金字塔及其变体）和<a href="#avanzado">高级</a>（杨辉三角、谢尔宾斯基三角形和在 <code>canvas</code> 上画图）。每个层级最后都有一个挑战。所有代码都可以用 Node 运行（<code>node triangle.js</code>），或者粘贴到浏览器的控制台里（F12）。</p>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>玩一玩三角形</h2>
+      <p>读之前，先选一种类型并调整大小。下面会显示它打印出来的结果，以及实现它的 JavaScript 代码；你可以复制下来试试。</p>
+      <div class="djc-core-patron" data-djc-core-patron-lenguaje="javascript"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="basico">基础：三角形和它的陷阱</h2>
+      <h3>一个循环的三角形</h3>
+      <p>第 1 行一个星号，第 2 行两个，第 3 行三个：行号和个数是同一个数。</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  console.log("*".repeat(i));
+}</code></pre>
+<pre><code>*
+**
+***
+****
+*****</code></pre>
+      <ul>
+        <li><code>for (let i = 1; i &lt;= n; i++)</code> 从 1 数到 5：从 1 开始，只要 <code>i</code> 小于或等于 5 就继续，每次加 1。</li>
+        <li><code>"*".repeat(i)</code> 会重复文本：<code>"*".repeat(3)</code> 就是 <code>"***"</code>。</li>
+        <li><code>console.log</code> 打印并换行。</li>
+      </ul>
+
+      <h3>陷阱：少了一行</h3>
+      <p>出于习惯，很多 JavaScript 循环从 0 开始并用 <code>&lt;</code>。在这里这样写会把三角形弄坏：</p>
+<pre><code>const n = 5;
+for (let i = 0; i &lt; n; i++) {
+  console.log("*".repeat(i));
+}</code></pre>
+<pre><code>
+*
+**
+***
+****</code></pre>
+      <p>最上面多了一个空行（<code>"*".repeat(0)</code> 是空文本），而且少了五个星号的那一行，因为 <code>i &lt; n</code> 到 4 就停了。如果结果多一行或少一行，先检查循环从哪里开始，以及条件是 <code>&lt;</code> 还是 <code>&lt;=</code>。</p>
+
+      <h3>倒过来</h3>
+      <p>倒置的三角形，循环要倒着数：从 <code>n</code> 开始，每次减 1（<code>i--</code>）。</p>
+<pre><code>const n = 5;
+for (let i = n; i &gt;= 1; i--) {
+  console.log("*".repeat(i));
+}</code></pre>
+<pre><code>*****
+****
+***
+**
+*</code></pre>
+
+      <h3>让用户自己选大小</h3>
+      <p>用 Node 运行时，写在文件名后面的内容会放进 <code>process.argv</code>。<code>node triangle.js 4</code> 会打印：</p>
+<pre><code>const n = Number(process.argv[2]);
+for (let i = 1; i &lt;= n; i++) {
+  console.log("*".repeat(i));
+}</code></pre>
+<pre><code>*
+**
+***
+****</code></pre>
+      <p>所有从外部来的东西（来自 <code>process.argv</code>、浏览器里的 <code>prompt()</code> 或表单）都是<strong>文本</strong>。所以要用 <code>Number()</code>。不用的话，有时碰巧能用，有时不行：</p>
+<pre><code>console.log("5" + 1);
+console.log(Number("5") + 1);
+console.log(Number("hello"));</code></pre>
+<pre><code>51
+6
+NaN</code></pre>
+      <p><code>"5" + 1</code> 会把文本拼起来，得到 <code>"51"</code>。如果有人输入 <code>hello</code>，<code>Number("hello")</code> 得到 <code>NaN</code>（“不是一个数字”）：循环一次也不会执行，程序什么也不打印就结束了，也不报任何错误。要提醒用户，可以用 <code>Number.isNaN(n)</code> 检查。</p>
+
+      <h3>用两个循环</h3>
+      <p><code>repeat</code> 是一个捷径。不用它的话，就用一个循环套另一个循环：外层遍历每一行，内层不断把星号加到一个文本里，这一行结束时再打印出来。</p>
+<pre><code>const n = 4;
+for (let i = 1; i &lt;= n; i++) {
+  let row = "";
+  for (let j = 0; j &lt; i; j++) {
+    row += "*";
+  }
+  console.log(row);
+}</code></pre>
+<pre><code>*
+**
+***
+****</code></pre>
+      <p>在 JavaScript 里 <code>console.log</code> 总是会换行，所以要先把整行拼好再打印。</p>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="fc3866cdf7d746319dc9ea8e38540102" data-djc-core-reto-seccion="basico"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="intermedio">中级：金字塔及其变体</h2>
+      <h3>靠右对齐</h3>
+      <p>每一行先放 <code>n - i</code> 个空格，三角形就靠右了：</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  console.log(" ".repeat(n - i) + "*".repeat(i));
+}</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+      <p>JavaScript 对此有一个捷径：<code>padStart(n)</code> 会在左边补空格，直到长度达到 <code>n</code> 个字符。</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  console.log("*".repeat(i).padStart(n));
+}</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+
+      <h3>金字塔</h3>
+      <p>金字塔每一行多两个星号（1、3、5、7、9），这样才有中心：<code>2 * i - 1</code> 个星号和 <code>n - i</code> 个空格。</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  console.log(" ".repeat(n - i) + "*".repeat(2 * i - 1));
+}</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+      <div class="djc-core-table">
+      <table>
+        <thead><tr><th>行（<code>i</code>）</th><th>空格（<code>n - i</code>）</th><th>星号（<code>2 * i - 1</code>）</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>4</td><td>1</td></tr>
+          <tr><td>2</td><td>3</td><td>3</td></tr>
+          <tr><td>3</td><td>2</td><td>5</td></tr>
+          <tr><td>4</td><td>1</td><td>7</td></tr>
+          <tr><td>5</td><td>0</td><td>9</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>这张表就是做任何图案的诀窍：先手写出每一行要放多少，再找出公式。如果金字塔歪了，几乎总是空格写成了 <code>n - i - 1</code>，或者星号写成了 <code>2 * i</code>。</p>
+
+      <h3>空心</h3>
+      <p>只画边框：第一行一个星号，最后一行是满的，中间每一行两边各一个星号，中间是 <code>2 * i - 3</code> 个空格。</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  if (i === 1) {
+    console.log(" ".repeat(n - 1) + "*");
+  } else if (i === n) {
+    console.log("*".repeat(2 * n - 1));
+  } else {
+    console.log(" ".repeat(n - i) + "*" + " ".repeat(2 * i - 3) + "*");
+  }
+}</code></pre>
+<pre><code>    *
+   * *
+  *   *
+ *     *
+*********</code></pre>
+      <p>注意 <code>===</code>：在 JavaScript 里它比较时不会转换类型。用 <code>==</code> 的话，<code>"1" == 1</code> 是 <code>true</code>，而这正好掩盖了从外部来的文本这个错误。</p>
+
+      <h3>用数字</h3>
+      <p>每一行从 1 数到这一行的行号。数字放在一个数组里，<code>join(" ")</code> 用空格把它们连起来：</p>
+<pre><code>const n = 5;
+for (let i = 1; i &lt;= n; i++) {
+  const nums = [];
+  for (let j = 1; j &lt;= i; j++) {
+    nums.push(j);
+  }
+  console.log(nums.join(" "));
+}</code></pre>
+<pre><code>1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5</code></pre>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="fc3866cdf7d746319dc9ea8e38540102" data-djc-core-reto-seccion="intermedio"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="avanzado">高级：杨辉三角、谢尔宾斯基和 canvas</h2>
+      <h3>一行代码的金字塔</h3>
+      <p><code>Array.from</code> 创建一个有 <code>n</code> 行的数组，每一行用一个函数生成；<code>join("\n")</code> 用换行把它们连起来。这里 <code>k</code> 从 0 到 4，所以星号是 <code>2 * k + 1</code> 个。</p>
+<pre><code>const n = 5;
+console.log(Array.from({ length: n }, (_, k) =&gt; " ".repeat(n - k - 1) + "*".repeat(2 * k + 1)).join("\n"));</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+
+      <h3>杨辉三角</h3>
+      <p>每个数等于它正上方两个数之和，两边都是 1。每一行都由上一行算出来：</p>
+<pre><code>const n = 5;
+let row = [1];
+for (let i = 0; i &lt; n; i++) {
+  console.log(" ".repeat(n - i - 1) + row.join(" "));
+  const next = [1];
+  for (let k = 0; k &lt; row.length - 1; k++) {
+    next.push(row[k] + row[k + 1]);
+  }
+  next.push(1);
+  row = next;
+}</code></pre>
+<pre><code>    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1</code></pre>
+      <p>JavaScript 的数字在 <code>Number.MAX_SAFE_INTEGER</code>（9007199254740991）以内是精确的。当 <code>n</code> 达到 58 或更大时，中间的数会超过这个上限，开始被四舍五入，而且没有任何提示；这么大的行要用 <code>BigInt</code>。</p>
+
+      <h3>用星号画谢尔宾斯基三角形，以及括号的陷阱</h3>
+      <p>如果在杨辉三角里只把奇数涂出来，就会出现谢尔宾斯基三角形。第 <code>i</code> 行第 <code>j</code> 个数是奇数，当且仅当 <code>(j &amp; i) === j</code>：</p>
+<pre><code>const n = 8;
+for (let i = 0; i &lt; n; i++) {
+  const row = [];
+  for (let j = 0; j &lt;= i; j++) {
+    row.push((j &amp; i) === j ? "*" : " ");
+  }
+  console.log(" ".repeat(n - i - 1) + row.join(" "));
+}</code></pre>
+<pre><code>       *
+      * *
+     *   *
+    * * * *
+   *       *
+  * *     * *
+ *   *   *   *
+* * * * * * * *</code></pre>
+      <p>在 Python 里不需要这些括号。在 JavaScript 里需要：<code>===</code> 比 <code>&amp;</code> <strong>先</strong>算。不加括号，<code>j &amp; i === j</code> 就是 <code>j &amp; (i === j)</code>，图形会坏掉，而且没有任何错误：</p>
+<pre><code>const n = 8;
+for (let i = 0; i &lt; n; i++) {
+  const row = [];
+  for (let j = 0; j &lt;= i; j++) {
+    row.push(j &amp; i === j ? "*" : " ");
+  }
+  console.log(" ".repeat(n - i - 1) + row.join(" "));
+}</code></pre>
+<pre><code>        
+        *
+          
+          *
+            
+            *
+              
+              *</code></pre>
+
+      <h3>在 canvas 上画出来</h3>
+      <p>在浏览器里不需要打印星号：<code>&lt;canvas&gt;</code> 就是一块可以画画的区域。一个谢尔宾斯基三角形由三个边长一半的三角形组成，每一个又由三个更小的组成，一直到你指定的层级。拖动看看：</p>
+      <div class="djc-core-lienzo"></div>
+      <ul>
+        <li><code>triangle</code> 画一个实心三角形：用 <code>moveTo</code> 和 <code>lineTo</code> 走到每个角，闭合后用 <code>fill()</code> 填色。等边三角形的高是 <code>side * √3 / 2</code>。</li>
+        <li><code>sierpinski</code> 用一半的边长和少一层的层级调用自己三次：左下、右下和上面。层级为 0 时画一个三角形就结束。</li>
+        <li>要用在你自己的网页上，放一个 <code>&lt;canvas id="drawing" width="400" height="347"&gt;</code>，在两个函数后面写 <code>sierpinski(document.getElementById("drawing").getContext("2d"), 0, 347, 400, 5)</code>。347 是高（400 × √3 / 2），起点是左下角。</li>
+      </ul>
+
+      <h3>需要注意的地方</h3>
+      <ul>
+        <li><strong>浏览器控制台会把相同的行合并。</strong>如果你连续多次打印同一行，Chrome 只显示一行，旁边带一个数字。不是你的程序有问题：在 Node 里每一行都会显示。</li>
+        <li><strong>行末的空格。</strong>如果你用 <code>padEnd</code> 或多余的空格拼每一行，它们看不见，但像 Codeforces 这样的评测系统会算进去。<code>trimEnd()</code> 可以去掉它们。</li>
+        <li><strong>要写 <code>let</code> 或 <code>const</code>，不能什么都不写。</strong>没有 <code>let</code> 的 <code>for (i = 1; ...)</code> 会创建一个全局变量，在模块或严格模式下会报 <code>ReferenceError: i is not defined</code>。</li>
+      </ul>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="fc3866cdf7d746319dc9ea8e38540102" data-djc-core-reto-seccion="avanzado"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>用其他语言画同样的三角形</h2>
+      <p>同样的图案，以及每种语言的不同之处：</p>
+      <ul>
+        <li><a href="../../../../../../../../../../../../../../../../c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/">如何用 Python 打印三角形</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/">如何用 Rust 打印三角形</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/">如何用 C++ 打印三角形</a></li>
+      </ul>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>我们学到了什么</h2>
+      <p>三角形是一张表（每一行放多少空格、多少星号），在任何语言里都一样；而在 JavaScript 里最容易出错的不是公式，而是公式周围的东西：从外部来的文本、本该是 <code>&lt;=</code> 的 <code>&lt;</code>，以及比你想的更早被计算的运算符。好消息是浏览器自带画图的地方：拖动 canvas 的层级，看看同一个图案怎样在自己里面重复。</p>
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- 87.34.2.92 -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="https://story.djc.pe/assets/djc/base/1/icon.png">
+
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/variable.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/style.css">
+  <link rel="stylesheet" href="https://story.djc.pe/assets/djc/base/1/index.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/ui/1/ui.css">
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/patron/1/patron.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/base/1/index.js" defer></script>
+  <script src="https://story.djc.pe/assets/djc/nav/1/script.js" defer></script>
+  <link rel="stylesheet" href="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.css">
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/progreso/1/progreso.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/reto/1/reto.js" defer></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3775900744037301" crossorigin="anonymous"></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-movil.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/tutorial-1-pc.js" defer></script>
+  <script src="../../../../../../../../../../../../../../../../../assets/app/core/ads/1/ads.js" defer></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S0JX351KT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-S0JX351KT2');
+</script>
+
+  <title>Cómo hacer un triángulo en Rust: asteriscos, pirámide y Sierpinski | DJC Tutorial</title>
+  <meta name="description" content="Aprende a imprimir triángulos de asteriscos en Rust paso a paso: rectángulo, invertido, pirámide, hueco, Pascal y Sierpinski, con los errores típicos de rangos, parse y usize.">
+
+  <link rel="canonical" href="https://tutorial.djc.pe/es/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/">
+  <link rel="alternate" hreflang="en" href="https://tutorial.djc.pe/en/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/">
+  <link rel="alternate" hreflang="es" href="https://tutorial.djc.pe/es/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/">
+  <link rel="alternate" hreflang="zh-cn" href="https://tutorial.djc.pe/zh-cn/5d/ee/af/38/e9/d8/40/d2/94/78/8a/9b/bd/0f/24/a1/">
+
+</head>
+<body>
+
+  <main class="content djc-core-page">
+    <p class="djc-core-breadcrumb"><a href="https://tutorial.djc.pe/">Inicio</a> / <a href="../../../../../../../../../../../../../../../../c/programacion/">Programación</a></p>
+    <h1>Cómo hacer un triángulo en Rust: asteriscos, pirámide y Sierpinski</h1>
+    <p class="djc-core-author" data-author>Serie por <a href="https://www.djc.pe/u/@null_djc/">@null_djc</a></p>
+    <ul class="djc-core-tags">
+      <li><a href="../../../../../../../../../../../../../../../../c/programacion/">Programación</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/rust/">Rust</a></li>
+      <li><a href="../../../../../../../../../../../../../../../../c/principiantes/">Principiantes</a></li>
+    </ul>
+
+    <div class="djc-core-card">
+      <p>El triángulo de asteriscos es el primer ejercicio de bucles de casi cualquier curso. En Rust se escribe parecido a Python, pero el compilador te cuida de cosas que en otros lenguajes pasan en silencio: un número que no se puede leer, una resta que se pasa de cero o una suma que no cabe. Aquí vemos esas trampas con sus mensajes reales.</p>
+      <p>Lo vemos en tres niveles: <a href="#basico">básico</a> (el triángulo y sus trampas), <a href="#intermedio">intermedio</a> (la pirámide y sus variantes) y <a href="#avanzado">avanzado</a> (formatos, Pascal y Sierpinski). Cada nivel termina con un reto. Para probar el código: <code>rustc triangulo.rs &amp;&amp; ./triangulo</code>, <code>cargo run</code> dentro de un proyecto, o el Rust Playground en el navegador.</p>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>Juega con el triángulo</h2>
+      <p>Antes de leer, elige un tipo y mueve el tamaño. Abajo ves lo que imprime y el código en Rust que lo hace; puedes copiarlo y probarlo.</p>
+      <div class="djc-core-patron" data-djc-core-patron-lenguaje="rust"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="basico">Básico: el triángulo y sus trampas</h2>
+      <h3>El triángulo con un bucle</h3>
+      <p>En la fila 1 va un asterisco, en la 2 van dos, en la 3 van tres: la fila y la cantidad son el mismo número.</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 1..=n {
+        println!("{}", "*".repeat(i));
+    }
+}</code></pre>
+<pre><code>*
+**
+***
+****
+*****</code></pre>
+      <ul>
+        <li><code>1..=n</code> es el rango del 1 al 5, <strong>incluido</strong> el 5 (por el <code>=</code>).</li>
+        <li><code>"*".repeat(i)</code> repite el texto: <code>"*".repeat(3)</code> es <code>"***"</code>.</li>
+        <li><code>println!</code> imprime y salta de línea; el <code>{}</code> es el lugar donde va el valor.</li>
+      </ul>
+
+      <h3>La trampa: la fila que falta</h3>
+      <p>En Rust hay dos rangos que se parecen mucho: <code>0..n</code> no incluye el último y <code>0..=n</code> sí. Con el primero, el triángulo sale mal:</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 0..n {
+        println!("{}", "*".repeat(i));
+    }
+}</code></pre>
+<pre><code>
+*
+**
+***
+****</code></pre>
+      <p>Arriba sale una línea vacía (<code>"*".repeat(0)</code> es un texto vacío) y falta la fila de cinco. Cuando el resultado tiene una fila de más o de menos, revisa primero el rango: dónde empieza y si lleva <code>=</code>.</p>
+
+      <h3>Al revés</h3>
+      <p>Para el triángulo invertido, el rango se recorre al revés con <code>.rev()</code>:</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in (1..=n).rev() {
+        println!("{}", "*".repeat(i));
+    }
+}</code></pre>
+<pre><code>*****
+****
+***
+**
+*</code></pre>
+
+      <h3>Que el usuario elija el tamaño</h3>
+      <p>El tamaño se lee de la entrada como texto y se convierte en número con <code>parse</code>. Escribiendo <code>3</code>:</p>
+<pre><code>use std::io;
+
+fn main() {
+    let mut linea = String::new();
+    io::stdin().read_line(&amp;mut linea).unwrap();
+    let n: usize = linea.trim().parse().unwrap();
+    for i in 1..=n {
+        println!("{}", "*".repeat(i));
+    }
+}</code></pre>
+<pre><code>*
+**
+***</code></pre>
+      <p>El <code>trim()</code> es la trampa: <code>read_line</code> guarda también el salto de línea del Enter (<code>"3\n"</code>), y ese <code>\n</code> no es un dígito. Sin <code>trim()</code>, el programa se detiene con este mensaje:</p>
+<pre><code>called `Result::unwrap()` on an `Err` value: ParseIntError { kind: InvalidDigit }</code></pre>
+      <p>Es el mismo mensaje que si el usuario escribe <code>hola</code>. El <code>unwrap()</code> dice "si falla, detén el programa"; para avisarle al usuario en vez de detenerlo, se usa <code>match</code> sobre el resultado de <code>parse</code>.</p>
+
+      <h3>Con dos bucles</h3>
+      <p><code>repeat</code> es un atajo. Sin él, se usa un bucle dentro de otro: el de afuera recorre las filas y el de adentro imprime los asteriscos con <code>print!</code>, que no salta de línea. El <code>println!()</code> vacío salta al terminar la fila.</p>
+<pre><code>fn main() {
+    let n = 4;
+    for i in 1..=n {
+        for _ in 0..i {
+            print!("*");
+        }
+        println!();
+    }
+}</code></pre>
+<pre><code>*
+**
+***
+****</code></pre>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="5deeaf38e9d840d294788a9bbd0f24a1" data-djc-core-reto-seccion="basico"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="intermedio">Intermedio: la pirámide y sus variantes</h2>
+      <h3>Alineado a la derecha</h3>
+      <p>Cada fila empieza con <code>n - i</code> espacios, así el triángulo queda pegado a la derecha:</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 1..=n {
+        println!("{}{}", " ".repeat(n - i), "*".repeat(i));
+    }
+}</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+
+      <h3>La pirámide</h3>
+      <p>La pirámide crece de a dos asteriscos por fila (1, 3, 5, 7, 9) para que quede un centro: <code>2 * i - 1</code> asteriscos y <code>n - i</code> espacios.</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 1..=n {
+        println!("{}{}", " ".repeat(n - i), "*".repeat(2 * i - 1));
+    }
+}</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+      <div class="djc-core-table">
+      <table>
+        <thead><tr><th>Fila (<code>i</code>)</th><th>Espacios (<code>n - i</code>)</th><th>Asteriscos (<code>2 * i - 1</code>)</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>4</td><td>1</td></tr>
+          <tr><td>2</td><td>3</td><td>3</td></tr>
+          <tr><td>3</td><td>2</td><td>5</td></tr>
+          <tr><td>4</td><td>1</td><td>7</td></tr>
+          <tr><td>5</td><td>0</td><td>9</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>Esta tabla es el truco para cualquier patrón: escribe a mano cuánto va en cada fila y busca la fórmula. Si la pirámide sale torcida, casi siempre los espacios están en <code>n - i - 1</code> o los asteriscos en <code>2 * i</code>.</p>
+
+      <h3>Hueca</h3>
+      <p>Solo el borde: la primera fila con un asterisco, la última llena y las del medio con un asterisco a cada lado y <code>2 * i - 3</code> espacios en el centro.</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 1..=n {
+        if i == 1 {
+            println!("{}*", " ".repeat(n - 1));
+        } else if i == n {
+            println!("{}", "*".repeat(2 * n - 1));
+        } else {
+            println!("{}*{}*", " ".repeat(n - i), " ".repeat(2 * i - 3));
+        }
+    }
+}</code></pre>
+<pre><code>    *
+   * *
+  *   *
+ *     *
+*********</code></pre>
+
+      <h3>Con números</h3>
+      <p>Cada fila cuenta del 1 al número de la fila. <code>map</code> convierte cada número en texto, <code>collect</code> los junta en un <code>Vec</code> y <code>join(" ")</code> los une con espacios:</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 1..=n {
+        let nums: Vec&lt;String&gt; = (1..=i).map(|j| j.to_string()).collect();
+        println!("{}", nums.join(" "));
+    }
+}</code></pre>
+<pre><code>1
+1 2
+1 2 3
+1 2 3 4
+1 2 3 4 5</code></pre>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="5deeaf38e9d840d294788a9bbd0f24a1" data-djc-core-reto-seccion="intermedio"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2 id="avanzado">Avanzado: formatos, Pascal y Sierpinski</h2>
+      <h3>Que el formato haga el trabajo</h3>
+      <p><code>println!</code> sabe alinear: <code>{:&gt;width$}</code> alinea a la derecha en un ancho y <code>{:^ancho$}</code> centra. Así no hay que calcular espacios:</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 1..=n {
+        println!("{:&gt;width$}", "*".repeat(i), width = n);
+    }
+}</code></pre>
+<pre><code>    *
+   **
+  ***
+ ****
+*****</code></pre>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 1..=n {
+        let fila = format!("{:^ancho$}", "*".repeat(2 * i - 1), ancho = 2 * n - 1);
+        println!("{}", fila.trim_end());
+    }
+}</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+      <p>Al centrar, el formato también pone espacios a la derecha. No se ven, pero un juez como el de Codeforces los cuenta; <code>trim_end()</code> los quita.</p>
+
+      <h3>La resta que se pasa de cero</h3>
+      <p>Los tamaños en Rust son <code>usize</code>: números sin signo, que no pueden ser negativos. Si el bucle da una vuelta de más, <code>n - i - 1</code> intenta bajar de cero y el programa se detiene:</p>
+<pre><code>fn main() {
+    let n = 5;
+    for i in 0..=n {
+        println!("{}{}", " ".repeat(n - i - 1), "*".repeat(2 * i + 1));
+    }
+}</code></pre>
+<pre><code>    *
+   ***
+  *****
+ *******
+*********</code></pre>
+<pre><code>attempt to subtract with overflow</code></pre>
+      <p>En otros lenguajes esa resta daría un número negativo y el error pasaría escondido. Aquí el mensaje dice exactamente qué pasó: el rango tenía que ser <code>0..n</code>.</p>
+
+      <h3>El triángulo de Pascal</h3>
+      <p>Cada número es la suma de los dos que tiene encima, y los bordes son 1. Cada fila se arma a partir de la anterior:</p>
+<pre><code>fn main() {
+    let n = 5;
+    let mut fila: Vec&lt;u64&gt; = vec![1];
+    for i in 0..n {
+        let texto: Vec&lt;String&gt; = fila.iter().map(|x| x.to_string()).collect();
+        println!("{}{}", " ".repeat(n - i - 1), texto.join(" "));
+        let mut nueva = vec![1];
+        for k in 0..fila.len() - 1 {
+            nueva.push(fila[k] + fila[k + 1]);
+        }
+        nueva.push(1);
+        fila = nueva;
+    }
+}</code></pre>
+<pre><code>    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1</code></pre>
+      <p>Un <code>u64</code> llega hasta 18446744073709551615. Con <code>n</code> de 68 o más, una de las sumas ya no cabe: con <code>rustc</code> (o <code>cargo run</code>) el programa se detiene con</p>
+<pre><code>attempt to add with overflow</code></pre>
+      <p>pero compilado con optimizaciones (<code>-O</code> o <code>cargo run --release</code>) esa revisión se apaga y la suma da la vuelta en silencio: con <code>n = 70</code>, el número del centro de la última fila sale <code>1505813374405535736</code>, que está mal. Para filas tan grandes se usa <code>u128</code> o una librería de enteros grandes.</p>
+
+      <h3>Sierpinski con asteriscos</h3>
+      <p>Si en el triángulo de Pascal pintas solo los números impares, aparece el triángulo de Sierpinski. El de la fila <code>i</code> y la posición <code>j</code> es impar cuando <code>(j &amp; i) == j</code>:</p>
+<pre><code>fn main() {
+    let n = 8;
+    for i in 0..n {
+        let fila: Vec&lt;&amp;str&gt; = (0..=i).map(|j| if (j &amp; i) == j { "*" } else { " " }).collect();
+        println!("{}{}", " ".repeat(n - i - 1), fila.join(" "));
+    }
+}</code></pre>
+<pre><code>       *
+      * *
+     *   *
+    * * * *
+   *       *
+  * *     * *
+ *   *   *   *
+* * * * * * * *</code></pre>
+      <p>En Rust, como en Python, <code>&amp;</code> se calcula antes que <code>==</code>, así que funcionaría sin paréntesis. Los dejamos igual: en JavaScript y en C++ es al revés, y así el código se lee igual en todos lados.</p>
+
+      <h3>¿Y para dibujarlo?</h3>
+      <p>Rust no trae nada para dibujar en una ventana. Hay librerías (crates) para eso, pero piden instalar y configurar bastante para un primer programa. Si quieres ver el Sierpinski dibujado, tienes la versión en JavaScript, que se dibuja aquí mismo en el navegador, y la de Python con <code>turtle</code>.</p>
+      <div class="djc-core-reto" data-djc-core-reto-tutorial="5deeaf38e9d840d294788a9bbd0f24a1" data-djc-core-reto-seccion="avanzado"></div>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>El mismo triángulo en otros lenguajes</h2>
+      <p>Los mismos patrones, con lo que cambia en cada lenguaje:</p>
+      <ul>
+        <li><a href="../../../../../../../../../../../../../../../../c2/76/a9/02/77/9e/44/57/9c/01/c7/05/49/5e/4c/bb/">Cómo hacer un triángulo en Python</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/">Cómo hacer un triángulo en JavaScript</a></li>
+        <li><a href="../../../../../../../../../../../../../../../../d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/">Cómo hacer un triángulo en C++</a></li>
+      </ul>
+    </div>
+
+    <div class="djc-core-card">
+      <h2>Qué nos enseñó</h2>
+      <p>Que el triángulo es una tabla (cuántos espacios y cuántos asteriscos en cada fila), igual que en cualquier lenguaje, y que Rust convierte los errores escondidos en mensajes claros: el salto de línea que no deja leer el número, la resta que baja de cero, la suma que no cabe. Molesta al principio, pero cada uno de esos mensajes es un error que en otro lenguaje habrías buscado a ciegas.</p>
+    </div>
+  </main>
+
+</body>
+</html>

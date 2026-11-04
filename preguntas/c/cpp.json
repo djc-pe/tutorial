@@ -1,0 +1,42 @@
+{
+  "categoria": "cpp",
+  "version": "9172afb5",
+  "titulo": {
+    "en": "C++",
+    "es": "C++",
+    "zh-cn": "C++"
+  },
+  "tutoriales": [
+    {
+      "tutorial": "d0023ac8118e461cb3bd82083ee9f6ae",
+      "archivo": "preguntas/t/d0023ac8118e461cb3bd82083ee9f6ae.json",
+      "titulo": {
+        "es": "Cómo hacer un triángulo en C++: asteriscos, pirámide y Sierpinski",
+        "en": "How to Make a Triangle in C++: Asterisks, Pyramid and Sierpinski",
+        "zh-cn": "如何用 C++ 打印三角形：星号、金字塔和谢尔宾斯基"
+      },
+      "url": {
+        "es": "es/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/",
+        "en": "en/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/",
+        "zh-cn": "zh-cn/d0/02/3a/c8/11/8e/46/1c/b3/bd/82/08/3e/e9/f6/ae/"
+      },
+      "secciones": {
+        "es": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        },
+        "en": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        },
+        "zh-cn": {
+          "basico": 6,
+          "intermedio": 6,
+          "avanzado": 6
+        }
+      }
+    }
+  ]
+}

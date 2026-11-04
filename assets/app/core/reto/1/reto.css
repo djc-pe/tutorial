@@ -520,3 +520,15 @@ html.djc-core-reto-abierto body { overflow: hidden; }
 }
 
 .djc-core-reto-modal .djc-core-reto-final { padding-top: 12px; }
+
+/* Opciones que son código o la salida de un programa */
+.djc-core-reto pre.djc-core-reto-opcion-codigo {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 14px;
+  line-height: 1.35;
+  white-space: pre;
+  overflow-x: auto;
+}

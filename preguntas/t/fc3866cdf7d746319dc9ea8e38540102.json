@@ -1,0 +1,1065 @@
+{
+  "version": 1,
+  "tutorial": "fc3866cdf7d746319dc9ea8e38540102",
+  "url": {
+    "es": "es/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/",
+    "en": "en/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/",
+    "zh-cn": "zh-cn/fc/38/66/cd/f7/d7/46/31/9d/c9/ea/8e/38/54/01/02/"
+  },
+  "prefijo": "trijs",
+  "categorias": [
+    "programacion",
+    "javascript",
+    "principiantes"
+  ],
+  "preguntas": [
+    {
+      "id": "trijs-001",
+      "dificultad": 8,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "¿Qué imprime este código?",
+        "frase": "const n = 3;\nfor (let i = 1; i <= n; i++) {\n  console.log(\"*\".repeat(i));\n}",
+        "opciones": [
+          {
+            "texto": "*\n**\n***",
+            "correcta": true
+          },
+          {
+            "texto": "***\n**\n*",
+            "explica": "Ese es el invertido: el bucle tendría que contar hacia atrás."
+          },
+          {
+            "texto": "*\n*\n*",
+            "explica": "\"*\".repeat(i) repite el asterisco i veces, así que cada fila tiene uno más."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does this code print?",
+        "frase": "const n = 3;\nfor (let i = 1; i <= n; i++) {\n  console.log(\"*\".repeat(i));\n}",
+        "opciones": [
+          {
+            "texto": "*\n**\n***",
+            "correcta": true
+          },
+          {
+            "texto": "***\n**\n*",
+            "explica": "That is the inverted one: the loop would have to count backwards."
+          },
+          {
+            "texto": "*\n*\n*",
+            "explica": "\"*\".repeat(i) repeats the asterisk i times, so each row has one more."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "这段代码会打印什么？",
+        "frase": "const n = 3;\nfor (let i = 1; i <= n; i++) {\n  console.log(\"*\".repeat(i));\n}",
+        "opciones": [
+          {
+            "texto": "*\n**\n***",
+            "correcta": true
+          },
+          {
+            "texto": "***\n**\n*",
+            "explica": "那是倒置的三角形：循环要倒着数。"
+          },
+          {
+            "texto": "*\n*\n*",
+            "explica": "\"*\".repeat(i) 会把星号重复 i 次，所以每一行多一个。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-002",
+      "dificultad": 12,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Qué da \"*\".repeat(4) en JavaScript?",
+        "opciones": [
+          {
+            "texto": "\"****\"",
+            "correcta": true,
+            "explica": "repeat repite el texto las veces que le pidas."
+          },
+          {
+            "texto": "\"*4\"",
+            "explica": "No pega el número: repite el texto."
+          },
+          {
+            "texto": "Un error: repeat no existe",
+            "explica": "repeat es un método de los textos desde 2015."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does \"*\".repeat(4) give in JavaScript?",
+        "opciones": [
+          {
+            "texto": "\"****\"",
+            "correcta": true,
+            "explica": "repeat repeats the text as many times as you ask."
+          },
+          {
+            "texto": "\"*4\"",
+            "explica": "It does not stick the number on: it repeats the text."
+          },
+          {
+            "texto": "An error: repeat does not exist",
+            "explica": "repeat has been a string method since 2015."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在 JavaScript 里 \"*\".repeat(4) 的结果是什么？",
+        "opciones": [
+          {
+            "texto": "\"****\"",
+            "correcta": true,
+            "explica": "repeat 会按你要求的次数重复文本。"
+          },
+          {
+            "texto": "\"*4\"",
+            "explica": "不会把数字拼上去：而是重复文本。"
+          },
+          {
+            "texto": "报错：repeat 不存在",
+            "explica": "从 2015 年起 repeat 就是字符串的方法了。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-003",
+      "dificultad": 18,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Este código debería imprimir 5 filas, de 1 a 5 asteriscos, pero arriba sale una línea vacía y falta la fila de cinco. ¿Qué cambias?",
+        "frase": "const n = 5;\nfor (let i = 0; i < n; i++) {\n  console.log(\"*\".repeat(i));\n}",
+        "opciones": [
+          {
+            "texto": "Empezar en 1 y usar <=: for (let i = 1; i <= n; i++)",
+            "correcta": true,
+            "explica": "Desde 0, la primera fila es \"*\".repeat(0), que está vacía, y con < nunca llega a 5."
+          },
+          {
+            "texto": "Cambiar const n = 5 por const n = 6",
+            "explica": "Aparece la fila de cinco, pero sigue la línea vacía de arriba."
+          },
+          {
+            "texto": "Cambiar console.log por print",
+            "explica": "print no existe en JavaScript; el problema es el bucle."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "This code should print 5 rows, from 1 to 5 asterisks, but there is an empty line at the top and the row of five is missing. What do you change?",
+        "frase": "const n = 5;\nfor (let i = 0; i < n; i++) {\n  console.log(\"*\".repeat(i));\n}",
+        "opciones": [
+          {
+            "texto": "Start at 1 and use <=: for (let i = 1; i <= n; i++)",
+            "correcta": true,
+            "explica": "From 0, the first row is \"*\".repeat(0), which is empty, and with < it never gets to 5."
+          },
+          {
+            "texto": "Change const n = 5 to const n = 6",
+            "explica": "The row of five shows up, but the empty line at the top is still there."
+          },
+          {
+            "texto": "Change console.log to print",
+            "explica": "print does not exist in JavaScript; the problem is the loop."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "这段代码应该打印 5 行，从 1 个到 5 个星号，但最上面多了一个空行，而且少了五个星号的那一行。你要改什么？",
+        "frase": "const n = 5;\nfor (let i = 0; i < n; i++) {\n  console.log(\"*\".repeat(i));\n}",
+        "opciones": [
+          {
+            "texto": "从 1 开始并用 <=：for (let i = 1; i <= n; i++)",
+            "correcta": true,
+            "explica": "从 0 开始的话，第一行是 \"*\".repeat(0)，也就是空的，而且用 < 永远到不了 5。"
+          },
+          {
+            "texto": "把 const n = 5 改成 const n = 6",
+            "explica": "五个星号的那一行出现了，但最上面的空行还在。"
+          },
+          {
+            "texto": "把 console.log 改成 print",
+            "explica": "JavaScript 里没有 print；问题在循环。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-004",
+      "dificultad": 22,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Qué muestra console.log(\"5\" + 1)?",
+        "opciones": [
+          {
+            "texto": "51",
+            "correcta": true,
+            "explica": "Si uno de los dos es texto, + los pega en vez de sumarlos."
+          },
+          {
+            "texto": "6",
+            "explica": "Para sumar, el \"5\" tendría que ser un número: Number(\"5\") + 1."
+          },
+          {
+            "texto": "Un error",
+            "explica": "JavaScript no da error: convierte el 1 en texto y los pega."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does console.log(\"5\" + 1) show?",
+        "opciones": [
+          {
+            "texto": "51",
+            "correcta": true,
+            "explica": "If one of them is text, + sticks them together instead of adding them."
+          },
+          {
+            "texto": "6",
+            "explica": "To add, the \"5\" would have to be a number: Number(\"5\") + 1."
+          },
+          {
+            "texto": "An error",
+            "explica": "JavaScript gives no error: it turns the 1 into text and sticks them together."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "console.log(\"5\" + 1) 会显示什么？",
+        "opciones": [
+          {
+            "texto": "51",
+            "correcta": true,
+            "explica": "只要其中一个是文本，+ 就会把它们拼起来，而不是相加。"
+          },
+          {
+            "texto": "6",
+            "explica": "要相加的话，\"5\" 必须是数字：Number(\"5\") + 1。"
+          },
+          {
+            "texto": "报错",
+            "explica": "JavaScript 不会报错：它会把 1 变成文本再拼起来。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-005",
+      "dificultad": 25,
+      "tipo": "ordenar",
+      "contexto": false,
+      "es": {
+        "pregunta": "Ordena la primera línea de un bucle de JavaScript que recorre las filas del 1 al n",
+        "frase": "for (let i = 1; i <= n; i++) {",
+        "extra": [
+          "i < n;"
+        ]
+      },
+      "en": {
+        "pregunta": "Put in order the first line of a JavaScript loop that goes through rows 1 to n",
+        "frase": "for (let i = 1; i <= n; i++) {",
+        "extra": [
+          "i < n;"
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "把一个遍历第 1 行到第 n 行的 JavaScript 循环的第一行按顺序排好",
+        "frase": "for (let i = 1; i <= n; i++) {",
+        "extra": [
+          "i < n;"
+        ]
+      }
+    },
+    {
+      "id": "trijs-006",
+      "dificultad": 30,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Un programa de Node hace const n = Number(process.argv[2]) y un bucle de 1 a n. Lo ejecutas con node triangulo.js hola. ¿Qué pasa?",
+        "opciones": [
+          {
+            "texto": "No imprime nada y no muestra ningún error",
+            "correcta": true,
+            "explica": "Number(\"hola\") es NaN, y 1 <= NaN es falso: el bucle no da ni una vuelta."
+          },
+          {
+            "texto": "Muestra un error de tipo",
+            "explica": "JavaScript no avisa: NaN es un número válido para él."
+          },
+          {
+            "texto": "Imprime un triángulo de 4 filas",
+            "explica": "\"hola\" tiene 4 letras, pero Number no cuenta letras."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "A Node program does const n = Number(process.argv[2]) and a loop from 1 to n. You run it with node triangle.js hello. What happens?",
+        "opciones": [
+          {
+            "texto": "It prints nothing and shows no error",
+            "correcta": true,
+            "explica": "Number(\"hello\") is NaN, and 1 <= NaN is false: the loop does not run even once."
+          },
+          {
+            "texto": "It shows a type error",
+            "explica": "JavaScript does not warn you: NaN is a valid number for it."
+          },
+          {
+            "texto": "It prints a 5-row triangle",
+            "explica": "\"hello\" has 5 letters, but Number does not count letters."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "一个 Node 程序写了 const n = Number(process.argv[2])，再从 1 循环到 n。你用 node triangle.js hello 运行它。会怎样？",
+        "opciones": [
+          {
+            "texto": "什么也不打印，也不显示任何错误",
+            "correcta": true,
+            "explica": "Number(\"hello\") 是 NaN，而 1 <= NaN 是假：循环一次也不执行。"
+          },
+          {
+            "texto": "显示一个类型错误",
+            "explica": "JavaScript 不会提醒你：对它来说 NaN 是一个合法的数字。"
+          },
+          {
+            "texto": "打印一个 5 行的三角形",
+            "explica": "\"hello\" 有 5 个字母，但 Number 不会数字母。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-007",
+      "dificultad": 38,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En una pirámide de asteriscos de 5 filas (1, 3, 5, 7 y 9 asteriscos), ¿cuántos asteriscos van en la fila 3?",
+        "opciones": [
+          {
+            "texto": "5",
+            "correcta": true,
+            "explica": "La fila i lleva 2 * i - 1: con i = 3, son 5."
+          },
+          {
+            "texto": "6",
+            "explica": "2 * i daría números pares y la pirámide no tendría centro."
+          },
+          {
+            "texto": "3",
+            "explica": "Eso sería el triángulo rectángulo, no la pirámide."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In a 5-row asterisk pyramid (1, 3, 5, 7 and 9 asterisks), how many asterisks go in row 3?",
+        "opciones": [
+          {
+            "texto": "5",
+            "correcta": true,
+            "explica": "Row i has 2 * i - 1: with i = 3, that is 5."
+          },
+          {
+            "texto": "6",
+            "explica": "2 * i would give even numbers and the pyramid would have no center."
+          },
+          {
+            "texto": "3",
+            "explica": "That would be the right triangle, not the pyramid."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在一个 5 行的星号金字塔里（1、3、5、7、9 个星号），第 3 行有几个星号？",
+        "opciones": [
+          {
+            "texto": "5",
+            "correcta": true,
+            "explica": "第 i 行有 2 * i - 1 个：i = 3 时是 5 个。"
+          },
+          {
+            "texto": "6",
+            "explica": "2 * i 会得到偶数，金字塔就没有中心了。"
+          },
+          {
+            "texto": "3",
+            "explica": "那是直角三角形，不是金字塔。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-008",
+      "dificultad": 42,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "¿Qué imprime este código?",
+        "frase": "const n = 3;\nfor (let i = 1; i <= n; i++) {\n  console.log(\" \".repeat(n - i) + \"*\".repeat(i));\n}",
+        "opciones": [
+          {
+            "texto": "  *\n **\n***",
+            "correcta": true,
+            "explica": "Cada fila empieza con n - i espacios, así el triángulo queda pegado a la derecha."
+          },
+          {
+            "texto": "*\n**\n***",
+            "explica": "Ese no tiene espacios: es el triángulo pegado a la izquierda."
+          },
+          {
+            "texto": "***\n **\n  *",
+            "explica": "Ese va hacia abajo: los espacios crecen en vez de bajar."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does this code print?",
+        "frase": "const n = 3;\nfor (let i = 1; i <= n; i++) {\n  console.log(\" \".repeat(n - i) + \"*\".repeat(i));\n}",
+        "opciones": [
+          {
+            "texto": "  *\n **\n***",
+            "correcta": true,
+            "explica": "Each row starts with n - i spaces, so the triangle sits against the right."
+          },
+          {
+            "texto": "*\n**\n***",
+            "explica": "That one has no spaces: it is the triangle against the left."
+          },
+          {
+            "texto": "***\n **\n  *",
+            "explica": "That one goes down: the spaces grow instead of shrinking."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "这段代码会打印什么？",
+        "frase": "const n = 3;\nfor (let i = 1; i <= n; i++) {\n  console.log(\" \".repeat(n - i) + \"*\".repeat(i));\n}",
+        "opciones": [
+          {
+            "texto": "  *\n **\n***",
+            "correcta": true,
+            "explica": "每一行先有 n - i 个空格，所以三角形靠右。"
+          },
+          {
+            "texto": "*\n**\n***",
+            "explica": "那个没有空格：是靠左的三角形。"
+          },
+          {
+            "texto": "***\n **\n  *",
+            "explica": "那个是往下的：空格在变多而不是变少。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-009",
+      "dificultad": 48,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Qué hace \"*\".repeat(3).padStart(5)?",
+        "opciones": [
+          {
+            "texto": "Pone dos espacios delante: \"  ***\"",
+            "correcta": true,
+            "explica": "padStart rellena por la izquierda hasta llegar a 5 caracteres."
+          },
+          {
+            "texto": "Pone cinco espacios delante",
+            "explica": "El 5 es el largo final, no la cantidad de espacios."
+          },
+          {
+            "texto": "Pone dos espacios detrás",
+            "explica": "Eso lo hace padEnd."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does \"*\".repeat(3).padStart(5) do?",
+        "opciones": [
+          {
+            "texto": "Adds two spaces in front: \"  ***\"",
+            "correcta": true,
+            "explica": "padStart pads on the left until it reaches 5 characters."
+          },
+          {
+            "texto": "Adds five spaces in front",
+            "explica": "The 5 is the final length, not the number of spaces."
+          },
+          {
+            "texto": "Adds two spaces after",
+            "explica": "That is what padEnd does."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "\"*\".repeat(3).padStart(5) 做了什么？",
+        "opciones": [
+          {
+            "texto": "在前面加两个空格：\"  ***\"",
+            "correcta": true,
+            "explica": "padStart 在左边补空格，直到长度达到 5 个字符。"
+          },
+          {
+            "texto": "在前面加五个空格",
+            "explica": "5 是最终长度，不是空格的个数。"
+          },
+          {
+            "texto": "在后面加两个空格",
+            "explica": "那是 padEnd 做的事。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-010",
+      "dificultad": 52,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "¿Qué imprime este código?",
+        "frase": "const n = 3;\nfor (let i = 1; i <= n; i++) {\n  const nums = [];\n  for (let j = 1; j <= i; j++) {\n    nums.push(j);\n  }\n  console.log(nums.join(\" \"));\n}",
+        "opciones": [
+          {
+            "texto": "1\n1 2\n1 2 3",
+            "correcta": true
+          },
+          {
+            "texto": "1\n12\n123",
+            "explica": "join(\" \") une los números con un espacio entre ellos."
+          },
+          {
+            "texto": "1\n2 2\n3 3 3",
+            "explica": "Cada fila cuenta del 1 hasta i; no repite el número de la fila."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "What does this code print?",
+        "frase": "const n = 3;\nfor (let i = 1; i <= n; i++) {\n  const nums = [];\n  for (let j = 1; j <= i; j++) {\n    nums.push(j);\n  }\n  console.log(nums.join(\" \"));\n}",
+        "opciones": [
+          {
+            "texto": "1\n1 2\n1 2 3",
+            "correcta": true
+          },
+          {
+            "texto": "1\n12\n123",
+            "explica": "join(\" \") joins the numbers with a space between them."
+          },
+          {
+            "texto": "1\n2 2\n3 3 3",
+            "explica": "Each row counts from 1 up to i; it does not repeat the row number."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "这段代码会打印什么？",
+        "frase": "const n = 3;\nfor (let i = 1; i <= n; i++) {\n  const nums = [];\n  for (let j = 1; j <= i; j++) {\n    nums.push(j);\n  }\n  console.log(nums.join(\" \"));\n}",
+        "opciones": [
+          {
+            "texto": "1\n1 2\n1 2 3",
+            "correcta": true
+          },
+          {
+            "texto": "1\n12\n123",
+            "explica": "join(\" \") 会用空格把数字连起来。"
+          },
+          {
+            "texto": "1\n2 2\n3 3 3",
+            "explica": "每一行从 1 数到 i；不会重复行号。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-011",
+      "dificultad": 58,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En JavaScript, ¿por qué conviene comparar con === y no con ==?",
+        "opciones": [
+          {
+            "texto": "Porque === no convierte tipos: \"1\" == 1 da true, pero \"1\" === 1 da false",
+            "correcta": true
+          },
+          {
+            "texto": "Porque == no funciona con números",
+            "explica": "Sí funciona, pero convierte los tipos antes de comparar."
+          },
+          {
+            "texto": "Porque === es más rápido de escribir",
+            "explica": "La diferencia es lo que hace, no cómo se escribe."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In JavaScript, why is it better to compare with === and not with ==?",
+        "opciones": [
+          {
+            "texto": "Because === does not convert types: \"1\" == 1 is true, but \"1\" === 1 is false",
+            "correcta": true
+          },
+          {
+            "texto": "Because == does not work with numbers",
+            "explica": "It does work, but it converts the types before comparing."
+          },
+          {
+            "texto": "Because === is quicker to type",
+            "explica": "The difference is what it does, not how it is typed."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在 JavaScript 里，为什么用 === 比较比用 == 更好？",
+        "opciones": [
+          {
+            "texto": "因为 === 不会转换类型：\"1\" == 1 是 true，但 \"1\" === 1 是 false",
+            "correcta": true
+          },
+          {
+            "texto": "因为 == 不能比较数字",
+            "explica": "能比较，但它会先转换类型再比较。"
+          },
+          {
+            "texto": "因为 === 写起来更快",
+            "explica": "区别在于它做什么，而不是怎么写。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-012",
+      "dificultad": 64,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesCodigo": true,
+      "es": {
+        "pregunta": "En una pirámide hueca de 5 filas (solo el borde), ¿cómo se ve la fila 3?",
+        "opciones": [
+          {
+            "texto": "  *   *",
+            "correcta": true,
+            "explica": "Dos espacios delante, un asterisco, tres espacios y otro asterisco."
+          },
+          {
+            "texto": "  *****",
+            "explica": "Esa es la fila 3 de la pirámide llena."
+          },
+          {
+            "texto": "  * *",
+            "explica": "Faltan espacios en el medio: van 2 * i - 3, que con i = 3 son tres."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In a 5-row hollow pyramid (only the border), what does row 3 look like?",
+        "opciones": [
+          {
+            "texto": "  *   *",
+            "correcta": true,
+            "explica": "Two spaces in front, an asterisk, three spaces and another asterisk."
+          },
+          {
+            "texto": "  *****",
+            "explica": "That is row 3 of the full pyramid."
+          },
+          {
+            "texto": "  * *",
+            "explica": "Spaces are missing in the middle: there are 2 * i - 3, which with i = 3 is three."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在一个 5 行的空心金字塔里（只有边框），第 3 行是什么样子？",
+        "opciones": [
+          {
+            "texto": "  *   *",
+            "correcta": true,
+            "explica": "前面两个空格，一个星号，三个空格，再一个星号。"
+          },
+          {
+            "texto": "  *****",
+            "explica": "那是实心金字塔的第 3 行。"
+          },
+          {
+            "texto": "  * *",
+            "explica": "中间少了空格：应该有 2 * i - 3 个，i = 3 时是三个。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-013",
+      "dificultad": 70,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Para imprimir el triángulo de Sierpinski en JavaScript escribes j & i === j, sin paréntesis. ¿Qué pasa?",
+        "opciones": [
+          {
+            "texto": "Se calcula primero i === j, y el dibujo sale roto sin ningún error",
+            "correcta": true,
+            "explica": "En JavaScript === va antes que &: hacen falta los paréntesis, (j & i) === j."
+          },
+          {
+            "texto": "Funciona igual que con paréntesis",
+            "explica": "Así es en Python, pero en JavaScript el orden es al revés."
+          },
+          {
+            "texto": "Da un error de sintaxis",
+            "explica": "Es código válido; solo calcula otra cosa."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "To print the Sierpinski triangle in JavaScript you write j & i === j, without parentheses. What happens?",
+        "opciones": [
+          {
+            "texto": "i === j is evaluated first, and the drawing comes out broken without any error",
+            "correcta": true,
+            "explica": "In JavaScript === comes before &: you need the parentheses, (j & i) === j."
+          },
+          {
+            "texto": "It works the same as with parentheses",
+            "explica": "That is how it is in Python, but in JavaScript the order is the other way around."
+          },
+          {
+            "texto": "It gives a syntax error",
+            "explica": "It is valid code; it just computes something else."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在 JavaScript 里打印谢尔宾斯基三角形时，你写了 j & i === j，没加括号。会怎样？",
+        "opciones": [
+          {
+            "texto": "会先算 i === j，图形坏掉，而且没有任何错误",
+            "correcta": true,
+            "explica": "在 JavaScript 里 === 比 & 先算：需要加括号，(j & i) === j。"
+          },
+          {
+            "texto": "和加括号一样",
+            "explica": "在 Python 里是这样，但在 JavaScript 里顺序相反。"
+          },
+          {
+            "texto": "语法错误",
+            "explica": "这是合法的代码，只是算的是别的东西。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-014",
+      "dificultad": 75,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En el triángulo de Pascal cada número es la suma de los dos que tiene encima. ¿Qué fila sigue a 1 3 3 1?",
+        "opciones": [
+          {
+            "texto": "1 4 6 4 1",
+            "correcta": true,
+            "explica": "1, 1 + 3, 3 + 3, 3 + 1 y 1."
+          },
+          {
+            "texto": "1 3 6 3 1",
+            "explica": "Los de al lado del 1 son 1 + 3 = 4."
+          },
+          {
+            "texto": "1 4 4 4 1",
+            "explica": "El del centro es 3 + 3 = 6."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In Pascal's triangle each number is the sum of the two on top of it. Which row comes after 1 3 3 1?",
+        "opciones": [
+          {
+            "texto": "1 4 6 4 1",
+            "correcta": true,
+            "explica": "1, 1 + 3, 3 + 3, 3 + 1 and 1."
+          },
+          {
+            "texto": "1 3 6 3 1",
+            "explica": "The ones next to the 1 are 1 + 3 = 4."
+          },
+          {
+            "texto": "1 4 4 4 1",
+            "explica": "The middle one is 3 + 3 = 6."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在杨辉三角里，每个数等于它正上方两个数之和。1 3 3 1 的下一行是什么？",
+        "opciones": [
+          {
+            "texto": "1 4 6 4 1",
+            "correcta": true,
+            "explica": "1、1 + 3、3 + 3、3 + 1 和 1。"
+          },
+          {
+            "texto": "1 3 6 3 1",
+            "explica": "1 旁边的数是 1 + 3 = 4。"
+          },
+          {
+            "texto": "1 4 4 4 1",
+            "explica": "中间的是 3 + 3 = 6。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-015",
+      "dificultad": 80,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Imprimes un triángulo de Pascal muy grande en JavaScript y, pasadas unas 57 filas, los números del centro salen redondeados. ¿Por qué?",
+        "opciones": [
+          {
+            "texto": "Pasan de Number.MAX_SAFE_INTEGER y ya no son exactos; hace falta BigInt",
+            "correcta": true
+          },
+          {
+            "texto": "join(\"\\n\") no soporta textos tan largos",
+            "explica": "join funciona con textos muy largos; el problema son los números."
+          },
+          {
+            "texto": "console.log corta los números largos",
+            "explica": "console.log muestra el número que recibe; ya llega redondeado."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "You print a very big Pascal's triangle in JavaScript and, after about 57 rows, the numbers in the center come out rounded. Why?",
+        "opciones": [
+          {
+            "texto": "They go past Number.MAX_SAFE_INTEGER and are no longer exact; you need BigInt",
+            "correcta": true
+          },
+          {
+            "texto": "join(\"\\n\") does not support texts that long",
+            "explica": "join works with very long texts; the problem is the numbers."
+          },
+          {
+            "texto": "console.log cuts long numbers",
+            "explica": "console.log shows the number it gets; it already arrives rounded."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "你在 JavaScript 里打印一个很大的杨辉三角，大约 57 行之后，中间的数被四舍五入了。为什么？",
+        "opciones": [
+          {
+            "texto": "它们超过了 Number.MAX_SAFE_INTEGER，不再精确；需要用 BigInt",
+            "correcta": true
+          },
+          {
+            "texto": "join(\"\\n\") 不支持这么长的文本",
+            "explica": "join 可以处理很长的文本；问题在数字。"
+          },
+          {
+            "texto": "console.log 会截断长数字",
+            "explica": "console.log 显示的是它收到的数；收到时就已经被四舍五入了。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-016",
+      "dificultad": 84,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Para dibujar en un <canvas> un triángulo equilátero de lado 400 apoyado abajo, ¿qué alto tiene?",
+        "opciones": [
+          {
+            "texto": "400 × √3 / 2, unos 346",
+            "correcta": true,
+            "explica": "Es el alto de cualquier triángulo equilátero: lado × √3 / 2."
+          },
+          {
+            "texto": "400",
+            "explica": "Ese sería el alto si los lados de los costados fueran verticales."
+          },
+          {
+            "texto": "200",
+            "explica": "200 es la mitad del lado, no el alto."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "To draw on a <canvas> an equilateral triangle with side 400 sitting at the bottom, how tall is it?",
+        "opciones": [
+          {
+            "texto": "400 × √3 / 2, about 346",
+            "correcta": true,
+            "explica": "It is the height of any equilateral triangle: side × √3 / 2."
+          },
+          {
+            "texto": "400",
+            "explica": "That would be the height if the sides were vertical."
+          },
+          {
+            "texto": "200",
+            "explica": "200 is half the side, not the height."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "要在 <canvas> 上画一个边长 400、底边在下面的等边三角形，它有多高？",
+        "opciones": [
+          {
+            "texto": "400 × √3 / 2，大约 346",
+            "correcta": true,
+            "explica": "这是任何等边三角形的高：边长 × √3 / 2。"
+          },
+          {
+            "texto": "400",
+            "explica": "如果两条斜边是竖直的，才会是这个高度。"
+          },
+          {
+            "texto": "200",
+            "explica": "200 是边长的一半，不是高。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-017",
+      "dificultad": 90,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "Una función recursiva dibuja el triángulo de Sierpinski: en cada nivel cambia un triángulo por tres de la mitad de tamaño. ¿Cuántos triángulos chicos dibuja con nivel 5?",
+        "opciones": [
+          {
+            "texto": "243",
+            "correcta": true,
+            "explica": "3 elevado a 5."
+          },
+          {
+            "texto": "15",
+            "explica": "Eso sería sumar 3 por cada nivel; en realidad se multiplica."
+          },
+          {
+            "texto": "125",
+            "explica": "125 es 5 × 5 × 5; aquí cada nivel multiplica por 3."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "A recursive function draws the Sierpinski triangle: at each level it replaces a triangle with three half its size. How many small triangles does it draw with level 5?",
+        "opciones": [
+          {
+            "texto": "243",
+            "correcta": true,
+            "explica": "3 to the power of 5."
+          },
+          {
+            "texto": "15",
+            "explica": "That would be adding 3 per level; it actually multiplies."
+          },
+          {
+            "texto": "125",
+            "explica": "125 is 5 × 5 × 5; here each level multiplies by 3."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "一个递归函数画谢尔宾斯基三角形：每一层把一个三角形换成三个边长一半的三角形。层级为 5 时，它画了多少个小三角形？",
+        "opciones": [
+          {
+            "texto": "243",
+            "correcta": true,
+            "explica": "3 的 5 次方。"
+          },
+          {
+            "texto": "15",
+            "explica": "那是每层加 3；实际上是乘。"
+          },
+          {
+            "texto": "125",
+            "explica": "125 是 5 × 5 × 5；这里每一层乘以 3。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trijs-018",
+      "dificultad": 95,
+      "tipo": "elegir",
+      "contexto": false,
+      "es": {
+        "pregunta": "En la consola de Chrome imprimes la misma línea 5 veces seguidas y solo ves una, con un 5 al lado. ¿Qué pasa?",
+        "opciones": [
+          {
+            "texto": "La consola agrupa las líneas iguales; en Node salen las cinco",
+            "correcta": true
+          },
+          {
+            "texto": "El bucle solo dio una vuelta",
+            "explica": "Dio las cinco; es la consola la que las muestra juntas."
+          },
+          {
+            "texto": "console.log no imprime líneas repetidas",
+            "explica": "Sí las imprime: la consola del navegador solo las agrupa al mostrarlas."
+          }
+        ]
+      },
+      "en": {
+        "pregunta": "In the Chrome console you print the same line 5 times in a row and see only one, with a 5 next to it. What is going on?",
+        "opciones": [
+          {
+            "texto": "The console groups identical lines; in Node all five show up",
+            "correcta": true
+          },
+          {
+            "texto": "The loop ran only once",
+            "explica": "It ran five times; the console just shows them together."
+          },
+          {
+            "texto": "console.log does not print repeated lines",
+            "explica": "It does print them: the browser console only groups them when showing them."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "在 Chrome 控制台里你连续 5 次打印同一行，却只看到一行，旁边有个 5。这是怎么回事？",
+        "opciones": [
+          {
+            "texto": "控制台会把相同的行合并；在 Node 里五行都会显示",
+            "correcta": true
+          },
+          {
+            "texto": "循环只跑了一次",
+            "explica": "它跑了五次；只是控制台把它们合在一起显示。"
+          },
+          {
+            "texto": "console.log 不会打印重复的行",
+            "explica": "它会打印：只是浏览器控制台显示时把它们合并了。"
+          }
+        ]
+      }
+    }
+  ]
+}
