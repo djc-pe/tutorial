@@ -2,7 +2,7 @@
   "format": 2,
   "site": "tutorial",
   "host": "https://tutorial.djc.pe",
-  "updated": "2026-11-03",
+  "updated": "2026-11-04",
   "model": {
     "id": "all-MiniLM-L6-v2",
     "file": "onnx/model_quantized.onnx",
@@ -13,7 +13,7 @@
     "normalize": true
   },
   "docs": 51,
-  "chunks": 250,
+  "chunks": 252,
   "vectors": {
     "type": "int8",
     "scale": "per-vector"
@@ -31,12 +31,12 @@
     },
     {
       "file": "nodes/1.json",
-      "version": "c1ca711dddcf",
+      "version": "d7fee25a5d6d",
       "docs": 4,
-      "chunks": 13,
+      "chunks": 15,
       "centroid": {
-        "scale": 0.001409239,
-        "data": "8OAf2/nycPYLCDHkCQUx9f0g6vsRGd4d9xIOJxXDBy5D+/AdFb7hDsbZ9vUO1PAES+7B9ssc/Qf8OA/3ytjbIPLNGz3WQKv5DGnSMx/q/+np/+rI+wMSKTDx9RPJ/R4h8O/rM0M9HfLH+t8PRuzN8tfq9QEq2yrv8CPn9QPRGAA1EhdO5iHeKt0BFhL1ASYsx/XoGvnoD/cEDRXONhft7P/8/PhfDtjCAwELAfXlGP77/vPBAuQGD9ol2uoJIBcO6fDsIGkFx/7mKBYDAOUeNv38/SInBzbo9hj6MizuBAAkJPYh5PQsSBiNtbEt8dzpyP/3It4W8vrr0Qkcmwku8/wH3CwNyQYcCifIzO/O6dHVDCfMu78M4xTG2efvC9rLEvnvTwTYIwaU3enU5s700/j0z+r+Qukt/wrfQBQ6wgDe8f8dFSncJCP2D+PTCBhTJTvq+TUp9RwB+wMo+NXs/vHo/vwU1Qr9M+Hf/r0G/erU8AfmHvdHF/MRGAwUf/z9"
+        "scale": 0.001419898,
+        "data": "8tsh3fPwcPYICjDgBwIs8v8f7PwRGOIf/BIOKhTABjJB+PEeE7rkDMTd8/cL2e0JRfHG8s8a+gj8OxD1x9jbH/HMFzzcNq34DWfTNSHq+evuAO3E/QETJjHu+RLF/R4h9PbtNEM8G/PI+t4MSefL79nw9QIl2Snu7ifn9P/TFQAzExdK6B7aKtr7FhH2/x4rxvPnG/boEfgBDRbQOhfv6vz6+vljC9bDAwENAPjjEfz+/fK/AuMJDd0k2uwLIhoM5+3qH2gExv/tLBMFAOsdM/3/+SUpBTTl9h75MynrAwAlKPoi4PYsSxqRuLI17t/pyAP6I+IP9Prr1Qobmgkr8/oH2SwLzgUaBCnIzPLQ6dfZCivOvb8K4hHF1envDN3JEfjsTgfbIQKT3O7W4Mfw1/T20+4DQOcrAgnkPhU1xwDh8wEhGCbdIx31DeDUChpTJj7q+DAs+h/9/AYn9dDq//To/PkM2AX/NN3jAb4GAuvW8QrnIvZEG+8SGAwTf/v9"
       }
     },
     {
@@ -90,5 +90,5 @@
       }
     }
   ],
-  "version": "f00639419cf9"
+  "version": "f5c0cfa856bc"
 }

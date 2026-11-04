@@ -1,0 +1,81 @@
+/* djc-english-voz (v1): botones de audio e IPA de las frases */
+
+.djc-english-voz-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+  font-size: 16px;
+  line-height: 1;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.djc-english-voz-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.djc-english-voz-btn.djc-english-voz-sonando { border-color: var(--color-accent); }
+
+.djc-english-voz-btn-grande {
+  width: 64px;
+  height: 64px;
+  font-size: 28px;
+  border-color: var(--color-accent);
+}
+
+.djc-english-voz-btn-lento {
+  width: auto;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+/* Tabla de frases: IPA US y UK debajo de cada frase, con su botón */
+table.djc-english-voz-frases td > .djc-english-voz-btn {
+  width: 28px;
+  height: 28px;
+  margin-left: 6px;
+  font-size: 13px;
+}
+
+.djc-english-voz-ipa {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  color: var(--color-text-muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.djc-english-voz-ipa:first-of-type { margin-top: 8px; }
+
+.djc-english-voz-ipa abbr {
+  align-self: flex-start;
+  min-width: 22px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--color-accent);
+}
+
+.djc-english-voz-ipa .djc-english-voz-btn {
+  order: 2;
+  align-self: flex-start;
+  width: 26px;
+  height: 26px;
+  font-size: 12px;
+}
