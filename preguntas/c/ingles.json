@@ -1,6 +1,6 @@
 {
   "categoria": "ingles",
-  "version": "b4a53396",
+  "version": "c2862b89",
   "titulo": {
     "en": "English",
     "es": "Inglés",
@@ -22,6 +22,16 @@
       },
       "secciones": {
         "es": {
+          "basico": 10,
+          "intermedio": 0,
+          "avanzado": 0
+        },
+        "en": {
+          "basico": 10,
+          "intermedio": 0,
+          "avanzado": 0
+        },
+        "zh-cn": {
           "basico": 10,
           "intermedio": 0,
           "avanzado": 0

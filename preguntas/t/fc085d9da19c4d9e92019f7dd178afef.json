@@ -8,7 +8,9 @@
   },
   "prefijo": "ssh",
   "categorias": [
-    "devops"
+    "devops",
+    "linux",
+    "redes"
   ],
   "preguntas": [
     {
@@ -47,6 +49,23 @@
           {
             "texto": "ssh -R",
             "explica": "It opens a reverse tunnel; it has nothing to do with keys."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "哪条命令会生成你的密钥对？",
+        "opciones": [
+          {
+            "texto": "ssh-keygen -t ed25519",
+            "correcta": true
+          },
+          {
+            "texto": "ssh-copy-id",
+            "explica": "它把你的公钥复制到服务器上，不会生成密钥。"
+          },
+          {
+            "texto": "ssh -R",
+            "explica": "它打开反向隧道，和密钥无关。"
           }
         ]
       }
@@ -91,6 +110,24 @@
             "explica": "The jump host cannot get into your home: the router lets nobody in."
           }
         ]
+      },
+      "zh-cn": {
+        "pregunta": "你想从公司连回家里没有公网 IP 的电脑，用一台互联网上的服务器作跳板。哪台机器打开隧道？",
+        "opciones": [
+          {
+            "texto": "家里的电脑",
+            "correcta": true,
+            "explica": "路由器不让外面进来，但允许里面出去，所以由家里主动连跳板。"
+          },
+          {
+            "texto": "公司的电脑",
+            "explica": "公司使用这条隧道，但不负责打开它。"
+          },
+          {
+            "texto": "跳板",
+            "explica": "跳板进不了你家：路由器不让任何人进来。"
+          }
+        ]
       }
     },
     {
@@ -131,6 +168,24 @@
           {
             "texto": "~/.ssh/authorized_keys",
             "explica": "It holds other people's public keys; it is not a secret."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "下面哪个文件绝对不能离开你的电脑？",
+        "opciones": [
+          {
+            "texto": "~/.ssh/id_ed25519",
+            "correcta": true,
+            "explica": "它是私钥。"
+          },
+          {
+            "texto": "~/.ssh/id_ed25519.pub",
+            "explica": "它是公钥：本来就是要复制到别的机器上的。"
+          },
+          {
+            "texto": "~/.ssh/authorized_keys",
+            "explica": "它保存的是别人的公钥，不是秘密。"
           }
         ]
       }
@@ -181,6 +236,27 @@
             "explica": "SSH works on any port; the problem is reaching it and exposing it."
           }
         ]
+      },
+      "zh-cn": {
+        "pregunta": "为什么在家里的路由器上开放 22 端口不是个好主意？",
+        "opciones": [
+          {
+            "texto": "有 CGNAT 时，你的路由器没有自己的公网 IP 可以开放",
+            "correcta": true
+          },
+          {
+            "texto": "你家的 IP 会时不时变化",
+            "correcta": true
+          },
+          {
+            "texto": "你家的 SSH 会暴露给整个互联网上的机器人",
+            "correcta": true
+          },
+          {
+            "texto": "SSH 在路由器的 22 端口上不能用",
+            "explica": "SSH 在任何端口上都能用；问题在于能不能连到，以及会不会暴露。"
+          }
+        ]
       }
     },
     {
@@ -226,6 +302,25 @@
             "explica": "No private key goes to the jump host."
           }
         ]
+      },
+      "zh-cn": {
+        "pregunta": "你家向一台跳板打开隧道，你在公司用 ssh -J 经过它回家。跳板需要接受哪些公钥？",
+        "opciones": [
+          {
+            "texto": "家里电脑的",
+            "correcta": true,
+            "explica": "为了打开隧道，家里要先连到跳板。"
+          },
+          {
+            "texto": "公司电脑的",
+            "correcta": true,
+            "explica": "用 -J 时，公司也要先连到跳板。"
+          },
+          {
+            "texto": "公司电脑的私钥",
+            "explica": "没有任何私钥会放到跳板上。"
+          }
+        ]
       }
     },
     {
@@ -242,6 +337,13 @@
       },
       "en": {
         "pregunta": "Your home has no public IP. Put in order the command that opens on the server jump.example.com (user tunnel) a port 2222 that leads to your home SSH",
+        "frase": "ssh -N -R 2222:localhost:22 tunnel@jump.example.com",
+        "extra": [
+          "-L"
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "你家没有公网 IP。把下面的命令排好顺序：在服务器 jump.example.com（用户 tunnel）上打开一个通到你家 SSH 的 2222 端口",
         "frase": "ssh -N -R 2222:localhost:22 tunnel@jump.example.com",
         "extra": [
           "-L"
@@ -286,6 +388,23 @@
             "explica": "You reach the server on its normal port; the last number of -R is on your home side."
           }
         ]
+      },
+      "zh-cn": {
+        "pregunta": "你在家里用 ssh -R 2222:localhost:22 向服务器打开隧道。这里的 22 是什么？",
+        "opciones": [
+          {
+            "texto": "你家 SSH 监听的端口",
+            "correcta": true
+          },
+          {
+            "texto": "在服务器上打开的端口",
+            "explica": "那是第一个数字 2222。"
+          },
+          {
+            "texto": "服务器的 SSH 端口",
+            "explica": "连服务器用的是它平常的端口；-R 的最后一个数字在你家这一边。"
+          }
+        ]
       }
     },
     {
@@ -302,6 +421,13 @@
       },
       "en": {
         "pregunta": "Your home opened a tunnel on port 2222 of the server jump.example.com (user tunnel). Put in order the command to get home from work as ana, jumping through that server",
+        "frase": "ssh -J tunnel@jump.example.com -p 2222 ana@localhost",
+        "extra": [
+          "-R"
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "你家已经在服务器 jump.example.com（用户 tunnel）的 2222 端口上打开了隧道。把命令排好顺序：从公司以 ana 的身份经过这台服务器回家",
         "frase": "ssh -J tunnel@jump.example.com -p 2222 ana@localhost",
         "extra": [
           "-R"
@@ -348,6 +474,24 @@
             "explica": "-R opens a tunnel; you do not need it to get in."
           }
         ]
+      },
+      "zh-cn": {
+        "pregunta": "你公司电脑的 ~/.ssh/config 里有这样的配置。要进入家里的电脑，你输入什么？",
+        "frase": "Host jump\n    HostName jump.example.com\n    User tunnel\n\nHost home\n    HostName localhost\n    Port 2222\n    User ana\n    ProxyJump jump",
+        "opciones": [
+          {
+            "texto": "ssh home",
+            "correcta": true
+          },
+          {
+            "texto": "ssh jump",
+            "explica": "这只会把你带到跳板上，而不是你家。"
+          },
+          {
+            "texto": "ssh -R home",
+            "explica": "-R 是打开隧道的，连进去用不到它。"
+          }
+        ]
       }
     },
     {
@@ -388,6 +532,24 @@
           {
             "texto": "HostName localhost",
             "explica": "It is the middle server's localhost, but without ProxyJump it would look for your own PC."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "有了这个配置，ssh home 会经过一台中间服务器进入一台没有公网 IP 的电脑。哪一行让它经过那台服务器？",
+        "frase": "Host home\n    HostName localhost\n    Port 2222\n    User ana\n    ProxyJump jump",
+        "opciones": [
+          {
+            "texto": "ProxyJump jump",
+            "correcta": true
+          },
+          {
+            "texto": "Port 2222",
+            "explica": "这是跳板上隧道的端口，但它没有说要经过哪里。"
+          },
+          {
+            "texto": "HostName localhost",
+            "explica": "这是中间服务器的 localhost，但没有 ProxyJump 的话，它会去找你自己的电脑。"
           }
         ]
       }
@@ -444,6 +606,30 @@
             "explica": "It keeps it from waiting for a password, but it does not reopen it."
           }
         ]
+      },
+      "zh-cn": {
+        "pregunta": "一个 systemd 服务保持一条 SSH 隧道开着（ssh -N -R ...）。哪些选项能让隧道断了之后自己恢复？",
+        "opciones": [
+          {
+            "texto": "ServerAliveInterval=30",
+            "correcta": true,
+            "explica": "它能发现跳板不再回应，然后断开。"
+          },
+          {
+            "texto": "ExitOnForwardFailure=yes",
+            "correcta": true,
+            "explica": "如果没能打开端口，它就退出，好让服务重试。"
+          },
+          {
+            "texto": "Restart=always",
+            "correcta": true,
+            "explica": "隧道结束后，就是它把隧道重新打开。"
+          },
+          {
+            "texto": "BatchMode=yes",
+            "explica": "它让隧道不去等密码，但不会重新打开隧道。"
+          }
+        ]
       }
     },
     {
@@ -486,6 +672,24 @@
             "explica": "BatchMode does not skip the passphrase; it only avoids waiting."
           }
         ]
+      },
+      "zh-cn": {
+        "pregunta": "家里的电脑用一个带 -o BatchMode=yes 的 systemd 服务保持隧道。你在公司用 ssh 连进去，而你的密钥有口令，会怎样？",
+        "opciones": [
+          {
+            "texto": "照常询问口令",
+            "correcta": true,
+            "explica": "BatchMode 只作用于这个服务建立的连接，不影响你的连接。"
+          },
+          {
+            "texto": "失败，因为 BatchMode 不允许口令",
+            "explica": "那是服务会遇到的情况，不是你。"
+          },
+          {
+            "texto": "不问任何东西就直接进去",
+            "explica": "BatchMode 不会跳过口令，只是不去等待。"
+          }
+        ]
       }
     },
     {
@@ -524,6 +728,23 @@
           {
             "texto": "To limit password attempts",
             "explica": "It has nothing to do with passwords."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "一台服务器接收从你家来的反向隧道（ssh -R 2222:...）。它的 sshd_config 里的 ClientAliveInterval 30 有什么用？",
+        "opciones": [
+          {
+            "texto": "在你家的连接断掉时，尽快释放 2222 端口",
+            "correcta": true
+          },
+          {
+            "texto": "让公司的连接不断开",
+            "explica": "在客户端这一边，那是 ServerAliveInterval 的作用。"
+          },
+          {
+            "texto": "限制密码尝试的次数",
+            "explica": "它和密码无关。"
           }
         ]
       }
@@ -568,6 +789,24 @@
             "explica": "scp copies files; it does not open ports."
           }
         ]
+      },
+      "zh-cn": {
+        "pregunta": "你已经能用 ssh home 回家了。你想在公司的浏览器里打开家里跑在 8080 端口上的网站。用哪条命令？",
+        "opciones": [
+          {
+            "texto": "ssh -N -L 8080:localhost:8080 home",
+            "correcta": true,
+            "explica": "-L 在你这一边，也就是公司，打开端口。"
+          },
+          {
+            "texto": "ssh -N -R 8080:localhost:8080 home",
+            "explica": "-R 会在另一头，也就是你家，打开端口。"
+          },
+          {
+            "texto": "scp home:8080 .",
+            "explica": "scp 是复制文件的，不会打开端口。"
+          }
+        ]
       }
     },
     {
@@ -606,6 +845,23 @@
           {
             "texto": "debug1: Setting implicit ProxyCommand from ProxyJump",
             "explica": "It only announces that it will use the jump host."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "你用 ProxyJump 经过跳板回家。在 ssh -v 的输出里，哪一行证明你是经过跳板到达你家的？",
+        "opciones": [
+          {
+            "texto": "Authenticated to localhost (via proxy) using \"publickey\".",
+            "correcta": true
+          },
+          {
+            "texto": "Authenticated to jump.example.com ([203.0.113.10]:22) using \"publickey\".",
+            "explica": "这一行说明你进入了跳板，还没有到你家。"
+          },
+          {
+            "texto": "debug1: Setting implicit ProxyCommand from ProxyJump",
+            "explica": "它只是说明接下来会使用跳板。"
           }
         ]
       }
@@ -648,6 +904,24 @@
           {
             "texto": "Without command, -N does not work",
             "explica": "-N works the same; command only shuts down single commands."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "密钥已经有 restrict 了，为什么还需要 command=\"/bin/false\"？",
+        "opciones": [
+          {
+            "texto": "restrict 去掉了终端，但仍然允许执行单条命令",
+            "correcta": true,
+            "explica": "比如 ssh tunnel@jump id 还是能执行。"
+          },
+          {
+            "texto": "restrict 会阻止隧道，command 再把隧道打开",
+            "explica": "正好相反：restrict 去掉隧道，port-forwarding 再把它打开。"
+          },
+          {
+            "texto": "没有 command 的话，-N 就不能用",
+            "explica": "-N 照样能用；command 只是关掉单条命令。"
           }
         ]
       }
@@ -696,6 +970,26 @@
             "explica": "That gives «administratively prohibited», and you see it at work."
           }
         ]
+      },
+      "zh-cn": {
+        "pregunta": "在你家隧道的日志里看到这一行。可能是什么原因？",
+        "frase": "connect_to localhost port 2222: failed.",
+        "opciones": [
+          {
+            "texto": "-R 的最后一个数字不是你家 SSH 的端口",
+            "correcta": true,
+            "explica": "如果写成 -R 2222:localhost:2222，隧道会去你家的 2222 端口找 SSH。"
+          },
+          {
+            "texto": "你家的 SSH 没有在运行",
+            "correcta": true,
+            "explica": "连接到了你家，但那里没有人应答。"
+          },
+          {
+            "texto": "跳板上的 permitopen 对不上",
+            "explica": "那会显示 «administratively prohibited»，而且是在公司看到的。"
+          }
+        ]
       }
     },
     {
@@ -736,6 +1030,24 @@
           {
             "texto": "Your home fingerprint changed",
             "explica": "That would give «Host key verification failed»."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "你在公司看到这个错误。你的配置里写的是 HostName 127.0.0.1，而跳板设置了 permitopen=\"localhost:2222\"。发生了什么？",
+        "frase": "channel 0: open failed: administratively prohibited: open failed",
+        "opciones": [
+          {
+            "texto": "permitopen 按文字原样比较，127.0.0.1 不是 localhost",
+            "correcta": true
+          },
+          {
+            "texto": "你家的隧道断了",
+            "explica": "那会显示 «Connection refused»。"
+          },
+          {
+            "texto": "你家的指纹变了",
+            "explica": "那会显示 «Host key verification failed»。"
           }
         ]
       }
@@ -782,6 +1094,25 @@
             "explica": "That is for when the port stays taken, not for when nothing listens."
           }
         ]
+      },
+      "zh-cn": {
+        "pregunta": "你在公司经过跳板回家时看到这个错误。你首先检查什么？",
+        "frase": "channel 0: open failed: connect failed: Connection refused",
+        "opciones": [
+          {
+            "texto": "你家的隧道是否开着（也就是保持它的那个服务）",
+            "correcta": true,
+            "explica": "跳板的那个端口上没有任何东西在监听：隧道不在。"
+          },
+          {
+            "texto": "permitopen 是否对得上",
+            "explica": "如果对不上，你会看到 «administratively prohibited»。"
+          },
+          {
+            "texto": "跳板上的 ClientAliveInterval",
+            "explica": "那是用于端口一直被占着的情况，而不是没有东西在监听。"
+          }
+        ]
       }
     },
     {
@@ -824,6 +1155,24 @@
             "explica": "who does not see tunnel-only connections either."
           }
         ]
+      },
+      "zh-cn": {
+        "pregunta": "跳板的 SSH 日志里出现了这条连接，指纹你不认识。怎么查出是哪把密钥？",
+        "frase": "Accepted publickey for tunnel from 198.51.100.7 port 52114 ssh2: ED25519 SHA256:x4Gk...",
+        "opciones": [
+          {
+            "texto": "用 ssh-keygen -lf 查看那个用户的 authorized_keys，再比一比",
+            "correcta": true
+          },
+          {
+            "texto": "用 last",
+            "explica": "last 看不到只打开隧道（-N）的连接，因为它们不打开终端。"
+          },
+          {
+            "texto": "用 who",
+            "explica": "who 也看不到只用于隧道的连接。"
+          }
+        ]
       }
     },
     {
@@ -864,6 +1213,24 @@
           {
             "texto": "Generate a new ed25519 key",
             "explica": "Your key has nothing to do with it: it depends on the OpenSSH version."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "你用 ssh -J 经过跳板回家。ssh -v 在到你家的那一段显示了这一行。要让连接变成抗量子的，你该怎么做？",
+        "frase": "debug1: kex: algorithm: curve25519-sha256",
+        "opciones": [
+          {
+            "texto": "把公司和家里的 OpenSSH 升级到 9.0 或更新",
+            "correcta": true
+          },
+          {
+            "texto": "把密钥换成 RSA",
+            "explica": "密钥类型不会改变会话密钥的商定方式。"
+          },
+          {
+            "texto": "生成一把新的 ed25519 密钥",
+            "explica": "和你的密钥无关：这取决于 OpenSSH 的版本。"
           }
         ]
       }
@@ -910,6 +1277,25 @@
             "explica": "It already retries; the problem is that the port is still taken."
           }
         ]
+      },
+      "zh-cn": {
+        "pregunta": "隧道每天晚上都会断，网络恢复后，家里的日志会连续几分钟重复这个错误。缺了什么？",
+        "frase": "remote port forwarding failed for listen port 2222",
+        "opciones": [
+          {
+            "texto": "跳板 sshd 里的 ClientAliveInterval",
+            "correcta": true,
+            "explica": "跳板还在为那条死掉的连接占着端口。"
+          },
+          {
+            "texto": "去掉 BatchMode=yes",
+            "explica": "BatchMode 只是让它不去等密码。"
+          },
+          {
+            "texto": "Restart=always",
+            "explica": "它已经在重试了；问题是端口还被占着。"
+          }
+        ]
       }
     },
     {
@@ -948,6 +1334,23 @@
           {
             "texto": "The connection stops being post-quantum",
             "explica": "The encryption does not change; what changes is who can reach the port."
+          }
+        ]
+      },
+      "zh-cn": {
+        "pregunta": "你家在跳板的 2222 端口上打开反向隧道，你用 ssh -J 连进去。一位同事建议在跳板上设置 GatewayPorts yes，这样不用 -J 就能进去。这样做有什么问题？",
+        "opciones": [
+          {
+            "texto": "2222 端口会对整个互联网开放",
+            "correcta": true
+          },
+          {
+            "texto": "这等于暴露你家的 SSH，而这正是你想避免的",
+            "correcta": true
+          },
+          {
+            "texto": "连接就不再是抗量子的了",
+            "explica": "加密方式不会变；变的是谁能连到那个端口。"
           }
         ]
       }

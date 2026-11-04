@@ -1,0 +1,50 @@
+/*
+ * djc-core-idioma (v1): selector de idioma a la derecha del breadcrumb.
+ * Solo colores de marca y sus tonalidades. Ver idioma.js.
+ */
+
+.djc-core-idioma-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--djc-core-space-2, 8px);
+  margin: 0 0 var(--djc-core-space-1, 4px);
+}
+
+.djc-core-idioma-bar > .djc-core-breadcrumb { margin: 0; }
+
+.djc-core-idioma {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  border: var(--djc-core-border-soft, 1px solid rgba(229, 247, 116, 0.25));
+  border-radius: 999px;
+  background: var(--djc-core-accent-08, rgba(229, 247, 116, 0.08));
+  margin-left: auto;
+}
+
+.djc-core-idioma-item {
+  padding: 2px 10px;
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+  text-decoration: none;
+}
+
+.djc-core-idioma-item:hover {
+  color: var(--color-accent);
+  background: var(--djc-core-accent-16, rgba(229, 247, 116, 0.16));
+}
+
+.djc-core-idioma-item[aria-current="page"] {
+  color: var(--color-accent);
+  background: var(--djc-core-accent-25, rgba(229, 247, 116, 0.25));
+  font-weight: 600;
+}
+
+.djc-core-idioma-item:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}

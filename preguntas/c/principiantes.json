@@ -1,12 +1,43 @@
 {
   "categoria": "principiantes",
-  "version": "e655d0e4",
+  "version": "8b1eebb3",
   "titulo": {
     "en": "Beginners",
     "es": "Principiantes",
     "zh-cn": "入门"
   },
   "tutoriales": [
+    {
+      "tutorial": "52074aff40304c9cbfde87d342fc2141",
+      "archivo": "preguntas/t/52074aff40304c9cbfde87d342fc2141.json",
+      "titulo": {
+        "es": "Inglés desde cero: empieza aquí",
+        "en": "English from Scratch: Start Here",
+        "zh-cn": "零基础英语：从这里开始"
+      },
+      "url": {
+        "es": "es/52/07/4a/ff/40/30/4c/9c/bf/de/87/d3/42/fc/21/41/",
+        "en": "en/52/07/4a/ff/40/30/4c/9c/bf/de/87/d3/42/fc/21/41/",
+        "zh-cn": "zh-cn/52/07/4a/ff/40/30/4c/9c/bf/de/87/d3/42/fc/21/41/"
+      },
+      "secciones": {
+        "es": {
+          "basico": 10,
+          "intermedio": 0,
+          "avanzado": 0
+        },
+        "en": {
+          "basico": 10,
+          "intermedio": 0,
+          "avanzado": 0
+        },
+        "zh-cn": {
+          "basico": 10,
+          "intermedio": 0,
+          "avanzado": 0
+        }
+      }
+    },
     {
       "tutorial": "5deeaf38e9d840d294788a9bbd0f24a1",
       "archivo": "preguntas/t/5deeaf38e9d840d294788a9bbd0f24a1.json",
