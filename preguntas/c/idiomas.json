@@ -1,12 +1,29 @@
 {
   "categoria": "idiomas",
-  "version": "a00c29f6",
+  "version": "8a8f4c51",
   "titulo": {
     "en": "Languages",
     "es": "Idiomas",
     "zh-cn": "语言"
   },
   "tutoriales": [
+    {
+      "tutorial": "10b824e75fad4ef089c0cfb805b3146b",
+      "archivo": "preguntas/t/10b824e75fad4ef089c0cfb805b3146b.json",
+      "titulo": {
+        "es": "Inglés desde cero: el verbo to be (ser y estar)"
+      },
+      "url": {
+        "es": "es/10/b8/24/e7/5f/ad/4e/f0/89/c0/cf/b8/05/b3/14/6b/"
+      },
+      "secciones": {
+        "es": {
+          "basico": 10,
+          "intermedio": 0,
+          "avanzado": 0
+        }
+      }
+    },
     {
       "tutorial": "52074aff40304c9cbfde87d342fc2141",
       "archivo": "preguntas/t/52074aff40304c9cbfde87d342fc2141.json",

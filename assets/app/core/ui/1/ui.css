@@ -119,6 +119,139 @@ main.content.djc-core-page {
   font-size: 18px;
 }
 
+/* El gancho: la primera frase del intro, la que engancha (también en el video) */
+.djc-core-card .djc-core-hook {
+  margin: 0 0 var(--djc-core-space-3);
+  font-size: 1.35em;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Las imágenes SVG de un .djc (assets/app/core/image/1/): toman el color de la marca */
+.djc-core-art {
+  display: block;
+  color: var(--color-accent);
+}
+
+.djc-core-art .fill { fill: var(--djc-core-accent-16); }
+.djc-core-art .solid { fill: currentColor; }
+.djc-core-art .muted { stroke: var(--color-text-muted); }
+
+/* La imagen del gancho, en la esquina superior derecha del cuadro */
+.djc-core-card:has(> .djc-core-cover) { position: relative; }
+
+.djc-core-cover {
+  position: absolute;
+  top: var(--djc-core-space-4);
+  right: 1.2rem;
+  margin: 0;
+}
+
+.djc-core-cover .djc-core-art-icon { width: 32px; height: 32px; }
+.djc-core-cover .djc-core-art-wide { width: 80px; height: auto; }
+.djc-core-cover + .djc-core-hook { padding-right: 44px; }
+.djc-core-cover:has(.djc-core-art-wide) + .djc-core-hook { padding-right: 92px; }
+
+/* Un párrafo con su imagen al lado, alternando el lado; en el celular, arriba */
+.djc-core-beat {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: var(--djc-core-space-4);
+  align-items: center;
+  margin: var(--djc-core-space-4) 0;
+}
+
+.djc-core-beat > p { margin: 0; }
+.djc-core-beat-alt { grid-template-columns: minmax(0, 1fr) 200px; }
+.djc-core-beat-alt > :first-child { order: 2; }   /* la imagen a la derecha */
+.djc-core-beat .djc-core-art-wide { width: 100%; height: auto; }
+.djc-core-beat .djc-core-art-icon { width: 56px; height: 56px; justify-self: center; }
+
+@media (max-width: 600px) {
+  .djc-core-beat,
+  .djc-core-beat-alt { grid-template-columns: minmax(0, 1fr); gap: var(--djc-core-space-3); }
+  .djc-core-beat-alt > :first-child { order: 0; }
+  .djc-core-beat .djc-core-art-wide { max-width: 200px; justify-self: center; }
+}
+
+/* El código de un elemento code: una ventana de editor con números de línea.
+   Si una línea es larga, el código se desliza al costado; los números quedan fijos. */
+.djc-core-code {
+  margin: var(--djc-core-space-3) 0 0;
+  border: var(--djc-core-border-soft);
+  border-radius: var(--djc-core-radius);
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+.djc-core-code-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--djc-core-space-2);
+  padding: 6px 12px;
+  border-bottom: var(--djc-core-border-soft);
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.djc-core-code-copy {
+  padding: 2px 10px;
+  border: var(--djc-core-border-soft);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-accent);
+  font: inherit;
+  cursor: pointer;
+}
+
+.djc-core-card .djc-core-code-body {
+  margin: 0;
+  padding: 10px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  overflow-x: auto;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.djc-core-code-body code { display: block; min-width: max-content; font: inherit; background: none; padding: 0; }
+.djc-core-code-line { display: block; white-space: pre; padding-right: 16px; min-height: 1.6em; }
+
+.djc-core-code-num {
+  position: sticky;
+  left: 0;
+  display: inline-block;
+  width: 3.2em;
+  padding-right: 1em;
+  text-align: right;
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+  user-select: none;
+}
+
+.djc-core-code-line-mark { background: var(--djc-core-accent-08); }
+.djc-core-code-line-mark .djc-core-code-num { color: var(--color-accent); background: var(--color-bg); }
+.djc-core-code-k, .djc-core-code-n { color: var(--color-accent); }
+.djc-core-code-s { color: var(--djc-core-accent-50); }
+.djc-core-code-c { color: var(--color-text-muted); font-style: italic; }
+.djc-core-code-f { font-weight: 700; }
+
+.djc-core-code-mark {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* Las palabras resaltadas con *asteriscos* en un .djc */
+.djc-core-mark {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
 /* Si se salta a un ancla (#basico), que el título no quede bajo la barra del sitio */
 .djc-core-card [id] { scroll-margin-top: 80px; }
 

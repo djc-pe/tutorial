@@ -1,0 +1,213 @@
+{
+  "version": 1,
+  "tutorial": "10b824e75fad4ef089c0cfb805b3146b",
+  "url": {
+    "es": "es/10/b8/24/e7/5f/ad/4e/f0/89/c0/cf/b8/05/b3/14/6b/"
+  },
+  "prefijo": "en02",
+  "categorias": [
+    "ingles",
+    "idiomas",
+    "principiantes"
+  ],
+  "escala": "idiomas",
+  "preguntas": [
+    {
+      "id": "en02-001",
+      "dificultad": 17,
+      "tipo": "elegir",
+      "contexto": false,
+      "oir": true,
+      "es": {
+        "pregunta": "¿Qué significa?",
+        "frase": "Are you a student?",
+        "opciones": [
+          {
+            "texto": "¿Eres estudiante?",
+            "correcta": true
+          },
+          {
+            "texto": "Soy estudiante."
+          },
+          {
+            "texto": "¿Es tu estudiante?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "en02-002",
+      "dificultad": 18,
+      "tipo": "elegir",
+      "contexto": false,
+      "oir": true,
+      "es": {
+        "pregunta": "¿Qué significa?",
+        "frase": "I'm not a teacher.",
+        "opciones": [
+          {
+            "texto": "No soy profesor.",
+            "correcta": true
+          },
+          {
+            "texto": "Soy profesor."
+          },
+          {
+            "texto": "Tú no eres profesor."
+          }
+        ]
+      }
+    },
+    {
+      "id": "en02-003",
+      "dificultad": 19,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesEn": true,
+      "es": {
+        "pregunta": "Completa: She ___ from Peru.",
+        "opciones": [
+          {
+            "texto": "is",
+            "correcta": true
+          },
+          {
+            "texto": "are"
+          },
+          {
+            "texto": "am"
+          }
+        ],
+        "explica": "Con she, he e it el verbo es is: She is from Peru, o She's from Peru."
+      }
+    },
+    {
+      "id": "en02-004",
+      "dificultad": 21,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesEn": true,
+      "es": {
+        "pregunta": "¿Cómo se dice «Tengo hambre»?",
+        "opciones": [
+          {
+            "texto": "I'm hungry.",
+            "correcta": true
+          },
+          {
+            "texto": "I have hungry."
+          },
+          {
+            "texto": "I am have hunger."
+          }
+        ],
+        "explica": "En inglés el hambre no se tiene, se es: I'm hungry. Pasa igual con thirsty (sed), cold (frío) y hot (calor)."
+      }
+    },
+    {
+      "id": "en02-005",
+      "dificultad": 23,
+      "tipo": "ordenar",
+      "contexto": false,
+      "es": {
+        "pregunta": "¿Eres estudiante?",
+        "frase": "Are you a student?",
+        "extra": [
+          "am"
+        ]
+      }
+    },
+    {
+      "id": "en02-006",
+      "dificultad": 25,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesEn": true,
+      "es": {
+        "pregunta": "¿Cómo se dice «Hace calor»?",
+        "opciones": [
+          {
+            "texto": "It's hot.",
+            "correcta": true
+          },
+          {
+            "texto": "Is hot."
+          },
+          {
+            "texto": "Have hot."
+          }
+        ],
+        "explica": "El sujeto es obligatorio: It's hot. Aquí it se usa para el clima."
+      }
+    },
+    {
+      "id": "en02-007",
+      "dificultad": 27,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesEn": true,
+      "es": {
+        "pregunta": "Te preguntan «Are you tired?» y estás cansado. ¿Cómo respondes?",
+        "opciones": [
+          {
+            "texto": "Yes, I am.",
+            "correcta": true
+          },
+          {
+            "texto": "Yes, I'm."
+          },
+          {
+            "texto": "Yes, I are."
+          }
+        ],
+        "explica": "La respuesta corta termina en el verbo completo: Yes, I am. No se dice Yes, I'm."
+      }
+    },
+    {
+      "id": "en02-008",
+      "dificultad": 29,
+      "tipo": "ordenar",
+      "contexto": false,
+      "es": {
+        "pregunta": "No soy profesor.",
+        "frase": "I'm not a teacher.",
+        "extra": [
+          "is"
+        ]
+      }
+    },
+    {
+      "id": "en02-009",
+      "dificultad": 31,
+      "tipo": "elegir",
+      "contexto": false,
+      "opcionesEn": true,
+      "es": {
+        "pregunta": "¿Cómo se dice «Tengo frío»?",
+        "opciones": [
+          {
+            "texto": "I'm cold.",
+            "correcta": true
+          },
+          {
+            "texto": "I have cold."
+          },
+          {
+            "texto": "I have a cold."
+          }
+        ],
+        "explica": "I'm cold es \"tengo frío\". I have a cold significa \"tengo un resfriado\"."
+      }
+    },
+    {
+      "id": "en02-010",
+      "dificultad": 33,
+      "tipo": "hablar",
+      "contexto": false,
+      "es": {
+        "pregunta": "Preséntate y di que no estás cansado:",
+        "frase": "Hi! I'm Ana. I'm not tired."
+      }
+    }
+  ]
+}
