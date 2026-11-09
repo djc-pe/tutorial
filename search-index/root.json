@@ -12,6 +12,8 @@
     "pooling": "mean",
     "normalize": true
   },
+  "kind": "page",
+  "image": "",
   "docs": 87,
   "chunks": 510,
   "vectors": {
@@ -51,7 +53,7 @@
     },
     {
       "file": "nodes/3.json",
-      "version": "aeb72543518d",
+      "version": "092b4649bf7f",
       "docs": 8,
       "chunks": 31,
       "centroid": {
@@ -71,7 +73,7 @@
     },
     {
       "file": "nodes/5.json",
-      "version": "373b6e947371",
+      "version": "4cd34a421279",
       "docs": 16,
       "chunks": 64,
       "centroid": {
@@ -111,7 +113,7 @@
     },
     {
       "file": "nodes/9.json",
-      "version": "b2c574d32f8d",
+      "version": "d5b09adb7b1c",
       "docs": 11,
       "chunks": 41,
       "centroid": {
@@ -120,5 +122,5 @@
       }
     }
   ],
-  "version": "b4b1578f0044"
+  "version": "cf99970fd4e6"
 }

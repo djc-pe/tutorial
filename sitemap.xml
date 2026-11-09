@@ -3,19 +3,19 @@
   <!-- Home (portadas por idioma) -->
   <url>
     <loc>https://tutorial.djc.pe/en/</loc>
-    <lastmod>2026-11-04T17:36:00-05:00</lastmod>
+    <lastmod>2026-11-04T17:47:00-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://tutorial.djc.pe/es/</loc>
-    <lastmod>2026-11-04T17:36:00-05:00</lastmod>
+    <lastmod>2026-11-04T17:47:00-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://tutorial.djc.pe/zh-cn/</loc>
-    <lastmod>2026-11-04T17:36:00-05:00</lastmod>
+    <lastmod>2026-11-04T17:47:00-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -115,7 +115,7 @@
   <!-- Categorías: español -->
   <url>
     <loc>https://tutorial.djc.pe/es/c/software/</loc>
-    <lastmod>2026-09-25T10:24:47-05:00</lastmod>
+    <lastmod>2026-11-04T18:30:00-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -127,13 +127,13 @@
   </url>
   <url>
     <loc>https://tutorial.djc.pe/es/c/web/</loc>
-    <lastmod>2026-09-25T10:24:47-05:00</lastmod>
+    <lastmod>2026-11-04T18:30:00-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://tutorial.djc.pe/es/c/bases-de-datos/</loc>
-    <lastmod>2026-09-29T10:50:36-05:00</lastmod>
+    <lastmod>2026-11-04T18:30:00-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -157,7 +157,7 @@
   </url>
   <url>
     <loc>https://tutorial.djc.pe/es/c/ia/</loc>
-    <lastmod>2026-09-29T10:50:36-05:00</lastmod>
+    <lastmod>2026-11-04T18:30:00-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -385,7 +385,7 @@
   </url>
   <url>
     <loc>https://tutorial.djc.pe/es/9c/ad/d3/86/64/13/42/e3/a4/38/aa/b9/eb/32/19/64/</loc>
-    <lastmod>2026-09-30T13:06:56-05:00</lastmod>
+    <lastmod>2026-11-04T18:30:00-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -421,7 +421,7 @@
   </url>
   <url>
     <loc>https://tutorial.djc.pe/es/b8/53/4d/ab/8a/be/43/70/99/d8/0b/c4/7d/98/78/8e/</loc>
-    <lastmod>2026-11-02T21:00:00-05:00</lastmod>
+    <lastmod>2026-11-04T18:30:00-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -2,7 +2,8 @@
  * djc-core-idioma (v1): selector de idioma del artículo. Ver docs/ui.md.
  *
  * Lee los <link rel="alternate" hreflang="..."> del <head> y muestra, a la
- * derecha del breadcrumb, un enlace por cada idioma que tiene página. El
+ * derecha del breadcrumb, un enlace por cada idioma que tiene página. En las
+ * páginas sin breadcrumb (las portadas), va arriba del <h1>, a la derecha. El
  * idioma actual (el de <html lang>) queda marcado. Los enlaces son relativos,
  * para que funcionen igual en local y en tutorial.djc.pe. Si la página tiene
  * un solo idioma, no muestra nada.
@@ -31,8 +32,9 @@
 
   function crear() {
     var migas = document.querySelector('main.djc-core-page > .djc-core-breadcrumb');
+    var titulo = migas ? null : document.querySelector('main > h1');
     var canonica = document.querySelector('link[rel="canonical"]');
-    if (!migas || !canonica || document.querySelector('.djc-core-idioma')) return;
+    if ((!migas && !titulo) || !canonica || document.querySelector('.djc-core-idioma')) return;
 
     var actual = (document.documentElement.lang || '').toLowerCase();
     var enlaces = {};
@@ -68,8 +70,12 @@
 
     var barra = document.createElement('div');
     barra.className = 'djc-core-idioma-bar';
-    migas.parentNode.insertBefore(barra, migas);
-    barra.appendChild(migas);
+    if (migas) {
+      migas.parentNode.insertBefore(barra, migas);
+      barra.appendChild(migas);
+    } else {
+      titulo.parentNode.insertBefore(barra, titulo);
+    }
     barra.appendChild(nav);
   }
 
